@@ -14,85 +14,29 @@ public class GUILogic {
     
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
-    private final int N_FIELDS = 24;
+    private final int N_FIELDS = 40;
     protected int STARTBALANCE = 0;
     protected GUI_Field[] fields;
     protected GUI gui;
     protected String[] names = new String[0];
     protected GUI_Player[] guiPlayers = new GUI_Player[0];
     protected int[] ages = new int [0];
-    protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN};
+    protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN,Color.YELLOW,Color.MAGENTA};
     protected TxtReader guiTxt;
     
-    public void init(TxtReader squaresTxt, TxtReader guiTxt){
+    public void init(TxtReader guiTxt){
         this.guiTxt = guiTxt;
-        makeBoard(squaresTxt);
+        makeBoard();
         makeUsers();
     }
 
     /**
      * Creates an array of fields for the game and initialize it.
-     * @param squaresTxt Defines square names and costs with language depended Txtreader.
+     *
      */
-    private void makeBoard(TxtReader squaresTxt) {
+    private void makeBoard() {
         gui = new GUI();
         fields = gui.getFields();
-//        fields = new GUI_Street[N_FIELDS];
-       // Løbe igennem for hvert felt
-//        for (int i = 0; i < N_FIELDS; i++) {
-//            fields[i] = new GUI_Street();
-
-            //Creates object
-//            GUI_Street street = new GUI_Street();
-            
-            //Generates an arrat for each line in .txt with strings.
-//            String[] juniorField = squaresTxt.getLine("" + i).split("-");
-            
-            //Writes titel of the field.
-//            street.setTitle(juniorField[1]);
-            
-            //Sets colors of the fields.
-//            switch (juniorField[4].charAt(0)) {
-//                case 'r':
-//                    street.setBackGroundColor(Color.RED);
-//                    break;
-//                case 'B':
-//                    street.setBackGroundColor(BROWN);
-//                    break;
-//                case 'w':
-//                    street.setBackGroundColor(Color.WHITE);
-//                    break;
-//                case 'c':
-//                    street.setBackGroundColor(Color.CYAN);
-//                    break;
-//                case 'p':
-//                    street.setBackGroundColor(Color.PINK);
-//                    break;
-//                case 'g':
-//                    street.setBackGroundColor(GOLD);
-//                    break;
-//                case 'y':
-//                    street.setBackGroundColor(Color.YELLOW);
-//                    break;
-//                case 'G':
-//                    street.setBackGroundColor(Color.GREEN);
-//                    break;
-//                case 'b':
-//                    street.setBackGroundColor(Color.BLUE);
-//                    break;
-//                default:
-//                    street.setBackGroundColor(Color.BLACK);
- //           }
-
-            //Writes the price
-//            street.setSubText(juniorField[3]);
-            
-            //removes field price If price is 0
-//            if (juniorField[3].equals("0"))
-//                street.setSubText("");
-//            fields[i] = street;
-//        }
-//        gui = new GUI(fields);
     }
 
     /**
@@ -150,7 +94,7 @@ public class GUILogic {
             ages[i] = age;
             
             //Constructs figures for the players that can move on the game board. (Inspired From The teacher Daniel Kolditz Rubin-Grøn in class demonstration.)
-            GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[i], GUI_Car.Pattern.values()[i]);
+            GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[1], GUI_Car.Pattern.values()[i]);
             
             //Predefine player balance at the start of the game
             if (numberofPlayers==2){
@@ -187,7 +131,7 @@ public class GUILogic {
      */
     protected void makeUsers() {
         //todo skal ændres til at fungere på alle sprog1
-        String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "2","3","4");
+        String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3","4","5","6");
         int NumberOfPlayers = Integer.parseInt(nrPlayers);
         
         String names[] = new String[NumberOfPlayers];
