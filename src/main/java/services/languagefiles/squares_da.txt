@@ -1,24 +1,40 @@
 0,,Regular-Start-0-0
-1,,Property-Burgerbaren-1-1
-2,,Property-Pizzeria-2-1
-3,,Chance-Chancen-3-0
-4,,Property-Slikbutikken-4-1
-5,,Property-Iskiosken-5-1
-6,,Regular-På besøg-6-0
-7,,Property-Museet-7-2
-8,,Property-Biblioteket-8-2
-9,,Chance-Chancen-9-0
-10,,Property-Skaterparken-10-2
-11,,Property-Swimmingpoolen-11-2
-12,,Regular-Gratis parkering-12-0
-13,,Property-Spillehallen-13-3
-14,,Property-Biografen-14-3
-15,,Chance-Chancen-15-0
-16,,Property-Legetøjsbutikken-16-3
-17,,Property-Dyrehandlen-17-3
-18,,Jail-Gå I fængsel-18-0
-19,,Property-Bowlinghallen-19-4
-20,,Property-Zoo-20-4
-21,,Chance-Chance-21-0
-22,,Property-Vandlandet-22-5
-23,,Property-Strandpromenaden-23-5
+1,,Property-Rødovrevej-1-1200
+2,,Chance-Chancen-2-0
+3,,Property-Hvidovrevej-3-1200
+4,,Regular-SKAT-4-0
+5,,Property-Øresund-5-4000
+6,,Property-Roskildevej-6-2000
+7,,Chance-Chancen-7-0
+8,,Property-Valby Langgade-8-2000
+9,,Property-Allegade-9-2400
+10,,Regular-På Besøg-10-0
+11,,Property-Frederiksberg Alle-11-2800
+12,,Property-Tuborg-12-3000
+13,,Property-Bulowsvejs-13-2800
+14,,Property-Gl. Kongevej-14-3200
+15,,Property-D.F.D.S-15-4000
+16,,Property-Bernstorfsvej-16-3600
+17,,Chance-Chancen-17-0
+18,,Property-Hellerupvej-18-3600
+19,,Property-Strandvej-19-4000
+20,,Regular-Helle-20-0
+21,,Property-Trianglen-21-4400
+22,,Chance-Chancen-22-0
+23,,Property-Østerbrogade-23-4400
+24,,Property-Grønningen-24-4800
+25,,Property-Ø.S-25-4000
+26,,Property-Bredgade-26-5200
+27,,Property-Kgs. Nytorv-27-5200
+28,,Property-Carlsberg-28-3000
+29,,Property-Østergade-29-5600
+30,,Jail-De Fængsles-30-0
+31,,Property-Amagertorv-31-6000
+32,,Property-Vimmelskaftet-32-6000
+33,,Chance-Chancen-33-0
+34,,Property-Nygade-34-6400
+35,,Property-Bornholm-35-4000
+36,,Chance-Chancen-36-0
+37,,Property-Frederiksberggade-37-7000
+38,,Regular-SKAT-38-0
+39,,Property-Rådhuspladsen-39-8000

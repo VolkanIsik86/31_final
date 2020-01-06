@@ -18,23 +18,13 @@ public class PropertySquareTest {
     private final Player test = new Player("Test",99,20,testPiece);
 
    public PropertySquareTest(){
-       testSquare[0] = new PropertySquare("Test1",0,guiLogic,landedOnTxt,2,"yellow");
-       testSquare[1] = new PropertySquare("Test2",1,guiLogic,landedOnTxt,3,"red");
+       testSquare[0] = new PropertySquare("Test1",0,guiLogic,landedOnTxt,2);
+       testSquare[1] = new PropertySquare("Test2",1,guiLogic,landedOnTxt,3);
     }
 
 
 
-    @Test
-    public void getColor() {
-       String expected = "yellow";
-       String actual = testSquare[0].getColor();
-       assertEquals(expected,actual);
 
-       String expected2 = "red";
-       String actual2 = testSquare[1].getColor();
-       assertEquals(expected2,actual2);
-
-    }
 
     @Test
     public void getPrice() {
@@ -62,13 +52,6 @@ public class PropertySquareTest {
 
     }
 
-    @Test
-    public void setColor() {
-       testSquare[0].setColor("black");
-       String expected = "black";
-       assertEquals(expected,testSquare[0].getColor());
-
-    }
 
     @Test
     public void setPrice() {

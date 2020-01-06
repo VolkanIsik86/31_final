@@ -7,8 +7,8 @@ import services.TxtReader;
 
 public class PropertySquareStub extends PropertySquare {
     
-    public PropertySquareStub(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price, String color){
-        super(name, index, guiLogic, landedOnTxt, price, color);
+    public PropertySquareStub(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price){
+        super(name, index, guiLogic, landedOnTxt, price);
     }
     
     @Override

@@ -28,7 +28,7 @@ public class Board {
                 squares[i] = new RegularSquare(oneLine[1], Integer.parseInt(oneLine[2]),guiLogic, landedOnTxt);
             
             } else if ("Property".equals(oneLine[0])) {
-                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[4]);
+                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]));
             
             } else if ("Jail".equals(oneLine[0])) {
                 squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, this);
