@@ -2,6 +2,7 @@ package controllers;
 
 import domain.Player;
 import gui_fields.GUI_Car;
+import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
@@ -15,7 +16,7 @@ public class GUILogic {
     private final Color GOLD = new Color(255, 204, 51);
     private final int N_FIELDS = 24;
     protected int STARTBALANCE = 0;
-    protected GUI_Street[] fields;
+    protected GUI_Field[] fields;
     protected GUI gui;
     protected String[] names = new String[0];
     protected GUI_Player[] guiPlayers = new GUI_Player[0];
@@ -34,62 +35,64 @@ public class GUILogic {
      * @param squaresTxt Defines square names and costs with language depended Txtreader.
      */
     private void makeBoard(TxtReader squaresTxt) {
-        fields = new GUI_Street[N_FIELDS];
+        gui = new GUI();
+        fields = gui.getFields();
+//        fields = new GUI_Street[N_FIELDS];
        // Løbe igennem for hvert felt
-        for (int i = 0; i < N_FIELDS; i++) {
-            fields[i] = new GUI_Street();
+//        for (int i = 0; i < N_FIELDS; i++) {
+//            fields[i] = new GUI_Street();
 
             //Creates object
-            GUI_Street street = new GUI_Street();
+//            GUI_Street street = new GUI_Street();
             
             //Generates an arrat for each line in .txt with strings.
-            String[] juniorField = squaresTxt.getLine("" + i).split("-");
+//            String[] juniorField = squaresTxt.getLine("" + i).split("-");
             
             //Writes titel of the field.
-            street.setTitle(juniorField[1]);
+//            street.setTitle(juniorField[1]);
             
             //Sets colors of the fields.
-            switch (juniorField[4].charAt(0)) {
-                case 'r':
-                    street.setBackGroundColor(Color.RED);
-                    break;
-                case 'B':
-                    street.setBackGroundColor(BROWN);
-                    break;
-                case 'w':
-                    street.setBackGroundColor(Color.WHITE);
-                    break;
-                case 'c':
-                    street.setBackGroundColor(Color.CYAN);
-                    break;
-                case 'p':
-                    street.setBackGroundColor(Color.PINK);
-                    break;
-                case 'g':
-                    street.setBackGroundColor(GOLD);
-                    break;
-                case 'y':
-                    street.setBackGroundColor(Color.YELLOW);
-                    break;
-                case 'G':
-                    street.setBackGroundColor(Color.GREEN);
-                    break;
-                case 'b':
-                    street.setBackGroundColor(Color.BLUE);
-                    break;
-                default:
-                    street.setBackGroundColor(Color.BLACK);
-            }
+//            switch (juniorField[4].charAt(0)) {
+//                case 'r':
+//                    street.setBackGroundColor(Color.RED);
+//                    break;
+//                case 'B':
+//                    street.setBackGroundColor(BROWN);
+//                    break;
+//                case 'w':
+//                    street.setBackGroundColor(Color.WHITE);
+//                    break;
+//                case 'c':
+//                    street.setBackGroundColor(Color.CYAN);
+//                    break;
+//                case 'p':
+//                    street.setBackGroundColor(Color.PINK);
+//                    break;
+//                case 'g':
+//                    street.setBackGroundColor(GOLD);
+//                    break;
+//                case 'y':
+//                    street.setBackGroundColor(Color.YELLOW);
+//                    break;
+//                case 'G':
+//                    street.setBackGroundColor(Color.GREEN);
+//                    break;
+//                case 'b':
+//                    street.setBackGroundColor(Color.BLUE);
+//                    break;
+//                default:
+//                    street.setBackGroundColor(Color.BLACK);
+ //           }
 
             //Writes the price
-            street.setSubText(juniorField[3]);
+//            street.setSubText(juniorField[3]);
             
             //removes field price If price is 0
-            if (juniorField[3].equals("0"))
-                street.setSubText("");
-            fields[i] = street;
-        }
-        gui = new GUI(fields);
+//            if (juniorField[3].equals("0"))
+//                street.setSubText("");
+//            fields[i] = street;
+//        }
+//        gui = new GUI(fields);
     }
 
     /**
@@ -302,7 +305,7 @@ public class GUILogic {
     public void setSquareOwner(Player player, int price){
         fields[player.getLocation().getIndex()].setSubText(player.getName() + "-" + price);
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
-        fields[player.getLocation().getIndex()].setBorder(playercolor);
+        //fields[player.getLocation().getIndex()].setBorder(playercolor); //todo sæt så det her virker igen
     }
 
     /**
