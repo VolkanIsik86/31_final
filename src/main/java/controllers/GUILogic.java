@@ -15,7 +15,7 @@ public class GUILogic {
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
     private final int N_FIELDS = 40;
-    protected int STARTBALANCE = 0;
+    protected int STARTBALANCE = 30000;
     protected GUI_Field[] fields;
     protected GUI gui;
     protected String[] names = new String[0];
@@ -97,14 +97,7 @@ public class GUILogic {
             GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[1], GUI_Car.Pattern.values()[i]);
             
             //Predefine player balance at the start of the game
-            if (numberofPlayers==2){
-                STARTBALANCE = 20;
-            }
-            else if (numberofPlayers==3){
-                STARTBALANCE = 18;
-            }
-            else
-                STARTBALANCE = 16;
+
 
             // Constructs a player.
             GUI_Player player = new GUI_Player(name, STARTBALANCE, car);

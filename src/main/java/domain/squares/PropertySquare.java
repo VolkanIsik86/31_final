@@ -7,20 +7,16 @@ import services.TxtReader;
 
 // Property square is the square that can be owned and other players, who land on it, pays to the owner.
 public class PropertySquare extends Square {
-    
-    private String color;
+
     private int price;
     protected Player owner;
     
-    public PropertySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price, String color) {
+    public PropertySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price) {
         super(name, index, guiLogic, landedOnTxt);
-        this.color = color;
         this.price = price;
     }
 
-    public String getColor() {
-        return color;
-    }
+
 
     public int getPrice() {
         return price;
@@ -28,10 +24,6 @@ public class PropertySquare extends Square {
 
     public Player getOwner() {
         return owner;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public void setPrice(int price) {
