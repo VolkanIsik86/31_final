@@ -4,7 +4,6 @@ import domain.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
 import gui_main.GUI;
 import services.TxtReader;
 import java.awt.*;
@@ -37,6 +36,16 @@ public class GUILogic {
     private void makeBoard() {
         gui = new GUI();
         fields = gui.getFields();
+        for (int i = 0; i < N_FIELDS; i++) {
+            try{
+                fields[i].setSubText("ged");
+            }
+            catch(Exception e){
+                System.out.println("hest");
+
+            }
+
+        }
     }
 
     /**
