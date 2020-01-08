@@ -65,8 +65,6 @@ public class PropertySquare extends Square {
             //If player has the requested fonds
             if (player.attemptToPurchase(this)){
                 purchase(player);
-                guiLogic.setSquareOwner(player,this.getPrice());
-                guiLogic.setPlayerBalance(player);
             }
             
             //If player doesn't have the requested fonds
@@ -74,7 +72,6 @@ public class PropertySquare extends Square {
                 player.setLost(true);
                 player.setBalance(0);
                 guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to buy"));
-                guiLogic.setPlayerBalance(player);
             }
         }
         
@@ -87,7 +84,6 @@ public class PropertySquare extends Square {
             if (player.attemptToPay(this.getPrice())){
                 payRent(player);
                 earnRent();
-                guiLogic.setPlayerBalance(player);
                 guiLogic.setPlayerBalance(this.getOwner());
             }
     

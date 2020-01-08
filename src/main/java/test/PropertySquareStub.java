@@ -29,7 +29,7 @@ public class PropertySquareStub extends PropertySquare {
             if (player.attemptToPurchase(this)){
                 
                 purchase(player);
-                guiLogic.setSquareOwner(player,this.getPrice());
+                guiLogic.setSquareOwner(player);
                 guiLogic.setPlayerBalance(player);
                 
                 System.out.println("Balancen er nu: " + player.getBalance());

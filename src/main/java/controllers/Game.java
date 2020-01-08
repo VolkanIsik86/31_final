@@ -104,6 +104,7 @@ public class Game {
 
             turnLogic.takeTurn(currentPlayer);
 
+
             if (currentPlayer.getLost()) {
                 looser = currentPlayer.getName();
                 break;

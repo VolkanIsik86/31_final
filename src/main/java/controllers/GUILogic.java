@@ -4,9 +4,11 @@ import domain.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
 import services.TxtReader;
 import java.awt.*;
+import java.io.IOException;
 
 
 public class GUILogic {
@@ -252,10 +254,16 @@ public class GUILogic {
      * Changes Font color of a field.
      * @param player New owner of the field.
      */
-    public void setSquareOwner(Player player, int price){
-        fields[player.getLocation().getIndex()].setSubText(player.getName() + "-" + price);
+    public void setSquareOwner(Player player){
+        fields[player.getLocation().getIndex()].setSubText(player.getName());
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
-        //fields[player.getLocation().getIndex()].setBorder(playercolor); //todo sæt så det her virker igen
+        try{
+            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor);
+        }
+        catch(ClassCastException e){
+
+        }
+         //todo sæt så det her virker igen
     }
 
     /**

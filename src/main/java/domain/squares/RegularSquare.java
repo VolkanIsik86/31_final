@@ -14,6 +14,7 @@ public class RegularSquare extends Square {
     @Override
     public void landedOn(Player p) {
         guiLogic.showMessage(landedOnTxt.getLine("Regular square"));
+
     }
 
 
