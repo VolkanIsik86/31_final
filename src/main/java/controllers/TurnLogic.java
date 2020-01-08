@@ -10,6 +10,7 @@ public class TurnLogic {
     protected GUILogic guiLogic;
     protected TxtReader landedOnTxt;
     protected final Die die = new Die();
+    protected final Die die2 = new Die();
     
     public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
         this.board = board;
@@ -21,12 +22,15 @@ public class TurnLogic {
     
         //Roll the die
         die.roll();
-        int roll = die.getFaceValue();
-        player.setLastRoll(roll);
-        guiLogic.displayDie(roll, player.getName());
+        int roll1 = die.getFaceValue();
+        die2.roll();
+        int roll2 = die2.getFaceValue();
+        int roll = roll1+roll2;
+        player.setLastRoll((roll));
+        guiLogic.displayDie(roll1, roll2, player.getName());
     
         //Calculate and move to next location
-        Square nextLocation = board.nextLocation(player, die.getFaceValue());
+        Square nextLocation = board.nextLocation(player, roll);
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, player.getLastRoll());
     

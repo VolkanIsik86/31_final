@@ -24,13 +24,13 @@ public class TurnLogicStub extends TurnLogic {
         System.out.println("Balancen var: " + player.getBalance());
     
         //Roll the die
-        die.roll();
-        int roll = die.getFaceValue();
-        player.setLastRoll(roll);
-        guiLogic.displayDie(roll, player.getName());
-    
-        System.out.println("Slog: " + roll);
-    
+//        die.roll();
+//        int roll = die.getFaceValue();
+//        player.setLastRoll(roll);
+//        guiLogic.displayDie(roll,  player.getName());
+//
+//        System.out.println("Slog: " + roll);
+//
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, die.getFaceValue());
         player.setLocation(nextLocation);
