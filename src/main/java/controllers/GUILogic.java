@@ -162,7 +162,7 @@ public class GUILogic {
             int DELAY = 200;
             if (currentField + moves >= N_FIELDS) {
                 
-                //Runs fields until the start point.
+                //Runs fields until the start  point.
                 for (int i = 1; currentField + i < N_FIELDS; i++) {
                     moveRest(guiPlayer, currentField, i);
                     movesDone++;
@@ -296,11 +296,11 @@ public class GUILogic {
      * @param faceValue at the backend is showed on GUI.
      * @param name of player showed on GUI.
      */
-    public void displayDie(int faceValue, String name){
+    public void displayDie(int faceValue, int faceValue2, String name){
         
         //todo Skal hente den rigtige sætning afhængig af sprog
         showMessage(guiTxt.getLine("it is") + " " + name + guiTxt.getLine("throw dice"));
-        gui.setDie(faceValue);
+        gui.setDice(faceValue,faceValue2);
     }
 
     /**

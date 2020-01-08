@@ -4,3 +4,5 @@ Key med mellemrum,,Tekst2
 1 tal først,,Tekst3
 Samme key,,samme1
 Samme key,,samme2
+key3,,you entered wrong
+4,,Pay-1-You pay 1M
