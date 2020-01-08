@@ -90,19 +90,19 @@ public class GUILogic {
             //Crates an array of player names.
 
             names[i] = name;
-            boolean ageIsInt;
-            int age = 0;
-            do {
-                try {
-                    age = Integer.parseInt(gui.getUserString(guiTxt.getLine("Age") + " " + name ));
-                    ageIsInt = age >= 5 && age <= 150;
-                } catch (NumberFormatException e) {
-                    ageIsInt = false;
-                }
-            } while (!ageIsInt);
-
-
-            ages[i] = age;
+//            boolean ageIsInt;
+//            int age = 0;
+//            do {
+//                try {
+//                    age = Integer.parseInt(gui.getUserString(guiTxt.getLine("Age") + " " + name ));
+//                    ageIsInt = age >= 5 && age <= 150;
+//                } catch (NumberFormatException e) {
+//                    ageIsInt = false;
+//                }
+//            } while (!ageIsInt);
+//
+//
+//            ages[i] = age;
             
             //Constructs figures for the players that can move on the game board. (Inspired From The teacher Daniel Kolditz Rubin-Grøn in class demonstration.)
             GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[1], GUI_Car.Pattern.values()[i]);
