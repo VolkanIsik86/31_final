@@ -37,6 +37,11 @@ public class GUILogic {
         gui = new GUI();
         fields = gui.getFields();
         for (int i = 0; i < N_FIELDS; i++) {
+            //Generates an arrat for each line in .txt with strings.
+            //String[] tempField = squaresTxt.getLine("" + i).split("-");
+
+            //Writes titel of the field.
+            //street.setTitle(juniorField[1]);
             try{
                 fields[i].setSubText("ged");
             }
