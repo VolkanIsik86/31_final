@@ -38,7 +38,7 @@ public class TurnLogic {
 
         guiLogic.setPlayerBalance(player);
         guiLogic.setSquareOwner(player);
-        guilogic.showMessage(landedOnTxt.getLine(message));
+        guiLogic.showMessage(landedOnTxt.getLine(message));
 
         guiLogic.showMessage(landedOnTxt.getLine("End turn"));
 

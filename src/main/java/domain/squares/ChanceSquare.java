@@ -18,13 +18,13 @@ public class ChanceSquare extends Square {
     }
 
     // Pulls a random card from chancecards array and affects the player with it.
-    public void landedOn(Player player) {
+    public String landedOn(Player player) {
     
         guiLogic.showMessage(landedOnTxt.getLine("Chance square"));
         ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
         guiLogic.showChanceCard(pulledCard.getDescription());
         guiLogic.showMessage(landedOnTxt.getLine("Press OK"));
         pulledCard.applyEffect(player);
-        
+        return null;
     }
 }

@@ -15,7 +15,7 @@ public class ChanceSquareStub extends ChanceSquare {
     }
     
     @Override
-    public void landedOn(Player player) {
+    public String landedOn(Player player) {
     
         guiLogic.showMessage(landedOnTxt.getLine("Chance square"));
         
@@ -31,6 +31,6 @@ public class ChanceSquareStub extends ChanceSquare {
         if (!(pulledCard instanceof MoveCard)){
             System.out.println(player.getName() + "'s balance " + player.getBalance());
         }
-        
+        return null;
     }
 }

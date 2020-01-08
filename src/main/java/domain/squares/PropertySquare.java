@@ -10,6 +10,7 @@ public class PropertySquare extends Square {
 
     private int price;
     protected Player owner;
+    private String message;
     
     public PropertySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price) {
         super(name, index, guiLogic, landedOnTxt);
@@ -49,18 +50,19 @@ public class PropertySquare extends Square {
         payRent(p);
     }
     
-    public void landedOn(Player player) {
+    public String landedOn(Player player) {
         
         
         if (this.getOwner() != null && this.getOwner().equals(player)){
-            guiLogic.showMessage(landedOnTxt.getLine("Owned by yourself property square"));
-            return;
+
+            message = "Owned by yourself property square";
+
         }
         
         //If property is not owned
         if (owner == null) {
-    
-            guiLogic.showMessage(landedOnTxt.getLine("Not owned property square"));
+
+            message = "Not owned property square";
             
             //If player has the requested fonds
             if (player.attemptToPurchase(this)){
@@ -71,14 +73,15 @@ public class PropertySquare extends Square {
             else {
                 player.setLost(true);
                 player.setBalance(0);
-                guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to buy"));
+                message = "Does not have fonds to buy";
             }
         }
         
         //If property is owned
         else{
             
-            guiLogic.showMessage(landedOnTxt.getLine("Owned by another property square"));
+
+            message = "Owned by another property square";
     
             //If player has the requested fonds
             if (player.attemptToPay(this.getPrice())){
@@ -90,9 +93,11 @@ public class PropertySquare extends Square {
             else {
                 player.setLost(true);
                 player.setBalance(0);
-                guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds for rent"));
+
+                message = "Does not have fonds for rent";
                             }
             
         }
+        return message;
     }
 }
