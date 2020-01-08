@@ -47,10 +47,6 @@ public class GUILogic {
             fields[i].setSubText(tempField[3]);
             if (fields[i].getSubText().equals("0"))
                 fields[i].setSubText(tempField[1]);
-
-
-
-
         }
     }
 

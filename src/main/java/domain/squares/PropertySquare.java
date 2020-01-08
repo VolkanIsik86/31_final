@@ -84,16 +84,14 @@ public class PropertySquare extends Square {
             if (player.attemptToPay(this.getPrice())){
                 payRent(player);
                 earnRent();
-                guiLogic.setPlayerBalance(this.getOwner());
-            }
+                            }
     
             //If player doesn't have the requested fonds
             else {
                 player.setLost(true);
                 player.setBalance(0);
                 guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds for rent"));
-                guiLogic.setPlayerBalance(player);
-            }
+                            }
             
         }
     }
