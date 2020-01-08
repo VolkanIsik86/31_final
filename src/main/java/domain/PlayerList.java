@@ -16,7 +16,7 @@ public class PlayerList {
         this.guiLogic = guiLogic;
     }
     
-    public void addPlayer(String name, int age, int startBalance){
+    public void addPlayer(String name, int startBalance){
         
         // Increase size of player-array by 1
         Player[] temp = new Player[players.length+1];
@@ -29,7 +29,7 @@ public class PlayerList {
         Piece piece = new Piece(startSquare);
         
         //Create and add new player to array
-        players[players.length-1] = new Player(name, age, startBalance, piece);
+        players[players.length-1] = new Player(name, startBalance, piece);
         
     }
     
@@ -42,19 +42,6 @@ public class PlayerList {
     }
 
     // Hentet inspiration fra geeksforgeeks.org/insertion-sort/ insertion sort algoritme.
-    public void sortPlayersByAge(){
-
-        for (int i = 0; i < players.length ; i++) {
-            Player key = players[i];
-            int j = i-1;
-
-            while (j>=0 && players[j].getAge() > key.getAge()){
-                players[j+1] = players[j];
-                j=j-1;
-            }
-            players[j+1] = key;
-        }
-    }
     public void sortPlayersByPoint(){
         for (int i = 0; i < players.length ; i++) {
             Player key = players[i];

@@ -19,7 +19,6 @@ public class GUILogic {
     protected GUI gui;
     protected String[] names = new String[0];
     protected GUI_Player[] guiPlayers = new GUI_Player[0];
-    protected int[] ages = new int [0];
     protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN,Color.YELLOW,Color.MAGENTA};
     protected TxtReader guiTxt;
     
@@ -63,13 +62,11 @@ public class GUILogic {
             
             //Extend players with 1 quantity.
             String[] temp = new String[names.length + 1];
-            int[] tempAge = new int[ages.length+1];
+
             for (int j = 0; j < names.length; j++) {
                 temp[j]=names[j];
-                tempAge[j]=ages[j];
             }
             names = temp;
-            ages = tempAge;
 
             //Asks player to write their name.
             String name = gui.getUserString(guiTxt.getLine("Enter name"));
@@ -92,19 +89,6 @@ public class GUILogic {
             //Crates an array of player names.
 
             names[i] = name;
-            boolean ageIsInt;
-            int age = 0;
-            do {
-                try {
-                    age = Integer.parseInt(gui.getUserString(guiTxt.getLine("Age") + " " + name ));
-                    ageIsInt = age >= 5 && age <= 150;
-                } catch (NumberFormatException e) {
-                    ageIsInt = false;
-                }
-            } while (!ageIsInt);
-
-
-            ages[i] = age;
             
             //Constructs figures for the players that can move on the game board. (Inspired From The teacher Daniel Kolditz Rubin-Grøn in class demonstration.)
             GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[1], GUI_Car.Pattern.values()[i]);
@@ -314,12 +298,6 @@ public class GUILogic {
     public String[] getPlayerNames(){
         return names;
     }
-
-    /**
-     * Ages of all players who is created.
-     * @return ages to define youngest player.
-     */
-    public int [] getPlayerAges() {return ages;}
 
     /**
      * Sleep time is initialized for more understandable game.(Stops figures to teleport.)

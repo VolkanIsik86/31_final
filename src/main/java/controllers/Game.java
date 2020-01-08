@@ -175,12 +175,10 @@ public class Game {
        //Creates a playerList and adds the players from guiLogic
        playerList = new PlayerList(board.getSquare(0), guiLogic);
        String[] playerNames = guiLogic.getPlayerNames();
-       int [] ageOfPlayer = guiLogic.getPlayerAges();
-       for (int i = 0; i < playerNames.length; i++) {
-           playerList.addPlayer(playerNames[i],ageOfPlayer[i], guiLogic.getSTARTBALANCE());
-       }
 
-       playerList.sortPlayersByAge();
+       for (int i = 0; i < playerNames.length; i++) {
+           playerList.addPlayer(playerNames[i], guiLogic.getSTARTBALANCE());
+       }
        
    }
 }

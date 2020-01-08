@@ -15,7 +15,7 @@ public class PropertySquareTest {
     private String languagePath = "src/main/java/services/languagefiles/";
     private TxtReader landedOnTxt;
     private final Piece testPiece = new Piece(testSquare[0]);
-    private final Player test = new Player("Test",99,20,testPiece);
+    private final Player test = new Player("Test",20,testPiece);
 
    public PropertySquareTest(){
        testSquare[0] = new PropertySquare("Test1",0,guiLogic,landedOnTxt,2);

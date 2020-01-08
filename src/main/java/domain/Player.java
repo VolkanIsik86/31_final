@@ -10,15 +10,13 @@ public class Player {
     private final Piece piece;
     
     private final String name;
-    private final int age;
    
     private boolean lost = false;
     private boolean jail = false;
     private int lastRoll = 0;
     
-    public Player(String name, int age, int balance, Piece piece){
+    public Player(String name, int balance, Piece piece){
         this.name = name;
-        this.age = age;
         account = new Account(balance);
         this.piece = piece;
     }
@@ -85,10 +83,6 @@ public class Player {
         return name;
     }
     
-    public int getAge() {
-        return age;
-    }
-    
     public Square getLastLocation(){
         return piece.getLastLocation();
     }
@@ -102,7 +96,6 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
                 ", account=" + account +
                 ", piece=" + piece +
                 ", lost=" + lost +
