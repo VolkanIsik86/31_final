@@ -28,7 +28,7 @@ public class TurnLogic {
         int roll = roll1+roll2;
         player.setLastRoll((roll));
         guiLogic.displayDie(roll1, roll2, player.getName());
-    
+
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, roll);
         player.setLocation(nextLocation);
