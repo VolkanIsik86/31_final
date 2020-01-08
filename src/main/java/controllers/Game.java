@@ -157,7 +157,7 @@ public class Game {
 
         //Includes the initialization of the GUI itself
         guiLogic = new GUILogic();
-        guiLogic.init(guiTxt);
+        guiLogic.init(squaresTxt, guiTxt);
     }
 
     private void initBoard() {

@@ -23,9 +23,9 @@ public class GUILogic {
     protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN,Color.YELLOW,Color.MAGENTA};
     protected TxtReader guiTxt;
     
-    public void init(TxtReader guiTxt){
+    public void init(TxtReader squaresTxt, TxtReader guiTxt){
         this.guiTxt = guiTxt;
-        makeBoard();
+        makeBoard(squaresTxt);
         makeUsers();
     }
 
@@ -33,22 +33,21 @@ public class GUILogic {
      * Creates an array of fields for the game and initialize it.
      *
      */
-    private void makeBoard() {
+    private void makeBoard(TxtReader squaresTxt) {
         gui = new GUI();
         fields = gui.getFields();
         for (int i = 0; i < N_FIELDS; i++) {
-            //Generates an arrat for each line in .txt with strings.
-            //String[] tempField = squaresTxt.getLine("" + i).split("-");
+            //Generates an array for each line in .txt with strings.
+            String[] tempField = squaresTxt.getLine("" + i).split("-");
 
             //Writes titel of the field.
-            //street.setTitle(juniorField[1]);
-            try{
-                fields[i].setSubText("ged");
-            }
-            catch(Exception e){
-                System.out.println("hest");
 
-            }
+            fields[i].setSubText(tempField[3]);
+            if (fields[i].getSubText().equals("0"))
+                fields[i].setSubText(tempField[1]);
+
+
+
 
         }
     }
