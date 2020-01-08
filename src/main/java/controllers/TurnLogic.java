@@ -43,6 +43,40 @@ public class TurnLogic {
         guiLogic.showMessage(landedOnTxt.getLine("End turn"));
 
     }
+    void playRound(PlayerList playerList, String looser) {
+        for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
+
+            Player currentPlayer = playerList.getPlayer(i);
+
+            //If player is in jail
+            if (currentPlayer.getJail()) {
+
+                guiLogic.showMessage(landedOnTxt.getLine("In jail pay now"));
+
+                if (currentPlayer.attemptToPay(1)) {
+                    currentPlayer.withdraw(1);
+                    guiLogic.setPlayerBalance(currentPlayer);
+                    currentPlayer.setJail(false);
+                } else {
+                    currentPlayer.setLost(true);
+                    currentPlayer.setBalance(0);
+                    guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to pay"));
+                    guiLogic.setPlayerBalance(currentPlayer);
+
+                    looser = currentPlayer.getName();
+                    break;
+                }
+            }
+
+            takeTurn(currentPlayer);
+
+
+            if (currentPlayer.getLost()) {
+                looser = currentPlayer.getName();
+                break;
+            }
+        }
+    }
 
     private void updateGUI(Player player){
 
