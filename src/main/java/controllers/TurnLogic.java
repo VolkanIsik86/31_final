@@ -31,12 +31,14 @@ public class TurnLogic {
         guiLogic.movePiece(player, player.getLastRoll());
 
         //Apply the square's effect to the player
-        nextLocation.landedOn(player);
+        String message = nextLocation.landedOn(player);
+
 
 
 
         guiLogic.setPlayerBalance(player);
         guiLogic.setSquareOwner(player);
+        guilogic.showMessage(landedOnTxt.getLine(message));
 
         guiLogic.showMessage(landedOnTxt.getLine("End turn"));
 
