@@ -69,6 +69,9 @@ public class Board {
         }
         return currentSquare;
     }
+    public OwnableSquare[] getOwnables(){
+        return ownables;
+    }
     public int searchColors(OwnableSquare s){
         int countcolor = 0;
         int playerowns = 0;
