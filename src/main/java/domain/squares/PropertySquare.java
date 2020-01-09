@@ -67,6 +67,7 @@ public class PropertySquare extends Square {
             //If player has the requested fonds
             if (player.attemptToPurchase(this)){
                 purchase(player);
+                message = message + "T";
             }
             
             //If player doesn't have the requested fonds

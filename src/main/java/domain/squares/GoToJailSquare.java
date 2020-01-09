@@ -23,6 +23,6 @@ public class GoToJailSquare extends Square {
         player.setLocation(board.getJail());
         guiLogic.moveToJail(player);
         player.setJail(true);
-        return null;
+        return message;
     }
 }
