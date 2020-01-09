@@ -55,6 +55,7 @@ public class TurnLogic {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
             guiLogic.showChanceCard(pulledCard.getDescription());
             pulledCard.applyEffect(player);
+            message = message.substring(0,message.length()-1);
         }
 
         guiLogic.showMessage(landedOnTxt.getLine(message));
