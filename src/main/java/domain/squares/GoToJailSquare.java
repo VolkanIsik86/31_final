@@ -21,7 +21,6 @@ public class GoToJailSquare extends Square {
     public String landedOn(Player player) {
         message = "GoToJail square";
         player.setLocation(board.getJail());
-        guiLogic.moveToJail(player);
         player.setJail(true);
         return message;
     }

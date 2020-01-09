@@ -56,6 +56,9 @@ public class TurnLogic {
             message = message.substring(0,message.length()-1);
         }
 
+        if (message.equals("GoToJail square"))
+            guiLogic.moveToJail(player);
+
         guiLogic.showMessage(landedOnTxt.getLine(message));
 
         guiLogic.showMessage(landedOnTxt.getLine("End turn"));
