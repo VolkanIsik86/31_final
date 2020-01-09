@@ -20,7 +20,7 @@ public class PlayerListTest {
         String expectedName = "test";
         int expectedAge = 99;
         assertEquals(Player.class,testlist.getPlayer(0).getClass());
-        assertEquals(expectedName,testlist.getPlayer(0).getName());¥
+        assertEquals(expectedName,testlist.getPlayer(0).getName());
     }
     
     @Test
