@@ -17,10 +17,11 @@ public class GoToJailSquare extends Square {
     }
 
     // Moves player to jail.
-    public void landedOn(Player player) {
+    public String landedOn(Player player) {
         guiLogic.showMessage(landedOnTxt.getLine("GoToJail square"));
         player.setLocation(board.getJail());
         guiLogic.moveToJail(player);
         player.setJail(true);
+        return null;
     }
 }

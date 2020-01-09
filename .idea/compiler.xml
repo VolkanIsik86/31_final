@@ -8,9 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="31_final" />
         <module name="31" />
-        <module name="31_final" />
         <module name="CDIO3" />
         <module name="Gruppe31_CDIO3" />
+        <module name="cdio_final" />
       </profile>
     </annotationProcessing>
   </component>

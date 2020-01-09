@@ -20,6 +20,13 @@ public class Player {
         account = new Account(balance);
         this.piece = piece;
     }
+
+    public Player(String name, int balance, Piece piece){
+        this.name = name;
+        account = new Account(balance);
+        this.piece = piece;
+        this.age = 0;
+    }
     
     public void setLastRoll(int lastRoll) {
         this.lastRoll = lastRoll;

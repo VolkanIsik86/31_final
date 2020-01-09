@@ -12,11 +12,11 @@ public class PropertySquareStub extends PropertySquare {
     }
     
     @Override
-    public void landedOn(Player player){
+    public String landedOn(Player player){
         
         if (this.getOwner() != null && this.getOwner().equals(player)){
             guiLogic.showMessage(landedOnTxt.getLine("Owned by yourself property square"));
-            return;
+            return null;
         }
     
         //If property is not owned
@@ -29,7 +29,7 @@ public class PropertySquareStub extends PropertySquare {
             if (player.attemptToPurchase(this)){
                 
                 purchase(player);
-                guiLogic.setSquareOwner(player,this.getPrice());
+                guiLogic.setSquareOwner(player);
                 guiLogic.setPlayerBalance(player);
                 
                 System.out.println("Balancen er nu: " + player.getBalance());
@@ -86,6 +86,7 @@ public class PropertySquareStub extends PropertySquare {
             }
         
         }
+        return null;
     }
     
 }
