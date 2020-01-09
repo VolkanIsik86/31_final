@@ -104,8 +104,8 @@ public class TurnLogic {
 
                 guiLogic.showMessage(turnLogicTxt.getLine("In jail pay now"));
 
-                if (currentPlayer.attemptToPay(1)) {
-                    currentPlayer.withdraw(1);
+                if (currentPlayer.attemptToPay(1000)) {
+                    currentPlayer.withdraw(1000);
                     guiLogic.setPlayerBalance(currentPlayer);
                     currentPlayer.setJail(false);
                 } else {
