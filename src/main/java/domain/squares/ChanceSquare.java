@@ -13,19 +13,18 @@ public class ChanceSquare extends Square {
     private String message;
     
     //Constructor
-    public ChanceSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
-        super(name, index, guiLogic, landedOnTxt);
+    public ChanceSquare(String name, int index, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
+        super(name, index, landedOnTxt);
         this.chanceDeck = chanceDeck;
     }
 
     // Pulls a random card from chancecards array and affects the player with it.
     public String landedOn(Player player) {
     
-        message = "Chance square";
-        ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
-        guiLogic.showChanceCard(pulledCard.getDescription());
+
+
         message = "Press OK";
-        pulledCard.applyEffect(player);
+        message = message + "S";
         return message;
     }
 }

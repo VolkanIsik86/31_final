@@ -11,8 +11,8 @@ public class GoToJailSquare extends Square {
     private final Board board;
     private String message;
     
-    public GoToJailSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt,  Board board) {
-        super(name, index, guiLogic, landedOnTxt);
+    public GoToJailSquare(String name, int index, TxtReader landedOnTxt,  Board board) {
+        super(name, index, landedOnTxt);
         this.board = board;
         
     }
@@ -21,8 +21,7 @@ public class GoToJailSquare extends Square {
     public String landedOn(Player player) {
         message = "GoToJail square";
         player.setLocation(board.getJail());
-        guiLogic.moveToJail(player);
         player.setJail(true);
-        return null;
+        return message;
     }
 }

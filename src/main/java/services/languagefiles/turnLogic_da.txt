@@ -1,9 +1,16 @@
 Regular square,,Du er landet på et neutralt felt, og der sker derfor ikke noget
 Owned by another property square,,Du er landet på en ejendom ejet af en anden spiller, og skal derfor betale husleje
+Owned by another shipyard square,,Du er landet på et rederi ejet af en anden spiller, og skal derfor betale leje
+Owned by another factory square,,Du er landet på en fabrik ejet af en anden spiller, og skal derfor betale leje
 Owned by yourself property square,,Du er landet på en ejendom du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself shipyard square,,Du er landet på et rederi du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself factory square,,Du er landet på en fabrik du allerede selv ejer, og skal derfor ikke foretage dig noget
 Not owned property square,,Du er landet på en ejendom, som ingen ejer, og skal derfor købe den
+Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal derfor købe den
+Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
 GoToJail square,,Du er landet på "Gå i fængsel" og rykkes derfor i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
+Tax square,, Du er landet på et skattefælt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og spillet stopper derfor
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen, og spillet er stopper derfor
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og spillet er stopper derfor

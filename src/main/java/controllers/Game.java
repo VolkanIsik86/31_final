@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Board;
+import domain.Player;
 import domain.PlayerList;
 import services.TxtReader;
 
@@ -134,7 +135,7 @@ public class Game {
    }
    
    private void initTurnLogic(){
-       turnLogic.init(board, guiLogic, turnLogicTxt);
+       turnLogic.init(board, guiLogic, turnLogicTxt, cardsTxt);
    }
    
    private void initPlayerList(){
