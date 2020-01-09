@@ -9,8 +9,8 @@ import services.TxtReader;
 
 public class TurnLogicStub extends TurnLogic {
     
-    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
-        super.init(board, guiLogic, landedOnTxt);
+    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt){
+        super.init(board, guiLogic, turnLogicTxt);
     }
     
     @Override
@@ -42,7 +42,7 @@ public class TurnLogicStub extends TurnLogic {
         //Apply the square's effect to the player
         nextLocation.landedOn(player);
     
-        guiLogic.showMessage(landedOnTxt.getLine("End turn"));
+        guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
         
         
     }

@@ -280,10 +280,7 @@ public class GUILogic {
      * @param faceValue at the backend is showed on GUI.
      * @param name of player showed on GUI.
      */
-    public void displayDie(int faceValue, int faceValue2, String name){
-        
-        //todo Skal hente den rigtige sætning afhængig af sprog
-        showMessage(guiTxt.getLine("it is") + " " + name + guiTxt.getLine("throw dice"));
+    public void displayDie(int faceValue, int faceValue2){
         gui.setDice(faceValue,faceValue2);
     }
 
@@ -340,6 +337,10 @@ public class GUILogic {
     
     public int getSTARTBALANCE(){
         return STARTBALANCE;
+    }
+    
+    public String getUserButtonPressed(String msg, String... buttons){
+        return gui.getUserButtonPressed(msg, buttons);
     }
     
 

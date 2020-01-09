@@ -1,7 +1,6 @@
 package controllers;
 
 import domain.Board;
-import domain.Player;
 import domain.PlayerList;
 import services.TxtReader;
 
@@ -13,7 +12,7 @@ public class Game {
     private PlayerList playerList;
 
     private String looser = "null";
-    private TxtReader landedOnTxt;
+    private TxtReader turnLogicTxt;
     private TxtReader squaresTxt;
     private TxtReader cardsTxt;
     private TxtReader winnerTxt;
@@ -98,10 +97,10 @@ public class Game {
         String language = languageLogic.selectLanguage();
 
         //Load txt files
-        landedOnTxt = new TxtReader();
+        turnLogicTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
-        landedOnTxt.openFile(languagePath, "landedOn_" + language);
-        landedOnTxt.readLines();
+        turnLogicTxt.openFile(languagePath, "turnLogic_" + language);
+        turnLogicTxt.readLines();
 
         squaresTxt = new TxtReader();
         squaresTxt.openFile(languagePath, "squares_" + language);
@@ -131,11 +130,11 @@ public class Game {
     private void initBoard() {
 
         //Includes the initialization of the chance deck
-        board.makeBoard(squaresTxt, landedOnTxt, cardsTxt, guiLogic);
+        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt, guiLogic);
    }
    
    private void initTurnLogic(){
-       turnLogic.init(board, guiLogic, landedOnTxt);
+       turnLogic.init(board, guiLogic, turnLogicTxt);
    }
    
    private void initPlayerList(){

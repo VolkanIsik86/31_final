@@ -8,18 +8,22 @@ public class TurnLogic {
     
     protected Board board;
     protected GUILogic guiLogic;
-    protected TxtReader landedOnTxt;
+    protected TxtReader turnLogicTxt;
     protected final Die die = new Die();
     protected final Die die2 = new Die();
 
-    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
+    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt){
         this.board = board;
         this.guiLogic = guiLogic;
-        this.landedOnTxt = landedOnTxt;
+        this.turnLogicTxt = turnLogicTxt;
     }
 
     public void takeTurn(Player player ) {
-
+    
+       
+        
+        guiLogic.showMessage(turnLogicTxt.getLine("it is") + " " + player.getName() + turnLogicTxt.getLine("throw dice"));
+        
         //Roll the die
         die.roll();
         int roll1 = die.getFaceValue();
@@ -27,7 +31,8 @@ public class TurnLogic {
         int roll2 = die2.getFaceValue();
         int roll = roll1+roll2;
         player.setLastRoll((roll));
-        guiLogic.displayDie(roll1, roll2, player.getName());
+        
+        guiLogic.displayDie(roll1, roll2);
 
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, roll);
@@ -42,9 +47,9 @@ public class TurnLogic {
 
         guiLogic.setPlayerBalance(player);
         guiLogic.setSquareOwner(player);
-        guiLogic.showMessage(landedOnTxt.getLine(message));
+        guiLogic.showMessage(turnLogicTxt.getLine(message));
 
-        guiLogic.showMessage(landedOnTxt.getLine("End turn"));
+        guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
 
     }
     void playRound(PlayerList playerList, String looser) {
@@ -55,7 +60,7 @@ public class TurnLogic {
             //If player is in jail
             if (currentPlayer.getJail()) {
 
-                guiLogic.showMessage(landedOnTxt.getLine("In jail pay now"));
+                guiLogic.showMessage(turnLogicTxt.getLine("In jail pay now"));
 
                 if (currentPlayer.attemptToPay(1)) {
                     currentPlayer.withdraw(1);
@@ -64,7 +69,7 @@ public class TurnLogic {
                 } else {
                     currentPlayer.setLost(true);
                     currentPlayer.setBalance(0);
-                    guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to pay"));
+                    guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to pay"));
                     guiLogic.setPlayerBalance(currentPlayer);
 
                     looser = currentPlayer.getName();

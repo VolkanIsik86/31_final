@@ -10,3 +10,5 @@ Does not have fonds to pay,,You do not have the funds to pay this expense, the g
 Press OK,,Press OK when you have read the card
 In jail pay now,,The previous turn you went to jail. You must pay 1M to get out this turn
 End turn,,Your turn is over, press OK to end your turn
+it is,,It is
+throw dice,,s turn, press OK to throw thee dice
