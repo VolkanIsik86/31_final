@@ -135,7 +135,7 @@ public class Game {
    }
    
    private void initTurnLogic(){
-       turnLogic.init(board, guiLogic, landedOnTxt);
+       turnLogic.init(board, guiLogic, landedOnTxt, cardsTxt);
    }
    
    private void initPlayerList(){

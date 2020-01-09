@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.*;
+import domain.chanceCards.ChanceCard;
 import domain.squares.*;
 import services.TxtReader;
 
@@ -9,13 +10,17 @@ public class TurnLogic {
     protected Board board;
     protected GUILogic guiLogic;
     protected TxtReader landedOnTxt;
+    protected TxtReader cardsTxt;
+    ChanceDeck chanceDeck;
     protected final Die die = new Die();
     protected final Die die2 = new Die();
 
-    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
+    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt, TxtReader cardsTxt){
         this.board = board;
         this.guiLogic = guiLogic;
         this.landedOnTxt = landedOnTxt;
+        this.cardsTxt = cardsTxt;
+        chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
     }
 
     public void takeTurn(Player player ) {
@@ -45,6 +50,11 @@ public class TurnLogic {
         if (message.charAt(message.length()-1) == 'T'){
             guiLogic.setSquareOwner(player);
             message = message.substring(0,message.length()-1);
+        }
+        if (message.charAt(message.length()-1) == 'S'){
+            ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
+            guiLogic.showChanceCard(pulledCard.getDescription());
+            pulledCard.applyEffect(player);
         }
 
         guiLogic.showMessage(landedOnTxt.getLine(message));

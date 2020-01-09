@@ -9,9 +9,9 @@ import services.TxtReader;
 
 public class TurnLogicStub extends TurnLogic {
     
-    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
-        super.init(board, guiLogic, landedOnTxt);
-    }
+//    public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
+//        super.init(board, guiLogic, landedOnTxt);
+//    }
     
     @Override
     public void takeTurn(Player player){
