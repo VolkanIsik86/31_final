@@ -20,6 +20,8 @@ public abstract class Square {
         this.guiLogic = guiLogic;
         this.landedOnTxt = landedOnTxt;
     }
+    
+    
 
     public String getName() {
         return name;

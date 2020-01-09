@@ -29,7 +29,7 @@ public class TurnLogic {
         //Start of user menu loop
         while(endTurn == false){
             
-            //Displays the correct menu, depending on whether or not the player has thrown the dice
+            //Displays the correct menu, depending on whether or not the player has already thrown the dice
             if(hasThrown == false){
                 choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),  turnLogicTxt.getLine("Throw"),turnLogicTxt.getLine("Properties"));
             } else{
@@ -70,10 +70,9 @@ public class TurnLogic {
         
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
+                guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
             }
         }
-        
-        guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
     }
     
     void playRound(PlayerList playerList, String looser) {

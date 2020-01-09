@@ -58,5 +58,12 @@ public class Board {
         return squares[0];
     }
     
+//    public Square[] getPlayerSquares(Player player){
+//
+//        //For alle squares
+//        for (int i = 0; i < squares.length; i++) {
+//
+//        }
+//    }
     
 }
