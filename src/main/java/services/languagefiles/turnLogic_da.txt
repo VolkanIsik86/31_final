@@ -11,4 +11,13 @@ Press OK,,Tryk OK når du har læst chancekortet
 In jail pay now,,Sidste tur kom du i fængsel. Du skal derfor betale 1M for at komme ud denne tur
 End turn,,Din tur er slut, tryk OK for at fortsætte
 it is,,Det er
-throw dice,,s tur, tryk OK for at kaste terningen
+s,,s tur.
+Choose option,,Vælg et menupunkt
+Throw,,Kast terninger
+Properties,,Administrer grunde
+End,,Afslut tur
+Choose property,,Vælg en af dine grunde grund
+House,,Huse og hoteller
+Pledge,,Pantsætning
+Trade,,Handel
+Dobble turn prevent,,Du har allerede kastet dine terninger denne runde, vælg et andet menupunkt

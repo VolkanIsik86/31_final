@@ -343,6 +343,10 @@ public class GUILogic {
         return gui.getUserButtonPressed(msg, buttons);
     }
     
+    public String getUserSelection(String msg, String... options){
+        return gui.getUserSelection(msg, options);
+    }
+    
 
 }
 

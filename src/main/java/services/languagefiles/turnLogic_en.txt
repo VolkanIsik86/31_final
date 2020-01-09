@@ -11,4 +11,13 @@ Press OK,,Press OK when you have read the card
 In jail pay now,,The previous turn you went to jail. You must pay 1M to get out this turn
 End turn,,Your turn is over, press OK to end your turn
 it is,,It is
-throw dice,,s turn, press OK to throw thee dice
+s,,s turn.
+Choose option,,Choose a menu option
+Throw,,Throw the dice
+Properties,,Administrate one of your properties
+End,,End turn
+Choose property,,Choose one of your properties
+House,,Houses and hotels
+Pledge,,Pledge
+Trade,,Trade
+Dobble turn prevent,,You have already thrown your dice this round, choose a different menu option
