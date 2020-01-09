@@ -1,6 +1,7 @@
 package domain;
 
 import controllers.GUILogic;
+import domain.squares.OwnableSquare;
 import domain.squares.PropertySquare;
 import domain.squares.Square;
 
@@ -33,7 +34,7 @@ public class Player {
         return jail;
     }
     
-    public boolean attemptToPurchase(PropertySquare property){
+    public boolean attemptToPurchase(OwnableSquare property){
         return property.getPrice() <= this.getBalance();
     }
     
