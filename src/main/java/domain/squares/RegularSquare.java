@@ -6,6 +6,7 @@ import services.TxtReader;
 
 //Start, fængsel, parkering squares
 public class RegularSquare extends Square {
+    private String message;
 
     public RegularSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt) {
         super(name, index, guiLogic, landedOnTxt);
@@ -13,8 +14,8 @@ public class RegularSquare extends Square {
 
     @Override
     public String landedOn(Player p) {
-        guiLogic.showMessage(landedOnTxt.getLine("Regular square"));
-        return null;
+        message = "Regular square";
+        return message;
 
     }
 

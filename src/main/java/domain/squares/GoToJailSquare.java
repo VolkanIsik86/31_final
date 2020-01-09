@@ -9,6 +9,7 @@ import services.TxtReader;
 public class GoToJailSquare extends Square {
     
     private final Board board;
+    private String message;
     
     public GoToJailSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt,  Board board) {
         super(name, index, guiLogic, landedOnTxt);
@@ -18,7 +19,7 @@ public class GoToJailSquare extends Square {
 
     // Moves player to jail.
     public String landedOn(Player player) {
-        guiLogic.showMessage(landedOnTxt.getLine("GoToJail square"));
+        message = "GoToJail square";
         player.setLocation(board.getJail());
         guiLogic.moveToJail(player);
         player.setJail(true);
