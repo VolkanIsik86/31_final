@@ -28,7 +28,7 @@ public class Board {
                 squares[i] = new RegularSquare(oneLine[1], Integer.parseInt(oneLine[2]),guiLogic, landedOnTxt);
 
             } else if ("Factory".equals(oneLine[0])) {
-                squares[i] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
 
             } else if ("Jail".equals(oneLine[0])) {
                 squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, this);
@@ -37,10 +37,10 @@ public class Board {
                 squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, chanceDeck);
 
             } else if ("Property".equals(oneLine[0])) {
-                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
 
             } else if ("Shipyard".equals(oneLine[0])) {
-                squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
 
             }
         }

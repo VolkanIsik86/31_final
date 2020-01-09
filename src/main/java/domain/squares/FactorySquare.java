@@ -5,7 +5,7 @@ import services.TxtReader;
 
 public class FactorySquare extends OwnableSquare{
 
-    public FactorySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price, int rent, String type) {
-        super(name, index, guiLogic, landedOnTxt, price, rent, type);
+    public FactorySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price, int rent, String type , String color) {
+        super(name, index, guiLogic, landedOnTxt, price, rent, type , color);
     }
 }
