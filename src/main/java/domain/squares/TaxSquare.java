@@ -8,15 +8,18 @@ public class TaxSquare extends Square {
     private String message;
     private int tax;
 
-    public TaxSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int tax) {
-        super(name, index, guiLogic, landedOnTxt);
+    public TaxSquare(String name, int index, TxtReader landedOnTxt, int tax) {
+        super(name, index, landedOnTxt);
         this.tax = tax;
     }
 
     @Override
     public String landedOn(Player p) {
         message = "Tax square";
-        p.attemptToPay(tax);
+        if(!p.attemptToPay(tax)){
+            p.setLost(true);
+        }
+           p.withdraw(tax);
         return message;
     }
 }

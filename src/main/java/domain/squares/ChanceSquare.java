@@ -13,8 +13,8 @@ public class ChanceSquare extends Square {
     private String message;
     
     //Constructor
-    public ChanceSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
-        super(name, index, guiLogic, landedOnTxt);
+    public ChanceSquare(String name, int index, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
+        super(name, index, landedOnTxt);
         this.chanceDeck = chanceDeck;
     }
 

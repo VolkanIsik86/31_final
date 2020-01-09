@@ -13,8 +13,8 @@ public abstract class OwnableSquare extends Square {
     private String name;
     protected Player owner;
 
-    public OwnableSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price,int rent,String type) {
-        super(name, index, guiLogic, landedOnTxt);
+    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type) {
+        super(name, index, landedOnTxt);
         this.price = price;
         this.rent = rent;
         this.type = type;
