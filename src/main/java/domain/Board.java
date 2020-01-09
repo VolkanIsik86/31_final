@@ -49,6 +49,15 @@ public class Board {
     public Square getSquare(int index){
         return squares[index];
     }
+
+    public Square getSquare(String name){
+        Square currentSquare = null;
+        for (Square square : squares){
+            if (square.getName().equals(name))
+                currentSquare = square;
+        }
+        return currentSquare;
+    }
     
     public Square nextLocation(Player player, int roll){
         

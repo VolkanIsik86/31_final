@@ -43,8 +43,6 @@ public class TurnLogic {
         String message = nextLocation.landedOn(player);
 
 
-
-
         guiLogic.setPlayerBalance(player);
         //checker om en spiller har købt en grund. Hvis den har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length()-1) == 'T'){
