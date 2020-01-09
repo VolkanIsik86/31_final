@@ -10,6 +10,7 @@ public abstract class OwnableSquare extends Square {
     private int price;
     private int rent;
     private String message;
+    private String name;
     protected Player owner;
 
     public OwnableSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price,int rent,String type) {
@@ -17,6 +18,7 @@ public abstract class OwnableSquare extends Square {
         this.price = price;
         this.rent = rent;
         this.type = type;
+        this.name = name;
     }
 
 
@@ -27,6 +29,8 @@ public abstract class OwnableSquare extends Square {
     }
 
     public int getRent() {return rent;}
+
+    public String getName(){return name;}
 
     public Player getOwner() {
         return owner;
