@@ -22,7 +22,7 @@ public class BoardTest {
         squareTxt.readLines();
 
         TxtReader landedOnTxt = new TxtReader();
-        landedOnTxt.openFile(languagePath,"landedOn_da");
+        landedOnTxt.openFile(languagePath,"turnLogic_da");
         landedOnTxt.readLines();
 
         TxtReader cardsTxt = new TxtReader();
@@ -33,7 +33,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board.makeBoard(squareTxt, landedOnTxt, cardsTxt, guiLogic);
+        board.makeBoard(squareTxt, landedOnTxt, cardsTxt, null);
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }
@@ -70,5 +70,16 @@ public class BoardTest {
         
     }
 
+    @Test
+    public void getOwnables() {
+        assertEquals("blue",board.getOwnables()[0].getColor());
+    }
 
+    @Test
+    public void searchColors() {
+        board.getOwnables()[0].setOwner(player);
+        board.getOwnables()[1].setOwner(player);
+        assertEquals(0,board.searchColors(board.getOwnables()[1]));
+
+    }
 }

@@ -81,7 +81,7 @@ public class Board {
                 countcolor++;
         }
         for (int i = 0; i <ownables.length ; i++) {
-            if (s.getOwner()==ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())){
+            if (ownables[i].getOwner()!=null && s.getOwner()==ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())){
                 playerowns++;
             }
         }
