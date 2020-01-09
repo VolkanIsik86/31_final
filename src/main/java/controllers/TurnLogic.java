@@ -25,7 +25,7 @@ public class TurnLogic {
 
     public void takeTurn(Player player ) {
         
-        guiLogic.showMessage(turnLogicTxt.getLine("It is") + turnLogicTxt.getLine("s"));
+        guiLogic.showMessage(turnLogicTxt.getLine("It is") + " " + player.getName() + turnLogicTxt.getLine("s"));
     
         boolean endTurn = false;
         boolean hasThrown = false;
@@ -62,8 +62,6 @@ public class TurnLogic {
     
                 //Apply the square's effect to the player
                 String message = nextLocation.landedOn(player);
-    
-    
     
                 //checker om en spiller har købt en grund. Hvis den har, så opdaterer GUILogic til at vise den nye ejer af grunden.
                 if (message.charAt(message.length()-1) == 'T'){
