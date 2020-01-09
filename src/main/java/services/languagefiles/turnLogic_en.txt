@@ -20,4 +20,4 @@ Choose property,,Choose one of your properties
 House,,Houses and hotels
 Pledge,,Pledge
 Trade,,Trade
-Dobble turn prevent,,You have already thrown your dice this round, choose a different menu option
+Back,,Back

@@ -24,12 +24,20 @@ public class TurnLogic {
     
         boolean endTurn = false;
         boolean hasThrown = false;
+        String choice;
         
+        //Start of user menu loop
         while(endTurn == false){
             
-            String choice = displayStartMenu();
-    
-            if (choice.equals(turnLogicTxt.getLine("Throw")) && hasThrown == false){
+            //Displays the correct menu, depending on whether or not the player has thrown the dice
+            if(hasThrown == false){
+                choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),  turnLogicTxt.getLine("Throw"),turnLogicTxt.getLine("Properties"));
+            } else{
+                choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),   turnLogicTxt.getLine("Properties"), turnLogicTxt.getLine("End"));
+            }
+           
+            //Depending on menu choice
+            if (choice.equals(turnLogicTxt.getLine("Throw"))){
         
                 hasThrown = true;
                 
@@ -58,19 +66,12 @@ public class TurnLogic {
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))){
                 String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"),"opt1","opt2");
         
-                guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),turnLogicTxt.getLine("House"),turnLogicTxt.getLine("Pledge"),turnLogicTxt.getLine("Trade"));
+                guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),turnLogicTxt.getLine("House"),turnLogicTxt.getLine("Pledge"),turnLogicTxt.getLine("Trade"),turnLogicTxt.getLine("Back"));
         
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
-            } else {
-                guiLogic.showMessage(turnLogicTxt.getLine("Dobble turn prevent"));
             }
         }
-        
-        
-        
-        
-        
         
         guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
     }
@@ -110,18 +111,7 @@ public class TurnLogic {
         }
     }
     
-    //Displays the start menu for the player, and returns the number of the button pressed
-    private String displayStartMenu(){
-        
-        return guiLogic.getUserButtonPressed(
-                turnLogicTxt.getLine("Choose option"),
-            
-                turnLogicTxt.getLine("Throw"),
-                turnLogicTxt.getLine("Properties"),
-                turnLogicTxt.getLine("End")
-        );
-    }
-    
+
 
     private void updateGUI(Player player){
 

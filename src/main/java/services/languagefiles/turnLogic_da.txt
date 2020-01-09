@@ -20,4 +20,4 @@ Choose property,,Vælg en af dine grunde grund
 House,,Huse og hoteller
 Pledge,,Pantsætning
 Trade,,Handel
-Dobble turn prevent,,Du har allerede kastet dine terninger denne runde, vælg et andet menupunkt
+Back,,Tilbage
