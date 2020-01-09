@@ -8,6 +8,8 @@ public class Board {
 
     private int SIZE;
     private Square[] squares;
+    OwnableSquare[] ownables = new OwnableSquare[28];
+    int rekt = 0;
 
     public void makeBoard(TxtReader squareTxt, TxtReader landedOnTxt, TxtReader cardsTxt, GUILogic guiLogic){
         
@@ -28,7 +30,9 @@ public class Board {
                 squares[i] = new RegularSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             } else if ("Factory".equals(oneLine[0])) {
-                squares[i] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                rekt++;
 
             } else if ("Jail".equals(oneLine[0])) {
                 squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, this);
@@ -37,10 +41,14 @@ public class Board {
                 squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, chanceDeck);
 
             } else if ("Property".equals(oneLine[0])) {
-                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                rekt++;
 
             } else if ("Shipyard".equals(oneLine[0])) {
-                squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0]);
+                squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
                 squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, 1000000);
@@ -61,7 +69,23 @@ public class Board {
         }
         return currentSquare;
     }
-    
+    public int searchColors(OwnableSquare s){
+        int countcolor = 0;
+        int playerowns = 0;
+        int getrekt = 0;
+        for (int i = 0; i <ownables.length ; i++) {
+            if (s.getColor().equals(ownables[i].getColor()))
+                countcolor++;
+        }
+        for (int i = 0; i <ownables.length ; i++) {
+            if (s.getOwner()==ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())){
+                playerowns++;
+            }
+        }
+        getrekt = countcolor - playerowns;
+        return getrekt;
+    }
+
     public Square nextLocation(Player player, int roll){
         
         int nextIndex;
@@ -84,5 +108,5 @@ public class Board {
 //
 //        }
 //    }
-    
+
 }

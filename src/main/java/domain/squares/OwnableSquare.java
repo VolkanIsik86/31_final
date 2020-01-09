@@ -7,18 +7,18 @@ import services.TxtReader;
 public abstract class OwnableSquare extends Square {
 
     private String type;
+    private String color;
     private int price;
     private int rent;
     private String message;
-    private String name;
     protected Player owner;
 
-    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type) {
+    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type , String color) {
         super(name, index, landedOnTxt);
         this.price = price;
         this.rent = rent;
         this.type = type;
-        this.name = name;
+        this.color = color;
     }
 
 
@@ -29,8 +29,6 @@ public abstract class OwnableSquare extends Square {
     }
 
     public int getRent() {return rent;}
-
-    public String getName(){return name;}
 
     public Player getOwner() {
         return owner;
@@ -44,6 +42,14 @@ public abstract class OwnableSquare extends Square {
 
     public void setOwner(Player owner) {
         this.owner = owner;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     //Pay rent logic: withdraws balance from player
