@@ -11,15 +11,15 @@ public abstract class Square {
     private final String name;
     private final int index;
     private Board board;
-    protected final GUILogic guiLogic;
     protected final TxtReader landedOnTxt;
     
-    Square(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt) {
+    Square(String name, int index, TxtReader landedOnTxt) {
         this.name = name;
         this.index = index;
-        this.guiLogic = guiLogic;
         this.landedOnTxt = landedOnTxt;
     }
+    
+    
 
     public String getName() {
         return name;

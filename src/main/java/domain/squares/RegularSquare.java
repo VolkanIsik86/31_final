@@ -8,8 +8,8 @@ import services.TxtReader;
 public class RegularSquare extends Square {
     private String message;
 
-    public RegularSquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt) {
-        super(name, index, guiLogic, landedOnTxt);
+    public RegularSquare(String name, int index, TxtReader landedOnTxt) {
+        super(name, index, landedOnTxt);
     }
 
     @Override
