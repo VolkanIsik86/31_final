@@ -14,7 +14,8 @@ public class TurnLogic {
     ChanceDeck chanceDeck;
     protected final Die die = new Die();
     int roll1, roll2, rollSum;
-    private boolean hasThrown;
+    private boolean hasThrown, ownsASquares;
+    String[] menuItems;
 
     public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
         this.board = board;
@@ -23,49 +24,37 @@ public class TurnLogic {
         this.cardsTxt = cardsTxt;
         chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
     }
-
+    
+    //todo implement an option when landing on a property if you want to buy it or not
     public void takeTurn(Player player) {
     
+        String greeting = turnLogicTxt.getLine("It is") + " " +
+                player.getName() + turnLogicTxt.getLine("s") + " " +
+                turnLogicTxt.getLine("Choose option");
+        
         boolean endTurn = false;
         hasThrown = false;
-        String[] menuItems;
         String choice;
+        
         
         //Start of user menu loop
         while(endTurn == false){
-    
-            //Check if player own any squares
-            boolean ownsASquares = board.doesPlayerOwnAnySquares(player);
             
-            //Chooses the correect menu items, depending on whether or not the player has already thrown the dice and owns any squares
-            if(hasThrown == false && ownsASquares){
-                menuItems = new String[]{turnLogicTxt.getLine("Throw"),turnLogicTxt.getLine("Properties")};
-            } else if(hasThrown == false && ownsASquares == false){
-                menuItems = new String[]{turnLogicTxt.getLine("Throw")};
-            } else if(hasThrown && ownsASquares){
-                menuItems = new String[]{turnLogicTxt.getLine("Properties"), turnLogicTxt.getLine("End")};
-            } else {
-                menuItems = new String[]{turnLogicTxt.getLine("End")};
-            }
+            ownsASquares = board.doesPlayerOwnAnySquares(player);
+            
+            //Chooses the correct menu items
+            updateMenuItems();
             
             //Displays the menu
-            String greeting = turnLogicTxt.getLine("It is") + " " + player.getName() + turnLogicTxt.getLine("s") + " " + turnLogicTxt.getLine("Choose option");
             choice = guiLogic.getUserButtonPressed(greeting, menuItems);
            
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))){
-                
                 doTurn(player);
         
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))){
+                manageProperties(player);
                 
-                //Prompt player to choose a field
-                String[] playerSquareNames = board.getPlayerSquareNames(player);
-                String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), playerSquareNames);
-        
-                //Prompt player to choose something to do with that field
-                guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),turnLogicTxt.getLine("House"),turnLogicTxt.getLine("Pledge"),turnLogicTxt.getLine("Trade"),turnLogicTxt.getLine("Back"));
-        
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
             }
@@ -144,6 +133,31 @@ public class TurnLogic {
         die.roll();
         roll2 = die.getFaceValue();
         rollSum = roll1+roll2;
+    }
+    
+    //Chooses the correect menu items, depending on whether or not the player has already thrown the dice and owns any squares
+    private void updateMenuItems(){
+        
+        if(hasThrown == false && ownsASquares){
+            menuItems = new String[]{turnLogicTxt.getLine("Throw"),turnLogicTxt.getLine("Properties")};
+        } else if(hasThrown == false && ownsASquares == false){
+            menuItems = new String[]{turnLogicTxt.getLine("Throw")};
+        } else if(hasThrown && ownsASquares){
+            menuItems = new String[]{turnLogicTxt.getLine("Properties"), turnLogicTxt.getLine("End")};
+        } else {
+            menuItems = new String[]{turnLogicTxt.getLine("End")};
+        }
+    }
+    
+    private void manageProperties(Player player){
+        //Prompt player to choose a field
+        String[] playerSquareNames = board.getPlayerSquareNames(player);
+        String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), playerSquareNames);
+    
+        //todo convert selection to actual square to that it can be modified
+        //todo do so that choosen property shows in the middle
+        //Prompt player to choose something to do with that field
+        guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),turnLogicTxt.getLine("House"),turnLogicTxt.getLine("Pledge"),turnLogicTxt.getLine("Trade"),turnLogicTxt.getLine("Back"));
     }
     
     private void updateGUI(Player player){
