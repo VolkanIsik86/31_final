@@ -69,10 +69,10 @@ public class Board {
         }
         return currentSquare;
     }
+    
     public int searchColors(OwnableSquare s){
         int countcolor = 0;
         int playerowns = 0;
-        int getrekt = 0;
         for (int i = 0; i <ownables.length ; i++) {
             if (s.getColor().equals(ownables[i].getColor()))
                 countcolor++;
@@ -82,7 +82,7 @@ public class Board {
                 playerowns++;
             }
         }
-        getrekt = countcolor - playerowns;
+        int getrekt = countcolor - playerowns;
         return getrekt;
     }
 
@@ -101,12 +101,17 @@ public class Board {
         return squares[0];
     }
     
-//    public Square[] getPlayerSquares(Player player){
-//
-//        //For alle squares
-//        for (int i = 0; i < squares.length; i++) {
-//
-//        }
-//    }
+    public Square[] getPlayerSquares(Player player){
+
+        //For all ownable squares
+        for (int i = 0; i < ownables.length; i++) {
+            
+            //If owner if the same
+            if(ownables[i].getOwner().equals(player)){
+                
+            }
+    
+        }
+    }
 
 }
