@@ -10,3 +10,4 @@ Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne
 Press OK,,Tryk OK når du har læst chancekortet
 In jail pay now,,Sidste tur kom du i fængsel. Du skal derfor betale 1M for at komme ud denne tur
 End turn,,Din tur er slut, tryk OK for at fortsætte
+Extra turn,,Du får en ekstra tur, kast terning i gen.

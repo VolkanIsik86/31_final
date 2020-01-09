@@ -11,6 +11,7 @@ public class TurnLogic {
     protected TxtReader landedOnTxt;
     protected final Die die = new Die();
     protected final Die die2 = new Die();
+    protected int roll1, roll2;
 
     public void init(Board board, GUILogic guiLogic, TxtReader landedOnTxt){
         this.board = board;
@@ -22,9 +23,9 @@ public class TurnLogic {
 
         //Roll the die
         die.roll();
-        int roll1 = die.getFaceValue();
+        roll1 = die.getFaceValue();
         die2.roll();
-        int roll2 = die2.getFaceValue();
+        roll2 = die2.getFaceValue();
         int roll = roll1+roll2;
         player.setLastRoll((roll));
         guiLogic.displayDie(roll1, roll2, player.getName());
@@ -44,9 +45,21 @@ public class TurnLogic {
         guiLogic.setSquareOwner(player);
         guiLogic.showMessage(landedOnTxt.getLine(message));
 
-        guiLogic.showMessage(landedOnTxt.getLine("End turn"));
+        if (getExtraturn()){
+            guiLogic.showMessage(landedOnTxt.getLine("Extra turn"));
+
+        }else {
+        guiLogic.showMessage(landedOnTxt.getLine("End turn"));}
 
     }
+    public boolean getExtraturn (){
+        boolean ekstraturn = true;
+        if (roll1==roll2){
+            return ekstraturn;
+        }else
+            return ekstraturn = false;
+    }
+
     void playRound(PlayerList playerList, String looser) {
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
@@ -74,10 +87,13 @@ public class TurnLogic {
 
             takeTurn(currentPlayer);
 
-
             if (currentPlayer.getLost()) {
                 looser = currentPlayer.getName();
                 break;
+
+            }
+            if (getExtraturn()){
+                i=i-1;
             }
         }
     }
