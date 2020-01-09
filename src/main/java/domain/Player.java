@@ -73,7 +73,7 @@ public class Player {
     }
     
     public void withdraw(int amount){
-        account.withdraw(amount);
+         account.withdraw(amount);
     }
     
     public void deposit(int amount){
