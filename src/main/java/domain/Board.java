@@ -35,8 +35,8 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 squares[i] = new RegularSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             } else if ("Factory".equals(oneLine[0])) {
-                squares[i] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
-                ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+    
+                squares[i] = ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
                 rekt++;
 
             } else if ("Jail".equals(oneLine[0])) {
@@ -46,13 +46,13 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, chanceDeck);
 
             } else if ("Property".equals(oneLine[0])) {
-                squares[i] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
-                ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+    
+                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
                 rekt++;
 
             } else if ("Shipyard".equals(oneLine[0])) {
-                squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
-                ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+    
+                squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
                 rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
@@ -144,17 +144,67 @@ Creates a board this constructor also create an ownablesquare array to manage th
         return squares[0];
     }
     
+    /**
+     * Finds all the squares belonging to a certain player and return them in an array
+     * @param player The player whose squares you want to find
+     * @return An array of squares
+     */
     public Square[] getPlayerSquares(Player player){
 
+        Square[] playerSquares = new Square[0];
+        
         //For all ownable squares
         for (int i = 0; i < ownables.length; i++) {
             
-            //If owner if the same
-            if(ownables[i].getOwner().equals(player)){
+            if(ownables[i].getOwner() != null){
                 
+                //If owner is the same
+                if(ownables[i].getOwner().equals(player)){
+        
+                    //Increase size of array by 1
+                    Square[] tempArr = new Square[playerSquares.length+1];
+                    for (int j = 0; j < playerSquares.length; j++) {
+                        tempArr[j] = playerSquares[j];
+                    }
+                    playerSquares = tempArr;
+        
+                    //And add the square
+                    playerSquares[playerSquares.length-1] = ownables[i];
+                }
             }
-    
+            
+            
         }
+        return playerSquares;
+    }
+    
+    /**
+     * Finds the names of all the squares belonging to a certain player
+     * @param player The player whose square names you want to find
+     * @return An array of the names
+     */
+    public String[] getPlayerSquareNames(Player player){
+        
+        //First find the square belonging to the player
+        Square[] playerSquares = getPlayerSquares(player);
+    
+        String[] playerSquareNames = new String[playerSquares.length];
+        
+        //Then find the names
+        for (int i = 0; i < playerSquares.length; i++) {
+            playerSquareNames[i] = playerSquares[i].getName();
+        }
+        
+        return playerSquareNames;
+    }
+    
+    public boolean doesPlayerOwnAnySquares(Player player){
+        if (getPlayerSquares(player).length > 0){
+            return true;
+        } else{
+            return false;
+        }
+        
     }
 
 }

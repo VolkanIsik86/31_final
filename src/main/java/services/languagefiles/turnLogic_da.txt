@@ -16,7 +16,6 @@ Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen, 
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og spillet er stopper derfor
 Press OK,,Tryk OK når du har læst chancekortet
 In jail pay now,,Sidste tur kom du i fængsel. Du skal derfor betale 1M for at komme ud denne tur
-End turn,,Din tur er slut, tryk OK for at fortsætte
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt

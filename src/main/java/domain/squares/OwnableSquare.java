@@ -72,8 +72,7 @@ public abstract class OwnableSquare extends Square {
     }
 
     public String landedOn(Player player) {
-
-
+        
         if (this.getOwner() != null && this.getOwner().equals(player)){
 
             message = "Owned by yourself "+this.type+" square";
@@ -82,7 +81,8 @@ public abstract class OwnableSquare extends Square {
 
         //If property is not owned
         if (owner == null) {
-
+            
+            //todo hvorfor defineres meassage på ny her? -Mikkel
             message = "Not owned "+this.type+" square";
 
             //If player has the requested fonds

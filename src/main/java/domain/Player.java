@@ -43,7 +43,7 @@ public class Player {
     }
     
     public boolean equals(Player player){
-
+        
         return this.getName().equals(player.getName());
         
     }

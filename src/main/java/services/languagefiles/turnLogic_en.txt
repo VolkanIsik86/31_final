@@ -9,7 +9,6 @@ Does not have fonds to buy,,You do not have the funds to purchase the property, 
 Does not have fonds to pay,,You do not have the funds to pay this expense, the game ends
 Press OK,,Press OK when you have read the card
 In jail pay now,,The previous turn you went to jail. You must pay 1M to get out this turn
-End turn,,Your turn is over, press OK to end your turn
 it is,,It is
 s,,s turn.
 Choose option,,Choose a menu option
