@@ -2,7 +2,7 @@
 1,,Property-Rødovrevej-1-1200-blue
 2,,Chance-Chancen-2-0
 3,,Property-Hvidovrevej-3-1200-blue
-4,,Regular-SKAT-4-0
+4,,Tax-SKAT-4-0
 5,,Shipyard-Øresund-5-4000-ship
 6,,Property-Roskildevej-6-2000-orange
 7,,Chance-Chancen-7-0
@@ -36,5 +36,5 @@
 35,,Shipyard-Bornholm-35-4000-ship
 36,,Chance-Chancen-36-0
 37,,Property-Frederiksberggade-37-7000-purple
-38,,Regular-SKAT-38-0
+38,,Tax-SKAT-38-0
 39,,Property-Rådhuspladsen-39-8000-purple

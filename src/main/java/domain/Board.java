@@ -42,12 +42,24 @@ public class Board {
             } else if ("Shipyard".equals(oneLine[0])) {
                 squares[i] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
 
+            }else if ("Tax".equals(oneLine[0])) {
+                squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), guiLogic, landedOnTxt, 100);
+
             }
         }
     }
     
     public Square getSquare(int index){
         return squares[index];
+    }
+
+    public Square getSquare(String name){
+        Square currentSquare = null;
+        for (Square square : squares){
+            if (square.getName().equals(name))
+                currentSquare = square;
+        }
+        return currentSquare;
     }
     
     public Square nextLocation(Player player, int roll){
