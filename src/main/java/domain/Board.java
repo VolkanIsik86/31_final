@@ -4,13 +4,18 @@ import controllers.GUILogic;
 import domain.squares.*;
 import services.TxtReader;
 
+/**
+Game board for backend that consist of squares.
+ */
 public class Board {
 
     private int SIZE;
     private Square[] squares;
     OwnableSquare[] ownables = new OwnableSquare[28];
     int rekt = 0;
-
+/**
+Creates a board this constructor also create an ownablesquare array to manage them.
+ */
     public void makeBoard(TxtReader squareTxt, TxtReader landedOnTxt, TxtReader cardsTxt, GUILogic guiLogic){
         
         //Chancefelterne skal bruge chancedækket i deres landOn, samtidig skal chancedækket bruge boardet, til at rykke spillerne
@@ -56,11 +61,21 @@ public class Board {
             }
         }
     }
-    
+
+    /**
+     * Return square by index
+     * @param index square number at board
+     * @return the square at index
+     */
     public Square getSquare(int index){
         return squares[index];
     }
 
+    /**
+     * Returns square by name
+     * @param name square name
+     * @return returns square by name
+     */
     public Square getSquare(String name){
         Square currentSquare = null;
         for (Square square : squares){
@@ -69,9 +84,20 @@ public class Board {
         }
         return currentSquare;
     }
+
+    /**
+     * Ownablesquare
+     * @return Returns ownable squares
+     */
     public OwnableSquare[] getOwnables(){
         return ownables;
     }
+
+    /**
+     * Searches through the ownablesquare and returns number of not owned by same player and color
+     * @param s ownablesquare that needs to be searched for
+     * @return count of not owned square that is same color
+     */
     public int searchColors(OwnableSquare s){
         int countcolor = 0;
         int playerowns = 0;
@@ -89,17 +115,31 @@ public class Board {
         return getrekt;
     }
 
+    /**
+     * Return the square that player will be moved to
+     * @param player player that has to move
+     * @param roll facevalue of the dice
+     * @return square that player will move to
+     */
     public Square nextLocation(Player player, int roll){
         
         int nextIndex;
         nextIndex = (player.getLocation().getIndex() + roll) % SIZE;
         return squares[nextIndex];
     }
-    
+
+    /**
+     * Returns jail square
+     * @return Returns jail square
+     */
     public Square getJail(){
         return squares[6];
     }
-    
+
+    /**
+     * Returns start square
+     * @return Returns start square
+     */
     public Square getStart() {
         return squares[0];
     }
