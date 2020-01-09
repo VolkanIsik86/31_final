@@ -41,11 +41,10 @@ public class TurnLogic {
 
 
         guiLogic.setPlayerBalance(player);
-        System.out.println("message");
-        System.out.println(message.charAt(message.length()-1));
-
+        //checker om en spiller har købt en grund. Hvis den har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length()-1) == 'T'){
             guiLogic.setSquareOwner(player);
+            message = message.substring(0,message.length()-1);
         }
 
         guiLogic.showMessage(landedOnTxt.getLine(message));
