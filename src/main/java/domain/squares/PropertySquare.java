@@ -12,15 +12,14 @@ public class PropertySquare extends OwnableSquare {
     private final int HOUSE_PRICE;
     private final int PRICE_IF_OWNING_ALL;
     private int[] rentLadder;
-    private boolean hasBuilding = false;
-    private int house;
+    private int numberOfHouse;
 
     public PropertySquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, int HOUSE_PRICE, int[] rentLadder, Board board) {
         super(name, index, landedOnTxt, price, type , color, board);
         this.HOUSE_PRICE = HOUSE_PRICE;
         this.rentLadder = rentLadder;
         PRICE_IF_OWNING_ALL = rentLadder[0]*2;
-        house = 0;
+        price = 0;
     }
 
     public int getHOUSE_PRICE(){
@@ -35,7 +34,7 @@ public class PropertySquare extends OwnableSquare {
         return rentLadder;
     }
     public int getHouses(){
-        return house;
+        return numberOfHouse;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class PropertySquare extends OwnableSquare {
     }
 
     public void addHouse(){
-        house++;
+        numberOfHouse++;
     }
 
     @Override
@@ -67,11 +66,21 @@ public class PropertySquare extends OwnableSquare {
         if(getOwner() != null){
 
             //If the square has a building
-            if(hasBuilding){
-            
-            
-            
-
+            if(numberOfHouse > 0){
+                
+                switch(numberOfHouse){
+                    case 1:
+                        return rentLadder[1];
+                    case 2:
+                        return rentLadder[2];
+                    case 3:
+                        return rentLadder[3];
+                    case 4:
+                        return rentLadder[4];
+                    case 5:
+                        return rentLadder[5];
+                }
+                
             } else{
 
                 //If owner owns all properties
@@ -80,14 +89,12 @@ public class PropertySquare extends OwnableSquare {
                 } else {
                     return rentLadder[0];
                 }
-
             }
             
-        } else {
-            return rentLadder[0];
         }
-
-
+        
+        return 0;
+        
     }
     
 }
