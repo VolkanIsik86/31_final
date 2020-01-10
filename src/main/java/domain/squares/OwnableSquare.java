@@ -9,19 +9,21 @@ public abstract class OwnableSquare extends Square {
     private String type;
     private String color;
     private int price;
-    private int rent;
-    private int tax;
+    private final int PLEDGE_VALUE;
     private String message;
     protected Player owner;
 
-    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type , String color) {
+    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price, String type , String color) {
         super(name, index, landedOnTxt);
         this.price = price;
-        this.rent = rent;
         this.type = type;
         this.color = color;
+        this.PLEDGE_VALUE = price/2;
     }
-
+    
+    public int getPLEDGE_VALUE(){
+        return PLEDGE_VALUE;
+    }
 
     public String getType() { return type; }
 
@@ -29,15 +31,15 @@ public abstract class OwnableSquare extends Square {
         return price;
     }
 
-    public int getRent() {return rent;}
+    public int getRent() {return 1000;}
 
-    public int getTax() {return tax;}
+    public Player getOwner() {
+        return owner;
+    }
 
     public void setPrice(int price) {
         this.price = price;
     }
-
-    public void setRent(int rent) {this.rent = rent; }
 
     public void setOwner(Player owner) {
         this.owner = owner;
@@ -60,8 +62,6 @@ public abstract class OwnableSquare extends Square {
         p.withdraw(this.getPrice());
     }
 
-    public Player getOwner() { return owner; }
-
     // get rent logic: Adds points to the owner of this square.
     protected void earnRent(){
         owner.deposit(this.getRent());
@@ -71,6 +71,8 @@ public abstract class OwnableSquare extends Square {
         this.setOwner(p);
         payPrice(p);
     }
+    
+    public abstract String getInfo();
 
     public String landedOn(Player player) {
         

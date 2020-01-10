@@ -24,4 +24,5 @@ public class GoToJailSquare extends Square {
         player.setJail(true);
         return message;
     }
+    
 }

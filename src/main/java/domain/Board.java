@@ -36,7 +36,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             } else if ("Factory".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4]);
                 rekt++;
 
             } else if ("Jail".equals(oneLine[0])) {
@@ -47,12 +47,20 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             } else if ("Property".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                //Read rents and then converts them to int
+                String[] rentsString = oneLine[6].split("'");
+                int[] rentsInts = new int[6];
+                
+                for (int j = 0; j < 6; j++) {
+                    rentsInts[j] = Integer.parseInt(rentsString[j]);
+                }
+                
+                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]),rentsInts);
                 rekt++;
-
+                
             } else if ("Shipyard".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4]);
                 rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
@@ -60,6 +68,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             }
         }
+        
     }
 
     /**

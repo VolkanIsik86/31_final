@@ -20,3 +20,18 @@ House,,Houses and hotels
 Pledge,,Pledge
 Trade,,Trade
 Back,,Back
+Price pr. house/hotel,,Price pr. house/hotel:
+Pledge value,,Pledge value:
+Standard rent,,Standard rent:
+1 house,,1 house:
+2 houses,,2 houses:
+3 houses,,3 houses:
+4 houses,,4 houses:
+1 hotel,,1 hotel:
+Price at same color,,Same color:
+Status,,Status:
+#Houses/hotels:,,Houses/hotels
+Rent factories,,Husleje: 100 * øjnene
+Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange øjnene
+Rent shipyard,,Rent: 500
+Rent when owning more shipyards,,The rent dobbles for every ekstra shipyard owned

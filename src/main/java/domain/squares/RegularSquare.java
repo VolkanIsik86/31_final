@@ -5,6 +5,7 @@ import domain.Player;
 import services.TxtReader;
 
 //Start, fængsel, parkering squares
+
 public class RegularSquare extends Square {
     private String message;
 
@@ -18,6 +19,5 @@ public class RegularSquare extends Square {
         return message;
 
     }
-
 
 }

@@ -23,5 +23,6 @@ public class TaxSquare extends Square {
         message = "Tax square";
         return message;
     }
+    
 }
 
