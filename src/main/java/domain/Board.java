@@ -12,7 +12,9 @@ public class Board {
     private int SIZE;
     private Square[] squares;
     OwnableSquare[] ownables = new OwnableSquare[28];
+    PropertySquare[] properties = new PropertySquare[22];
     int rekt = 0;
+    int prop = 0;
 /**
 Creates a board this constructor also create an ownablesquare array to manage them.
  */
@@ -47,8 +49,9 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             } else if ("Property".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = properties[prop] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
                 rekt++;
+                prop++;
 
             } else if ("Shipyard".equals(oneLine[0])) {
     
@@ -92,7 +95,11 @@ Creates a board this constructor also create an ownablesquare array to manage th
     public OwnableSquare[] getOwnables(){
         return ownables;
     }
-
+    /**
+     * Propertysquare
+     * @return Returns property squares
+     */
+    public PropertySquare[] getProperties(){return properties;}
     /**
      * Searches through the ownablesquare and returns number of not owned by same player and color
      * @param s ownablesquare that needs to be searched for

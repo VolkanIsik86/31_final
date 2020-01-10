@@ -151,11 +151,15 @@ public class GUILogic {
                     moveRest(guiPlayer, currentField, i);
                     movesDone++;
                     sleep(DELAY);
+
+
+
                 }
                 currentField = passStart(guiPlayer);
                 passedStart(player);
                 movesDone++;
                 sleep(DELAY);
+
             }
 
             //Run figure and controls moves done.
@@ -278,7 +282,6 @@ public class GUILogic {
     /**
      * Displays Die on the GUI.
      * @param faceValue at the backend is showed on GUI.
-     * @param name of player showed on GUI.
      */
     public void displayDie(int faceValue, int faceValue2){
         gui.setDice(faceValue,faceValue2);
