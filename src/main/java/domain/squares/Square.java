@@ -25,12 +25,6 @@ public abstract class Square {
         return name;
     }
 
-    public Player getOwner(){return owner;};
-
-    public void setTax(int tax) {this.tax = tax;}
-
-    public void payTax(Player p){p.withdraw(tax);}
-
     public int getIndex() {
         return index;
     }
