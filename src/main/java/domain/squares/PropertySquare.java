@@ -10,11 +10,13 @@ public class PropertySquare extends OwnableSquare {
     
     private final int HOUSE_PRICE;
     private final int PRICE_IF_OWNING_ALL;
+    private int[] rentLadder;
 
-    public PropertySquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type, String color, int HOUSE_PRICE) {
+    public PropertySquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type, String color, int HOUSE_PRICE, int[] rentLadder) {
         super(name, index, landedOnTxt, price, rent, type , color);
         this.HOUSE_PRICE = HOUSE_PRICE;
         PRICE_IF_OWNING_ALL = this.getPrice()*2;
+        this.rentLadder = rentLadder;
     }
     
     public int getHOUSE_PRICE(){
@@ -23,6 +25,10 @@ public class PropertySquare extends OwnableSquare {
     
     public int PRICE_OF_OWNING_ALL(){
         return PRICE_IF_OWNING_ALL;
+    }
+    
+    public int[] getRentLadder(){
+        return rentLadder;
     }
     
 }
