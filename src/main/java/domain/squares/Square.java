@@ -9,6 +9,8 @@ import services.TxtReader;
 public abstract class Square {
 
     private final String name;
+    private Player owner;
+    private int tax;
     private final int index;
     private Board board;
     protected final TxtReader landedOnTxt;
@@ -23,6 +25,12 @@ public abstract class Square {
     public String getName() {
         return name;
     }
+
+    public Player getOwner(){return owner;};
+
+    public void setTax(int tax) {this.tax = tax;}
+
+    public void payTax(Player p){p.withdraw(tax);}
 
     public int getIndex() {
         return index;

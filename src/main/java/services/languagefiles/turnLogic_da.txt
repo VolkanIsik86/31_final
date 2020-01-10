@@ -42,3 +42,7 @@ Rent factories,,Husleje: 100 * øjnene
 Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange øjnene
 Rent shipyard,,Husleje: 500
 Rent when owning more shipyards,,Huslejen fordobles pr. ekstra rederi man ejer
+pay 4000,,Betal 4000 i skat
+pay 10,, Betal 10% i skat
+pay 2000,, Betal 2000 i skat
+tax,, Vælg mellem 4000 eller 10%

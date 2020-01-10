@@ -7,19 +7,20 @@ import services.TxtReader;
 public class TaxSquare extends Square {
     private String message;
     private int tax;
+    private int index;
 
-    public TaxSquare(String name, int index, TxtReader landedOnTxt, int tax) {
+    public TaxSquare(String name, int index, TxtReader landedOnTxt) {
         super(name, index, landedOnTxt);
-        this.tax = tax;
+        this.index = index;
     }
+
+    public void setTax(int tax) {this.tax = tax;}
+
+    public void payTax(Player p){p.withdraw(this.tax);}
 
     @Override
     public String landedOn(Player p) {
         message = "Tax square";
-        if(!p.attemptToPay(tax)){
-            p.setLost(true);
-        }
-           p.withdraw(tax);
         return message;
     }
     

@@ -64,7 +64,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
-                squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, 1000000);
+                squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             }
         }
@@ -206,7 +206,12 @@ Creates a board this constructor also create an ownablesquare array to manage th
         
         return playerSquareNames;
     }
-    
+
+    /**
+     * Searches in ownablesquare array and returns boolean if player owns a ownablesquare
+     * @param player player needed for search in the array
+     * @return boolean
+     */
     public boolean doesPlayerOwnAnySquares(Player player){
         if (getPlayerSquares(player).length > 0){
             return true;
