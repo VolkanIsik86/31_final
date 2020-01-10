@@ -30,10 +30,6 @@ public abstract class OwnableSquare extends Square {
 
     public int getRent() {return rent;}
 
-    public Player getOwner() {
-        return owner;
-    }
-
     public void setPrice(int price) {
         this.price = price;
     }
@@ -60,6 +56,8 @@ public abstract class OwnableSquare extends Square {
     protected void payPrice(Player p){
         p.withdraw(this.getPrice());
     }
+
+    public Player getOwner() { return owner; }
 
     // get rent logic: Adds points to the owner of this square.
     protected void earnRent(){
