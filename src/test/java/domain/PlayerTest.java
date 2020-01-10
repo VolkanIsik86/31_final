@@ -7,8 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
-PropertySquare squareTest = new PropertySquare("Testsquare",0,null,1000,"PropertySquare","red",100, new int[]{1,2,3});
-    PropertySquare squareTest2 = new PropertySquare("Testsquare2",1,null,6000,"PropertySquare","blue",100, new int[]{1,2,3});
+PropertySquare squareTest = new PropertySquare("Testsquare",0,null,1000,"PropertySquare","red",100, new int[]{1,2,3}, null);
+    PropertySquare squareTest2 = new PropertySquare("Testsquare2",1,null,6000,"PropertySquare","blue",100, new int[]{1,2,3}, null);
     @Test
     public void attemptToPurchase() {
         Player testPlayer = new Player("Test",5000,null);

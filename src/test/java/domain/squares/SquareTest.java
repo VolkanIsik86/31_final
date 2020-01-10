@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class SquareTest {
     int[] rentLadder = {1,2,3,4,5,6};
     Square square0 = new TaxSquare("square0",0,null);
-    Square square1 = new PropertySquare("square1",1,null,1000,"PropertySquare","red",100,rentLadder);
+    Square square1 = new PropertySquare("square1",1,null,1000,"PropertySquare","red",100, rentLadder, null);
     Square square2 = new RegularSquare("square2",2,null);
     Square square3 = new GoToJailSquare("square3",3,null,square2);
     Square square4 = new ChanceSquare("square4",4,null,null);

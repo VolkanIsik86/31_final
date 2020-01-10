@@ -51,6 +51,11 @@ public class PropertySquare extends OwnableSquare {
         
     }
     
+    @Override
+    public int getRent() {
+        return 1000;
+    }
+    
     
 //    @Override
 //    public int getRent() {
