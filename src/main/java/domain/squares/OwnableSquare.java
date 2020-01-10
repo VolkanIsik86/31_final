@@ -10,6 +10,7 @@ public abstract class OwnableSquare extends Square {
     private String color;
     private int price;
     private int rent;
+    private final int PLEDGE_VALUE;
     private String message;
     protected Player owner;
 
@@ -19,8 +20,12 @@ public abstract class OwnableSquare extends Square {
         this.rent = rent;
         this.type = type;
         this.color = color;
+        this.PLEDGE_VALUE = price/2;
     }
-
+    
+    public int getPLEDGE_VALUE(){
+        return PLEDGE_VALUE;
+    }
 
     public String getType() { return type; }
 

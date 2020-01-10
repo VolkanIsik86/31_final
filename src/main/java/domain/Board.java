@@ -47,9 +47,9 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             } else if ("Property".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]));
                 rekt++;
-
+                
             } else if ("Shipyard".equals(oneLine[0])) {
     
                 squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), 100, oneLine[0],oneLine[4]);
@@ -60,6 +60,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             }
         }
+        
     }
 
     /**

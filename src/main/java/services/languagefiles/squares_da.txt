@@ -1,40 +1,40 @@
 0,,Regular-Start-0-0
-1,,Property-Rødovrevej-1-1200-blue
+1,,Property-Rødovrevej-1-1200-blue-1000
 2,,Chance-Chancen-2-0
-3,,Property-Hvidovrevej-3-1200-blue
+3,,Property-Hvidovrevej-3-1200-blue-1000
 4,,Tax-SKAT-4-0
 5,,Shipyard-Øresund-5-4000-ship
-6,,Property-Roskildevej-6-2000-orange
+6,,Property-Roskildevej-6-2000-orange-1000
 7,,Chance-Chancen-7-0
-8,,Property-Valby Langgade-8-2000-orange
-9,,Property-Allegade-9-2400-orange
+8,,Property-Valby Langgade-8-2000-orange-1000
+9,,Property-Allegade-9-2400-orange-1000
 10,,Regular-På Besøg-10-0
-11,,Property-Frederiksberg Alle-11-2800-green
+11,,Property-Frederiksberg Alle-11-2800-green-2000
 12,,Factory-Tuborg-12-3000-factory
-13,,Property-Bulowsvejs-13-2800-green
-14,,Property-Gl. Kongevej-14-3200-green
+13,,Property-Bulowsvejs-13-2800-green-2000
+14,,Property-Gl. Kongevej-14-3200-green-2000
 15,,Shipyard-D.F.D.S-15-4000-ship
-16,,Property-Bernstorfsvej-16-3600-gray
+16,,Property-Bernstorfsvej-16-3600-gray-2000
 17,,Chance-Chancen-17-0
-18,,Property-Hellerupvej-18-3600-gray
-19,,Property-Strandvej-19-4000-gray
+18,,Property-Hellerupvej-18-3600-gray-2000
+19,,Property-Strandvej-19-4000-gray-2000
 20,,Regular-Helle-20-0
-21,,Property-Trianglen-21-4400-red
+21,,Property-Trianglen-21-4400-red-3000
 22,,Chance-Chancen-22-0
-23,,Property-Østerbrogade-23-4400-red
-24,,Property-Grønningen-24-4800-red
+23,,Property-Østerbrogade-23-4400-red-3000
+24,,Property-Grønningen-24-4800-red-3000
 25,,Shipyard-Ø.S-25-4000-ship
-26,,Property-Bredgade-26-5200-white
-27,,Property-Kgs. Nytorv-27-5200-white
+26,,Property-Bredgade-26-5200-white-3000
+27,,Property-Kgs. Nytorv-27-5200-white-3000
 28,,Factory-Carlsberg-28-3000-factory
-29,,Property-Østergade-29-5600-white
+29,,Property-Østergade-29-5600-white-3000
 30,,Jail-De Fængsles-30-0
-31,,Property-Amagertorv-31-6000-yellow
-32,,Property-Vimmelskaftet-32-6000-yellow
+31,,Property-Amagertorv-31-6000-yellow-4000
+32,,Property-Vimmelskaftet-32-6000-yellow-4000
 33,,Chance-Chancen-33-0
-34,,Property-Nygade-34-6400-yellow
+34,,Property-Nygade-34-6400-yellow-4000
 35,,Shipyard-Bornholm-35-4000-ship
 36,,Chance-Chancen-36-0
-37,,Property-Frederiksberggade-37-7000-purple
+37,,Property-Frederiksberggade-37-7000-purple-4000
 38,,Tax-SKAT-38-0
-39,,Property-Rådhuspladsen-39-8000-purple
+39,,Property-Rådhuspladsen-39-8000-purple-4000
