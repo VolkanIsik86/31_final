@@ -12,7 +12,7 @@ public abstract class OwnableSquare extends Square {
     private int price;
     private final int PLEDGE_VALUE;
     private String message;
-    private Board board;
+    protected Board board;
     protected Player owner;
 
     public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price, String type , String color, Board board) {
