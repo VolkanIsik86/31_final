@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class SquareTest {
     Square square0 = new TaxSquare("square0",0,null);
-    Square square1 = new PropertySquare("square1",1,null,1000,500,"PropertySquare","red");
+    Square square1 = new PropertySquare("square1",1,null,1000,"PropertySquare","red",100,new int[]{1,2,3});
     Square square2 = new GoToJailSquare("square2",2,null,null);
     Square square3 = new RegularSquare("square3",3,null);
     Square square4 = new ChanceSquare("square4",4,null,null);
