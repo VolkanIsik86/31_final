@@ -16,7 +16,7 @@ public class PropertySquare extends OwnableSquare {
         super(name, index, landedOnTxt, price, type , color);
         this.HOUSE_PRICE = HOUSE_PRICE;
         this.rentLadder = rentLadder;
-        PRICE_IF_OWNING_ALL = rentLadder[5];
+        PRICE_IF_OWNING_ALL = rentLadder[0]*2;
     }
     
     public int getHOUSE_PRICE(){
