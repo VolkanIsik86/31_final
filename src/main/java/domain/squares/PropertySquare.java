@@ -23,12 +23,17 @@ public class PropertySquare extends OwnableSquare {
         return HOUSE_PRICE;
     }
     
-    public int PRICE_OF_OWNING_ALL(){
+    public int getPRICE_OF_OWNING_ALL(){
         return PRICE_IF_OWNING_ALL;
     }
     
     public int[] getRentLadder(){
         return rentLadder;
+    }
+    
+    @Override
+    public String getInfo(){
+        return this.getName() + this.getRentLadder().toString() + this.getPRICE_OF_OWNING_ALL() + getHOUSE_PRICE() + getPLEDGE_VALUE();
     }
     
 }

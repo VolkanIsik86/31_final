@@ -16,5 +16,10 @@ public class FactorySquare extends OwnableSquare{
         return PRICE_IF_OWNING_ALL;
     }
     
+    @Override
+    public String getInfo(){
+        return "todo";
+    }
+    
     
 }

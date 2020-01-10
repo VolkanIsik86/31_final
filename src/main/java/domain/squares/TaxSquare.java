@@ -22,5 +22,11 @@ public class TaxSquare extends Square {
            p.withdraw(tax);
         return message;
     }
+    
+    @Override
+    public String getInfo(){
+        return "todo";
+    }
+    
 }
 
