@@ -126,6 +126,7 @@ public class TurnLogic {
         guiLogic.setPlayerBalance(player);
         
     }
+
     
     private void rollDice(){
         die.roll();
