@@ -142,13 +142,22 @@ public class TurnLogic {
             doTax(player, nextLocation);
         }
 
-        if (nextLocation.getOwner() != null) {
-            guiLogic.setPlayerBalance(nextLocation.getOwner());
-        }
+        if (isOwned(nextLocation))
+
         guiLogic.setPlayerBalance(player);
         if(getExtraturn()){
             hasThrown = false;
         }
+    }
+
+    public boolean isOwned(Square nextLocation){
+        for(int i = 0; i < board.getOwnables().length;i++){
+            if(board.getOwnables()[i].getName()==nextLocation.getName()){
+                guiLogic.setPlayerBalance(board.getOwnables()[i].getOwner());
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean getExtraturn (){
