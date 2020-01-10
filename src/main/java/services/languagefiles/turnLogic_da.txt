@@ -27,3 +27,14 @@ House,,Huse og hoteller
 Pledge,,Pantsætning
 Trade,,Handel
 Back,,Tilbage
+Price pr. house/hotel,,Pris pr. hus/hotel:
+Pledge value,,Pantsætningsværdi:
+Standard rent,,Standard husleje:
+1 house,,1 hus:
+2 houses,,2 huse:
+3 houses,,3 huse:
+4 houses,,4 huse:
+1 hotel,,1 hotel:
+Price at same color,,Pris ved samme farve:
+Status,,Status:
+#Houses/hotels,,Huse/hoteller:

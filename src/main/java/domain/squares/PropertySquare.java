@@ -33,7 +33,21 @@ public class PropertySquare extends OwnableSquare {
     
     @Override
     public String getInfo(){
-        return this.getName() + this.getRentLadder().toString() + this.getPRICE_OF_OWNING_ALL() + getHOUSE_PRICE() + getPLEDGE_VALUE();
+        
+        return
+                this.getLandedOnTxt().getLine("Status") + " " +
+                "\n" + this.getLandedOnTxt().getLine("#Houses/hotels") + " " +  "/" +
+                "\n" + this.getLandedOnTxt().getLine("Price pr. house/hotel") + " " + this.getHOUSE_PRICE() +
+                "\n" + this.getLandedOnTxt().getLine("Pledge value") + " " + this.getPLEDGE_VALUE() +
+                "\n" + this.getLandedOnTxt().getLine("Standard rent") + " " + this.getRentLadder()[0] +
+                "\n" + this.getLandedOnTxt().getLine("1 house") + " " + this.getRentLadder()[1] +
+                "\n" + this.getLandedOnTxt().getLine("2 houses") + " " + this.getRentLadder()[2] +
+                "\n" + this.getLandedOnTxt().getLine("3 houses") + " " + this.getRentLadder()[3] +
+                "\n" + this.getLandedOnTxt().getLine("4 houses") + " " + this.getRentLadder()[4] +
+                "\n" + this.getLandedOnTxt().getLine("1 hotel") + " " + this.getRentLadder()[5] +
+                "\n" + this.getLandedOnTxt().getLine("Price at same color") + " " + this.getPRICE_OF_OWNING_ALL()
+                ;
+        
     }
     
 }

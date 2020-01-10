@@ -156,6 +156,9 @@ public class TurnLogic {
     
         //Show property in the middle of board
         Square squareToManage = board.getOwnableSquareFromName(selection);
+    
+        System.out.println(squareToManage.getInfo());
+        guiLogic.showChanceCard(squareToManage.getInfo());
         
         //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field

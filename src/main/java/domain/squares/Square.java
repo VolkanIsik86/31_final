@@ -34,6 +34,10 @@ public abstract class Square {
     
     public abstract String getInfo();
     
+    public TxtReader getLandedOnTxt(){
+        return landedOnTxt;
+    }
+    
     @Override
     public String toString() {
         return "Square{" +
