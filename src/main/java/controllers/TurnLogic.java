@@ -27,7 +27,7 @@ public class TurnLogic {
     }
     
     //todo implement an option when landing on a property if you want to buy it or not
-    public void takeTurn(Player player) {
+    public String takeTurn(Player player) {
     
         String greeting = turnLogicTxt.getLine("It is") + " " +
                 player.getName() + turnLogicTxt.getLine("s") + " " +
@@ -90,7 +90,7 @@ public class TurnLogic {
                 }
             }
 
-            takeTurn(currentPlayer);
+            looser = takeTurn(currentPlayer);
             if (looser != null) {
                 return looser;
 
