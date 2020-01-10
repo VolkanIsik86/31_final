@@ -216,7 +216,13 @@ public class TurnLogic {
 
         //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field
-        guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
+        String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
+        if (choice.equals(turnLogicTxt.getLine("House")))
+            buildHouse(board.getProperties()[squareToManage.getIndex()]);
+    }
+
+    private void buildHouse(PropertySquare square){
+        System.out.println("store geder");
     }
 
     private void updateGUI(Player player) {
