@@ -38,7 +38,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             } else if ("Factory".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = new FactorySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4], this);
                 rekt++;
 
             } else if ("Jail".equals(oneLine[0])) {
@@ -57,13 +57,13 @@ Creates a board this constructor also create an ownablesquare array to manage th
                     rentsInts[j] = Integer.parseInt(rentsString[j]);
                 }
 
-                squares[i] = ownables[rekt] = properties[prop] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]),rentsInts);
+                squares[i] = ownables[rekt] = properties[prop] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]),rentsInts, this);
                 rekt++;
                 prop++;
 
             } else if ("Shipyard".equals(oneLine[0])) {
     
-                squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4]);
+                squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4], this);
                 rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
