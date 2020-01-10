@@ -9,14 +9,20 @@ import services.TxtReader;
 public class PropertySquare extends OwnableSquare {
     
     private final int HOUSE_PRICE;
+    private final int PRICE_IF_OWNING_ALL;
 
     public PropertySquare(String name, int index, TxtReader landedOnTxt, int price,int rent,String type, String color, int HOUSE_PRICE) {
         super(name, index, landedOnTxt, price, rent, type , color);
         this.HOUSE_PRICE = HOUSE_PRICE;
+        PRICE_IF_OWNING_ALL = this.getPrice()*2;
     }
     
     public int getHOUSE_PRICE(){
         return HOUSE_PRICE;
+    }
+    
+    public int PRICE_OF_OWNING_ALL(){
+        return PRICE_IF_OWNING_ALL;
     }
     
 }
