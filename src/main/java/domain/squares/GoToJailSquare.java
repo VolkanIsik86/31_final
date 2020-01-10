@@ -25,9 +25,4 @@ public class GoToJailSquare extends Square {
         return message;
     }
     
-    @Override
-    public String getInfo(){
-        return "todo";
-    }
-    
 }

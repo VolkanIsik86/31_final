@@ -35,6 +35,10 @@ Standard rent,,Standard husleje:
 3 houses,,3 huse:
 4 houses,,4 huse:
 1 hotel,,1 hotel:
-Price at same color,,Pris ved samme farve:
+Price at same color,,Husleje samme farve:
 Status,,Status:
 #Houses/hotels,,Huse/hoteller:
+Rent factories,,Husleje: 100 * øjnene
+Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange øjnene
+Rent shipyard,,Husleje: 500
+Rent when owning more shipyards,,Huslejen fordobles pr. ekstra rederi man ejer

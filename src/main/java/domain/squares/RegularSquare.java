@@ -19,11 +19,5 @@ public class RegularSquare extends Square {
         return message;
 
     }
-    
-    @Override
-    public String getInfo(){
-        return "todo";
-    }
-
 
 }

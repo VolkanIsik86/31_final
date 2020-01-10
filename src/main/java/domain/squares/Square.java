@@ -32,8 +32,6 @@ public abstract class Square {
     // This polymorph method affects player with various effects.
     public abstract String landedOn(Player p);
     
-    public abstract String getInfo();
-    
     public TxtReader getLandedOnTxt(){
         return landedOnTxt;
     }

@@ -154,10 +154,8 @@ public class TurnLogic {
         String[] playerSquareNames = board.getPlayerSquareNames(player);
         String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), playerSquareNames);
     
-        //Show property in the middle of board
-        Square squareToManage = board.getOwnableSquareFromName(selection);
-    
-        System.out.println(squareToManage.getInfo());
+        //Show property information in the middle of board
+        OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
         
         //todo do so that choosen property shows in the middle
