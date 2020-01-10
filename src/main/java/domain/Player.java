@@ -35,11 +35,28 @@ public class Player {
     }
     
     public boolean attemptToPurchase(OwnableSquare property){
-        return property.getPrice() <= this.getBalance();
+
+        if (property.getPrice() <= this.getBalance()) {
+            property.purchase(this);
+            return true;
+        }
+        else{
+            setLost(true);
+            setBalance(0);
+            return false;
+        }
     }
     
     public boolean attemptToPay(int amount){
-        return amount <= this.getBalance();
+        if(amount <= this.getBalance()){
+            return true;
+        }
+        else{
+            setLost(true);
+            setBalance(0);
+            return false;
+        }
+
     }
     
     public boolean equals(Player player){

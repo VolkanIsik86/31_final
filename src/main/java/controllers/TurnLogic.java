@@ -16,6 +16,7 @@ public class TurnLogic {
     int roll1, roll2, rollSum;
     private boolean hasThrown, ownsASquares;
     String[] menuItems;
+    private String looser;
 
     public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
         this.board = board;
@@ -26,7 +27,8 @@ public class TurnLogic {
     }
     
     //todo implement an option when landing on a property if you want to buy it or not
-    public void takeTurn(Player player) {
+    public String takeTurn(Player player) {
+
     
         String greeting = turnLogicTxt.getLine("It is") + " " +
                 player.getName() + turnLogicTxt.getLine("s") + " " +
@@ -39,6 +41,8 @@ public class TurnLogic {
         
         //Start of user menu loop
         while(endTurn == false){
+            if (player.getLost())
+                return player.getName();
             
             ownsASquares = board.doesPlayerOwnAnySquares(player);
 
@@ -59,9 +63,10 @@ public class TurnLogic {
                 endTurn = true;
             }
         }
+        return null;
     }
 
-    void playRound(PlayerList playerList, String looser) {
+    String playRound(PlayerList playerList) {
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
@@ -76,19 +81,21 @@ public class TurnLogic {
                     guiLogic.setPlayerBalance(currentPlayer);
                     currentPlayer.setJail(false);
                 } else {
-                    currentPlayer.setLost(true);
-                    currentPlayer.setBalance(0);
                     guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to pay"));
                     guiLogic.setPlayerBalance(currentPlayer);
-
                     looser = currentPlayer.getName();
-                    break;
+                    return looser;
                 }
             }
 
-            takeTurn(currentPlayer);
+            looser = takeTurn(currentPlayer);
+            if (looser != null){
+                return looser;
+
+            }
 
         }
+        return null;
     }
 
     private void doTurn(Player player) {
