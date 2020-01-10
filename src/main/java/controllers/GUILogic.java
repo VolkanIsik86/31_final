@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Player;
+import domain.squares.PropertySquare;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -348,6 +349,16 @@ public class GUILogic {
     
     public String getUserSelection(String msg, String... options){
         return gui.getUserSelection(msg, options);
+    }
+
+    public void updateHouses(int square){
+        try{
+            ((GUI_Street) fields[square]).setHouses(1);
+        }
+        catch(ClassCastException e){
+
+        }
+
     }
     
 

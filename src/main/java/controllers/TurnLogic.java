@@ -222,7 +222,8 @@ public class TurnLogic {
     }
 
     private void buildHouse(PropertySquare square){
-        System.out.println("store geder");
+        square.addHouse();
+        guiLogic.updateHouses(square.getIndex());
     }
 
     private void updateGUI(Player player) {
