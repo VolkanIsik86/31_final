@@ -6,7 +6,7 @@ import domain.squares.*;
 import services.TxtReader;
 
 public class TurnLogic {
-
+    
     protected Board board;
     protected GUILogic guiLogic;
     protected TxtReader turnLogicTxt;
@@ -17,29 +17,29 @@ public class TurnLogic {
     private boolean hasThrown, ownsASquares;
     String[] menuItems;
 
-    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt) {
+    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
         chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
     }
-
+    
     //todo implement an option when landing on a property if you want to buy it or not
     public void takeTurn(Player player) {
-
+    
         String greeting = turnLogicTxt.getLine("It is") + " " +
                 player.getName() + turnLogicTxt.getLine("s") + " " +
                 turnLogicTxt.getLine("Choose option");
-
+        
         boolean endTurn = false;
         hasThrown = false;
         String choice;
-
-
+        
+        
         //Start of user menu loop
-        while (endTurn == false) {
-
+        while(endTurn == false){
+            
             ownsASquares = board.doesPlayerOwnAnySquares(player);
 
             //Chooses the correct menu items
@@ -124,7 +124,7 @@ public class TurnLogic {
             guiLogic.moveToJail(player);
 
         guiLogic.showMessage(turnLogicTxt.getLine(message));
-        
+
         if (nextLocation.getOwner() != null) {
             guiLogic.setPlayerBalance(nextLocation.getOwner());
         }
@@ -158,8 +158,9 @@ public class TurnLogic {
         //Prompt player to choose a field
         String[] playerSquareNames = board.getPlayerSquareNames(player);
         String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), playerSquareNames);
+    
+        Square squareToManage = board.getOwnableSquareFromName(selection);
 
-        //todo convert selection to actual square to that it can be modified
         //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field
         guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));

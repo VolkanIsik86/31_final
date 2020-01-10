@@ -207,4 +207,13 @@ Creates a board this constructor also create an ownablesquare array to manage th
         
     }
 
+    public Square getOwnableSquareFromName(String name){
+        for (int i = 0; i < ownables.length; i++) {
+            if(ownables[i].getName().equals((name))){
+                return ownables[i];
+            }
+        }
+        return null;
+    }
+    
 }
