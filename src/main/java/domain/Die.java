@@ -13,7 +13,7 @@ public class Die {
     
     // finder et tilfældigt tal mellem 1 og antal sider som vælges i main
     public void roll(){
-        int n_SIDES = 6;
+        int n_SIDES = 2;
         this.dieValue = (rnd.nextInt(n_SIDES)+1);
     }
     

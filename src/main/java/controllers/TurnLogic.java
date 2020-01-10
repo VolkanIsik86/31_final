@@ -13,7 +13,7 @@ public class TurnLogic {
     protected TxtReader cardsTxt;
     ChanceDeck chanceDeck;
     protected final Die die = new Die();
-    int roll1, roll2, rollSum;
+    int roll1, roll2, rollSum = 0;
     private boolean hasThrown, ownsASquares;
     String[] menuItems;
 
@@ -34,7 +34,7 @@ public class TurnLogic {
         
         boolean endTurn = false;
         hasThrown = false;
-        String choice;
+        String choice ="";
         
         
         //Start of user menu loop
@@ -54,13 +54,16 @@ public class TurnLogic {
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
-
+                
+            }else if (getExtraturn()) {
+                endTurn=false;
+                guiLogic.showMessage("du får en ekstra tur");
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
             }
         }
     }
-
+    
     void playRound(PlayerList playerList, String looser) {
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
@@ -87,18 +90,22 @@ public class TurnLogic {
             }
 
             takeTurn(currentPlayer);
+            // hvis spilleren slår to ens, får de en ekstra tur.
+            if (getExtraturn()){
+                i=i-1;
+            }
 
         }
     }
-
-    private void doTurn(Player player) {
+    
+    private void doTurn(Player player){
         hasThrown = true;
-
+    
         //Roll the dice
         rollDice();
         player.setLastRoll((rollSum));
         guiLogic.displayDie(roll1, roll2);
-
+    
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, rollSum);
         player.setLocation(nextLocation);
@@ -129,7 +136,17 @@ public class TurnLogic {
             guiLogic.setPlayerBalance(nextLocation.getOwner());
         }
         guiLogic.setPlayerBalance(player);
+        if(getExtraturn()){
+            hasThrown = false;
+        }
+    }
 
+    public boolean getExtraturn (){
+        boolean ekstraturn = true;
+        if (roll1==roll2){
+            return ekstraturn;
+        }else
+            return ekstraturn = false;
     }
 
     private void rollDice() {
