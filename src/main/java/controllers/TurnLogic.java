@@ -13,7 +13,7 @@ public class TurnLogic {
     protected TxtReader cardsTxt;
     ChanceDeck chanceDeck;
     protected final Die die = new Die();
-    int roll1, roll2, rollSum;
+    int roll1, roll2, rollSum = 0;
     private boolean hasThrown, ownsASquares;
     String[] menuItems;
 
@@ -34,7 +34,7 @@ public class TurnLogic {
         
         boolean endTurn = false;
         hasThrown = false;
-        String choice;
+        String choice ="";
         
         
         //Start of user menu loop
@@ -46,8 +46,9 @@ public class TurnLogic {
             updateMenuItems();
             
             //Displays the menu
+
             choice = guiLogic.getUserButtonPressed(greeting, menuItems);
-           
+
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))){
                 doTurn(player);
@@ -55,7 +56,11 @@ public class TurnLogic {
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))){
                 manageProperties(player);
                 
-            } else if (choice.equals(turnLogicTxt.getLine("End"))) {
+            } else if (getExtraturn()) {
+                endTurn=false;
+                guiLogic.showMessage("du får en ekstra tur");
+            }
+            else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
             }
         }
@@ -87,6 +92,10 @@ public class TurnLogic {
             }
 
             takeTurn(currentPlayer);
+            // hvis spilleren slår to ens, får de en ekstra tur.
+            if (getExtraturn()){
+                i=i-1;
+            }
             
         }
     }
@@ -124,9 +133,19 @@ public class TurnLogic {
     
         guiLogic.showMessage(turnLogicTxt.getLine(message));
         guiLogic.setPlayerBalance(player);
+        if(getExtraturn()){
+            hasThrown = false;
+        }
         
     }
 
+    public boolean getExtraturn (){
+        boolean ekstraturn = true;
+        if (roll1==roll2){
+            return ekstraturn;
+        }else
+            return ekstraturn = false;
+    }
     
     private void rollDice(){
         die.roll();
