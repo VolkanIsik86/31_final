@@ -6,7 +6,7 @@ import services.TxtReader;
 
 public class TaxSquare extends Square {
     private String message;
-    private int tax = 1000;
+    private int tax;
     private int index;
 
     public TaxSquare(String name, int index, TxtReader landedOnTxt) {
