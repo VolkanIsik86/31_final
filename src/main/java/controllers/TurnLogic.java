@@ -154,7 +154,8 @@ public class TurnLogic {
         String[] playerSquareNames = board.getPlayerSquareNames(player);
         String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), playerSquareNames);
     
-        //todo convert selection to actual square to that it can be modified
+        Square squareToManage = board.getOwnableSquareFromName(selection);
+        
         //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field
         guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"),turnLogicTxt.getLine("House"),turnLogicTxt.getLine("Pledge"),turnLogicTxt.getLine("Trade"),turnLogicTxt.getLine("Back"));
