@@ -28,7 +28,7 @@ Standard rent,,Standard rent:
 3 houses,,3 houses:
 4 houses,,4 houses:
 1 hotel,,1 hotel:
-Price at same color,,Rent same color:
+Price at same color,,Same color:
 Status,,Status:
 #Houses/hotels:,,Houses/hotels
 Rent factories,,Husleje: 100 * øjnene
