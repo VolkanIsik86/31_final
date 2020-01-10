@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Player;
+import domain.squares.PropertySquare;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -151,11 +152,15 @@ public class GUILogic {
                     moveRest(guiPlayer, currentField, i);
                     movesDone++;
                     sleep(DELAY);
+
+
+
                 }
                 currentField = passStart(guiPlayer);
                 passedStart(player);
                 movesDone++;
                 sleep(DELAY);
+
             }
 
             //Run figure and controls moves done.
@@ -278,7 +283,6 @@ public class GUILogic {
     /**
      * Displays Die on the GUI.
      * @param faceValue at the backend is showed on GUI.
-     * @param name of player showed on GUI.
      */
     public void displayDie(int faceValue, int faceValue2){
         gui.setDice(faceValue,faceValue2);
@@ -345,6 +349,16 @@ public class GUILogic {
     
     public String getUserSelection(String msg, String... options){
         return gui.getUserSelection(msg, options);
+    }
+
+    public void updateHouses(int square){
+        try{
+            ((GUI_Street) fields[square]).setHouses(1);
+        }
+        catch(ClassCastException e){
+
+        }
+
     }
     
 

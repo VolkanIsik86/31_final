@@ -12,7 +12,9 @@ public class Board {
     private int SIZE;
     private Square[] squares;
     OwnableSquare[] ownables = new OwnableSquare[28];
+    PropertySquare[] properties = new PropertySquare[22];
     int rekt = 0;
+    int prop = 0;
 /**
 Creates a board this constructor also create an ownablesquare array to manage them.
  */
@@ -50,14 +52,15 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 //Read rents and then converts them to int
                 String[] rentsString = oneLine[6].split("'");
                 int[] rentsInts = new int[6];
-                
+
                 for (int j = 0; j < 6; j++) {
                     rentsInts[j] = Integer.parseInt(rentsString[j]);
                 }
-                
-                squares[i] = ownables[rekt] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]),rentsInts);
+
+                squares[i] = ownables[rekt] = properties[prop] = new PropertySquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4],Integer.parseInt(oneLine[5]),rentsInts);
                 rekt++;
-                
+                prop++;
+
             } else if ("Shipyard".equals(oneLine[0])) {
     
                 squares[i] = ownables[rekt] = new ShipyardSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, Integer.parseInt(oneLine[3]), oneLine[0],oneLine[4]);
@@ -68,7 +71,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
 
             }
         }
-        
+
     }
 
     /**
@@ -101,7 +104,11 @@ Creates a board this constructor also create an ownablesquare array to manage th
     public OwnableSquare[] getOwnables(){
         return ownables;
     }
-
+    /**
+     * Propertysquare
+     * @return Returns property squares
+     */
+    public PropertySquare[] getProperties(){return properties;}
     /**
      * Searches through the ownablesquare and returns number of not owned by same player and color
      * @param s ownablesquare that needs to be searched for
@@ -221,7 +228,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
         
     }
 
-    public Square getOwnableSquareFromName(String name){
+    public OwnableSquare getOwnableSquareFromName(String name){
         for (int i = 0; i < ownables.length; i++) {
             if(ownables[i].getName().equals((name))){
                 return ownables[i];
@@ -229,5 +236,23 @@ Creates a board this constructor also create an ownablesquare array to manage th
         }
         return null;
     }
-    
+
+    public Square getSquareFromName(String name){
+        for (int i = 0; i < squares.length; i++) {
+            if(squares[i].getName().equals((name))){
+                return squares[i];
+            }
+        }
+        return null;
+    }
+
+    public PropertySquare getPropertyFromName(String name){
+        for (int i = 0; i < properties.length; i++) {
+            if(properties[i].getName().equals((name))){
+                return properties[i];
+            }
+        }
+        return null;
+    }
+
 }
