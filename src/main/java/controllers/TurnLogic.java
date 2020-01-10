@@ -218,12 +218,13 @@ public class TurnLogic {
         //Prompt player to choose something to do with that field
         String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
         if (choice.equals(turnLogicTxt.getLine("House")))
-            buildHouse(board.getProperties()[squareToManage.getIndex()]);
+            buildHouse(board.getPropertyFromName(selection));
     }
 
     private void buildHouse(PropertySquare square){
         square.addHouse();
-        guiLogic.updateHouses(square.getIndex());
+        Square realSquare = board.getSquareFromName(square.getName());
+        guiLogic.updateHouses(realSquare.getIndex());
     }
 
     private void updateGUI(Player player) {
