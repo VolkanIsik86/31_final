@@ -15,7 +15,7 @@ public class TurnLogicStub extends TurnLogic {
  
     
     @Override
-    public void takeTurn(Player player){
+    public String takeTurn(Player player){
     
         String name = player.getName();
     
@@ -44,7 +44,9 @@ public class TurnLogicStub extends TurnLogic {
         nextLocation.landedOn(player);
     
         guiLogic.showMessage(turnLogicTxt.getLine("End turn"));
-        
+
+
+        return null;
         
     }
     

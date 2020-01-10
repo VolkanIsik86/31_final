@@ -21,8 +21,6 @@ public class PayCard extends ChanceCard {
             player.withdraw(amount);
             guiLogic.setPlayerBalance(player);
         } else {
-            player.setLost(true);
-            player.setBalance(0);
             guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             guiLogic.setPlayerBalance(player);
         }

@@ -67,7 +67,7 @@ public abstract class OwnableSquare extends Square {
         owner.deposit(this.getRent());
     }
 
-    protected void purchase(Player p){
+    public void purchase(Player p){
         this.setOwner(p);
         payPrice(p);
     }
@@ -94,8 +94,6 @@ public abstract class OwnableSquare extends Square {
 
             //If player doesn't have the requested fonds
             else {
-                player.setLost(true);
-                player.setBalance(0);
                 message = "Does not have fonds to buy";
             }
         }
@@ -114,7 +112,6 @@ public abstract class OwnableSquare extends Square {
 
             //If player doesn't have the requested fonds
             else {
-                player.setLost(true);
                 player.setBalance(0);
 
                 message = "Does not have fonds for rent";

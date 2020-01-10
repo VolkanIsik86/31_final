@@ -23,14 +23,25 @@ public class Game {
 
         initializeGame();
 
-        do {
-            turnLogic.playRound(playerList , looser);
-        } while (looser.equals("null"));
+        while (true){
+            looser = turnLogic.playRound(playerList);
+            if (looser != null){
+                announceWinner();
+                guiLogic.showMessage(guiTxt.getLine("Close"));
+                guiLogic.close();
+                break;
+            }
 
-        announceWinner();
+        }
 
-        guiLogic.showMessage(guiTxt.getLine("Close"));
-        guiLogic.close();
+      //  do {
+      //      turnLogic.playRound(playerList);
+      //  }
+      //  while (looser.equals(null));
+      //  announceWinner();
+
+      //  guiLogic.showMessage(guiTxt.getLine("Close"));
+      //  guiLogic.close();
 
     }
 

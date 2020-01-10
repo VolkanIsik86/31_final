@@ -16,6 +16,7 @@ public class TurnLogic {
     int roll1, roll2, rollSum = 0;
     private boolean hasThrown, ownsASquares;
     String[] menuItems;
+    private String looser;
 
     public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
         this.board = board;
@@ -39,7 +40,9 @@ public class TurnLogic {
         
         //Start of user menu loop
         while(endTurn == false){
-            
+            if (player.getLost())
+                return player.getName();
+
             ownsASquares = board.doesPlayerOwnAnySquares(player);
 
             //Chooses the correct menu items
@@ -54,7 +57,7 @@ public class TurnLogic {
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
-                
+
             }else if (getExtraturn()) {
                 endTurn=false;
                 guiLogic.showMessage("du får en ekstra tur");
@@ -62,9 +65,10 @@ public class TurnLogic {
                 endTurn = true;
             }
         }
+        return null;
     }
-    
-    void playRound(PlayerList playerList, String looser) {
+
+    String playRound(PlayerList playerList) {
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
@@ -79,33 +83,35 @@ public class TurnLogic {
                     guiLogic.setPlayerBalance(currentPlayer);
                     currentPlayer.setJail(false);
                 } else {
-                    currentPlayer.setLost(true);
-                    currentPlayer.setBalance(0);
                     guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to pay"));
                     guiLogic.setPlayerBalance(currentPlayer);
-
                     looser = currentPlayer.getName();
-                    break;
+                    return looser;
                 }
             }
 
             takeTurn(currentPlayer);
+            if (looser != null) {
+                return looser;
+
+            }
             // hvis spilleren slår to ens, får de en ekstra tur.
-            if (getExtraturn()){
-                i=i-1;
+            if (getExtraturn()) {
+                i = i - 1;
             }
 
         }
+        return null;
     }
-    
+
     private void doTurn(Player player){
         hasThrown = true;
-    
+
         //Roll the dice
         rollDice();
         player.setLastRoll((rollSum));
         guiLogic.displayDie(roll1, roll2);
-    
+
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, rollSum);
         player.setLocation(nextLocation);
