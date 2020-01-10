@@ -176,20 +176,15 @@ public class TurnLogic {
             String[] items = new String[]{turnLogicTxt.getLine("pay 4000"),turnLogicTxt.getLine("pay 10")};
             String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),items);
             if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
-                int tempTax = 4000;
-                nextLocation.setTax(tempTax);
-                nextLocation.payTax(p);
+                p.withdraw(4000);
             }
             if(c.equals(turnLogicTxt.getLine("pay 10"))){
                 int tempTax = (int)Math.round(p.getBalance()*0.1);
-                nextLocation.setTax(tempTax);
-                nextLocation.payTax(p);
+                p.withdraw(tempTax);
             }
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("pay 2000"));
-            int tempTax = 2000;
-            nextLocation.setTax(tempTax);
-            nextLocation.payTax(p);
+            p.withdraw(2000);
         }
     }
 
