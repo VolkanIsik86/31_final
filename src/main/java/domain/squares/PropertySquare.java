@@ -2,6 +2,7 @@ package domain.squares;
 
 
 import controllers.GUILogic;
+import domain.Board;
 import domain.Player;
 import services.TxtReader;
 
@@ -11,9 +12,10 @@ public class PropertySquare extends OwnableSquare {
     private final int HOUSE_PRICE;
     private final int PRICE_IF_OWNING_ALL;
     private int[] rentLadder;
+    private boolean hasBuilding = false;
 
-    public PropertySquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, int HOUSE_PRICE, int[] rentLadder) {
-        super(name, index, landedOnTxt, price, type , color);
+    public PropertySquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, int HOUSE_PRICE, int[] rentLadder, Board board) {
+        super(name, index, landedOnTxt, price, type , color, board);
         this.HOUSE_PRICE = HOUSE_PRICE;
         this.rentLadder = rentLadder;
         PRICE_IF_OWNING_ALL = rentLadder[0]*2;
@@ -48,5 +50,31 @@ public class PropertySquare extends OwnableSquare {
                 ;
         
     }
+    
+    
+//    @Override
+//    public int getRent() {
+//        
+//        //If the square has an owner
+//        if(getOwner() != null){
+//
+//            //If the square has a building
+//            if(hasBuilding){
+//
+//            } else{
+//
+//                //If owner owns all properties
+//                if ()
+//
+//            }
+//
+//
+//
+//        } else {
+//            return rentLadder[0];
+//        }
+//
+//
+//    }
     
 }

@@ -12,7 +12,6 @@ public abstract class Square {
     private Player owner;
     private int tax;
     private final int index;
-    private Board board;
     protected final TxtReader landedOnTxt;
     
     Square(String name, int index, TxtReader landedOnTxt) {
@@ -49,7 +48,6 @@ public abstract class Square {
         return "Square{" +
                 "name='" + name + '\'' +
                 ", index=" + index +
-                ", board=" + board +
                 '}';
     }
 }

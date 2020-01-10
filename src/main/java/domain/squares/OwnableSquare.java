@@ -1,6 +1,7 @@
 package domain.squares;
 
 import controllers.GUILogic;
+import domain.Board;
 import domain.Player;
 import services.TxtReader;
 
@@ -11,14 +12,16 @@ public abstract class OwnableSquare extends Square {
     private int price;
     private final int PLEDGE_VALUE;
     private String message;
+    private Board board;
     protected Player owner;
 
-    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price, String type , String color) {
+    public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price, String type , String color, Board board) {
         super(name, index, landedOnTxt);
         this.price = price;
         this.type = type;
         this.color = color;
         this.PLEDGE_VALUE = price/2;
+        this.board = board;
     }
     
     public int getPLEDGE_VALUE(){
@@ -31,7 +34,7 @@ public abstract class OwnableSquare extends Square {
         return price;
     }
 
-    public int getRent() {return 1000;}
+    public abstract int getRent();
 
     public Player getOwner() {
         return owner;
