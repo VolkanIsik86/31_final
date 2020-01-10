@@ -41,32 +41,31 @@ public class BoardTest {
     @Test
     public void getSquare() {
 
-//        assertEquals("Chancen", board.getSquare(3).getName());
-//        assertEquals(3, board.getSquare(3).getIndex());
-//        assertEquals(ChanceSquare.class, board.getSquare(3).getClass());
-//
-//        assertEquals("Start", board.getSquare(0).getName());
-//        assertEquals(0, board.getSquare(0).getIndex());
-//        assertEquals(RegularSquare.class, board.getSquare(0).getClass());
-//
-//        assertEquals("Skaterparken",board.getSquare(10).getName());
-//        assertEquals(10, board.getSquare(10).getIndex());
-//        assertEquals(PropertySquare.class, board.getSquare(10).getClass());
-//
-//        assertEquals("Strandpromenaden",board.getSquare(23).getName());
-//        assertEquals(23, board.getSquare(23).getIndex());
-//        assertEquals(PropertySquare.class, board.getSquare(23).getClass());
+        assertEquals("Hvidovrevej", board.getSquare(3).getName());
+        assertEquals(3, board.getSquare(3).getIndex());
+        assertEquals(PropertySquare.class, board.getSquare(3).getClass());
+
+        assertEquals("Carlsberg", board.getSquare(28).getName());
+        assertEquals(28, board.getSquare(28).getIndex());
+        assertEquals(FactorySquare.class, board.getSquare(28).getClass());
+
+        assertEquals("På Besøg",board.getSquare(10).getName());
+        assertEquals(10, board.getSquare(10).getIndex());
+        assertEquals(RegularSquare.class, board.getSquare(10).getClass());
+
+        assertEquals("Vimmelskaftet",board.getSquare(32).getName());
+        assertEquals(32, board.getSquare(32).getIndex());
+        assertEquals(PropertySquare.class, board.getSquare(32).getClass());
     }
     
     @Test
     public void nextLocation() {
-//        assertEquals(4, board.nextLocation(player, 4).getIndex());
-//
-//        player.setLocation(board.getSquare(4));
-//        assertEquals(9, board.nextLocation(player, 5).getIndex());
-//
-//        player.setLocation(board.getSquare(23));
-//        assertEquals(1, board.nextLocation(player,2).getIndex());
+
+        player.setLocation(board.getSquare(4));
+        assertEquals(9, board.nextLocation(player, 5).getIndex());
+
+        player.setLocation(board.getSquare(39));
+        assertEquals(1, board.nextLocation(player,2).getIndex());
         
     }
 
@@ -81,5 +80,27 @@ public class BoardTest {
         board.getOwnables()[1].setOwner(player);
         assertEquals(0,board.searchColors(board.getOwnables()[1]));
 
+    }
+
+    @Test
+    public void getPlayerSquares() {
+        board.ownables[1].setOwner(player);
+        board.ownables[7].setOwner(player);
+        assertEquals(2,board.getPlayerSquares(player).length);
+    }
+
+    @Test
+    public void getPlayerSquareNames() {
+        board.ownables[2].setOwner(player);
+        board.ownables[5].setOwner(player);
+        assertEquals("Øresund",board.getPlayerSquareNames(player)[0]);
+        assertEquals("Allegade",board.getPlayerSquareNames(player)[1]);
+    }
+
+    @Test
+    public void doesPlayerOwnAnySquares() {
+        assertEquals(false,board.doesPlayerOwnAnySquares(player));
+        board.ownables[2].setOwner(player);
+        assertEquals(true,board.doesPlayerOwnAnySquares(player));
     }
 }

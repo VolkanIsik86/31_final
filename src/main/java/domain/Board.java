@@ -197,7 +197,12 @@ Creates a board this constructor also create an ownablesquare array to manage th
         
         return playerSquareNames;
     }
-    
+
+    /**
+     * Searches in ownablesquare array and returns boolean if player owns a ownablesquare
+     * @param player player needed for search in the array
+     * @return boolean
+     */
     public boolean doesPlayerOwnAnySquares(Player player){
         if (getPlayerSquares(player).length > 0){
             return true;
