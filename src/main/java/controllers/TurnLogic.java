@@ -168,7 +168,7 @@ public class TurnLogic {
     private void doTax(Player p, Square nextLocation){
         if(nextLocation.getIndex() == 4){
             String[] items = new String[]{turnLogicTxt.getLine("pay 4000"),turnLogicTxt.getLine("pay 10")};
-            String c = guiLogic.getUserButtonPressed("10% = "+(int)Math.round(p.getBalance()*0.1),items);
+            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),items);
             if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
                 int tempTax = 4000;
                 nextLocation.setTax(tempTax);
