@@ -132,6 +132,10 @@ public class TurnLogic {
 
         guiLogic.showMessage(turnLogicTxt.getLine(message));
 
+        if(taxSquare(message)){
+            doTax(player, nextLocation);
+        }
+
         if (nextLocation.getOwner() != null) {
             guiLogic.setPlayerBalance(nextLocation.getOwner());
         }
@@ -155,6 +159,32 @@ public class TurnLogic {
         die.roll();
         roll2 = die.getFaceValue();
         rollSum = roll1 + roll2;
+    }
+
+    private boolean taxSquare(String message){
+        return message.equals(("Tax square"));
+    }
+
+    private void doTax(Player p, Square nextLocation){
+        if(nextLocation.getIndex() == 4){
+            String[] items = new String[]{turnLogicTxt.getLine("pay 4000"),turnLogicTxt.getLine("pay 10")};
+            String c = guiLogic.getUserButtonPressed("10% = "+(int)Math.round(p.getBalance()*0.1),items);
+            if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
+                int tempTax = 4000;
+                nextLocation.setTax(tempTax);
+                nextLocation.payTax(p);
+            }
+            if(c.equals(turnLogicTxt.getLine("pay 10"))){
+                int tempTax = (int)Math.round(p.getBalance()*0.1);
+                nextLocation.setTax(tempTax);
+                nextLocation.payTax(p);
+            }
+        } else {
+            guiLogic.showMessage(turnLogicTxt.getLine("pay 2000"));
+            int tempTax = 2000;
+            nextLocation.setTax(tempTax);
+            nextLocation.payTax(p);
+        }
     }
 
     //Chooses the correect menu items, depending on whether or not the player has already thrown the dice and owns any squares

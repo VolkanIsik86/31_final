@@ -56,7 +56,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 rekt++;
 
             }else if ("Tax".equals(oneLine[0])) {
-                squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, 100);
+                squares[i] = new TaxSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             }
         }
