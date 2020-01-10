@@ -53,33 +53,32 @@ public class PropertySquare extends OwnableSquare {
     
     @Override
     public int getRent() {
-        return 1000;
+
+        //If the square has an owner
+        if(getOwner() != null){
+
+            //If the square has a building
+            if(hasBuilding){
+                
+            
+            
+
+            } else{
+
+                //If owner owns all properties
+                if (board.searchColors(this) == 0 ){
+                    return rentLadder[0]*2;
+                } else {
+                    return rentLadder[0];
+                }
+
+            }
+            
+        } else {
+            return rentLadder[0];
+        }
+
+
     }
-    
-    
-//    @Override
-//    public int getRent() {
-//        
-//        //If the square has an owner
-//        if(getOwner() != null){
-//
-//            //If the square has a building
-//            if(hasBuilding){
-//
-//            } else{
-//
-//                //If owner owns all properties
-//                if ()
-//
-//            }
-//
-//
-//
-//        } else {
-//            return rentLadder[0];
-//        }
-//
-//
-//    }
     
 }
