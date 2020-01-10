@@ -40,7 +40,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
                 rekt++;
 
             } else if ("Jail".equals(oneLine[0])) {
-                squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, this);
+                squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, getJail());
 
             } else if ("Chance".equals(oneLine[0])) {
                 squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, chanceDeck);
@@ -133,7 +133,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
      * @return Returns jail square
      */
     public Square getJail(){
-        return squares[6];
+        return squares[10];
     }
 
     /**

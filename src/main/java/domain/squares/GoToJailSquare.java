@@ -8,19 +8,19 @@ import services.TxtReader;
 //This square moves player to jail
 public class GoToJailSquare extends Square {
     
-    private final Board board;
+    private Square jail;
     private String message;
     
-    public GoToJailSquare(String name, int index, TxtReader landedOnTxt,  Board board) {
+    public GoToJailSquare(String name, int index, TxtReader landedOnTxt,  Square jail) {
         super(name, index, landedOnTxt);
-        this.board = board;
+        this.jail = jail;
         
     }
 
     // Moves player to jail.
     public String landedOn(Player player) {
         message = "GoToJail square";
-        player.setLocation(board.getJail());
+        player.setLocation(jail);
         player.setJail(true);
         return message;
     }
