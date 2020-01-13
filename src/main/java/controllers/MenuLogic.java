@@ -71,7 +71,7 @@ public class MenuLogic {
         String[] BuyNotBuy = new String[]{turnLogicTxt.getLine("buy"),turnLogicTxt.getLine("dont buy")};
     
         //Display BuyNotBuy menu and return choice
-        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"), BuyNotBuy);
+        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("buy choice"), BuyNotBuy);
         
     }
 
