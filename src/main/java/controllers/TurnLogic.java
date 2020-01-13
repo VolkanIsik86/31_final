@@ -119,7 +119,7 @@ public class TurnLogic {
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length() - 1) == 'T') {
             if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
-                String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("buy choice"), menuLogic.updateMenu('b'));
+                String choice = menuLogic.displayBuyNotBuyMenu();
                 if (choice.equals(turnLogicTxt.getLine("buy"))) {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
