@@ -13,7 +13,7 @@ public class TurnLogic {
     protected TxtReader cardsTxt;
     ChanceDeck chanceDeck;
     protected final Die die = new Die();
-    int roll1, roll2, rollSum = 0;
+    private int roll1, roll2, rollSum = 0;
     private boolean hasThrown;
     private String looser;
     MenuLogic menuLogic;
@@ -109,11 +109,25 @@ public class TurnLogic {
         guiLogic.displayDie(roll1, roll2);
 
         //Calculate and move to next location
+
+        doLandedOnTurn(player);
+
+
+    }
+
+    public int getOwnerIndex(Square nextLocation) {
+        for (int i = 0; i < board.getOwnables().length; i++) {
+            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void doLandedOnTurn(Player player){
         Square nextLocation = board.nextLocation(player, rollSum);
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, player.getLastRoll());
-
-
         String message = nextLocation.landedOn(player);
 
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
@@ -134,6 +148,9 @@ public class TurnLogic {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
             guiLogic.showChanceCard(pulledCard.getDescription());
             pulledCard.applyEffect(player);
+            if(pulledCard.getType().equalsIgnoreCase("move")){
+                doLandedOnTurn(player);
+            }
             message = message.substring(0, message.length() - 1);
         }
 
@@ -159,15 +176,6 @@ public class TurnLogic {
         if(getExtraturn()){
             hasThrown = false;
         }
-    }
-
-    public int getOwnerIndex(Square nextLocation) {
-        for (int i = 0; i < board.getOwnables().length; i++) {
-            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public boolean getExtraturn (){
