@@ -351,9 +351,15 @@ public class GUILogic {
         return gui.getUserSelection(msg, options);
     }
 
-    public void updateHouses(int square){
+    public void updateHouses(int square,int houses){
         try{
-            ((GUI_Street) fields[square]).setHouses(1);
+            if (houses < 5){
+                ((GUI_Street) fields[square]).setHouses(houses);
+            }
+            else{
+                ((GUI_Street) fields[square]).setHotel(true);
+            }
+
         }
         catch(ClassCastException e){
 
