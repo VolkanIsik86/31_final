@@ -228,7 +228,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
     public boolean doesPlayerOwnAnySquares(Player player){
         if (getPlayerSquares(player).length > 0){
             return true;
-        } else{
+        } else {
             return false;
         }
         
