@@ -19,12 +19,7 @@ public class PayHouseCard extends ChanceCard{
     }
 
     public int getHouses(PropertySquare property, Player p){
-        for(int i = 0; i < board.getOwnables().length;i++){
-            if(board.getOwnables()[i].getOwner()==p){
-                if(property.getHouses()<5){
-                    return
-                }
-            }
+        return property.getHouses();
     }
 
     public void applyEffect(Player player){
@@ -32,9 +27,14 @@ public class PayHouseCard extends ChanceCard{
         int tempHotels = 0;
         for(int i = 0; i < board.getOwnables().length;i++){
             if(board.getOwnables()[i].getOwner()==player){
-                if((PropertySquare)board.getOwnables()[i].getSquare)
+                if(getHouses((PropertySquare)board.getOwnables()[i],player) < 5){
+                    tempHouses += getHouses((PropertySquare)board.getOwnables()[i],player);
+                } else {
+                    tempHotels += 1;
+                }
             }
         }
+        player.attemptToPay(tempHotels*amount*4+tempHouses*amount);
     }
 
 }
