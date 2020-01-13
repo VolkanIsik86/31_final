@@ -28,6 +28,10 @@ public abstract class Square {
     public int getIndex() {
         return index;
     }
+
+    public int getValue(){
+        return 0;
+    }
     
     // landedOn is the key method of squares.
     // This polymorph method affects player with various effects.

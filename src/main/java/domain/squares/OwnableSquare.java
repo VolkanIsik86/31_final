@@ -85,6 +85,12 @@ public abstract class OwnableSquare extends Square {
         payPrice(p);
     }
 
+    public int getValue(){
+        int value = 0;
+        value = this.price + value;
+        return value;
+    }
+
     public abstract String getInfo();
 
     public String landedOn(Player player) {

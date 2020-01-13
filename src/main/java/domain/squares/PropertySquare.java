@@ -64,6 +64,13 @@ public class PropertySquare extends OwnableSquare {
         return 0;
     }
 
+    public int getValue(){
+        int value = 0;
+        value = getPrice() + value;
+        value = value + (getHOUSE_PRICE() * this.numberOfHouse);
+        return value;
+    }
+
     @Override
     public void updateRent(int lastRoll) {
 
