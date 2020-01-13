@@ -3,7 +3,7 @@ package domain;
 import controllers.GUILogic;
 import domain.chanceCards.ChanceCard;
 import domain.chanceCards.EarnCard;
-
+import domain.chanceCards.PayHouseCard;
 import domain.chanceCards.MoveCard;
 import domain.chanceCards.PayCard;
 import services.TxtReader;
@@ -38,7 +38,7 @@ public class ChanceDeck {
                 chanceCards[i] = new PayCard(oneLine[0], oneLine[2], guiLogic, this, Integer.parseInt(oneLine[1]), cardsTxt);
     
             } else if ("PayHouseCard".equals(oneLine[0])) {
-            chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], guiLogic, this, Integer.parseInt(oneLine[1]), cardsTxt);
+                chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], guiLogic, this, Integer.parseInt(oneLine[1]), cardsTxt);
 
         }
 
