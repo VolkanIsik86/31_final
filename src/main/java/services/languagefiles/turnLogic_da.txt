@@ -15,7 +15,11 @@ Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen,
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og spillet er stopper derfor
 Press OK,,Tryk OK når du har læst chancekortet
-In jail pay now,,Sidste tur kom du i fængsel. Du skal derfor betale 1M for at komme ud denne tur
+In jail 2 options,,Du er i fængsel. Du skal nu derfor vælge, hvad du vil gøre, for at komme ud
+In jail 1 option,,Du er i fængsel. Da du ikke har råd til at betale dig ud, er du nødt til at slå med terningerne
+Forced to buy out of jail,,Da du forgæves har forsøgt at komme ud af fængslet med terningerne 3 gange nu, er du tvunget til at betale.
+Jail buy out,,Betal 1000kr.
+Jail roll dice,,Kast terningerne
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt

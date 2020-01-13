@@ -68,16 +68,8 @@ public class TurnLogic {
 
             //If player is in jail
             if (currentPlayer.getJail()) {
-                guiLogic.showMessage(turnLogicTxt.getLine("In jail pay now"));
-
-                if (currentPlayer.attemptToPay(1000)) {
-                    currentPlayer.withdraw(1000);
-                    guiLogic.setPlayerBalance(currentPlayer);
-                    currentPlayer.setJail(false);
-                } else {
-                    guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to pay"));
-                    guiLogic.setPlayerBalance(currentPlayer);
-                    looser = currentPlayer.getName();
+                doJailTurn(currentPlayer);
+                if (looser != null) {
                     return looser;
                 }
             }
@@ -97,7 +89,41 @@ public class TurnLogic {
     }
 
     private void doJailTurn(Player currentPlayer){
-
+        
+        //Displays the proper jail menu according to player funds and returns choice
+        String choice = menuLogic.displayJailMenu(currentPlayer);
+        
+        if(choice.equals(turnLogicTxt.getLine("Jail buy out"))){
+           
+            buyPlayerOutOfJail(currentPlayer);
+            
+        } else (choice.equals(turnLogicTxt.getLine("Jail roll dice"))){
+        
+            currentPlayer.incrementAttemptsToGetOutOfJail();
+            rollJailDice(currentPlayer);
+            
+            if(roll1 == roll2){
+                currentPlayer.setJail(false);
+                doTurn(currentPlayer, rollSum);
+            } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3 && currentPlayer.attemptToPay(1000)){
+                guiLogic.showMessage("Forced to buy out of jail");
+                buyPlayerOutOfJail(currentPlayer);
+            } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3){
+            
+            }
+        }
+    }
+    
+    private void rollJailDice(Player currentPlayer){
+        rollDice();
+        currentPlayer.setLastRoll((rollSum));
+        guiLogic.displayDie(roll1, roll2);
+    }
+    
+    private void buyPlayerOutOfJail(Player currentPlayer){
+        currentPlayer.withdraw(1000);
+        guiLogic.setPlayerBalance(currentPlayer);
+        currentPlayer.setJail(false);
     }
 
     private void doTurn(Player player){
@@ -109,10 +135,14 @@ public class TurnLogic {
         guiLogic.displayDie(roll1, roll2);
 
         //Calculate and move to next location
-
         doLandedOnTurn(player);
-
-
+    }
+    
+    private void doTurn(Player player, int diceRoll){
+        hasThrown = true;
+        
+        //Calculate and move to next location
+        doLandedOnTurn(player);
     }
 
     public int getOwnerIndex(Square nextLocation) {
@@ -216,8 +246,7 @@ public class TurnLogic {
         }
         guiLogic.setPlayerBalance(p);
     }
-
-
+    
     private void manageProperties(Player player) {
 
         //Prompt player to choose a field
