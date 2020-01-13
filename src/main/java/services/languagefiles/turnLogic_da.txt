@@ -10,7 +10,7 @@ Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal d
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
 GoToJail square,,Du er landet på "Gå i fængsel" og rykkes derfor i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
-Tax square,, Du er landet på et skattefælt, og skal derfor betale skat
+Tax square,, Du er landet på et skattefelt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og spillet stopper derfor
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og spillet er stopper derfor

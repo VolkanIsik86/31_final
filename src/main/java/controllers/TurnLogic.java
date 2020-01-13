@@ -66,7 +66,7 @@ public class TurnLogic {
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
                 
-                //Do turn as long as player gets to identical and has not lost
+                //Do turn as long as player gets two identical and has not lost
                 do{
                     doTurn(player);
                     
@@ -117,6 +117,7 @@ public class TurnLogic {
                 
                 //Free the player
                 currentPlayer.setJail(false);
+                currentPlayer.setAttemptsToGetOutOfJail(0);
                 guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
     
                 //Do turn according to previous roll
@@ -185,6 +186,7 @@ public class TurnLogic {
         currentPlayer.withdraw(1000);
         guiLogic.setPlayerBalance(currentPlayer);
         currentPlayer.setJail(false);
+        currentPlayer.setAttemptsToGetOutOfJail(0);
     }
 
     public int getOwnerIndex(Square nextLocation) {
