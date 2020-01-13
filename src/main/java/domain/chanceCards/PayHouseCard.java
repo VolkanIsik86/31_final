@@ -4,10 +4,12 @@ import controllers.GUILogic;
 import domain.Board;
 import domain.ChanceDeck;
 import domain.Player;
-import domain.squares.PropertySquare;
+import domain.squares.OwnableSquare;
 import services.TxtReader;
 
-public class PayHouseCard extends ChanceCard{
+import java.util.Arrays;
+
+public class PayHouseCard extends ChanceCard {
     private final int amount;
     private final TxtReader cardsTxt;
     protected Board board;
@@ -18,23 +20,33 @@ public class PayHouseCard extends ChanceCard{
         this.cardsTxt = cardsTxt;
     }
 
-    public int getHouses(PropertySquare property, Player p){
-        return property.getHouses();
-    }
-
-    public void applyEffect(Player player){
-        int tempHouses = 0;
-        int tempHotels = 0;
-        for(int i = 0; i < board.getOwnables().length;i++){
-            if(board.getOwnables()[i].getOwner()==player){
-                if(getHouses((PropertySquare)board.getOwnables()[i],player) < 5){
-                    tempHouses += getHouses((PropertySquare)board.getOwnables()[i],player);
-                } else {
-                    tempHotels += 1;
-                }
+    private OwnableSquare[] getRealEstateSquares(Player player) {
+        OwnableSquare[] temp = new OwnableSquare[board.getOwnables().length];
+        int j = 0;
+        for (int i = 0; i < board.getOwnables().length; i++) {
+            final OwnableSquare ownableSquare = board.getOwnables()[i];
+            if (ownableSquare.getOwner() == player && ownableSquare.isRealEstate()) {
+                temp[j++] = ownableSquare;
             }
         }
-        player.attemptToPay(tempHotels*amount*4+tempHouses*amount);
+        return Arrays.copyOf(temp, j);
+    }
+
+    public void applyEffect(Player player) {
+        int tempHouses = 0;
+        int tempHotels = 0;
+        OwnableSquare[] realEstateSquares = getRealEstateSquares(player);
+        for (OwnableSquare realEstateSquare : realEstateSquares) {
+            int houseCount = realEstateSquare.getHouseCount();
+            if (houseCount < 5) {
+                tempHouses += houseCount;
+            } else {
+                tempHotels++;
+            }
+        }
+        player.attemptToPay(tempHouses*amount+tempHotels*amount)
+
+
     }
 
 }

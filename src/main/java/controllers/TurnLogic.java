@@ -249,7 +249,7 @@ public class TurnLogic {
         if (housePrice == 0) {
             guiLogic.showMessage(turnLogicTxt.getLine("no more house"));
         }
-        int houses = square.getHouses();
+        int houses = square.getHouseCount();
         Square realSquare = board.getSquareFromName(square.getName());
         guiLogic.updateHouses(realSquare.getIndex(),houses);
     }

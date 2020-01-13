@@ -13,7 +13,16 @@ public class ShipyardSquare extends OwnableSquare {
         super(name, index, landedOnTxt, price, type , color, board);
         
     }
-    
+
+    @Override
+    public boolean isRealEstate(){
+        return false;
+    }
+
+    @Override
+    public int getHouseCount(){
+        return 0;
+    }
     @Override
     public void updateRent(int lastRoll) {
         
