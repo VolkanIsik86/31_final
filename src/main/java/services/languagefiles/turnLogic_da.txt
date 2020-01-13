@@ -49,3 +49,5 @@ tax,, Vælg mellem 4000 eller 10%
 buy,, Køb grund
 dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
+no more house,, Du kan ikke købe flere huse på denne grund
+attempt to buy,, Du skal eje alle grunde af en slags for at kunne bygge huse
