@@ -44,7 +44,7 @@ public class PayHouseCard extends ChanceCard {
                 tempHotels++;
             }
         }
-        player.attemptToPay(tempHouses*amount+tempHotels*amount)
+        player.attemptToPay(tempHouses*amount+tempHotels*amount);
 
 
     }
