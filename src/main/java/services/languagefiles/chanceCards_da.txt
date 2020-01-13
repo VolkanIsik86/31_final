@@ -1,15 +1,16 @@
-0,,Move-1-Du rykkes 1 felt frem
-1,,Move-2-Du rykkes 2 felter frem
-2,,Move-3-Du rykkes 3 felter frem
-3,,Move-4-Du rykkes 4 felter frem
-4,,Pay-1000-Du skal betale 1000
-5,,Pay-1000-Du skal betale 1000
-6,,Pay-2000-Du skal betale 2000
-7,,Pay-2000-Du skal betale 2000
-8,,Pay-3000-Du skal betale 3000
-9,,Pay-3000-Du skal betale 3000
-10,,Pay-3000-Du skal betale 3000
-11,,Earn-2000-Du tjener 2000
-12,,Earn-3000-Du tjener 3000
-13,,Earn-4000-Du tjener 4000
+0,,Move-3-Du rykkes 3 felter frem
+1,,Pay-300-Betal for vognvask og smøring kr. 300.
+2,,Pay-2000-De har modtaget Deres tandlægerening. Betal kr. 2.000.
+3,,Earn-3000-Komunen har eftergivet et kvartals skat. Hæv i banken kr. 3.000.
+4,,Pay-1000-De har købt 4 nye dæk til Deres vogn. Betal kr. 1000.
+5,,Pay-1000-De har kørt frem for: "Fuldt stop". Betal kr. 1000 i bøde.
+6,,Earn-1000-De har solgt nogle gamle møbler på auktion. Modtag kr. 1.000 af banken.
+7,,Pay-3000-Betal kr. 3.000 for reperation af Deres vogn.
+8,,Earn-1000-Deres præmieobligation er udtrukket. De modtager kr. 1.000 af banken.
+9,,Pay-200-De har fået en parkeringsbøde. Betal kr. 200 i bøde.
+10,,Pay-200-De har været en tur i udlandet og haft for mange cigaretter med hjem. Betal told kr. 200.
+11,,Earn-1000-De havde en række med elleve rigtige i tipning. Modtag kr. 1.000.
+12,,Earn-1000-Grundet dyrtiden har de fået gageforhøjelse. Modtag kr. 1.000.
+13,,Earn-200-Værdien af egen avl fra nyttehaven udgør kr. 200, som De modtager af banken.
+14,,Earn-1000-Modtag udbytte af Deres aktier - kr. 1.000.
 Does not have fonds to pay,,Du har desværre ikke råd til at betale dette beløb, og spillet stopper derfor
