@@ -6,7 +6,7 @@ import domain.squares.*;
 import services.TxtReader;
 
 public class TurnLogic {
-    
+
     protected Board board;
     protected GUILogic guiLogic;
     protected TxtReader turnLogicTxt;
@@ -20,7 +20,7 @@ public class TurnLogic {
     MenuLogic menuLogic;
     private int housePrice = 0;
 
-    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
+    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt) {
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
@@ -28,21 +28,21 @@ public class TurnLogic {
         chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt);
     }
-    
+
     //todo implement an option when landing on a property if you want to buy it or not
     public String takeTurn(Player player) {
-    
+
         String greeting = turnLogicTxt.getLine("It is") + " " +
                 player.getName() + turnLogicTxt.getLine("s") + " " +
                 turnLogicTxt.getLine("Choose option");
-        
+
         boolean endTurn = false;
         hasThrown = false;
-        String choice ="";
-        
-        
+        String choice = "";
+
+
         //Start of user menu loop
-        while(endTurn == false){
+        while (endTurn == false) {
             if (player.getLost())
                 return player.getName();
 
@@ -51,7 +51,7 @@ public class TurnLogic {
             //Chooses the correct menu items
 
             //Displays the menu
-            choice = guiLogic.getUserButtonPressed(greeting, menuLogic.updateMenu(hasThrown,ownsASquares));
+            choice = guiLogic.getUserButtonPressed(greeting, menuLogic.updateMenu(hasThrown, ownsASquares));
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
@@ -60,8 +60,8 @@ public class TurnLogic {
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
 
-            }else if (getExtraturn()) {
-                endTurn=false;
+            } else if (getExtraturn()) {
+                endTurn = false;
                 guiLogic.showMessage("du får en ekstra tur");
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
@@ -106,7 +106,7 @@ public class TurnLogic {
         return null;
     }
 
-    private void doTurn(Player player){
+    private void doTurn(Player player) {
         hasThrown = true;
 
         //Roll the dice
@@ -124,8 +124,15 @@ public class TurnLogic {
 
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length() - 1) == 'T') {
-            guiLogic.setSquareOwner(player);
-            message = message.substring(0, message.length() - 1);
+            if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
+                String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("buy choice"), menuLogic.updateMenu('b'));
+                if (choice.equals(turnLogicTxt.getLine("buy"))) {
+                    guiLogic.setSquareOwner(player);
+                    player.attemptToPurchase((OwnableSquare) nextLocation);
+                }
+            } else {
+                guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
+            }
         }
         //Tjekker om man er landet på et chancefelt
         if (message.charAt(message.length() - 1) == 'S') {
@@ -138,35 +145,41 @@ public class TurnLogic {
         if (message.equals("GoToJail square"))
             guiLogic.moveToJail(player);
 
-        guiLogic.showMessage(turnLogicTxt.getLine(message));
+        if (message.charAt(message.length() - 1) != 'T') {
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
+        }
 
-        if(taxSquare(message)){
+
+        if (taxSquare(message)) {
             doTax(player, nextLocation);
         }
 
-        if (isOwned(nextLocation))
+        if (getOwnerIndex(nextLocation) != -1 && message.charAt(message.length() - 1) != 'T') {
+            guiLogic.setPlayerBalance(board.getOwnables()[getOwnerIndex(nextLocation)].getOwner());
+        } else {
+            message = message.substring(0, message.length() - 1);
+        }
 
         guiLogic.setPlayerBalance(player);
-        if(getExtraturn()){
+        if (getExtraturn()) {
             hasThrown = false;
         }
     }
 
-    public boolean isOwned(Square nextLocation){
-        for(int i = 0; i < board.getOwnables().length;i++){
-            if(board.getOwnables()[i].getName()==nextLocation.getName()){
-                guiLogic.setPlayerBalance(board.getOwnables()[i].getOwner());
-                return true;
+    public int getOwnerIndex(Square nextLocation) {
+        for (int i = 0; i < board.getOwnables().length; i++) {
+            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
-    public boolean getExtraturn (){
+    public boolean getExtraturn() {
         boolean ekstraturn = true;
-        if (roll1==roll2){
+        if (roll1 == roll2) {
             return ekstraturn;
-        }else
+        } else
             return ekstraturn = false;
     }
 
@@ -178,51 +191,52 @@ public class TurnLogic {
         rollSum = roll1 + roll2;
     }
 
-    private boolean taxSquare(String message){
+    private boolean taxSquare(String message) {
         return message.equals(("Tax square"));
     }
 
-    private void doTax(Player p, Square nextLocation){
-        if(nextLocation.getIndex() == 4){
-            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),menuLogic.updateMenu('t'));
-            if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
+    private void doTax(Player p, Square nextLocation) {
+        if (nextLocation.getIndex() == 4) {
+            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"), menuLogic.updateMenu('t'));
+            if (c.equals(turnLogicTxt.getLine("pay 4000"))) {
                 p.withdraw(4000);
             }
-            if(c.equals(turnLogicTxt.getLine("pay 10"))){
-                int tempTax = (int)Math.round(p.getBalance()*0.1);
+            if (c.equals(turnLogicTxt.getLine("pay 10"))) {
+                int tempTax = (int) Math.round(p.getBalance() * 0.1);
                 p.withdraw(tempTax);
             }
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("pay 2000"));
             p.withdraw(2000);
         }
+        guiLogic.setPlayerBalance(p);
     }
 
 
     private void manageProperties(Player player) {
         //Prompt player to choose a field
         String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), menuLogic.updateMenu(player, board));
-    
+
         //Show property information in the middle of board
         OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
-        
+
         //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field
         String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
         if (choice.equals(turnLogicTxt.getLine("House")))
             buildHouse(board.getPropertyFromName(selection));
-            if(player.attemptToPay(housePrice)){
-                player.withdraw(housePrice);
-                guiLogic.setPlayerBalance(player);
-            }
+        if (player.attemptToPay(housePrice)) {
+            player.withdraw(housePrice);
+            guiLogic.setPlayerBalance(player);
+        }
     }
 
-    private void buildHouse(PropertySquare square){
+    private void buildHouse(PropertySquare square) {
         housePrice = square.addHouse();
         int houses = square.getHouses();
         Square realSquare = board.getSquareFromName(square.getName());
-        guiLogic.updateHouses(realSquare.getIndex(),houses);
+        guiLogic.updateHouses(realSquare.getIndex(), houses);
     }
 
     private void updateGUI(Player player) {
