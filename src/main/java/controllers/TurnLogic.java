@@ -183,7 +183,7 @@ public class TurnLogic {
 
     private void doTax(Player p, Square nextLocation){
         if(nextLocation.getIndex() == 4){
-            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),menuLogic.updateMenu());
+            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),menuLogic.updateMenu('t'));
             if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
                 p.withdraw(4000);
             }
