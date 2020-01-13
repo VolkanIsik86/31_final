@@ -211,15 +211,24 @@ public class TurnLogic {
         //Prompt player to choose something to do with that field
         String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
         if (choice.equals(turnLogicTxt.getLine("House")))
-            buildHouse(board.getPropertyFromName(selection));
+            housePrice = 0;
+            if(board.searchColors(board.getOwnableSquareFromName(selection)) == 0){
+                buildHouse(board.getPropertyFromName(selection));
+            }
+            else{
+                guiLogic.showMessage(turnLogicTxt.getLine("attempt to buy"));
+            }
             if(player.attemptToPay(housePrice)){
-                player.withdraw(housePrice);
-                guiLogic.setPlayerBalance(player);
+            player.withdraw(housePrice);
+            guiLogic.setPlayerBalance(player);
             }
     }
 
     private void buildHouse(PropertySquare square){
         housePrice = square.addHouse();
+        if (housePrice == 0) {
+            guiLogic.showMessage(turnLogicTxt.getLine("no more house"));
+        }
         int houses = square.getHouses();
         Square realSquare = board.getSquareFromName(square.getName());
         guiLogic.updateHouses(realSquare.getIndex(),houses);
