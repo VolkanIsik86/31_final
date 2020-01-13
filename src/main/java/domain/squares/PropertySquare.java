@@ -55,8 +55,13 @@ public class PropertySquare extends OwnableSquare {
 
     }
 
-    public void addHouse(){
-        numberOfHouse++;
+    public int addHouse(){
+        if(numberOfHouse < 5){
+
+            numberOfHouse++;
+            return getHOUSE_PRICE();
+        }
+        return 0;
     }
 
     @Override

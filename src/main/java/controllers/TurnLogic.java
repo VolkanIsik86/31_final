@@ -18,6 +18,7 @@ public class TurnLogic {
     String[] menuItems;
     private String looser;
     MenuLogic menuLogic;
+    private int housePrice = 0;
 
     public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
         this.board = board;
@@ -211,12 +212,17 @@ public class TurnLogic {
         String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
         if (choice.equals(turnLogicTxt.getLine("House")))
             buildHouse(board.getPropertyFromName(selection));
+            if(player.attemptToPay(housePrice)){
+                player.withdraw(housePrice);
+                guiLogic.setPlayerBalance(player);
+            }
     }
 
     private void buildHouse(PropertySquare square){
-        square.addHouse();
+        housePrice = square.addHouse();
+        int houses = square.getHouses();
         Square realSquare = board.getSquareFromName(square.getName());
-        guiLogic.updateHouses(realSquare.getIndex());
+        guiLogic.updateHouses(realSquare.getIndex(),houses);
     }
 
     private void updateGUI(Player player) {
