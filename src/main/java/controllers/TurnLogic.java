@@ -30,17 +30,17 @@ public class TurnLogic {
     
     //todo implement an option when landing on a property if you want to buy it or not
     public String takeTurn(Player player) {
-        
+
         boolean endTurn = false;
         hasThrown = false;
         String choice ="";
-        
+
         //Start of user menu loop
         while(endTurn == false){
             if (player.getLost()){
                 return player.getName();
             }
-            
+
             //Display start menu
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
@@ -69,7 +69,7 @@ public class TurnLogic {
             //If player is in jail
             if (currentPlayer.getJail()) {
                 guiLogic.showMessage(turnLogicTxt.getLine("In jail pay now"));
-    
+
                 if (currentPlayer.attemptToPay(1000)) {
                     currentPlayer.withdraw(1000);
                     guiLogic.setPlayerBalance(currentPlayer);
@@ -86,7 +86,7 @@ public class TurnLogic {
             if (looser != null) {
                 return looser;
             }
-            
+
             // hvis spilleren slår to ens, får de en ekstra tur.
             if (getExtraturn()) {
                 i = i - 1;
@@ -95,9 +95,9 @@ public class TurnLogic {
         }
         return null;
     }
-    
+
     private void doJailTurn(Player currentPlayer){
- 
+
     }
 
     private void doTurn(Player player){
@@ -113,15 +113,22 @@ public class TurnLogic {
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, player.getLastRoll());
 
-        
+
         String message = nextLocation.landedOn(player);
 
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length() - 1) == 'T') {
-            guiLogic.setSquareOwner(player);
-            message = message.substring(0, message.length() - 1);
+            if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
+                String choice = menuLogic.displayBuyNotBuyMenu();
+                if (choice.equals(turnLogicTxt.getLine("buy"))) {
+                    guiLogic.setSquareOwner(player);
+                    player.attemptToPurchase((OwnableSquare) nextLocation);
+                }
+            } else {
+                guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
+            }
         }
-        
+
         //Tjekker om man er landet på et chancefelt
         if (message.charAt(message.length() - 1) == 'S') {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
@@ -133,13 +140,20 @@ public class TurnLogic {
         if (message.equals("GoToJail square"))
             guiLogic.moveToJail(player);
 
-        guiLogic.showMessage(turnLogicTxt.getLine(message));
+        if (message.charAt(message.length() - 1) != 'T') {
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
+        }
 
-        if(taxSquare(message)){
+
+        if (taxSquare(message)) {
             doTax(player, nextLocation);
         }
 
-        if (isOwned(nextLocation))
+        if (getOwnerIndex(nextLocation) != -1 && message.charAt(message.length() - 1) != 'T') {
+            guiLogic.setPlayerBalance(board.getOwnables()[getOwnerIndex(nextLocation)].getOwner());
+        } else {
+            message = message.substring(0, message.length() - 1);
+        }
 
         guiLogic.setPlayerBalance(player);
         if(getExtraturn()){
@@ -147,14 +161,13 @@ public class TurnLogic {
         }
     }
 
-    public boolean isOwned(Square nextLocation){
-        for(int i = 0; i < board.getOwnables().length;i++){
-            if(board.getOwnables()[i].getName()==nextLocation.getName()){
-                guiLogic.setPlayerBalance(board.getOwnables()[i].getOwner());
-                return true;
+    public int getOwnerIndex(Square nextLocation) {
+        for (int i = 0; i < board.getOwnables().length; i++) {
+            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public boolean getExtraturn (){
@@ -179,9 +192,9 @@ public class TurnLogic {
 
     private void doTax(Player p, Square nextLocation){
         if(nextLocation.getIndex() == 4){
-            
+
             String choice = menuLogic.displayTaxMenu();
-            
+
             if(choice.equals(turnLogicTxt.getLine("pay 4000"))) {
                 p.withdraw(4000);
             }
@@ -193,11 +206,12 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine("pay 2000"));
             p.withdraw(2000);
         }
+        guiLogic.setPlayerBalance(p);
     }
 
 
     private void manageProperties(Player player) {
-        
+
         //Prompt player to choose a field
         String selection = menuLogic.displayPropertyMenu(player);
     
