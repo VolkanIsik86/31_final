@@ -14,8 +14,7 @@ public class TurnLogic {
     ChanceDeck chanceDeck;
     protected final Die die = new Die();
     int roll1, roll2, rollSum = 0;
-    private boolean hasThrown, ownsASquares;
-    String[] menuItems;
+    private boolean hasThrown;
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
@@ -26,32 +25,24 @@ public class TurnLogic {
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
         chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
-        menuLogic = new MenuLogic(turnLogicTxt);
+        menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
     
     //todo implement an option when landing on a property if you want to buy it or not
     public String takeTurn(Player player) {
-    
-        String greeting = turnLogicTxt.getLine("It is") + " " +
-                player.getName() + turnLogicTxt.getLine("s") + " " +
-                turnLogicTxt.getLine("Choose option");
         
         boolean endTurn = false;
         hasThrown = false;
         String choice ="";
         
-        
         //Start of user menu loop
         while(endTurn == false){
-            if (player.getLost())
+            if (player.getLost()){
                 return player.getName();
-
-            ownsASquares = board.doesPlayerOwnAnySquares(player);
-
-            //Chooses the correct menu items
-
-            //Displays the menu
-            choice = guiLogic.getUserButtonPressed(greeting, menuLogic.updateMenu(hasThrown,ownsASquares));
+            }
+            
+            //Display start menu
+            choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
@@ -77,9 +68,8 @@ public class TurnLogic {
 
             //If player is in jail
             if (currentPlayer.getJail()) {
-
                 guiLogic.showMessage(turnLogicTxt.getLine("In jail pay now"));
-
+    
                 if (currentPlayer.attemptToPay(1000)) {
                     currentPlayer.withdraw(1000);
                     guiLogic.setPlayerBalance(currentPlayer);
@@ -95,8 +85,8 @@ public class TurnLogic {
             looser = takeTurn(currentPlayer);
             if (looser != null) {
                 return looser;
-
             }
+            
             // hvis spilleren slår to ens, får de en ekstra tur.
             if (getExtraturn()) {
                 i = i - 1;
@@ -104,6 +94,10 @@ public class TurnLogic {
 
         }
         return null;
+    }
+    
+    private void doJailTurn(Player currentPlayer){
+ 
     }
 
     private void doTurn(Player player){
@@ -119,7 +113,7 @@ public class TurnLogic {
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, player.getLastRoll());
 
-        //Apply the square's effect to the player
+        
         String message = nextLocation.landedOn(player);
 
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
@@ -127,6 +121,7 @@ public class TurnLogic {
             guiLogic.setSquareOwner(player);
             message = message.substring(0, message.length() - 1);
         }
+        
         //Tjekker om man er landet på et chancefelt
         if (message.charAt(message.length() - 1) == 'S') {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
@@ -184,11 +179,13 @@ public class TurnLogic {
 
     private void doTax(Player p, Square nextLocation){
         if(nextLocation.getIndex() == 4){
-            String c = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"),menuLogic.updateMenu('t'));
-            if(c.equals(turnLogicTxt.getLine("pay 4000"))) {
+            
+            String choice = menuLogic.displayTaxMenu();
+            
+            if(choice.equals(turnLogicTxt.getLine("pay 4000"))) {
                 p.withdraw(4000);
             }
-            if(c.equals(turnLogicTxt.getLine("pay 10"))){
+            if(choice.equals(turnLogicTxt.getLine("pay 10"))){
                 int tempTax = (int)Math.round(p.getBalance()*0.1);
                 p.withdraw(tempTax);
             }
@@ -200,8 +197,9 @@ public class TurnLogic {
 
 
     private void manageProperties(Player player) {
+        
         //Prompt player to choose a field
-        String selection = guiLogic.getUserSelection(turnLogicTxt.getLine("Choose property"), menuLogic.updateMenu(player, board));
+        String selection = menuLogic.displayPropertyMenu(player);
     
         //Show property information in the middle of board
         OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
