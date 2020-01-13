@@ -251,6 +251,7 @@ public class GUILogic {
          //todo sæt så det her virker igen
     }
 
+
     /**
      * GUI of the game can be interacted from here.
      * @return GUI that is initialized.
