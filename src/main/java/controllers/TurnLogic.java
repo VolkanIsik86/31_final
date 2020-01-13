@@ -205,9 +205,9 @@ public class TurnLogic {
         OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
         
-        //todo do so that choosen property shows in the middle
         //Prompt player to choose something to do with that field
-        String choice = guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back"));
+        String choice = menuLogic.displayManagePropertyMenu();
+        
         if (choice.equals(turnLogicTxt.getLine("House")))
             housePrice = 0;
             if(board.searchColors(board.getOwnableSquareFromName(selection)) == 0){

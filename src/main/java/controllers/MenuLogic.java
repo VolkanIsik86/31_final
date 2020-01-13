@@ -74,5 +74,13 @@ public class MenuLogic {
         return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("tax"), BuyNotBuy);
         
     }
+    
+    public String displayManagePropertyMenu(){
+    
+        String[] options = new String[]{turnLogicTxt.getLine("House") + turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+        
+        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), options);
+        
+    }
 
 }
