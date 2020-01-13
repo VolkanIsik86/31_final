@@ -37,6 +37,4 @@ public class FactorySquare extends OwnableSquare{
                 ;
         
     }
-    
-    
 }
