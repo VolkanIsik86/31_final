@@ -13,4 +13,5 @@
 12,,Earn-1000-Grundet dyrtiden har de fået gageforhøjelse. Modtag kr. 1.000.
 13,,Earn-200-Værdien af egen avl fra nyttehaven udgør kr. 200, som De modtager af banken.
 14,,Earn-1000-Modtag udbytte af Deres aktier - kr. 1.000.
+15,,PayHouseCard-800-Ejendomsskatterne er steget. Ekstraudgifterne er: "kr. 800 pr. hus", "kr. 2.300 pr. hotel"
 Does not have fonds to pay,,Du har desværre ikke råd til at betale dette beløb, og spillet stopper derfor

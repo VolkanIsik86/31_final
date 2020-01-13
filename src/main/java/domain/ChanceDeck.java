@@ -37,7 +37,11 @@ public class ChanceDeck {
             } else if ("Pay".equals(oneLine[0])) {
                 chanceCards[i] = new PayCard(oneLine[0], oneLine[2], guiLogic, this, Integer.parseInt(oneLine[1]), cardsTxt);
     
-            }
+            } else if ("PayHouseCard".equals(oneLine[0])) {
+            chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], guiLogic, this, Integer.parseInt(oneLine[1]), cardsTxt);
+
+        }
+
     
         }
     }
