@@ -60,6 +60,7 @@ public class Player {
         }
     }
     
+    //todo burde den ikke trække pengene her så også? -Mikkel
     public boolean attemptToPay(int amount){
         if(amount <= this.getBalance()){
             return true;

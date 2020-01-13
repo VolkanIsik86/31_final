@@ -20,6 +20,8 @@ In jail 1 option,,Du er i fængsel. Da du ikke har råd til at betale dig ud, er
 Forced to buy out of jail,,Da du forgæves har forsøgt at komme ud af fængslet med terningerne 3 gange nu, er du tvunget til at betale.
 Jail buy out,,Betal 1000kr.
 Jail roll dice,,Kast terningerne
+Out of jail,,Du er nu ude af fængslet
+2 identical,,Du har slået to ens og får derfor en et kast til. Tryk OK for at kaste
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt

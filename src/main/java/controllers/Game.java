@@ -25,7 +25,7 @@ public class Game {
 
         while (true){
             looser = turnLogic.playRound(playerList);
-            if (looser != null){
+            if (looser != "none"){
                 announceWinner();
                 guiLogic.showMessage(guiTxt.getLine("Close"));
                 guiLogic.close();
