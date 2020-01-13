@@ -30,8 +30,20 @@ public class MenuLogic {
         return menuItems;
     }
 
-    public String[] updateMenu(){
-        String[] menuItems = {turnLogicTxt.getLine("pay 4000"),turnLogicTxt.getLine("pay 10")};
+    public String[] updateMenu(char c) {
+        String[] menuItems;
+        switch (c){
+            case 't':
+                menuItems = new String[]{turnLogicTxt.getLine("pay 4000"), turnLogicTxt.getLine("pay 10")};
+                break;
+            case 'b':
+                menuItems = new String[]{turnLogicTxt.getLine("buy"),turnLogicTxt.getLine("dont buy")};
+                break;
+            default:
+                menuItems = new String[]{};
+                break;
+        }
+
         return menuItems;
     }
 }

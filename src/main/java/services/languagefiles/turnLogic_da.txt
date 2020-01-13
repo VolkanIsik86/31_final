@@ -46,3 +46,6 @@ pay 4000,,Betal 4000 i skat
 pay 10,, Betal 10% i skat
 pay 2000,, Betal 2000 i skat
 tax,, Vælg mellem 4000 eller 10%
+buy,, Køb grund
+dont buy,, Ikke køb grund
+buy choice,, Vil du købe denne grund?
