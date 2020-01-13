@@ -60,7 +60,7 @@ public class PropertySquare extends OwnableSquare {
     }
 
     @Override
-    public int getRent() {
+    public void updateRent(int lastRoll) {
 
         //If the square has an owner
         if(getOwner() != null){
@@ -70,30 +70,30 @@ public class PropertySquare extends OwnableSquare {
                 
                 switch(numberOfHouse){
                     case 1:
-                        return rentLadder[1];
+                        setRent(rentLadder[1]);
                     case 2:
-                        return rentLadder[2];
+                        setRent(rentLadder[2]);
                     case 3:
-                        return rentLadder[3];
+                        setRent(rentLadder[3]);
                     case 4:
-                        return rentLadder[4];
+                        setRent(rentLadder[4]);
                     case 5:
-                        return rentLadder[5];
+                        setRent(rentLadder[5]);
+                    default:
+                        setRent(0);
                 }
                 
             } else{
 
                 //If owner owns all properties
                 if (board.searchColors(this) == 0 ){
-                    return rentLadder[0]*2;
+                    setRent(rentLadder[0]*2);
                 } else {
-                    return rentLadder[0];
+                    setRent(rentLadder[0]);
                 }
             }
             
         }
-        
-        return 0;
         
     }
     

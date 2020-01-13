@@ -76,6 +76,9 @@ public class BoardTest {
 
     @Test
     public void searchColors() {
+        
+        //todo det er ikke godt at redigere i atributter der skal være private, brug i stedet en public metode til at sætte ejere
+        //todo synes ikke testen er fyldestgørende - Mikkel
         board.getOwnables()[0].setOwner(player);
         board.getOwnables()[1].setOwner(player);
         assertEquals(0,board.searchColors(board.getOwnables()[1]));

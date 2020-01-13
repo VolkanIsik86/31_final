@@ -11,6 +11,7 @@ public class Board {
 
     private int SIZE;
     private Square[] squares;
+    //todo skal da være private
     OwnableSquare[] ownables = new OwnableSquare[28];
     PropertySquare[] properties = new PropertySquare[22];
     int rekt = 0;
@@ -118,15 +119,20 @@ Creates a board this constructor also create an ownablesquare array to manage th
     public int searchColors(OwnableSquare s){
         int countcolor = 0;
         int playerowns = 0;
+        
+        //Count number of squares with the same color
         for (int i = 0; i <ownables.length ; i++) {
             if (s.getColor().equals(ownables[i].getColor()))
                 countcolor++;
         }
+        
+        //
         for (int i = 0; i <ownables.length ; i++) {
             if (ownables[i].getOwner()!=null && s.getOwner()==ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())){
                 playerowns++;
             }
         }
+        
         int getrekt = countcolor - playerowns;
         return getrekt;
     }

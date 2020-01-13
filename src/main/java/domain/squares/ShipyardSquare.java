@@ -15,7 +15,22 @@ public class ShipyardSquare extends OwnableSquare {
     }
     
     @Override
-    public int getRent() {return 1000;}
+    public void updateRent(int lastRoll) {
+        
+        switch(board.searchColors(this)){
+            case 0:
+                setRent(4000);
+            case 1:
+                setRent(2000);
+            case 2:
+                setRent(1000);
+            case 3:
+                setRent(500);
+            default:
+                setRent(0);
+    
+        }
+    }
     
     @Override
     public String getInfo(){

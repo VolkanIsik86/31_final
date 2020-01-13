@@ -2,6 +2,7 @@ package domain.squares;
 
 import controllers.GUILogic;
 import domain.Board;
+import domain.Player;
 import services.TxtReader;
 
 public class FactorySquare extends OwnableSquare{
@@ -12,8 +13,19 @@ public class FactorySquare extends OwnableSquare{
         super(name, index, landedOnTxt, price, type , color, board);
     }
     
+    
     @Override
-    public int getRent() {return 1000;}
+    public void updateRent(int lastRoll) {
+        
+        switch(board.searchColors(this)) {
+            case 0:
+                setRent(RENT_MODIFIER * lastRoll);
+            case 1:
+                setRent(RENT_MODIFIER * 2 * lastRoll);
+            default:
+                setRent(0);
+        }
+    }
     
     @Override
     public String getInfo(){

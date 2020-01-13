@@ -1,6 +1,5 @@
 package domain.squares;
 
-import controllers.GUILogic;
 import domain.Board;
 import domain.Player;
 import services.TxtReader;
@@ -12,6 +11,7 @@ public abstract class OwnableSquare extends Square {
     private int price;
     private final int PLEDGE_VALUE;
     private String message;
+    private int rent;
     protected Board board;
     protected Player owner;
 
@@ -24,6 +24,14 @@ public abstract class OwnableSquare extends Square {
         this.board = board;
     }
     
+    public int getRent(){
+        return rent;
+    }
+    
+    public void setRent(int newRent){
+        rent = newRent;
+    }
+    
     public int getPLEDGE_VALUE(){
         return PLEDGE_VALUE;
     }
@@ -34,7 +42,7 @@ public abstract class OwnableSquare extends Square {
         return price;
     }
 
-    public abstract int getRent();
+    public abstract void updateRent(int lastRoll);
 
     public Player getOwner() {
         return owner;
@@ -58,7 +66,7 @@ public abstract class OwnableSquare extends Square {
 
     //Pay rent logic: withdraws balance from player
     protected void payRent(Player p){
-        p.withdraw(this.getRent());
+        p.withdraw(rent);
     }
 
     protected void payPrice(Player p){
@@ -67,7 +75,7 @@ public abstract class OwnableSquare extends Square {
 
     // get rent logic: Adds points to the owner of this square.
     protected void earnRent(){
-        owner.deposit(this.getRent());
+        owner.deposit(rent);
     }
 
     public void purchase(Player p){
@@ -104,8 +112,8 @@ public abstract class OwnableSquare extends Square {
 
         //If property is owned
         else{
-
-
+            
+            this.updateRent(player.getLastRoll());
             message = "Owned by another "+this.type+" square";
 
             //If player has the requested fonds
