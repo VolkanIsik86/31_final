@@ -12,7 +12,7 @@ public class ChanceDeckStub extends ChanceDeck {
     private final int[] pullSequence = {0, 4, 11};
     
     public ChanceDeckStub(GUILogic guiLogic, TxtReader cardsTxt, Board board){
-        super(guiLogic, cardsTxt, board);
+        super(cardsTxt, board);
     }
     
     @Override

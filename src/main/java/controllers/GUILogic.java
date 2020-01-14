@@ -17,6 +17,7 @@ public class GUILogic {
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
     private final int N_FIELDS = 40;
+    private final int PASSEDSTART = 4000;
     protected GUI_Field[] fields;
     protected GUI gui;
     protected String[] names = new String[0];
@@ -174,7 +175,7 @@ public class GUILogic {
     }
 
     private void passedStart(Player player) {
-        player.deposit(2);
+        player.deposit(PASSEDSTART);
         setPlayerBalance(player);
     }
 

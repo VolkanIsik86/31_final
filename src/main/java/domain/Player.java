@@ -127,7 +127,7 @@ public class Player {
     public int getLastRoll(){
         return lastRoll;
     }
-    
+
     
     @Override
     public String toString() {

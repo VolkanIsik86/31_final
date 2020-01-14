@@ -25,7 +25,7 @@ public class TurnLogic {
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
-        chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
+        chanceDeck = new ChanceDeck(cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
     
@@ -222,9 +222,14 @@ public class TurnLogic {
         if (message.charAt(message.length() - 1) == 'S') {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
             guiLogic.showChanceCard(pulledCard.getDescription());
-            pulledCard.applyEffect(player);
-            if(pulledCard.getType().equalsIgnoreCase("move")){
+            int tempValue = pulledCard.applyEffect(player);
+            String tempCard = pulledCard.getType();
+            if(tempCard.equalsIgnoreCase("move")){
                 doLandedOnTurn(player);
+                guiLogic.movePiece(player, tempValue);
+            }
+            if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& tempValue > player.getBalance()){
+                guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
             message = message.substring(0, message.length() - 1);
         }

@@ -33,7 +33,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board.makeBoard(squareTxt, landedOnTxt, cardsTxt, null);
+        board.makeBoard(squareTxt, landedOnTxt, cardsTxt);
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }

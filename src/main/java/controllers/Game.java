@@ -143,7 +143,7 @@ public class Game {
     private void initBoard() {
 
         //Includes the initialization of the chance deck
-        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt, guiLogic);
+        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt);
    }
    
    protected void initTurnLogic(){
