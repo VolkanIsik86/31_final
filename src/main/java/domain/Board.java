@@ -173,8 +173,7 @@ Creates a board this constructor also create an ownablesquare array to manage th
         for(Square square : playerOwn){
             value = value + square.getValue();
         }
-        System.out.println(value);
-        return value; //todo Tror måske den returnere 0, da metoden bliver kaldt på Square istedet for property Square når det er relevant.
+        return value;
 
     }
     

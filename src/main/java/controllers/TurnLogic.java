@@ -299,7 +299,6 @@ public class TurnLogic {
             String choice = menuLogic.displayManagePropertyMenu(squareToManage);
             if (choice.equals(turnLogicTxt.getLine("House")))
                 housePrice = 0;
-                board.getPlayerValue(player);
             if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
                 buildHouse(board.getPropertyFromName(selection));
             } else {
