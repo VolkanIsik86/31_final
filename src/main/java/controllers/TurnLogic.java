@@ -107,6 +107,7 @@ public class TurnLogic {
         rollDice();
         player.setLastRoll((rollSum));
         guiLogic.displayDie(roll1, roll2);
+        guiLogic.showChanceCard("");
 
         //Calculate and move to next location
 
