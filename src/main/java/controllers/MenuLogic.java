@@ -107,5 +107,14 @@ public class MenuLogic {
         //Display jail menu and return choice
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
+    public String auctionMenu(Player p){
+        String[] manageAuctionItems = {"byd","pass"};
+
+        if(guiLogic.getUserButtonPressed(p.getName(),manageAuctionItems).equals("pass")){
+            return "pass";
+        }
+        else
+           return guiLogic.getUserString("indtast beløb du vil byde");
+    }
 
 }
