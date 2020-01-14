@@ -355,11 +355,9 @@ public class TurnLogic {
                 }
             }
         }
-
         System.out.println(auctionWinner.getName());
         square.setOwner(auctionWinner);
         auctionWinner.withdraw(bid);
-
     }
 
     private void updateGUI(Player player) {
