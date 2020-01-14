@@ -35,6 +35,13 @@ public class PayHouseCard extends ChanceCard {
     public void applyEffect(Player player) {
         int tempHouses = 0;
         int tempHotels = 0;
+        int tempAmount;
+        //Dårlig workaround for specialpriser til hoteller
+        if(amount==500){
+            tempAmount = 2000;
+        }else{
+            tempAmount = 2300;
+        }
         OwnableSquare[] realEstateSquares = getRealEstateSquares(player);
         for (OwnableSquare realEstateSquare : realEstateSquares) {
             int houseCount = realEstateSquare.getHouseCount();
@@ -44,9 +51,7 @@ public class PayHouseCard extends ChanceCard {
                 tempHotels++;
             }
         }
-        player.attemptToPay(tempHouses*amount+tempHotels*amount);
-
-
+        player.attemptToPay(tempHouses*amount+tempHotels*tempAmount);
     }
 
 }
