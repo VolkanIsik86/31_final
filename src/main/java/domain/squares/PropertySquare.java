@@ -48,16 +48,16 @@ public class PropertySquare extends OwnableSquare {
     public String getInfo(){
 
         return
-                this.getLandedOnTxt().getLine("Status") + " " +
-                "\n" + getLandedOnTxt().getLine("Price pr. house/hotel") + " " + getHOUSE_PRICE() +
-                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
-                "\n" + getLandedOnTxt().getLine("Standard rent") + " " + getRentLadder()[0] +
+//                this.getLandedOnTxt().getLine("Status") + " " +
+                "" + getLandedOnTxt().getLine("Price pr. house/hotel") + " " + getHOUSE_PRICE() +
+//                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+                "" + getLandedOnTxt().getLine("Standard rent") + " " + getRentLadder()[0] +
+                "\n" + getLandedOnTxt().getLine("Price at same color") + " " + getPRICE_OF_OWNING_ALL() +
                 "\n" + getLandedOnTxt().getLine("1 house") + " " + getRentLadder()[1] +
                 "\n" + getLandedOnTxt().getLine("2 houses") + " " + getRentLadder()[2] +
                 "\n" + getLandedOnTxt().getLine("3 houses") + " " + getRentLadder()[3] +
                 "\n" + getLandedOnTxt().getLine("4 houses") + " " + getRentLadder()[4] +
-                "\n" + getLandedOnTxt().getLine("1 hotel") + " " + getRentLadder()[5] +
-                "\n" + getLandedOnTxt().getLine("Price at same color") + " " + getPRICE_OF_OWNING_ALL()
+                "\n" + getLandedOnTxt().getLine("1 hotel") + " " + getRentLadder()[5]
                 ;
 
     }

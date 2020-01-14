@@ -292,6 +292,7 @@ public class TurnLogic {
             }
             if(choice.equals(turnLogicTxt.getLine("pay 10"))){
                 int tempTax = (int)Math.round(board.getPlayerValue(p)*0.1);
+                System.out.println(tempTax);
                 p.withdraw(tempTax);
             }
         } else {

@@ -28,10 +28,10 @@ public class FactorySquare extends OwnableSquare{
         
         switch(board.searchColors(this)) {
             case 0:
-                setRent(RENT_MODIFIER * lastRoll);
+                setRent(RENT_MODIFIER * 2 * lastRoll);
                 break;
             case 1:
-                setRent(RENT_MODIFIER * 2 * lastRoll);
+                setRent(RENT_MODIFIER * lastRoll);
                 break;
             default:
                 setRent(0);
@@ -41,8 +41,8 @@ public class FactorySquare extends OwnableSquare{
     @Override
     public String getInfo(){
         return
-                getLandedOnTxt().getLine("Status") + " " +
-                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+//                getLandedOnTxt().getLine("Status") + " " +
+//                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
                 "\n" + getLandedOnTxt().getLine("Rent factories") +
                 "\n\n" + getLandedOnTxt().getLine("Rent when owning all factories")
                 ;

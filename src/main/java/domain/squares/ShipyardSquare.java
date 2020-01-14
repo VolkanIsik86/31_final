@@ -48,9 +48,9 @@ public class ShipyardSquare extends OwnableSquare {
     @Override
     public String getInfo(){
         return
-                getLandedOnTxt().getLine("Status") + " " +
-                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
-                "\n" + getLandedOnTxt().getLine("Rent shipyard") +
+//                getLandedOnTxt().getLine("Status") + " " +
+//                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+                "" + getLandedOnTxt().getLine("Rent shipyard") +
                 "\n\n" + getLandedOnTxt().getLine("Rent when owning more shipyards")
         ;
     }
