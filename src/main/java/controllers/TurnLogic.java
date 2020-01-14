@@ -12,14 +12,15 @@ public class TurnLogic {
     protected TxtReader turnLogicTxt;
     protected TxtReader cardsTxt;
     ChanceDeck chanceDeck;
-    protected final Die die = new Die();
+    protected Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
 
-    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
+    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die){
+        this.die = die;
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
