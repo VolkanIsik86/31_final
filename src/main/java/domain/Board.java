@@ -165,6 +165,15 @@ Creates a board this constructor also create an ownablesquare array to manage th
     public Square getStart() {
         return squares[0];
     }
+
+    public int getPlayerValue(Player player){
+        int value = 0;
+        Square[] playerOwn = getPlayerSquares(player);
+        for(Square square : playerOwn){
+            value = value + square.getValue();
+        }
+        return value; //todo Tror måske den returnere 0, da metoden bliver kaldt på Square istedet for property Square når det er relevant.
+    }
     
     /**
      * Finds all the squares belonging to a certain player and return them in an array
