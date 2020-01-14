@@ -96,11 +96,16 @@ public class MenuLogic {
         String greeting;
         
         if(player.getBalance() >= 1000) {
-            greeting = turnLogicTxt.getLine("In jail 2 options");
+            
+            greeting = turnLogicTxt.getLine("It is") + " " +
+                    player.getName() + turnLogicTxt.getLine("s") + " " +
+                    turnLogicTxt.getLine("In jail 2 options");
             jailMenuItems = new String []{turnLogicTxt.getLine("Jail buy out"), turnLogicTxt.getLine("Jail roll dice")};
             
         } else {
-            greeting = turnLogicTxt.getLine("In jail 1 option");
+            greeting = turnLogicTxt.getLine("It is") + " " +
+                    player.getName() + turnLogicTxt.getLine("s") + " " +
+                    turnLogicTxt.getLine("In jail 1 option");
             jailMenuItems = new String []{turnLogicTxt.getLine("Jail roll dice")};
         }
         
