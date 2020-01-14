@@ -306,7 +306,7 @@ public class TurnLogic {
         String selection = menuLogic.displayPropertyMenu(player);
     
         //Show property information in the middle of board
-        OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
+        OwnableSquare squareToManage = board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
             //Prompt player to choose something to do with that field
             String choice = menuLogic.displayManagePropertyMenu(squareToManage);
