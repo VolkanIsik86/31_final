@@ -34,6 +34,7 @@ Choose property,,Vælg en af dine grunde grund
 House,,Huse og hoteller
 Pledge,,Pantsætning
 Trade,,Handel
+Sell,, Sælg grund
 Back,,Tilbage
 Price pr. house/hotel,,Pris pr. hus/hotel:
 Pledge value,,Pantsætningsværdi:
