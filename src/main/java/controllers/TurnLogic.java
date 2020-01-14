@@ -69,7 +69,8 @@ public class TurnLogic {
                 //Do turn as long as player gets two identical and has not lost
                 do{
                     throwCounter++;
-                    if(throwCounter < 3){
+                    rollDice();
+                    if(throwCounter < 3 || roll1!=roll2){
                         doTurn(player);
                     }else{
                         player.setLocation(board.getJail());
@@ -138,6 +139,7 @@ public class TurnLogic {
                 //While player gets two identical and has not lost
                 while(roll1 == roll2 && currentPlayer.getLost() != true){
                     guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
+                    rollDice();
                     doTurn(currentPlayer);
                 }
 
@@ -166,7 +168,7 @@ public class TurnLogic {
         hasThrown = true;
 
         //Roll the dice
-        rollDice();
+
         player.setLastRoll(rollSum);
         guiLogic.displayDie(roll1, roll2);
 
@@ -236,10 +238,10 @@ public class TurnLogic {
             int tempValue = pulledCard.applyEffect(player);
             String tempCard = pulledCard.getType();
             if(tempCard.equalsIgnoreCase("move")){
-                doLandedOnTurn(player);
                 guiLogic.movePiece(player, tempValue);
+                doLandedOnTurn(player);
             }
-            if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& tempValue > player.getBalance()){
+            if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& !player.attemptToPay(tempValue)){
                 guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
             message = message.substring(0, message.length() - 1);
