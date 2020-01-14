@@ -32,6 +32,23 @@ public class DieTest {
         assertArrayEquals(expected, rolls, 10000);
         
     }
-    
-    
+    @Test
+    public void rollTwoDice() {
+
+
+        for (int i = 0; i < 6000000; i++) {
+            die.roll();
+            int roll1 = die.getFaceValue();
+            die.roll();
+            int roll2 = die.getFaceValue();
+            int rollSum = roll1 + roll2;
+
+
+            // checks if the overall dice value is between 2-12. (tested for upto 6 million iterations)
+            assertTrue(rollSum % 1 == 0);
+            assertTrue(rollSum >= 2 && rollSum <= 12);
+            assertEquals(7, rollSum, 5);
+
+        }
+    }
 }
