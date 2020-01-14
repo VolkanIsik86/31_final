@@ -7,23 +7,23 @@ import static org.junit.Assert.*;
 //Testes kun positivt, da brugeren ikke skal interegere direkte med objektet
 
 public class TxtReaderTest {
-    
+
     private final TxtReader txt = new TxtReader();
-    
-    public TxtReaderTest(){
-        txt.openFile("src/test/java/services/","testText");
+
+    public TxtReaderTest() {
+        txt.openFile("src/test/java/services/", "testText");
         txt.readLines();
     }
-    
+
     @Test
     public void getLine() {
-        
-        assertEquals(8,txt.getN_LINES());
-        assertEquals("Tekst1",txt.getLine("key"));
-        assertEquals("Tekst med mellemrum",txt.getLine("key2"));
-        assertEquals("Tekst2",txt.getLine("key med mellemrum"));
-        assertEquals("Tekst3",txt.getLine("1 tal først"));
-        assertEquals("samme1",txt.getLine("Samme key"));
-        assertEquals("Pay-1-You pay 1M",txt.getLine("4"));
+
+        assertEquals(8, txt.getN_LINES());
+        assertEquals("Tekst1", txt.getLine("key"));
+        assertEquals("Tekst med mellemrum", txt.getLine("key2"));
+        assertEquals("Tekst2", txt.getLine("key med mellemrum"));
+        assertEquals("Tekst3", txt.getLine("1 tal først"));
+        assertEquals("samme1", txt.getLine("Samme key"));
+        assertEquals("Pay-1-You pay 1M", txt.getLine("4"));
     }
 }

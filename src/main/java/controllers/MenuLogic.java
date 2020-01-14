@@ -3,7 +3,6 @@ package controllers;
 import domain.Board;
 import domain.Player;
 import domain.squares.OwnableSquare;
-import domain.squares.PropertySquare;
 import services.TxtReader;
 
 public class MenuLogic {
@@ -113,6 +112,12 @@ public class MenuLogic {
         }
         //Display jail menu and return choice
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
+    }
+    public String PledgeOwnables(Player player){
+
+        String[] properties = board.getPlayerSquareNames(player);
+
+        return guiLogic.getUserSelection(turnLogicTxt.getLine("pledged properties"), properties);
     }
 
 }

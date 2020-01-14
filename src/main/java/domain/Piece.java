@@ -31,7 +31,7 @@ public class Piece {
 
         //Check if new location is a chanceSquare
         chanceStatus = newLocation instanceof ChanceSquare;
-        
+
         lastLocation = location;
         location = newLocation;
     }
