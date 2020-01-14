@@ -10,12 +10,10 @@ public abstract class ChanceCard {
     
     private final String type;
     private final String description;
-    protected final GUILogic guiLogic;
 
-    ChanceCard(String type, String description, GUILogic guiLogic, ChanceDeck chanceDeck) {
+    ChanceCard(String type, String description, ChanceDeck chanceDeck) {
         this.type = type;
         this.description = description;
-        this.guiLogic = guiLogic;
     }
 
     public String getDescription(){
@@ -26,6 +24,6 @@ public abstract class ChanceCard {
         return type;
     }
     
-    public abstract void applyEffect(Player p);
+    public abstract int applyEffect(Player p);
     
 }

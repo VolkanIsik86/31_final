@@ -19,10 +19,10 @@ public class Board {
 /**
 Creates a board this constructor also create an ownablesquare array to manage them.
  */
-    public void makeBoard(TxtReader squareTxt, TxtReader landedOnTxt, TxtReader cardsTxt, GUILogic guiLogic){
+    public void makeBoard(TxtReader squareTxt, TxtReader landedOnTxt, TxtReader cardsTxt){
         
         //Chancefelterne skal bruge chancedækket i deres landOn, samtidig skal chancedækket bruge boardet, til at rykke spillerne
-        ChanceDeck chanceDeck = new ChanceDeck(guiLogic, cardsTxt, this);
+        ChanceDeck chanceDeck = new ChanceDeck(cardsTxt, this);
     
         SIZE = squareTxt.getN_LINES();
         squares = new Square[SIZE];

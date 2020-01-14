@@ -1,23 +1,25 @@
 package controllers;
 
 import domain.Board;
+import domain.Die;
 import domain.Player;
 import domain.PlayerList;
 import services.TxtReader;
 
 public class Game {
 
-    private GUILogic guiLogic = new GUILogic();
-    private final Board board = new Board();
-    private final TurnLogic turnLogic = new TurnLogic();
-    private PlayerList playerList;
+    protected GUILogic guiLogic;
+    protected final Board board = new Board();
+    protected TurnLogic turnLogic;
+    protected PlayerList playerList;
+    private final int STARTBALANCE = 30000;
 
-    private String looser = "null";
-    private TxtReader turnLogicTxt;
-    private TxtReader squaresTxt;
-    private TxtReader cardsTxt;
+    protected String looser = "null";
+    protected TxtReader turnLogicTxt;
+    protected TxtReader squaresTxt;
+    protected TxtReader cardsTxt;
     private TxtReader winnerTxt;
-    private TxtReader guiTxt;
+    protected TxtReader guiTxt;
 
     public void playGame() {
 
@@ -132,34 +134,33 @@ public class Game {
 
     }
 
-    private void initGUILogic() {
+    protected void initGUILogic() {
 
         //Includes the initialization of the GUI itself
-        guiLogic = new GUILogic();
-        guiLogic.init(squaresTxt, guiTxt);
+        guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
     }
 
     private void initBoard() {
 
         //Includes the initialization of the chance deck
-        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt, guiLogic);
+        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt);
    }
    
-   private void initTurnLogic(){
-       turnLogic.init(board, guiLogic, turnLogicTxt, cardsTxt);
+   protected void initTurnLogic(){
+       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die());
    }
    
-   private void initPlayerList(){
+   protected void initPlayerList(){
        
        //Creates a playerList and adds the players from guiLogic
        playerList = new PlayerList(board.getSquare(0), guiLogic);
        String[] playerNames = guiLogic.getPlayerNames();
 
        for (int i = 0; i < playerNames.length; i++) {
-           playerList.addPlayer(playerNames[i], guiLogic.getSTARTBALANCE());
+           playerList.addPlayer(playerNames[i], STARTBALANCE);
        }
-       
    }
+   
 }
 
 

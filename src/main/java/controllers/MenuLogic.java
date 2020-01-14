@@ -2,6 +2,8 @@ package controllers;
 
 import domain.Board;
 import domain.Player;
+import domain.squares.OwnableSquare;
+import domain.squares.PropertySquare;
 import services.TxtReader;
 
 public class MenuLogic {
@@ -75,13 +77,17 @@ public class MenuLogic {
         
     }
     
-    public String displayManagePropertyMenu(){
-    
-        String[] managePropertyMenuItems = new String[]{turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
-    
+    public String displayManagePropertyMenu(OwnableSquare squareToManage){
+        String[] managePropertyMenuItems;
+
+        if(squareToManage.isRealEstate()) {
+           managePropertyMenuItems = new String[]{turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+        }
+        else{
+            managePropertyMenuItems = new String[]{turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+        }
         //Display manage properies menu and return choice
         return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), managePropertyMenuItems);
-        
     }
     
     public String displayJailMenu(Player player){

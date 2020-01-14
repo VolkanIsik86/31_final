@@ -12,19 +12,20 @@ public class TurnLogic {
     protected TxtReader turnLogicTxt;
     protected TxtReader cardsTxt;
     ChanceDeck chanceDeck;
-    protected final Die die = new Die();
+    protected Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
 
-    public void init(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt){
+    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die){
+        this.die = die;
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
-        chanceDeck = new ChanceDeck(guiLogic, cardsTxt, board);
+        chanceDeck = new ChanceDeck(cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
     
@@ -221,9 +222,14 @@ public class TurnLogic {
         if (message.charAt(message.length() - 1) == 'S') {
             ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
             guiLogic.showChanceCard(pulledCard.getDescription());
-            pulledCard.applyEffect(player);
-            if(pulledCard.getType().equalsIgnoreCase("move")){
+            int tempValue = pulledCard.applyEffect(player);
+            String tempCard = pulledCard.getType();
+            if(tempCard.equalsIgnoreCase("move")){
                 doLandedOnTurn(player);
+                guiLogic.movePiece(player, tempValue);
+            }
+            if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& tempValue > player.getBalance()){
+                guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
             message = message.substring(0, message.length() - 1);
         }
@@ -289,22 +295,19 @@ public class TurnLogic {
         //Show property information in the middle of board
         OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
-        
-        //Prompt player to choose something to do with that field
-        String choice = menuLogic.displayManagePropertyMenu();
-        
-        if (choice.equals(turnLogicTxt.getLine("House")))
-            board.getPlayerValue(player);
-            housePrice = 0;
-            if(board.searchColors(board.getOwnableSquareFromName(selection)) == 0){
+            //Prompt player to choose something to do with that field
+            String choice = menuLogic.displayManagePropertyMenu(squareToManage);
+            if (choice.equals(turnLogicTxt.getLine("House")))
+                housePrice = 0;
+                board.getPlayerValue(player);
+            if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
                 buildHouse(board.getPropertyFromName(selection));
-            }
-            else{
+            } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("attempt to buy"));
             }
-            if(player.attemptToPay(housePrice)){
-            player.withdraw(housePrice);
-            guiLogic.setPlayerBalance(player);
+            if (player.attemptToPay(housePrice)) {
+                player.withdraw(housePrice);
+                guiLogic.setPlayerBalance(player);
             }
     }
 

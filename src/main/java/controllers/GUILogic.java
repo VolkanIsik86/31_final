@@ -17,7 +17,6 @@ public class GUILogic {
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
     private final int N_FIELDS = 40;
-    protected int STARTBALANCE = 30000;
     private final int PASSEDSTART = 4000;
     protected GUI_Field[] fields;
     protected GUI gui;
@@ -26,10 +25,10 @@ public class GUILogic {
     protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN,Color.YELLOW,Color.MAGENTA};
     protected TxtReader guiTxt;
     
-    public void init(TxtReader squaresTxt, TxtReader guiTxt){
+    public GUILogic(TxtReader squaresTxt, TxtReader guiTxt, int startbalance){
         this.guiTxt = guiTxt;
         makeBoard(squaresTxt);
-        makeUsers();
+        makeUsers(startbalance);
     }
 
     /**
@@ -55,7 +54,7 @@ public class GUILogic {
      * Adds player to the Graphical User Interface (GUI).
      * @param numberofPlayers Adds quantity of player into the GUI.
      */
-    protected void addPlayers(int numberofPlayers) {
+    protected void addPlayers(int numberofPlayers, int startbalance) {
         
         //Does the same for all player that is added into the game.
         for (int i = 0; i < numberofPlayers; i++) {
@@ -97,7 +96,7 @@ public class GUILogic {
 
 
             // Constructs a player.
-            GUI_Player player = new GUI_Player(name, STARTBALANCE, car);
+            GUI_Player player = new GUI_Player(name, startbalance, car);
 
             //Adds player to Player array.
             GUI_Player[] temp2 = new GUI_Player[guiPlayers.length + 1];
@@ -119,13 +118,13 @@ public class GUILogic {
      * Define and creates players for the game and uses addPlayer method number of players.
      *
      */
-    protected void makeUsers() {
-        //todo skal ændres til at fungere på alle sprog1
+    protected void makeUsers(int startbalance) {
+        
         String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3","4","5","6");
         int NumberOfPlayers = Integer.parseInt(nrPlayers);
         
         String names[] = new String[NumberOfPlayers];
-        addPlayers(NumberOfPlayers);
+        addPlayers(NumberOfPlayers, startbalance);
 
     }
 
@@ -340,10 +339,6 @@ public class GUILogic {
         gui.close();
     }
     
-    public int getSTARTBALANCE(){
-        return STARTBALANCE;
-    }
-    
     public String getUserButtonPressed(String msg, String... buttons){
         return gui.getUserButtonPressed(msg, buttons);
     }
@@ -366,6 +361,11 @@ public class GUILogic {
 
         }
 
+    }
+    
+    protected void placePlayer(Player player, int index){
+        fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
+        fields[index].setCar(getGUIPlayer(player), true);
     }
     
 
