@@ -10,7 +10,6 @@ public abstract class OwnableSquare extends Square {
     private String color;
     private int price;
     private final int PLEDGE_VALUE;
-    private String message;
     private int rent;
     protected Board board;
     protected Player owner;
@@ -76,6 +75,7 @@ public abstract class OwnableSquare extends Square {
         p.withdraw(rent);
     }
 
+
     //Pays the amount for a given property
     protected void payPrice(Player p) {
         p.withdraw(this.getPrice());
@@ -101,6 +101,7 @@ public abstract class OwnableSquare extends Square {
 
     public String landedOn(Player player) {
 
+        String message;
         if (this.getOwner() != null && this.getOwner().equals(player)) {
 
             message = "Owned by yourself " + this.type + " square";

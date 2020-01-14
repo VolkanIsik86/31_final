@@ -1,6 +1,5 @@
 package domain.chanceCards;
 
-import controllers.GUILogic;
 import domain.Board;
 import domain.ChanceDeck;
 import domain.Player;
@@ -19,9 +18,9 @@ public class PayHouseCard extends ChanceCard {
         this.amount = amount;
         this.cardsTxt = cardsTxt;
         this.board = board;
-
     }
 
+    //Making an array of a players owned squares
     private OwnableSquare[] getRealEstateSquares(Player player) {
         if (board.getOwnables().length != 0) {
             OwnableSquare[] temp = new OwnableSquare[board.getOwnables().length];
@@ -36,7 +35,7 @@ public class PayHouseCard extends ChanceCard {
         }
         return null;
     }
-
+    //Calculates the amount a user has to pay, for each house and/or hotels on players ownableSquares
     public int applyEffect(Player player) {
         int tempHouses = 0;
         int tempHotels = 0;
@@ -48,6 +47,7 @@ public class PayHouseCard extends ChanceCard {
             tempAmount = 2300;
         }
         OwnableSquare[] realEstateSquares = getRealEstateSquares(player);
+        assert realEstateSquares != null;
         for (OwnableSquare realEstateSquare : realEstateSquares) {
             int houseCount = realEstateSquare.getHouseCount();
             if (houseCount < 5) {
@@ -57,10 +57,10 @@ public class PayHouseCard extends ChanceCard {
             }
         }
         int toPay = tempHouses * amount + tempHotels * tempAmount;
-        if(player.attemptToPay(toPay)){
+        if (player.attemptToPay(toPay)) {
             player.withdraw(toPay);
             return 0;
-        }else{
+        } else {
             return toPay;
         }
     }
