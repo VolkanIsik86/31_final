@@ -18,6 +18,7 @@ public class TurnLogic {
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
+    private PlayerList playerList;
 
     public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die){
         this.die = die;
@@ -28,9 +29,10 @@ public class TurnLogic {
         chanceDeck = new ChanceDeck(cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
-    
+
     //todo hmm private..?
     String playRound(PlayerList playerList) {
+        this.playerList = playerList;
 
         looser = "none";
 
@@ -221,6 +223,9 @@ public class TurnLogic {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
+                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
+                    auctioning(((OwnableSquare) nextLocation),playerList,player );
+                }
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
             }
@@ -333,6 +338,48 @@ public class TurnLogic {
         int houses = square.getHouseCount();
         Square realSquare = board.getSquareFromName(square.getName());
         guiLogic.updateHouses(realSquare.getIndex(),houses);
+    }
+
+    public void auctioning(OwnableSquare square , PlayerList playerList, Player player){
+        int bid = 0;
+        int tempo = 0;
+        int count;
+        Player auctionWinner = null;
+        Player[] biddingPlayers = new Player[playerList.getPlayers().length-1];
+        for (int i = 0; i < playerList.getPlayers().length ; i++) {
+            if(!(player.getName().equals(playerList.getPlayers()[i].getName()))){
+                biddingPlayers[tempo] = playerList.getPlayers()[i];
+                tempo++;
+            }
+        }
+        tempo =0;
+        count = biddingPlayers.length;
+        while (count!=0) {
+            for (int i = 0; i <biddingPlayers.length ; i++) {
+                String bided = menuLogic.auctionMenu(biddingPlayers[i]);
+                Player[] temp = new Player[biddingPlayers.length - 1];
+                if (bided.equals("pass")){
+                    for (int j = 0; j < biddingPlayers.length ; j++) {
+                        if(!(biddingPlayers[i].getName().equals(biddingPlayers[j].getName()))){
+                            temp[tempo] = biddingPlayers[j];
+                            tempo++;
+                        }
+                    }
+                    count--;
+                    biddingPlayers=temp;
+                }
+                else{
+                    if(count == 1){
+                        count--;
+                    }
+                    bid = Integer.parseInt(bided);
+                    auctionWinner = biddingPlayers[i];
+                }
+            }
+        }
+        System.out.println(auctionWinner.getName());
+        square.setOwner(auctionWinner);
+        auctionWinner.withdraw(bid);
     }
 
     private void updateGUI(Player player) {
