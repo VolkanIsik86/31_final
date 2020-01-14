@@ -8,12 +8,13 @@ import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import services.TxtReader;
+
 import java.awt.*;
 import java.io.IOException;
 
 
 public class GUILogic {
-    
+
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
     private final int N_FIELDS = 40;
@@ -22,10 +23,10 @@ public class GUILogic {
     protected GUI gui;
     protected String[] names = new String[0];
     protected GUI_Player[] guiPlayers = new GUI_Player[0];
-    protected final Color[] carcolor = {Color.RED,Color.BLUE,Color.WHITE,Color.GREEN,Color.YELLOW,Color.MAGENTA};
+    protected final Color[] carcolor = {Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.WHITE};
     protected TxtReader guiTxt;
-    
-    public GUILogic(TxtReader squaresTxt, TxtReader guiTxt, int startbalance){
+
+    public GUILogic(TxtReader squaresTxt, TxtReader guiTxt, int startbalance) {
         this.guiTxt = guiTxt;
         makeBoard(squaresTxt);
         makeUsers(startbalance);
@@ -33,7 +34,6 @@ public class GUILogic {
 
     /**
      * Creates an array of fields for the game and initialize it.
-     *
      */
     private void makeBoard(TxtReader squaresTxt) {
         gui = new GUI();
@@ -52,63 +52,58 @@ public class GUILogic {
 
     /**
      * Adds player to the Graphical User Interface (GUI).
+     *
      * @param numberofPlayers Adds quantity of player into the GUI.
      */
     protected void addPlayers(int numberofPlayers, int startbalance) {
-        
+
         //Does the same for all player that is added into the game.
         for (int i = 0; i < numberofPlayers; i++) {
-            
+
             //Extend players with 1 quantity.
             String[] temp = new String[names.length + 1];
 
             for (int j = 0; j < names.length; j++) {
-                temp[j]=names[j];
+                temp[j] = names[j];
             }
             names = temp;
 
             //Asks player to write their name.
             String name = gui.getUserString(guiTxt.getLine("Enter name"));
 
-            while (name.length() >= 8 || name.length()<= 1) {
+            while (name.length() >= 8 || name.length() <= 1) {
                 name = gui.getUserString(guiTxt.getLine("length"));
             }
-                for (String samename : names) {
-                    boolean sameNameTest = true;
-                    while (sameNameTest) {
+            for (String samename : names) {
+                boolean sameNameTest = true;
+                while (sameNameTest) {
                     if (name.equals(samename)) {
                         name = gui.getUserString(guiTxt.getLine("Already in use"));
-                    }
-                    else
+                    } else
                         sameNameTest = false;
 
                 }
             }
-
             //Crates an array of player names.
-
             names[i] = name;
-            
+
             //Constructs figures for the players that can move on the game board. (Inspired From The teacher Daniel Kolditz Rubin-Grøn in class demonstration.)
             GUI_Car car = new GUI_Car(carcolor[i], carcolor[i], GUI_Car.Type.values()[1], GUI_Car.Pattern.values()[i]);
-            
-            //Predefine player balance at the start of the game
-
 
             // Constructs a player.
             GUI_Player player = new GUI_Player(name, startbalance, car);
 
             //Adds player to Player array.
-            GUI_Player[] temp2 = new GUI_Player[guiPlayers.length + 1];
+            GUI_Player[] PArray = new GUI_Player[guiPlayers.length + 1];
             for (int j = 0; j < guiPlayers.length; j++) {
-                temp2[j] = guiPlayers[j];
+                PArray[j] = guiPlayers[j];
             }
-            guiPlayers = temp2;
+            guiPlayers = PArray;
             guiPlayers[i] = player;
-            
+
             //Adds player on to the board.
             gui.addPlayer(player);
-            
+
             //Places the figures to start point.
             fields[0].setCar(player, true);
         }
@@ -116,37 +111,32 @@ public class GUILogic {
 
     /**
      * Define and creates players for the game and uses addPlayer method number of players.
-     *
      */
     protected void makeUsers(int startbalance) {
-        
-        String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3","4","5","6");
+        String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3", "4", "5", "6");
         int NumberOfPlayers = Integer.parseInt(nrPlayers);
-        
         String names[] = new String[NumberOfPlayers];
         addPlayers(NumberOfPlayers, startbalance);
-
     }
-
 
     /**
      * Moves players figure around the board.
      *
      * @param player Figure of this player will be moved.
-     * @param moves Count of fields that figure moves(face value of dice).
+     * @param moves  Count of fields that figure moves(face value of dice).
      */
     public void movePiece(Player player, int moves) {
-        
+
         int currentField = player.getLastLocation().getIndex();
         GUI_Player guiPlayer = getGUIPlayer(player);
-        
         int movesDone = 0; //Bruges til at holde styr på antal moves udført
         if (moves != 0) {
-            
+
             //Controls figure position + move and board length.
+            //Tells if the play passes the finish line, depending on "N_FIELDS"(40).
             int DELAY = 200;
             if (currentField + moves >= N_FIELDS) {
-                
+
                 //Runs fields until the start  point.
                 for (int i = 1; currentField + i < N_FIELDS; i++) {
                     moveRest(guiPlayer, currentField, i);
@@ -154,8 +144,8 @@ public class GUILogic {
                     sleep(DELAY);
 
 
-
                 }
+                //Pays the player 4000 for passing "Start"
                 currentField = passStart(guiPlayer);
                 passedStart(player);
                 movesDone++;
@@ -168,12 +158,17 @@ public class GUILogic {
                 currentField = moveOnce(guiPlayer, currentField);
                 sleep(DELAY);
             }
-            
+
         } else {
             fields[0].setCar(guiPlayer, true);
         }
     }
 
+    /**
+     * Deposits 4000 into players balance.
+     *
+     * @param player Player figure needs to be moved.
+     */
     private void passedStart(Player player) {
         player.deposit(PASSEDSTART);
         setPlayerBalance(player);
@@ -181,8 +176,9 @@ public class GUILogic {
 
     /**
      * Moves player to the end field of the board.
-     * @param player Player figure needs to be moved.
-     * @param field Field number that figure stands on.
+     *
+     * @param player    Player figure needs to be moved.
+     * @param field     Field number that figure stands on.
      * @param increment Counts moves that player has done.
      */
     private void moveRest(GUI_Player player, int field, int increment) {
@@ -220,39 +216,40 @@ public class GUILogic {
 
     /**
      * Places players figure to jail.
+     *
      * @param player
      */
-    public void moveToJail(Player player){
-        
+    public void moveToJail(Player player) {
+
         GUI_Player guiPlayer = getGUIPlayer(player);
-        
+
         //Remove player from current field
-        fields[player.getLastLocation().getIndex()].setCar(guiPlayer,false);
-        
+        fields[player.getLastLocation().getIndex()].setCar(guiPlayer, false);
+
         //Place player on jail
-        fields[10].setCar(guiPlayer,true);
+        fields[10].setCar(guiPlayer, true);
     }
 
 
     /**
      * Changes Font color of a field.
+     *
      * @param player New owner of the field.
      */
-    public void setSquareOwner(Player player){
+    public void setSquareOwner(Player player) {
         fields[player.getLocation().getIndex()].setSubText(player.getName());
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
-        try{
+        try {
             ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor);
+        } catch (ClassCastException e) {
+            System.out.println(e);
         }
-        catch(ClassCastException e){
-
-        }
-         //todo sæt så det her virker igen
     }
 
 
     /**
      * GUI of the game can be interacted from here.
+     *
      * @return GUI that is initialized.
      */
     public GUI getGui() {
@@ -261,16 +258,17 @@ public class GUILogic {
 
     /**
      * Synchronize backend player with the GUI player.
+     *
      * @param player Backend player that need to be initialized.
      * @return NULL
      */
     private GUI_Player getGUIPlayer(Player player) {
-        
+
         String playerName = player.getName();
-        
+
         //For all GUIPlayers
         for (GUI_Player guiPlayer : guiPlayers) {
-            
+
             //If names match
             if (guiPlayer.getName().equals(playerName)) {
                 return guiPlayer;
@@ -282,33 +280,37 @@ public class GUILogic {
 
     /**
      * Displays Die on the GUI.
+     *
      * @param faceValue at the backend is showed on GUI.
      */
-    public void displayDie(int faceValue, int faceValue2){
-        gui.setDice(faceValue,faceValue2);
+    public void displayDie(int faceValue, int faceValue2) {
+        gui.setDice(faceValue, faceValue2);
     }
 
     /**
      * Shows chance cards middle og the board.
+     *
      * @param txt is the chance card description that is showed.
      */
-    public void showChanceCard(String txt){
+    public void showChanceCard(String txt) {
         gui.displayChanceCard(txt);
     }
 
     /**
      * Names of all players who is created.
+     *
      * @return names of the players.
      */
-    public String[] getPlayerNames(){
+    public String[] getPlayerNames() {
         return names;
     }
 
     /**
      * Sleep time is initialized for more understandable game.(Stops figures to teleport.)
+     *
      * @param n Sleep time in miliseconds.
      */
-    private void sleep(long n){
+    private void sleep(long n) {
         try {
             Thread.sleep(n);
         } catch (InterruptedException e) {
@@ -319,55 +321,65 @@ public class GUILogic {
 
     /**
      * Configures players balances for the game.
+     *
      * @param player whos balance will be configured.
      */
-    public void setPlayerBalance(Player player){
-        
+    public void setPlayerBalance(Player player) {
         GUI_Player guiPlayer = getGUIPlayer(player);
         guiPlayer.setBalance(player.getBalance());
     }
 
     /**
      * Displays message on GUI.
+     *
      * @param message is the message that will be showed.
      */
-    public void showMessage(String message){
+    public void showMessage(String message) {
         gui.showMessage(message);
     }
-    
-    public void close(){
+
+    public void close() {
         gui.close();
     }
-    
-    public String getUserButtonPressed(String msg, String... buttons){
+
+    public String getUserButtonPressed(String msg, String... buttons) {
         return gui.getUserButtonPressed(msg, buttons);
     }
-    
-    public String getUserSelection(String msg, String... options){
+
+    public String getUserSelection(String msg, String... options) {
         return gui.getUserSelection(msg, options);
     }
 
-    public void updateHouses(int square,int houses){
-        try{
-            if (houses < 5){
+    /**
+     * Updates the house, if user buys more than 4.
+     *
+     * @param square    which square need to be updated visually
+     * @param houses    Needs the variable, to check if they need a hotel instead of 4 houses
+     */
+    public void updateHouses(int square, int houses) {
+        try {
+            if (houses < 5) {
                 ((GUI_Street) fields[square]).setHouses(houses);
-            }
-            else{
+            } else {
                 ((GUI_Street) fields[square]).setHotel(true);
             }
 
-        }
-        catch(ClassCastException e){
-
+        } catch (ClassCastException e) {
+            System.out.println(e);
         }
 
     }
-    
-    protected void placePlayer(Player player, int index){
+    /**
+     * Moves the player to the correct location on the GUI
+     *
+     * @param player   Which player needs to be moved
+     * @param index    Moves the player to the correct index on the board
+     */
+    protected void placePlayer(Player player, int index) {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
         fields[index].setCar(getGUIPlayer(player), true);
     }
-    
+
 
 }
 
