@@ -66,6 +66,10 @@ public abstract class OwnableSquare extends Square {
         this.color = color;
     }
 
+    public abstract boolean isRealEstate();
+
+    public abstract int getHouseCount();
+
     //Pay rent logic: withdraws balance from player
     protected void payRent(Player p) {
         p.withdraw(rent);
@@ -83,6 +87,12 @@ public abstract class OwnableSquare extends Square {
     public void purchase(Player p) {
         this.setOwner(p);
         payPrice(p);
+    }
+
+    public int getValue(){
+        int value = 0;
+        value = this.price + value;
+        return value;
     }
 
     public abstract String getInfo();

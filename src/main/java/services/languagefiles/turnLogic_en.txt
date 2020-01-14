@@ -8,7 +8,9 @@ Does not have fonds for rent,,You do not have the funds to pay rent, the game en
 Does not have fonds to buy,,You do not have the funds to purchase the property, the game ends
 Does not have fonds to pay,,You do not have the funds to pay this expense, the game ends
 Press OK,,Press OK when you have read the card
-In jail pay now,,The previous turn you went to jail. You must pay 1M to get out this turn
+In jail,,The previous turn you went to jail. You therefor now have 3 options
+Jail buy out,,Pay 1000kr.
+Jail roll dice,,Throw the dice
 it is,,It is
 s,,s turn.
 Choose option,,Choose a menu option

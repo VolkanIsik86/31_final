@@ -12,8 +12,17 @@ public class FactorySquare extends OwnableSquare{
     public FactorySquare(String name, int index, TxtReader landedOnTxt, int price, String type , String color, Board board) {
         super(name, index, landedOnTxt, price, type , color, board);
     }
-    
-    
+
+    @Override
+    public boolean isRealEstate(){
+        return false;
+    }
+
+    @Override
+    public int getHouseCount(){
+        return 0;
+    }
+
     @Override
     public void updateRent(int lastRoll) {
         

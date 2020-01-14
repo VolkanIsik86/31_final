@@ -2,6 +2,8 @@ package controllers;
 
 import domain.Board;
 import domain.Player;
+import domain.squares.OwnableSquare;
+import domain.squares.PropertySquare;
 import services.TxtReader;
 
 public class MenuLogic {
@@ -68,19 +70,42 @@ public class MenuLogic {
     
     public String displayBuyNotBuyMenu(){
         
-        String[] BuyNotBuy = new String[]{turnLogicTxt.getLine("buy"),turnLogicTxt.getLine("dont buy")};
+        String[] BuyNotBuyOptions = new String[]{turnLogicTxt.getLine("buy"),turnLogicTxt.getLine("dont buy")};
     
         //Display BuyNotBuy menu and return choice
-        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("buy choice"), BuyNotBuy);
+        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("buy choice"), BuyNotBuyOptions);
         
     }
     
-    public String displayManagePropertyMenu(){
+    public String displayManagePropertyMenu(OwnableSquare squareToManage){
+        String[] managePropertyMenuItems;
+
+        if(squareToManage.isRealEstate()) {
+           managePropertyMenuItems = new String[]{turnLogicTxt.getLine("House"), turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+        }
+        else{
+            managePropertyMenuItems = new String[]{turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+        }
+        //Display manage properies menu and return choice
+        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), managePropertyMenuItems);
+    }
     
-        String[] options = new String[]{turnLogicTxt.getLine("House") + turnLogicTxt.getLine("Pledge"), turnLogicTxt.getLine("Trade"), turnLogicTxt.getLine("Back")};
+    public String displayJailMenu(Player player){
         
-        return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), options);
+        String[] jailMenuItems;
+        String greeting;
         
+        if(player.getBalance() >= 1000) {
+            greeting = turnLogicTxt.getLine("In jail 2 options");
+            jailMenuItems = new String []{turnLogicTxt.getLine("Jail buy out"), turnLogicTxt.getLine("Jail roll dice")};
+            
+        } else {
+            greeting = turnLogicTxt.getLine("In jail 1 option");
+            jailMenuItems = new String []{turnLogicTxt.getLine("Jail roll dice")};
+        }
+        
+        //Display jail menu and return choice
+        return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
 
 }

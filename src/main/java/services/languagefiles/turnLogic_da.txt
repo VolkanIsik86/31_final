@@ -10,12 +10,18 @@ Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal d
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
 GoToJail square,,Du er landet på "Gå i fængsel" og rykkes derfor i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
-Tax square,, Du er landet på et skattefælt, og skal derfor betale skat
+Tax square,, Du er landet på et skattefelt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og spillet stopper derfor
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og spillet er stopper derfor
 Press OK,,Tryk OK når du har læst chancekortet
-In jail pay now,,Sidste tur kom du i fængsel. Du skal derfor betale 1M for at komme ud denne tur
+In jail 2 options,,Du er i fængsel. Du skal nu derfor vælge, hvad du vil gøre, for at komme ud
+In jail 1 option,,Du er i fængsel. Da du ikke har råd til at betale dig ud, er du nødt til at slå med terningerne
+Forced to buy out of jail,,Da du forgæves har forsøgt at komme ud af fængslet med terningerne 3 gange nu, er du tvunget til at betale.
+Jail buy out,,Betal 1000kr.
+Jail roll dice,,Kast terningerne
+Out of jail,,Du er nu ude af fængslet
+2 identical,,Du har slået to ens og får derfor en et kast til. Tryk OK for at kaste
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt
