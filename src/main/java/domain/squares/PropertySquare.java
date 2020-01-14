@@ -33,7 +33,14 @@ public class PropertySquare extends OwnableSquare {
     public int[] getRentLadder(){
         return rentLadder;
     }
-    public int getHouses(){
+
+    @Override
+    public boolean isRealEstate(){
+        return true;
+    }
+
+    @Override
+    public int getHouseCount(){
         return numberOfHouse;
     }
 

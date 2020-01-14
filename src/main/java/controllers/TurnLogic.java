@@ -30,13 +30,13 @@ public class TurnLogic {
     
     //todo hmm private..?
     String playRound(PlayerList playerList) {
-        
+
         looser = "none";
-        
+
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
-            
+
             Player currentPlayer = playerList.getPlayer(i);
-  
+
             //If player is in jail
             if (currentPlayer.getJail()) {
                 takeJailTurn(currentPlayer);
@@ -46,10 +46,10 @@ public class TurnLogic {
                 if (currentPlayer.getLost()) break;
             }
         }
-        
+
         return looser;
     }
-    
+
     public void takeTurn(Player player) {
 
         boolean endTurn = false;
@@ -57,7 +57,7 @@ public class TurnLogic {
 
         //Start of user menu loop
         while(endTurn == false){
-            
+
             if (player.getLost()) break;
 
             //Display start menu
@@ -65,123 +65,124 @@ public class TurnLogic {
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
-                
+
                 //Do turn as long as player gets two identical and has not lost
                 do{
                     doTurn(player);
-                    
+
                     if(roll1 == roll2 && player.getLost() != true){
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                     }
-                    
+
                 } while(roll1 == roll2 && player.getLost() != true);
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
-                
+
             } else if (choice.equals(turnLogicTxt.getLine("End"))) {
                 endTurn = true;
             }
         }
         hasThrown = false;
-    
+
     }
 
     private void takeJailTurn(Player currentPlayer){
-        
+
         //todo tjek tekstfilen
-        
+
         //Displays the proper jail menu depending on player funds and returns choice
         String choice = menuLogic.displayJailMenu(currentPlayer);
-        
+
         //If player chooses to buy out
         if(choice.equals(turnLogicTxt.getLine("Jail buy out"))){
-           
+
             buyPlayerOutOfJail(currentPlayer);
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
             takeTurn(currentPlayer);
-            
+
         //If player chooses to throw the dice
         } else {
-        
+
             //Keep track on number of attempts
             currentPlayer.incrementAttemptsToGetOutOfJail();
-            
+
             //Roll the dice
             rollDice();
             currentPlayer.setLastRoll((rollSum));
             guiLogic.displayDie(roll1, roll2);
-            
+
             //If 2 identical
             if(roll1 == roll2){
-                
+
                 //Free the player
                 currentPlayer.setJail(false);
                 currentPlayer.setAttemptsToGetOutOfJail(0);
                 guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
-    
+
                 //Do turn according to previous roll
                 doJailTurn(currentPlayer);
-                
+
                 //While player gets two identical and has not lost
                 while(roll1 == roll2 && currentPlayer.getLost() != true){
                     guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                     doTurn(currentPlayer);
                 }
-                
+
                 //Display menu
                 takeTurn(currentPlayer);
-                
+
             //If player if out of attempts but can pay
             } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3 && currentPlayer.getBalance() >= 1000){
-                
+
                 //Buy player out and take a turn
                 guiLogic.showMessage("Forced to buy out of jail");
                 buyPlayerOutOfJail(currentPlayer);
                 takeTurn(currentPlayer);
-                
+
             //If player if out of attempts but cant pay
             } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3){
-                
+
                 //Player has lost
                 currentPlayer.setLost(true);
                 looser = currentPlayer.getName();
             }
         }
     }
-    
+
     private void doTurn(Player player){
         hasThrown = true;
-        
+
         //Roll the dice
         rollDice();
         player.setLastRoll(rollSum);
         guiLogic.displayDie(roll1, roll2);
-    
+
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, rollSum);
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, rollSum);
-    
+
         //Apply effect of landed on square to player
         doLandedOnTurn(player);
     }
-    
+
     //Overloading method so it can be used when in jail
     private void doJailTurn(Player player){
         hasThrown = true;
-        
+
         guiLogic.displayDie(roll1, roll2);
-        
+        guiLogic.showChanceCard("");
+
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, rollSum);
         player.setLocation(nextLocation);
         guiLogic.movePiece(player, rollSum);
-       
+
         //Apply effect of landed on square to player
         doLandedOnTurn(player);
     }
-    
+
     private void buyPlayerOutOfJail(Player currentPlayer){
         currentPlayer.withdraw(1000);
         guiLogic.setPlayerBalance(currentPlayer);
@@ -199,10 +200,10 @@ public class TurnLogic {
     }
 
     public void doLandedOnTurn(Player player){
-    
+
         Square nextLocation = player.getLocation();
         String message = nextLocation.landedOn(player);
-        
+
         //checker om en spiller har købt en grund. Hvis vedkommende har, så opdaterer GUILogic til at vise den nye ejer af grunden.
         if (message.charAt(message.length() - 1) == 'T') {
             if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
@@ -246,9 +247,9 @@ public class TurnLogic {
         }
 
         guiLogic.setPlayerBalance(player);
-        
+
     }
-    
+
     private void rollDice() {
         die.roll();
         roll1 = die.getFaceValue();
@@ -279,7 +280,7 @@ public class TurnLogic {
         }
         guiLogic.setPlayerBalance(p);
     }
-    
+
     private void manageProperties(Player player) {
 
         //Prompt player to choose a field
@@ -311,7 +312,7 @@ public class TurnLogic {
         if (housePrice == 0) {
             guiLogic.showMessage(turnLogicTxt.getLine("no more house"));
         }
-        int houses = square.getHouses();
+        int houses = square.getHouseCount();
         Square realSquare = board.getSquareFromName(square.getName());
         guiLogic.updateHouses(realSquare.getIndex(),houses);
     }
