@@ -68,6 +68,7 @@ public abstract class OwnableSquare extends Square {
 
     public abstract boolean isRealEstate();
 
+
     public abstract int getHouseCount();
 
     //Pay rent logic: withdraws balance from player
@@ -75,6 +76,7 @@ public abstract class OwnableSquare extends Square {
         p.withdraw(rent);
     }
 
+    //Pays the amount for a given property
     protected void payPrice(Player p) {
         p.withdraw(this.getPrice());
     }
@@ -89,7 +91,7 @@ public abstract class OwnableSquare extends Square {
         payPrice(p);
     }
 
-    public int getValue(){
+    public int getValue() {
         int value = 0;
         value = this.price + value;
         return value;
@@ -107,19 +109,9 @@ public abstract class OwnableSquare extends Square {
 
         //If property is not owned
         if (owner == null) {
-            
+
             message = "Not owned " + this.type + " square";
             message = message + "T";
-
-            //If player has the requested fonds
-//            if (player.attemptToPurchase(this)){
-//
-//            }
-//
-//            //If player doesn't have the requested fonds
-//            else {
-//                message = "Does not have fonds to buy";
-//            }
         }
 
         //If property is owned
@@ -137,7 +129,6 @@ public abstract class OwnableSquare extends Square {
             //If player doesn't have the requested fonds
             else {
                 player.setBalance(0);
-
                 message = "Does not have fonds for rent";
             }
 
