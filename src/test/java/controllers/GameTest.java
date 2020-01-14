@@ -8,24 +8,26 @@ public class GameTest {
         
         //Kommer i fængsel. Slår med terningerne 3 gange og kommer ikke ud. Kommer i fængsel med to ens. Har ikke råd til at betale sig ud.
         new GameStub(new int[]{
+        
+                3,3,1,1,1,0,
+                3,3,2,5
                 
-                1,2,1,2,1,2,
-                1,2,1,2,1,2,
-                1,2,1,2,1,2,
-                1,2,1,2,1,2,
-                1,2,1,2,1,2,
                 
-        }, new int[]{6700, 30000, 30000}, new int[]{24,0,0}).playGame();
+        }, new int[]{30000, 30000, 30000}, new int[]{0,0,0}).playGame();
     }
     
-    //Kommer i fængsel. Slår med terningerne 3 gange og kommer ikke ud. Kommer i fængsel med to ens. Har ikke råd til at betale sig ud.
-    //                1,1,
-    //                1,2,1,2,1,2,
-    //                1,2,1,2,1,2,
-    //                1,2,1,2,1,2,
-    //                1,2,
-    //                9,11,1,2,
-    //                1,2,1,2,1,2,
-    //                1,2,1,2,1,2,
+//    //Kommer i fængsel. Slår med terningerne 3 gange og kommer ikke ud. Kommer i fængsel med to ens. Har ikke råd til at betale sig ud.
+//        new GameStub(new int[]{
+//
+//        1,1,
+//                1,2,1,2,1,2,
+//                1,2,1,2,1,2,
+//                1,2,1,2,1,2,
+//                1,2,
+//                9,11,1,2,
+//                1,2,1,2,1,2,
+//                1,2,1,2,1,2,
+//
+//    }, new int[]{6700, 30000, 30000}, new int[]{24,0,0}).playGame();
     
 }

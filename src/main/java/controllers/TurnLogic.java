@@ -337,6 +337,5 @@ public class TurnLogic {
     private void updateGUI(Player player) {
 
     }
-
-
+    
 }

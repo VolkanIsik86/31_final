@@ -107,8 +107,7 @@ public abstract class OwnableSquare extends Square {
 
         //If property is not owned
         if (owner == null) {
-
-            //todo hvorfor defineres meassage på ny her? -Mikkel
+            
             message = "Not owned " + this.type + " square";
             message = message + "T";
 
