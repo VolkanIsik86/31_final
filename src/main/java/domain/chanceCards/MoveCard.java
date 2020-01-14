@@ -11,18 +11,19 @@ public class MoveCard extends ChanceCard {
     protected final int moves;
     protected final Board board;
     
-    public MoveCard(String type, String description, GUILogic guiLogic, ChanceDeck chanceDeck, int moves, Board board) {
-        super(type, description, guiLogic, chanceDeck);
+    public MoveCard(String type, String description, ChanceDeck chanceDeck, int moves, Board board) {
+        super(type, description, chanceDeck);
         this.moves = moves;
         this.board = board;
     }
 
-    public void applyEffect(Player player){
+    public int applyEffect(Player player){
         Square nextLocation = board.nextLocation(player, moves);
         player.setLocation(nextLocation);
     
-        guiLogic.movePiece(player, moves);
+
         nextLocation.landedOn(player);
+        return moves;
     }
     
 }

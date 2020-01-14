@@ -6,24 +6,22 @@ import domain.Player;
 import services.TxtReader;
 
 public class PayCard extends ChanceCard {
-    
+
     private final int amount;
     private final TxtReader cardsTxt;
-    
-    public PayCard(String type, String description, GUILogic guiLogic, ChanceDeck chanceDeck, int amount, TxtReader cardsTxt) {
-        super(type, description, guiLogic, chanceDeck);
+
+    public PayCard(String type, String description, ChanceDeck chanceDeck, int amount, TxtReader cardsTxt) {
+        super(type, description, chanceDeck);
         this.amount = amount;
         this.cardsTxt = cardsTxt;
     }
-    
-    public void applyEffect(Player player){
-        if (player.attemptToPay(amount)){
+
+    public int applyEffect(Player player) {
+        if (player.attemptToPay(amount)) {
             player.withdraw(amount);
-            guiLogic.setPlayerBalance(player);
-        } else {
-            guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
-            guiLogic.setPlayerBalance(player);
+            return 0;
         }
+        return amount;
     }
-    
+
 }

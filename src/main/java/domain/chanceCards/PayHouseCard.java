@@ -14,8 +14,8 @@ public class PayHouseCard extends ChanceCard {
     private final TxtReader cardsTxt;
     protected Board board;
 
-    public PayHouseCard(String type, String description, GUILogic guiLogic, ChanceDeck chanceDeck, int amount, TxtReader cardsTxt, Board board) {
-        super(type, description, guiLogic, chanceDeck);
+    public PayHouseCard(String type, String description, ChanceDeck chanceDeck, int amount, TxtReader cardsTxt, Board board) {
+        super(type, description, chanceDeck);
         this.amount = amount;
         this.cardsTxt = cardsTxt;
         this.board = board;
@@ -23,7 +23,7 @@ public class PayHouseCard extends ChanceCard {
     }
 
     private OwnableSquare[] getRealEstateSquares(Player player) {
-        if(board.getOwnables().length != 0){
+        if (board.getOwnables().length != 0) {
             OwnableSquare[] temp = new OwnableSquare[board.getOwnables().length];
             int j = 0;
             for (int i = 0; i < board.getOwnables().length; i++) {
@@ -37,7 +37,7 @@ public class PayHouseCard extends ChanceCard {
         return null;
     }
 
-    public void applyEffect(Player player) {
+    public int applyEffect(Player player) {
         int tempHouses = 0;
         int tempHotels = 0;
         int tempAmount;
@@ -56,7 +56,13 @@ public class PayHouseCard extends ChanceCard {
                 tempHotels++;
             }
         }
-        player.attemptToPay(tempHouses * amount + tempHotels * tempAmount);
+        int toPay = tempHouses * amount + tempHotels * tempAmount;
+        if(player.attemptToPay(toPay)){
+            player.withdraw(toPay);
+            return 0;
+        }else{
+            return toPay;
+        }
     }
 
 }
