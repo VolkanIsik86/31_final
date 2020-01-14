@@ -285,25 +285,21 @@ public class TurnLogic {
 
         //Prompt player to choose a field
         String selection = menuLogic.displayPropertyMenu(player);
-    
         //Show property information in the middle of board
         OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
-        
-        //Prompt player to choose something to do with that field
-        String choice = menuLogic.displayManagePropertyMenu();
-        
-        if (choice.equals(turnLogicTxt.getLine("House")))
-            housePrice = 0;
-            if(board.searchColors(board.getOwnableSquareFromName(selection)) == 0){
+            //Prompt player to choose something to do with that field
+            String choice = menuLogic.displayManagePropertyMenu(squareToManage);
+            if (choice.equals(turnLogicTxt.getLine("House")))
+                housePrice = 0;
+            if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
                 buildHouse(board.getPropertyFromName(selection));
-            }
-            else{
+            } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("attempt to buy"));
             }
-            if(player.attemptToPay(housePrice)){
-            player.withdraw(housePrice);
-            guiLogic.setPlayerBalance(player);
+            if (player.attemptToPay(housePrice)) {
+                player.withdraw(housePrice);
+                guiLogic.setPlayerBalance(player);
             }
     }
 
