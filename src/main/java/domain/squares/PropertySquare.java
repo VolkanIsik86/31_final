@@ -90,14 +90,19 @@ public class PropertySquare extends OwnableSquare {
                 switch(numberOfHouse){
                     case 1:
                         setRent(rentLadder[1]);
+                        break;
                     case 2:
                         setRent(rentLadder[2]);
+                        break;
                     case 3:
                         setRent(rentLadder[3]);
+                        break;
                     case 4:
                         setRent(rentLadder[4]);
+                        break;
                     case 5:
                         setRent(rentLadder[5]);
+                        break;
                     default:
                         setRent(0);
                 }

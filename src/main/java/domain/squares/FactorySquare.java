@@ -29,8 +29,10 @@ public class FactorySquare extends OwnableSquare{
         switch(board.searchColors(this)) {
             case 0:
                 setRent(RENT_MODIFIER * lastRoll);
+                break;
             case 1:
                 setRent(RENT_MODIFIER * 2 * lastRoll);
+                break;
             default:
                 setRent(0);
         }
