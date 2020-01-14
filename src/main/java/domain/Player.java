@@ -15,6 +15,7 @@ public class Player {
     private boolean lost = false;
     private boolean jail = false;
     private int lastRoll = 0;
+    private int attemptsToGetOutOfJail = 0;
     
     public Player(String name, int balance, Piece piece){
         this.name = name;
@@ -22,6 +23,18 @@ public class Player {
         this.piece = piece;
     }
 
+    public void setAttemptsToGetOutOfJail(int value){
+        attemptsToGetOutOfJail = value;
+    }
+    
+    public int getAttemptsToGetOutOfJail(){
+        return attemptsToGetOutOfJail;
+    }
+    
+    public void incrementAttemptsToGetOutOfJail(){
+        attemptsToGetOutOfJail = attemptsToGetOutOfJail+1;
+    }
+    
     public void setLastRoll(int lastRoll) {
         this.lastRoll = lastRoll;
     }
@@ -47,6 +60,7 @@ public class Player {
         }
     }
     
+    //todo burde den ikke trække pengene her så også? -Mikkel
     public boolean attemptToPay(int amount){
         if(amount <= this.getBalance()){
             return true;

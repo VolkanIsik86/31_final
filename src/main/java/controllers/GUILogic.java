@@ -225,13 +225,12 @@ public class GUILogic {
     public void moveToJail(Player player){
         
         GUI_Player guiPlayer = getGUIPlayer(player);
-
         
         //Remove player from current field
         fields[player.getLastLocation().getIndex()].setCar(guiPlayer,false);
         
         //Place player on jail
-        fields[6].setCar(guiPlayer,true);
+        fields[10].setCar(guiPlayer,true);
     }
 
 
