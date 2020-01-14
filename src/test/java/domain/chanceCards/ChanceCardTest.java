@@ -1,13 +1,11 @@
 package domain.chanceCards;
 
 
-import controllers.GUILogic;
 import domain.Board;
 import domain.ChanceDeck;
 import domain.Piece;
 import domain.Player;
 import domain.squares.PropertySquare;
-import domain.squares.RegularSquare;
 import domain.squares.Square;
 import org.junit.Test;
 import services.TxtReader;
