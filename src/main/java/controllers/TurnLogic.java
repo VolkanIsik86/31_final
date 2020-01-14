@@ -60,16 +60,27 @@ public class TurnLogic {
         while(endTurn == false){
 
             if (player.getLost()) break;
-
+            int throwCounter = 0;
             //Display start menu
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
-
                 //Do turn as long as player gets two identical and has not lost
                 do{
-                    doTurn(player);
+                    throwCounter++;
+                    if(throwCounter < 3){
+                        doTurn(player);
+                    }else{
+                        player.setLocation(board.getJail());
+                        player.setJail(true);
+                        guiLogic.moveToJail(player);
+                        guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
+                        roll1 = -1;
+                        endTurn = true;
+                    }
+
+
 
                     if(roll1 == roll2 && player.getLost() != true){
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
