@@ -1,7 +1,10 @@
 package controllers;
 
+import domain.Board;
+import domain.ChanceDeck;
 import domain.DieStub;
 import domain.PlayerList;
+import domain.ChanceDeckStub;
 
 public class GameStub extends Game {
     
@@ -48,10 +51,7 @@ public class GameStub extends Game {
     
     @Override
     protected void initTurnLogic(){
-        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls), playerList);
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls), playerList, new ChanceDeckStub(cardsTxt, board, chanceCardSequence));
     }
     
-    
-    
-
 }

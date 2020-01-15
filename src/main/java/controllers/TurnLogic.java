@@ -20,14 +20,14 @@ public class TurnLogic {
     private int housePrice = 0;
     private PlayerList playerList;
 
-    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList){
+    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck){
         this.die = die;
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
         this.playerList = playerList;
-        chanceDeck = new ChanceDeck(cardsTxt, board);
+        this.chanceDeck = chanceDeck;
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
 
@@ -258,7 +258,7 @@ public class TurnLogic {
             guiLogic.moveToJail(player);
 
         if (message.charAt(message.length() - 1) != 'T') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
         }
 
 

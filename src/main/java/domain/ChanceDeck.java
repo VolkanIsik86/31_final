@@ -12,7 +12,7 @@ import java.util.Random;
 public class ChanceDeck {
     
     private final int N_CARDS = 16;
-    protected final ChanceCard[] chanceCards;
+    protected ChanceCard[] chanceCards;
     private final Random rnd = new Random();
     
     //Creates all the Chance cards and adds them to an array
@@ -38,10 +38,7 @@ public class ChanceDeck {
     
             } else if ("PayHouseCard".equals(oneLine[0])) {
                 chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], this, Integer.parseInt(oneLine[1]), cardsTxt, board);
-
         }
-
-    
         }
     }
     

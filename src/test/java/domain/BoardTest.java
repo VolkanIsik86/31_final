@@ -32,7 +32,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board = new Board(squareTxt, landedOnTxt, cardsTxt);
+        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }

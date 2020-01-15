@@ -30,7 +30,7 @@ public class ChanceCardTest {
         TxtReader squareTxt = new TxtReader();
         squareTxt.openFile(languagePath,"squares_da");
         squareTxt.readLines();
-        board = new Board(squareTxt, landedOnTxt, cardsTxt);
+        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
         chanceDeck = new ChanceDeck(cardsTxt, board);
     }
 
