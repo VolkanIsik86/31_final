@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class ChanceCardTest {
-    private final Board board = new Board();
+    private Board board;
     Player testPlayer;
     ChanceDeck chanceDeck;
 
@@ -30,7 +30,7 @@ public class ChanceCardTest {
         TxtReader squareTxt = new TxtReader();
         squareTxt.openFile(languagePath,"squares_da");
         squareTxt.readLines();
-        board.makeBoard(squareTxt, landedOnTxt, cardsTxt);
+        board = new Board(squareTxt, landedOnTxt, cardsTxt);
         chanceDeck = new ChanceDeck(cardsTxt, board);
     }
 

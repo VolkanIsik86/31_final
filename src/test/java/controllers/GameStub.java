@@ -5,12 +5,13 @@ import domain.PlayerList;
 
 public class GameStub extends Game {
     
-    private int[] dieRolls, playerBalances, playerLocations;
+    private int[] dieRolls, playerBalances, playerLocations, chanceCardSequence;
     
-    public GameStub(int[] dieRolls, int[] playerBalances, int[] playerLocations){
+    public GameStub(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence){
         this.dieRolls = dieRolls;
         this.playerBalances = playerBalances;
         this.playerLocations = playerLocations;
+        this.chanceCardSequence = chanceCardSequence;
     }
     
     protected void initGUILogic() {
