@@ -19,5 +19,8 @@ public class EarnCard extends ChanceCard {
         return 0;
     }
 
+    public int getAmount() {
+        return amount;
+    }
 }
 

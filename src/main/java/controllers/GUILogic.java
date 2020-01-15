@@ -238,7 +238,7 @@ public class GUILogic {
         fields[player.getLocation().getIndex()].setSubText(player.getName());
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
         try {
-            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor);
+            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor , Color.black);
         } catch (ClassCastException e) {
             System.out.println(e);
         }

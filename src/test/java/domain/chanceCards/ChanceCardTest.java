@@ -1,10 +1,9 @@
 package domain.chanceCards;
 
 
-import domain.Board;
-import domain.ChanceDeck;
-import domain.Piece;
-import domain.Player;
+import controllers.TurnLogic;
+import domain.*;
+import domain.squares.ChanceSquare;
 import domain.squares.PropertySquare;
 import domain.squares.Square;
 import org.junit.Test;
@@ -17,8 +16,9 @@ public class ChanceCardTest {
     private Board board;
     Player testPlayer;
     ChanceDeck chanceDeck;
-
-
+    EarnCard earnCard;
+    TurnLogic turnLogic;
+    PlayerList playerList;
     public ChanceCardTest() {
         TxtReader cardsTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
@@ -70,6 +70,32 @@ public class ChanceCardTest {
         }
 
     }
+
+//    @Test
+//    public void pullEarnChanceCards(){
+//        Player testPlayer = new Player("testPlayer1",30000,null);
+//        playerList = new PlayerList(null,null);
+//        playerList.addPlayer("testplayer2", 30000);
+//        playerList.addPlayer("testplayer3", 30000);
+//        playerList.addPlayer("testplayer4", 30000);
+//        turnLogic.playRound(playerList);
+//
+//        for (int i = 0; i < 1000; i++) {
+//            ChanceCard chanceCard = chanceDeck.pullRandomChanceCard();
+//            if (chanceCard.getDescription().equalsIgnoreCase("Earn") && earnCard.getAmount()==500) {
+//                int oldBalance = testPlayer.getBalance();
+//                turnLogic.withDrawMoneyFromPlayers(500,testPlayer);
+//                if(oldBalance != 0){
+//                    assertNotEquals(oldBalance, testPlayer.getBalance());
+//
+//                }
+//
+//
+//            }
+//
+//        }
+//
+//    }
 
 
 }
