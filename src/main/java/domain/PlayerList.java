@@ -76,4 +76,34 @@ public class PlayerList {
     public Player[] getPlayers(){
         return players;
     }
+    
+    //Removes the player with that exact name on the playerlist.
+    //If the player is not on the list, the first player is removed.
+    public void removePlayer(Player player){
+        
+        int indexToRemove = 0;
+        Player[] tempPlayers = new Player[players.length-1];
+        
+        for (int i = 0; i < players.length; i++) {
+
+            if(players[i].equals(player)){
+                indexToRemove = i;
+                break;
+            }
+        }
+        
+        int i = 0;
+        int j = i;
+       
+        for (i = 0; i < players.length; i++) {
+            
+            if(i != indexToRemove){
+                tempPlayers[j] = players[i];
+                j++;
+            }
+        }
+        
+        players = tempPlayers;
+    }
+    
 }
