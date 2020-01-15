@@ -16,4 +16,4 @@
 15,,PayHouseCard-800-Ejendomsskatterne er steget. Ekstraudgifterne er: "kr. 800 pr. hus", "kr. 2.300 pr. hotel"
 16,,PayHouseCard-500-Ejendomsskatterne er steget. Ekstraudgifterne er: "kr. 500 pr. hus", "kr. 2.000 pr. hotel"
 17,,Earn-500-De har lagt penegen ud til et sammensskudsgilde. Modtage fra hver medspiller kr. 500.
-Does not have fonds to pay,,Du har desværre ikke råd til at betale dette beløb, og spillet stopper derfor
+Does not have fonds to pay,,Du har desværre ikke råd til at betale dette beløb, og er derfor ikke længere med i spillet

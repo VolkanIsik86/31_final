@@ -36,4 +36,5 @@ public class PlayerTest {
         testPlayer.deposit(1000);
         assertEquals(6000, testPlayer.getBalance());
     }
+    
 }

@@ -16,9 +16,8 @@ public class TurnLogic {
     private Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
-    private String looser;
     private MenuLogic menuLogic;
-    private AuctionLogic auctionLogic = new AuctionLogic();
+    private AuctionLogic auctionLogic;
     private PlayerList playerList;
 
 
@@ -31,28 +30,57 @@ public class TurnLogic {
         this.playerList = playerList;
         this.chanceDeck = chanceDeck;
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
+        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic);
     }
 
     //todo hmm private..?
-    String playRound() {
-
-        looser = "none";
-
+    public void playRound() {
+        
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
 
             //If player is in jail
             if (currentPlayer.getJail()) {
-                System.out.println(hasThrown);
                 takeJailTurn(currentPlayer);
             } else {
                 takeTurn(currentPlayer);
             }
-            if (currentPlayer.getLost()) break;
+            
+            //Remove player from game and check if game is over
+            if (currentPlayer.getLost()){
+                
+                if (playerList.NumberOfPlayers() > 2){
+                    i = i -1;
+                    guiLogic.deletePlayer(currentPlayer);
+                    auctionPlayerProperties(currentPlayer);
+                    playerList.removePlayer(currentPlayer);
+                    
+                } else {
+                    guiLogic.showMessage(turnLogicTxt.getLine("The game ends"));
+                    break;
+                }
+            }
         }
-
-        return looser;
+    }
+    
+    private void auctionPlayerProperties(Player player){
+        
+        guiLogic.showMessage(turnLogicTxt.getLine("All player properties auction"));
+        
+        //Find properties to auktion
+        Square[] squaresToAuction = board.getPlayerSquares(player);
+    
+        //Auction them
+        for (int i = 0; i < squaresToAuction.length; i++) {
+            auctionLogic.auctioning( ((OwnableSquare) squaresToAuction[i]), player);
+        }
+        
+        
+        
+        
+        
+        
     }
 
     private void takeTurn(Player player) {
@@ -195,7 +223,6 @@ public class TurnLogic {
         
             //Player has lost
             currentPlayer.setLost(true);
-            looser = currentPlayer.getName();
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail throws and lost"));
         
         //If player is just still in jail
@@ -256,7 +283,7 @@ public class TurnLogic {
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
                 else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-                    auctionLogic.auctioning(((OwnableSquare) nextLocation),playerList,player,menuLogic,guiLogic);
+                    auctionLogic.auctioning(((OwnableSquare) nextLocation),player);
                     //auctioning(((OwnableSquare) nextLocation),playerList,player );
                 }
             } else {

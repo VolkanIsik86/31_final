@@ -396,6 +396,10 @@ public class GUILogic {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
         fields[index].setCar(getGUIPlayer(player), true);
     }
+    
+    public void deletePlayer(Player player){
+        fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
+    }
 
     public void setDelay(int newDelay){
         delay = newDelay;
