@@ -42,12 +42,12 @@ public class TurnLogic {
 
             //If player is in jail
             if (currentPlayer.getJail()) {
+                System.out.println(hasThrown);
                 takeJailTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             } else {
                 takeTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             }
+            if (currentPlayer.getLost()) break;
         }
 
         return looser;
@@ -56,11 +56,11 @@ public class TurnLogic {
     public void takeTurn(Player player) {
 
         boolean endTurn = false;
-        String choice ="";
+        String choice;
 
         //Start of user menu loop
         outer:
-        while(endTurn == false){
+        while(!endTurn){
 
             if (player.getLost()) break;
             int throwCounter = 0;
@@ -84,16 +84,16 @@ public class TurnLogic {
                     }else{
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
-                        endTurn = true;
                         break outer;
                     }
                     
-                    if(roll1 == roll2 && player.getLost() != true){
-                        guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
+                    if(roll1 == roll2 && player.getLost() != true && player.getJail() != true){
+                        guiLogic.showMessage(turnLogicTxt.getLine("2 identical OK to throw"));
                     }
                     
                     //If players has rolled to identical and ended up in jail
                     if (roll1 == roll2 && player.getLost() != true && player.getJail()){
+                        guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                         takeJailTurn(player);
                         break outer;
                     }
@@ -114,6 +114,8 @@ public class TurnLogic {
     private void takeJailTurn(Player currentPlayer){
 
         //todo tjek tekstfilen
+
+        hasThrown = false;
 
         //Displays the proper jail menu depending on player funds and return choice
         String choice = menuLogic.displayJailMenu(currentPlayer);
@@ -149,8 +151,15 @@ public class TurnLogic {
             //Free the player
             currentPlayer.setJail(false);
             currentPlayer.setAttemptsToGetOutOfJail(0);
-            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
-            takeTurn(currentPlayer);
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail and move"));
+
+            doTurn(currentPlayer);
+
+            if(currentPlayer.getLost() != true){
+                guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
+                hasThrown = false;
+                takeTurn(currentPlayer);
+            }
         
         //If player is out of attempts but can pay
         } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2 && currentPlayer.getBalance() >= 1000){
@@ -158,7 +167,7 @@ public class TurnLogic {
             //Buy player out and take a turn
             guiLogic.showMessage(turnLogicTxt.getLine("Forced to buy out of jail"));
             buyPlayerOutOfJail(currentPlayer);
-            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
             takeTurn(currentPlayer);
         
         //If player if out of attempts but cant pay
@@ -203,7 +212,7 @@ public class TurnLogic {
 
     public int getOwnerIndex(Square nextLocation) {
         for (int i = 0; i < board.getOwnables().length; i++) {
-            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+            if (board.getOwnables()[i].getName().equals(nextLocation.getName())) {
                 return i;
             }
         }
@@ -226,9 +235,9 @@ public class TurnLogic {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
-                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-                    auctioning(((OwnableSquare) nextLocation),playerList,player );
-                }
+//                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
+//                    auctioning(((OwnableSquare) nextLocation),playerList,player );
+//                }
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
             }

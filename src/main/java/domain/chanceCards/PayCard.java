@@ -1,6 +1,5 @@
 package domain.chanceCards;
 
-import controllers.GUILogic;
 import domain.ChanceDeck;
 import domain.Player;
 import services.TxtReader;

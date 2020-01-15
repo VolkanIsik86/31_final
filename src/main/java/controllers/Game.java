@@ -12,7 +12,7 @@ public class Game {
     protected final Board board = new Board();
     protected TurnLogic turnLogic;
     protected PlayerList playerList;
-    private final int STARTBALANCE = 30000;
+    protected final int STARTBALANCE = 30000;
 
     protected String looser = "null";
     protected TxtReader turnLogicTxt;
@@ -35,16 +35,6 @@ public class Game {
             }
 
         }
-
-      //  do {
-      //      turnLogic.playRound(playerList);
-      //  }
-      //  while (looser.equals(null));
-      //  announceWinner();
-
-      //  guiLogic.showMessage(guiTxt.getLine("Close"));
-      //  guiLogic.close();
-
     }
 
     private void announceWinner() {
@@ -102,7 +92,7 @@ public class Game {
         initTurnLogic();
         initPlayerList();
     }
-
+    //Method to initialize the language, the Language adds either "da" or en" to the filepath.
     private void initLanguage() {
 
         LanguageLogic languageLogic = new LanguageLogic();

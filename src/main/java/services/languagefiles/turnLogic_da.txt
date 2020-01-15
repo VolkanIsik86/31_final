@@ -22,18 +22,21 @@ Out of jail throws and lost,,Da du forgæves har forsøgt at komme ud af fængsl
 Did not come out of jail,,Du kom desværre ikke ud af fængslet.
 Jail buy out,,Betal 1000kr.
 Jail roll dice,,Kast terningerne
-Out of jail,,Du er nu ude af fængslet
-2 identical,,Du har slået to ens og får derfor en et kast til. Tryk OK for at kaste
+Out of jail and move,,Du er nu ude af fængslet og rykkes det antal øjne du slog
+Out of jail take turn,,Du er nu ude af fængslet og skal tage din tur
+2 identical OK to throw,,Da du slog to ens, får du en ekstra tur. Tryk OK for at kaste
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt
 Throw,,Kast terninger
-Properties,,Administrer grunde
+Properties,,Administrer grund
+Pledges Propertiesm,, Pantsatte grunde
 End,,Afslut tur
 Choose property,,Vælg en af dine grunde grund
 House,,Huse og hoteller
 Pledge,,Pantsætning
 Trade,,Handel
+Sell,, Sælg grund
 Back,,Tilbage
 Price pr. house/hotel,,Pris pr. hus/hotel:
 Pledge value,,Pantsætningsværdi:
