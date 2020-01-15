@@ -10,6 +10,7 @@ import services.TxtReader;
 public class Board {
 
     private int SIZE;
+    private ChanceDeck chanceDeck;
     private Square[] squares;
     //todo skal da være private
     OwnableSquare[] ownables = new OwnableSquare[28];
@@ -20,11 +21,10 @@ public class Board {
     /**
      * Creates a board this constructor also create an ownablesquare array to manage them.
      */
-    public void makeBoard(TxtReader squareTxt, TxtReader landedOnTxt, TxtReader cardsTxt) {
-
-        //Chancefelterne skal bruge chancedækket i deres landOn, samtidig skal chancedækket bruge boardet, til at rykke spillerne
-        ChanceDeck chanceDeck = new ChanceDeck(cardsTxt, this);
-
+    public Board(TxtReader squareTxt, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
+        
+        this.chanceDeck = chanceDeck;
+        
         SIZE = squareTxt.getN_LINES();
         squares = new Square[SIZE];
 
@@ -177,6 +177,10 @@ public class Board {
      */
     public Square getStart() {
         return squares[0];
+    }
+    
+    public ChanceDeck getChanceDeck(){
+        return chanceDeck;
     }
 
     public int getPlayerValue(Player player) {

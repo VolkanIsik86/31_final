@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class BoardTest {
 
     private GUILogic guiLogic;
-    private final Board board = new Board();
+    private Board board;
     
     private final Player player;
     
@@ -32,7 +32,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board.makeBoard(squareTxt, landedOnTxt, cardsTxt);
+        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }

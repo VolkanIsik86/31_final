@@ -1,10 +1,9 @@
 package domain.chanceCards;
 
 
-import domain.Board;
-import domain.ChanceDeck;
-import domain.Piece;
-import domain.Player;
+import controllers.TurnLogic;
+import domain.*;
+import domain.squares.ChanceSquare;
 import domain.squares.PropertySquare;
 import domain.squares.Square;
 import org.junit.Test;
@@ -14,11 +13,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class ChanceCardTest {
-    private final Board board = new Board();
+    private Board board;
     Player testPlayer;
     ChanceDeck chanceDeck;
-
-
+    EarnCard earnCard;
+    TurnLogic turnLogic;
+    PlayerList playerList;
     public ChanceCardTest() {
         TxtReader cardsTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
@@ -30,7 +30,7 @@ public class ChanceCardTest {
         TxtReader squareTxt = new TxtReader();
         squareTxt.openFile(languagePath,"squares_da");
         squareTxt.readLines();
-        board.makeBoard(squareTxt, landedOnTxt, cardsTxt);
+        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
         chanceDeck = new ChanceDeck(cardsTxt, board);
     }
 
@@ -70,6 +70,32 @@ public class ChanceCardTest {
         }
 
     }
+
+//    @Test
+//    public void pullEarnChanceCards(){
+//        Player testPlayer = new Player("testPlayer1",30000,null);
+//        playerList = new PlayerList(null,null);
+//        playerList.addPlayer("testplayer2", 30000);
+//        playerList.addPlayer("testplayer3", 30000);
+//        playerList.addPlayer("testplayer4", 30000);
+//        turnLogic.playRound(playerList);
+//
+//        for (int i = 0; i < 1000; i++) {
+//            ChanceCard chanceCard = chanceDeck.pullRandomChanceCard();
+//            if (chanceCard.getDescription().equalsIgnoreCase("Earn") && earnCard.getAmount()==500) {
+//                int oldBalance = testPlayer.getBalance();
+//                turnLogic.withDrawMoneyFromPlayers(500,testPlayer);
+//                if(oldBalance != 0){
+//                    assertNotEquals(oldBalance, testPlayer.getBalance());
+//
+//                }
+//
+//
+//            }
+//
+//        }
+//
+//    }
 
 
 }

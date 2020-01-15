@@ -7,7 +7,7 @@ import services.TxtReader;
 // Chance holds chance cards that affect player randomly
 public class ChanceSquare extends Square {
 
-    protected final ChanceDeck chanceDeck;
+    protected ChanceDeck chanceDeck;
 
     //Constructor
     public ChanceSquare(String name, int index, TxtReader landedOnTxt, ChanceDeck chanceDeck) {

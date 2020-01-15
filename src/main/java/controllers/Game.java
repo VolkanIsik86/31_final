@@ -1,15 +1,13 @@
 package controllers;
 
-import domain.Board;
-import domain.Die;
-import domain.Player;
-import domain.PlayerList;
+import domain.*;
 import services.TxtReader;
 
 public class Game {
 
     protected GUILogic guiLogic;
-    protected final Board board = new Board();
+    protected Board board;
+    protected ChanceDeck chanceDeck;
     protected TurnLogic turnLogic;
     protected PlayerList playerList;
     protected final int STARTBALANCE = 30000;
@@ -33,7 +31,6 @@ public class Game {
                 guiLogic.close();
                 break;
             }
-
         }
     }
 
@@ -130,14 +127,14 @@ public class Game {
         guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
     }
 
-    private void initBoard() {
-
+    protected void initBoard() {
         //Includes the initialization of the chance deck
-        board.makeBoard(squaresTxt, turnLogicTxt, cardsTxt);
+        board = new Board(squaresTxt, turnLogicTxt, new ChanceDeck(cardsTxt, board));
+        chanceDeck = board.getChanceDeck();
    }
    
    protected void initTurnLogic(){
-       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList);
+       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
    }
    
    protected void initPlayerList(){
