@@ -31,7 +31,7 @@ public class TurnLogic {
     }
 
     //todo hmm private..?
-    String playRound(PlayerList playerList) {
+    public String playRound(PlayerList playerList) {
         this.playerList = playerList;
 
         looser = "none";
@@ -110,21 +110,23 @@ public class TurnLogic {
         hasThrown = false;
 
     }
-    public void WithDrawMoneyFromPlayers (int amount, Player player) {
+    public void withDrawMoneyFromPlayers (int amount, Player currentPlayer) {
         int tempo = 0;
-        int totalMoneyFromOthers = amount;
+        int totalMoneyFromOthers = 0;
         Player[] restOfPlayers = new Player[playerList.getPlayers().length-1];
         for (int i = 0; i < playerList.getPlayers().length ; i++) {
-            if(!(player.getName().equals(playerList.getPlayers()[i].getName()))){
+            if(!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))){
                 restOfPlayers[tempo] = playerList.getPlayers()[i];
                 tempo++;
-                restOfPlayers[tempo].attemptToPay(amount);
-                restOfPlayers[tempo].withdraw(amount);
-                amount+=amount;
+                if (restOfPlayers[tempo].attemptToPay(amount)) {
+                    restOfPlayers[tempo].withdraw(amount);
+                    guiLogic.setPlayerBalance(restOfPlayers[tempo]);
+                    totalMoneyFromOthers += amount;
+                }
             }
         }
-        player.deposit(totalMoneyFromOthers);
-        guiLogic.setPlayerBalance(player);
+        currentPlayer.deposit(totalMoneyFromOthers);
+        guiLogic.setPlayerBalance(currentPlayer);
     }
 
     private void takeJailTurn(Player currentPlayer){
@@ -269,6 +271,10 @@ public class TurnLogic {
             if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& !player.attemptToPay(tempValue)){
                 guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
+
+           if (pulledCard.getType().equalsIgnoreCase("Earn") && pulledCard.applyEffect(player)==500){
+               withDrawMoneyFromPlayers(500,player);
+           }
             message = message.substring(0, message.length() - 1);
         }
 

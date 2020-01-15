@@ -16,8 +16,11 @@ public class EarnCard extends ChanceCard {
     public int applyEffect(Player player) {
 
         player.deposit(amount);
-        return 0;
+        return amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
 }
 
