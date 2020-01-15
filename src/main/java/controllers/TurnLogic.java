@@ -18,6 +18,7 @@ public class TurnLogic {
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
+    private PlayerList playerList;
 
     public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die){
         this.die = die;
@@ -28,9 +29,10 @@ public class TurnLogic {
         chanceDeck = new ChanceDeck(cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
-    
+
     //todo hmm private..?
     String playRound(PlayerList playerList) {
+        this.playerList = playerList;
 
         looser = "none";
 
@@ -57,34 +59,43 @@ public class TurnLogic {
         String choice ="";
 
         //Start of user menu loop
+        outer:
         while(endTurn == false){
 
             if (player.getLost()) break;
             int throwCounter = 0;
+            
             //Display start menu
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
-                //Do turn as long as player gets two identical and has not lost
+                
+                //Do a turn - as long as player gets two identical and has not lost. Max 3 three times
                 do{
+                    
                     throwCounter++;
                     rollDice();
+                    
                     if(throwCounter < 3 || roll1!=roll2){
                         doTurn(player);
+                        
+                    //If players has struck three identical three time, put him in jail
                     }else{
-                        player.setLocation(board.getJail());
-                        player.setJail(true);
-                        guiLogic.moveToJail(player);
+                        putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
-                        roll1 = -1;
                         endTurn = true;
+                        break outer;
                     }
-
-
-
+                    
                     if(roll1 == roll2 && player.getLost() != true){
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
+                    }
+                    
+                    //If players has rolled to identical and ended up in jail
+                    if (roll1 == roll2 && player.getLost() != true && player.getJail()){
+                        takeJailTurn(player);
+                        break outer;
                     }
 
                 } while(roll1 == roll2 && player.getLost() != true);
@@ -104,7 +115,7 @@ public class TurnLogic {
 
         //todo tjek tekstfilen
 
-        //Displays the proper jail menu depending on player funds and returns choice
+        //Displays the proper jail menu depending on player funds and return choice
         String choice = menuLogic.displayJailMenu(currentPlayer);
 
         //If player chooses to buy out
@@ -124,69 +135,55 @@ public class TurnLogic {
             rollDice();
             currentPlayer.setLastRoll((rollSum));
             guiLogic.displayDie(roll1, roll2);
-
-            //If 2 identical
-            if(roll1 == roll2){
-
-                //Free the player
-                currentPlayer.setJail(false);
-                currentPlayer.setAttemptsToGetOutOfJail(0);
-                guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
-
-                //Do turn according to previous roll
-                doJailTurn(currentPlayer);
-
-                //While player gets two identical and has not lost
-                while(roll1 == roll2 && currentPlayer.getLost() != true){
-                    guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
-                    rollDice();
-                    doTurn(currentPlayer);
-                }
-
-                //Display menu
-                takeTurn(currentPlayer);
-
-            //If player if out of attempts but can pay
-            } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3 && currentPlayer.getBalance() >= 1000){
-
-                //Buy player out and take a turn
-                guiLogic.showMessage("Forced to buy out of jail");
-                buyPlayerOutOfJail(currentPlayer);
-                takeTurn(currentPlayer);
-
-            //If player if out of attempts but cant pay
-            } else if (currentPlayer.getAttemptsToGetOutOfJail() > 3){
-
-                //Player has lost
-                currentPlayer.setLost(true);
-                looser = currentPlayer.getName();
-            }
+    
+            attemptEscapeWithDice(currentPlayer);
+            
         }
+    }
+    
+    private void attemptEscapeWithDice(Player currentPlayer){
+        
+        //If 2 identical
+        if(roll1 == roll2){
+        
+            //Free the player
+            currentPlayer.setJail(false);
+            currentPlayer.setAttemptsToGetOutOfJail(0);
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
+            takeTurn(currentPlayer);
+        
+        //If player is out of attempts but can pay
+        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2 && currentPlayer.getBalance() >= 1000){
+        
+            //Buy player out and take a turn
+            guiLogic.showMessage(turnLogicTxt.getLine("Forced to buy out of jail"));
+            buyPlayerOutOfJail(currentPlayer);
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
+            takeTurn(currentPlayer);
+        
+        //If player if out of attempts but cant pay
+        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2){
+        
+            //Player has lost
+            currentPlayer.setLost(true);
+            looser = currentPlayer.getName();
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail throws and lost"));
+        
+        //If player is just still in jail
+        } else {
+            guiLogic.showMessage(turnLogicTxt.getLine("Did not come out of jail"));
+    
+            hasThrown = true;
+            takeTurn(currentPlayer);
+        }
+        
     }
 
     private void doTurn(Player player){
         hasThrown = true;
-
-        //Roll the dice
-
+        
         player.setLastRoll(rollSum);
         guiLogic.displayDie(roll1, roll2);
-
-        //Calculate and move to next location
-        Square nextLocation = board.nextLocation(player, rollSum);
-        player.setLocation(nextLocation);
-        guiLogic.movePiece(player, rollSum);
-
-        //Apply effect of landed on square to player
-        doLandedOnTurn(player);
-    }
-
-    //Overloading method so it can be used when in jail
-    private void doJailTurn(Player player){
-        hasThrown = true;
-
-        guiLogic.displayDie(roll1, roll2);
-        guiLogic.showChanceCard("");
 
         //Calculate and move to next location
         Square nextLocation = board.nextLocation(player, rollSum);
@@ -225,6 +222,9 @@ public class TurnLogic {
                 if (choice.equals(turnLogicTxt.getLine("buy"))) {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
+                }
+                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
+                    auctioning(((OwnableSquare) nextLocation),playerList,player );
                 }
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
@@ -268,6 +268,12 @@ public class TurnLogic {
         guiLogic.setPlayerBalance(player);
 
     }
+    
+    private void putInJail(Player player){
+        player.setLocation(board.getJail());
+        player.setJail(true);
+        guiLogic.moveToJail(player);
+    }
 
     private void rollDice() {
         die.roll();
@@ -291,6 +297,7 @@ public class TurnLogic {
             }
             if(choice.equals(turnLogicTxt.getLine("pay 10"))){
                 int tempTax = (int)Math.round(board.getPlayerValue(p)*0.1);
+                System.out.println(tempTax);
                 p.withdraw(tempTax);
             }
         } else {
@@ -306,7 +313,7 @@ public class TurnLogic {
         String selection = menuLogic.displayPropertyMenu(player);
     
         //Show property information in the middle of board
-        OwnableSquare squareToManage = (OwnableSquare) board.getOwnableSquareFromName(selection);
+        OwnableSquare squareToManage = board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
             //Prompt player to choose something to do with that field
             String choice = menuLogic.displayManagePropertyMenu(squareToManage);
@@ -333,9 +340,50 @@ public class TurnLogic {
         guiLogic.updateHouses(realSquare.getIndex(),houses);
     }
 
+    public void auctioning(OwnableSquare square , PlayerList playerList, Player player){
+        int bid = 0;
+        int tempo = 0;
+        int count;
+        Player auctionWinner = null;
+        Player[] biddingPlayers = new Player[playerList.getPlayers().length-1];
+        for (int i = 0; i < playerList.getPlayers().length ; i++) {
+            if(!(player.getName().equals(playerList.getPlayers()[i].getName()))){
+                biddingPlayers[tempo] = playerList.getPlayers()[i];
+                tempo++;
+            }
+        }
+        tempo =0;
+        count = biddingPlayers.length;
+        while (count!=0) {
+            for (int i = 0; i <biddingPlayers.length ; i++) {
+                String bided = menuLogic.auctionMenu(biddingPlayers[i]);
+                Player[] temp = new Player[biddingPlayers.length - 1];
+                if (bided.equals("pass")){
+                    for (int j = 0; j < biddingPlayers.length ; j++) {
+                        if(!(biddingPlayers[i].getName().equals(biddingPlayers[j].getName()))){
+                            temp[tempo] = biddingPlayers[j];
+                            tempo++;
+                        }
+                    }
+                    count--;
+                    biddingPlayers=temp;
+                }
+                else{
+                    if(count == 1){
+                        count--;
+                    }
+                    bid = Integer.parseInt(bided);
+                    auctionWinner = biddingPlayers[i];
+                }
+            }
+        }
+        System.out.println(auctionWinner.getName());
+        square.setOwner(auctionWinner);
+        auctionWinner.withdraw(bid);
+    }
+
     private void updateGUI(Player player) {
 
     }
-
-
+    
 }
