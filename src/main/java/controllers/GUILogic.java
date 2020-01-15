@@ -347,6 +347,10 @@ public class GUILogic {
         return gui.getUserSelection(msg, options);
     }
 
+    public String getUserString(String input){
+        return gui.getUserString(input);
+    }
+
     public void updateHouses(int square,int houses){
         try{
             if (houses < 5){

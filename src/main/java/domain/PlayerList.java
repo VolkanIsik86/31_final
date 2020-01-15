@@ -72,5 +72,8 @@ public class PlayerList {
 
         return winner;
     }
-    
+
+    public Player[] getPlayers(){
+        return players;
+    }
 }
