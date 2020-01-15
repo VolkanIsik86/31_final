@@ -1,10 +1,10 @@
 Regular square,,Du er landet på et neutralt felt, og der sker derfor ikke noget
-Owned by another property square,,Du er landet på en ejendom ejet af en anden spiller, og skal derfor betale husleje
-Owned by another shipyard square,,Du er landet på et rederi ejet af en anden spiller, og skal derfor betale leje
-Owned by another factory square,,Du er landet på en fabrik ejet af en anden spiller, og skal derfor betale leje
-Owned by yourself property square,,Du er landet på en ejendom du allerede selv ejer, og skal derfor ikke foretage dig noget
-Owned by yourself shipyard square,,Du er landet på et rederi du allerede selv ejer, og skal derfor ikke foretage dig noget
-Owned by yourself factory square,,Du er landet på en fabrik du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by another property square f,,Du er landet på en ejendom ejet af en anden spiller, og skal derfor betale husleje
+Owned by another shipyard square f,,Du er landet på et rederi ejet af en anden spiller, og skal derfor betale leje
+Owned by another factory square f,,Du er landet på en fabrik ejet af en anden spiller, og skal derfor betale leje
+Owned by yourself property square o,,Du er landet på en ejendom du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself shipyard square o,,Du er landet på et rederi du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself factory square o,,Du er landet på en fabrik du allerede selv ejer, og skal derfor ikke foretage dig noget
 Not owned property square,,Du er landet på en ejendom, som ingen ejer, og skal derfor købe den
 Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal derfor købe den
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
@@ -33,7 +33,7 @@ Properties,,Administrer grund
 Pledges Propertiesm,, Pantsatte grunde
 End,,Afslut tur
 Choose property,,Vælg en af dine grunde grund
-House,,Huse og hoteller
+House,,Byg hus
 Pledge,,Pantsætning
 Trade,,Handel
 Sell,, Sælg grund
@@ -60,6 +60,10 @@ tax,, Vælg mellem 4000 eller 10%
 buy,, Køb grund
 dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
-no more house,, Du kan ikke købe flere huse på denne grund
-attempt to buy,, Du skal eje alle grunde af en slags for at kunne bygge huse
+Player does not own all colors,,Du skal eje alle grunde af en slags for at kunne bygge huse
+Property has too many houses,,En grund må ikke have mere end 1 hotel
+Player does not have enough money,,Du har ikke nok penge til at betale
+House has been build,,Et hus blev bygget
+Hotel has been build,,Et hotel blev hygget
 too many identical,, Du har slået for mange ens og er derfor rykket i fængsel
+Not yet implemented,,Funktionen er ikke implementeret endnu

@@ -137,7 +137,7 @@ public class Game {
    }
    
    protected void initTurnLogic(){
-       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(),playerList);
+       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList);
    }
    
    protected void initPlayerList(){

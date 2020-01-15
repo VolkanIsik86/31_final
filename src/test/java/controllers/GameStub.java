@@ -13,9 +13,11 @@ public class GameStub extends Game {
         this.playerLocations = playerLocations;
     }
     
-    @Override
-    protected void initTurnLogic(){
-        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls),null);
+    protected void initGUILogic() {
+        
+        //Includes the initialization of the GUI itself
+        guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
+        guiLogic.setDelay(30);
     }
     
     @Override
@@ -43,12 +45,12 @@ public class GameStub extends Game {
         }
     }
     
-    protected void initGUILogic() {
-        
-        //Includes the initialization of the GUI itself
-        guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
-        guiLogic.setDelay(200);
+    @Override
+    protected void initTurnLogic(){
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls), playerList);
     }
+    
+    
     
 
 }
