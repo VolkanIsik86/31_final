@@ -29,12 +29,16 @@ public class ShipyardSquare extends OwnableSquare {
         switch(board.searchColors(this)){
             case 0:
                 setRent(4000);
+                break;
             case 1:
                 setRent(2000);
+                break;
             case 2:
                 setRent(1000);
+                break;
             case 3:
                 setRent(500);
+                break;
             default:
                 setRent(0);
     
@@ -44,9 +48,9 @@ public class ShipyardSquare extends OwnableSquare {
     @Override
     public String getInfo(){
         return
-                getLandedOnTxt().getLine("Status") + " " +
-                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
-                "\n" + getLandedOnTxt().getLine("Rent shipyard") +
+//                getLandedOnTxt().getLine("Status") + " " +
+//                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+                "" + getLandedOnTxt().getLine("Rent shipyard") +
                 "\n\n" + getLandedOnTxt().getLine("Rent when owning more shipyards")
         ;
     }
