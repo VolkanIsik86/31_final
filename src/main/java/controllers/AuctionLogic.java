@@ -44,6 +44,7 @@ public class AuctionLogic {
                         square.setOwner(auctionWinner);
                         guiLogic.setSquareAuction(square);
                         auctionWinner.withdraw(highestBid);
+                        guiLogic.setPlayerBalance(auctionWinner);
                         return;
                     }
                 }
@@ -71,6 +72,7 @@ public class AuctionLogic {
         square.setOwner(auctionWinner);
         guiLogic.setSquareAuction(square);
         auctionWinner.withdraw(highestBid);
+        guiLogic.setPlayerBalance(auctionWinner);
     }
 
     /**
