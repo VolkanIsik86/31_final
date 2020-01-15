@@ -89,10 +89,9 @@ public class MenuLogic {
         //Display manage properies menu and return choice
         return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), managePropertyMenuItems);
     }
-
-    //Shows the menu, when player has landed in jail
-    public String displayJailMenu(Player player) {
-
+    
+    public String displayJailMenu(Player player){
+        
         String[] jailMenuItems;
         String greeting;
 
@@ -119,10 +118,16 @@ public class MenuLogic {
 
         return guiLogic.getUserSelection(turnLogicTxt.getLine("pledged properties"), properties);
     }
-    public String auctionMenu(Player p){
+
+    /**
+     * The menu will be showed when auctioning is invoked.
+     * @param player the player who has bidding turn
+     * @return String of bidding value or pass if he press pass
+     */
+    public String auctionMenu(Player player){
         String[] manageAuctionItems = {"byd","pass"};
 
-        if(guiLogic.getUserButtonPressed(p.getName(),manageAuctionItems).equals("pass")){
+        if(guiLogic.getUserButtonPressed(player.getName(),manageAuctionItems).equals("pass")){
             return "pass";
         }
         else
