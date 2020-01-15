@@ -47,7 +47,7 @@ public class GameStub extends Game {
         
         //Includes the initialization of the GUI itself
         guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
-        guiLogic.setDelay(200);
+        guiLogic.setDelay(30);
     }
     
 

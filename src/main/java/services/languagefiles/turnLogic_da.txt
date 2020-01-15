@@ -33,7 +33,7 @@ Properties,,Administrer grund
 Pledges Propertiesm,, Pantsatte grunde
 End,,Afslut tur
 Choose property,,Vælg en af dine grunde grund
-House,,Huse og hoteller
+House,,Byg hus
 Pledge,,Pantsætning
 Trade,,Handel
 Sell,, Sælg grund
@@ -60,6 +60,10 @@ tax,, Vælg mellem 4000 eller 10%
 buy,, Køb grund
 dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
-no more house,, Du kan ikke købe flere huse på denne grund
-attempt to buy,, Du skal eje alle grunde af en slags for at kunne bygge huse
+Player does not own all colors,,Du skal eje alle grunde af en slags for at kunne bygge huse
+Property has too many houses,,En grund må ikke have mere end 1 hotel
+Player does not have enough money,,Du har ikke nok penge til at betale
+House has been build,,Et hus blev bygget
+Hotel has been build,,Et hotel blev hygget
 too many identical,, Du har slået for mange ens og er derfor rykket i fængsel
+Not yet implemented,,Funktionen er ikke implementeret endnu
