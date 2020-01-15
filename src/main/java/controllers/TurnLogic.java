@@ -20,6 +20,7 @@ public class TurnLogic {
     MenuLogic menuLogic;
     private int housePrice = 0;
     protected PlayerList playerList;
+    private AuctionLogic auctionLogic = new AuctionLogic();
 
     public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck){
         this.die = die;
@@ -253,7 +254,8 @@ public class TurnLogic {
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
                 else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-                    auctioning(((OwnableSquare) nextLocation),playerList,player );
+                    auctionLogic.auctioning(((OwnableSquare) nextLocation),playerList,player,menuLogic,guiLogic);
+                    //auctioning(((OwnableSquare) nextLocation),playerList,player );
                 }
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
@@ -411,70 +413,6 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine("House has been build"));
         }
     }
-
-    /**
-     * Start auction if player does not want to buy the square he landed on.
-     * @param square the squre where player landed on
-     * @param playerList List of all players
-     * @param player the player who landed on a square
-     */
-    public void auctioning(OwnableSquare square , PlayerList playerList, Player player){
-        // the current bid
-        int bid = 0;
-        // used to create a new array that consist of players who has not pressed pass
-        int tempo = 0;
-        // player count in auction
-        int count;
-        Player auctionWinner = null;
-        // removes the player who does not want to buy and creates a new array of auctioning players
-        Player[] biddingPlayers = new Player[playerList.getPlayers().length-1];
-        for (int i = 0; i < playerList.getPlayers().length ; i++) {
-            if(!(player.getName().equals(playerList.getPlayers()[i].getName()))){
-                biddingPlayers[tempo] = playerList.getPlayers()[i];
-                tempo++;
-            }
-        }
-        tempo =0;
-        count = biddingPlayers.length;
-
-        // auctioning goes on until there no player left in count
-        while (count!=0) {
-            // auction within players bidding
-            for (int i = 0; i <biddingPlayers.length ; i++) {
-                String bided = menuLogic.auctionMenu(biddingPlayers[i]);
-                Player[] temp = new Player[biddingPlayers.length - 1];
-                // if a player presses pass biddingplayers array will me rearranged.
-                if (bided.equals("pass")){
-                    for (int j = 0; j < biddingPlayers.length ; j++) {
-                        if(!(biddingPlayers[i].getName().equals(biddingPlayers[j].getName()))){
-                            temp[tempo] = biddingPlayers[j];
-                            tempo++;
-                        }
-                    }
-                    count--;
-                    biddingPlayers=temp;
-                    if (auctionWinner!= null && biddingPlayers.length == 1){
-                        square.setOwner(auctionWinner);
-                        auctionWinner.withdraw(bid);
-                        return;
-                    }
-                }
-
-                else{
-                    // auction winner will be set to current bidding player
-                    if(count == 1){
-                        count--;
-                    }
-                    bid = Integer.parseInt(bided);
-                    auctionWinner = biddingPlayers[i];
-                }
-            }
-        }
-        // square owner will be set to auction winner
-        square.setOwner(auctionWinner);
-        auctionWinner.withdraw(bid);
-    }
-
     private void updateGUI(Player player) {
 
     }
