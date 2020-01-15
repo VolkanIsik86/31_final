@@ -26,7 +26,7 @@ Out of jail take turn,,Du er nu ude af fængslet og skal tage din tur
 2 identical OK to throw,,Da du slog to ens, får du en ekstra tur. Tryk OK for at kaste
 2 identical,,Da du slog to ens, får du en ekstra tur.
 it is,,Det er
-s,,s tur.
+s,,'s tur.
 Choose option,,Vælg et menupunkt
 Throw,,Kast terninger
 Properties,,Administrer grund
@@ -67,3 +67,8 @@ House has been build,,Et hus blev bygget
 Hotel has been build,,Et hotel blev hygget
 too many identical,, Du har slået for mange ens og er derfor rykket i fængsel
 Not yet implemented,,Funktionen er ikke implementeret endnu
+byd,,byd
+pass,,afslå
+auction,,Auctionen er startet for
+onlynumbers,,Indstast venligst kun tal
+minimum,,indtast beløb du vil byde dog minimum

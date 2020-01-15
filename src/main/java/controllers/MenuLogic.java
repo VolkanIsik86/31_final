@@ -119,19 +119,39 @@ public class MenuLogic {
         return guiLogic.getUserSelection(turnLogicTxt.getLine("pledged properties"), properties);
     }
 
+public void auctionStartMenu(OwnableSquare ownableSquare){
+    guiLogic.showMessage(turnLogicTxt.getLine("auction")+" "+ownableSquare.getName());
+}
     /**
      * The menu will be showed when auctioning is invoked.
      * @param player the player who has bidding turn
      * @return String of bidding value or pass if he press pass
      */
-    public String auctionMenu(Player player){
-        String[] manageAuctionItems = {"byd","pass"};
-
-        if(guiLogic.getUserButtonPressed(player.getName(),manageAuctionItems).equals("pass")){
+    public String auctionMenu(Player player , int highestbid ,OwnableSquare ownableSquare){
+        String[] manageAuctionItems = {turnLogicTxt.getLine("byd"),turnLogicTxt.getLine("pass")};
+        String userInput = "";
+        int currentBid = -1;
+        if(guiLogic.getUserButtonPressed(ownableSquare.getName()+" "+player.getName()+turnLogicTxt.getLine("s"),
+                                          manageAuctionItems).equals(turnLogicTxt.getLine("pass"))){
             return "pass";
         }
         else
-            return guiLogic.getUserString("indtast beløb du vil byde");
+            while (currentBid < highestbid) {
+                currentBid = auctionInput(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + highestbid + " kr."),highestbid);
+                }
+            userInput = userInput+currentBid;
+            return userInput;
+    }
+
+    public int auctionInput(String userInput ,int highestbid){
+        int temp = 0;
+        try {
+            temp = Integer.parseInt(userInput);
+        }catch (NumberFormatException e){
+            guiLogic.showMessage(turnLogicTxt.getLine("onlynumbers"));
+            auctionInput(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + highestbid + " kr."),highestbid);
+        }
+        return temp;
     }
 
 }

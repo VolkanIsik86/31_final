@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Player;
+import domain.squares.OwnableSquare;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -230,7 +231,7 @@ public class GUILogic {
 
 
     /**
-     * Changes Font color of a field.
+     * Changes border color and writes player name of a field.
      *
      * @param player New owner of the field.
      */
@@ -239,6 +240,20 @@ public class GUILogic {
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
         try {
             ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor , Color.black);
+        } catch (ClassCastException e) {
+            System.out.println(e);
+        }
+    }
+
+    /**
+     * Changes border color and writes player name of a field.
+     * @param ownableSquare Uses an OwnableSquare to manage colors and text.
+     */
+    public void setSquareAuction(OwnableSquare ownableSquare) {
+        fields[ownableSquare.getIndex()].setSubText(ownableSquare.getOwner().getName());
+        Color playercolor = getGUIPlayer(ownableSquare.getOwner()).getCar().getPrimaryColor();
+        try {
+            ((GUI_Street) fields[ownableSquare.getIndex()]).setBorder(playercolor , Color.black);
         } catch (ClassCastException e) {
             System.out.println(e);
         }
