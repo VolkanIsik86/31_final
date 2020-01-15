@@ -43,11 +43,10 @@ public class TurnLogic {
             //If player is in jail
             if (currentPlayer.getJail()) {
                 takeJailTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             } else {
                 takeTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             }
+            if (currentPlayer.getLost()) break;
         }
 
         return looser;
@@ -56,11 +55,11 @@ public class TurnLogic {
     public void takeTurn(Player player) {
 
         boolean endTurn = false;
-        String choice ="";
+        String choice;
 
         //Start of user menu loop
         outer:
-        while(endTurn == false){
+        while(!endTurn){
 
             if (player.getLost()) break;
             int throwCounter = 0;
@@ -84,21 +83,20 @@ public class TurnLogic {
                     }else{
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
-                        endTurn = true;
                         break outer;
                     }
                     
-                    if(roll1 == roll2 && player.getLost() != true){
+                    if(roll1 == roll2 && !player.getLost()){
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                     }
                     
                     //If players has rolled to identical and ended up in jail
-                    if (roll1 == roll2 && player.getLost() != true && player.getJail()){
+                    if (roll1 == roll2 && !player.getLost() && player.getJail()){
                         takeJailTurn(player);
                         break outer;
                     }
 
-                } while(roll1 == roll2 && player.getLost() != true);
+                } while(roll1 == roll2 && !player.getLost());
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
@@ -203,7 +201,7 @@ public class TurnLogic {
 
     public int getOwnerIndex(Square nextLocation) {
         for (int i = 0; i < board.getOwnables().length; i++) {
-            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+            if (board.getOwnables()[i].getName().equals(nextLocation.getName())) {
                 return i;
             }
         }

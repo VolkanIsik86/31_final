@@ -7,7 +7,6 @@ import services.TxtReader;
 import static org.junit.Assert.*;
 
 //Testes kun positivt, da brugeren ikke skal interegere direkte med objektet
-
 public class BoardTest {
 
     private GUILogic guiLogic;

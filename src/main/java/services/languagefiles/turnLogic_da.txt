@@ -28,12 +28,14 @@ it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt
 Throw,,Kast terninger
-Properties,,Administrer grunde
+Properties,,Administrer grund
+Pledges Propertiesm,, Pantsatte grunde
 End,,Afslut tur
 Choose property,,Vælg en af dine grunde grund
 House,,Huse og hoteller
 Pledge,,Pantsætning
 Trade,,Handel
+Sell,, Sælg grund
 Back,,Tilbage
 Price pr. house/hotel,,Pris pr. hus/hotel:
 Pledge value,,Pantsætningsværdi:

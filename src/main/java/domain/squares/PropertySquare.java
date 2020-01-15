@@ -1,9 +1,7 @@
 package domain.squares;
 
 
-import controllers.GUILogic;
 import domain.Board;
-import domain.Player;
 import services.TxtReader;
 
 // Property square is the square that can be owned and other players, who land on it, pays to the owner.
@@ -19,7 +17,6 @@ public class PropertySquare extends OwnableSquare {
         this.HOUSE_PRICE = HOUSE_PRICE;
         this.rentLadder = rentLadder;
         PRICE_IF_OWNING_ALL = rentLadder[0]*2;
-        price = 0;
     }
 
     public int getHOUSE_PRICE(){

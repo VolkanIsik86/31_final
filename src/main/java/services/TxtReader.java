@@ -3,37 +3,37 @@ package services;
 import java.io.*;
 
 public class TxtReader {
-    
+
     private String[][] lines;
     private int N_LINES = 0;
     private File file;
     private BufferedReader br;
-    
-    public void openFile(String path, String fileName){
-        
-        try{
+
+    public void openFile(String path, String fileName) {
+
+        try {
             file = new File(path + fileName + ".txt");
             br = new BufferedReader(new FileReader(file));
-            
-        }catch (IOException e){
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public void readLines(){
-        
-        try{
-    
+
+    public void readLines() {
+
+        try {
+
             //Count number of lines
             String currentLine = br.readLine();
             while (currentLine != null) {
                 N_LINES++;
                 currentLine = br.readLine();
             }
-    
+
             //Reset reader
             br = new BufferedReader(new FileReader(file));
-            
+
             //Add lines to 2D array
             lines = new String[N_LINES][2];
             for (int i = 0; i < N_LINES; i++) {
@@ -42,35 +42,35 @@ public class TxtReader {
                     lines[i][j] = oneLine[j];
                 }
             }
-            
+
             br.close();
-            
-        } catch (IOException e){
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public int getN_LINES(){
+
+    public int getN_LINES() {
         return N_LINES;
     }
-    
-    public String getLine(String key){
-        
+
+    public String getLine(String key) {
+
         int index = -1;
-        
+
         //Find corresponding index to key
         for (int i = 0; i < N_LINES; i++) {
-            if (lines[i][0].equalsIgnoreCase(key)){
+            if (lines[i][0].equalsIgnoreCase(key)) {
                 index = i;
                 break;
             }
         }
-        
-        if (index == -1){
+
+        if (index == -1) {
             return "ERROR: Key didn't match any index";
-        } else{
+        } else {
             return lines[index][1];
         }
     }
-    
+
 }
