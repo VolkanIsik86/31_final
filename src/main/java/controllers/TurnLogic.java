@@ -18,7 +18,7 @@ public class TurnLogic {
     private boolean hasThrown = false;
     private String looser;
     private MenuLogic menuLogic;
-    private AuctionLogic auctionLogic = new AuctionLogic();
+    private AuctionLogic auctionLogic;
     private PlayerList playerList;
 
 
@@ -31,6 +31,7 @@ public class TurnLogic {
         this.playerList = playerList;
         this.chanceDeck = chanceDeck;
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
+        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic);
     }
 
     //todo hmm private..?
@@ -262,7 +263,7 @@ public class TurnLogic {
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
                 else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-                    auctionLogic.auctioning(((OwnableSquare) nextLocation),playerList,player,menuLogic,guiLogic);
+                    auctionLogic.auctioning(((OwnableSquare) nextLocation),player);
                     //auctioning(((OwnableSquare) nextLocation),playerList,player );
                 }
             } else {

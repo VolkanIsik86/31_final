@@ -7,17 +7,24 @@ import domain.PlayerList;
 import domain.squares.OwnableSquare;
 
 public class AuctionLogic {
-    public AuctionLogic(){
+    
+    PlayerList playerList;
+    MenuLogic menuLogic;
+    GUILogic guiLogic;
+    
+    
+    public AuctionLogic(PlayerList playerList, MenuLogic menuLogic, GUILogic guiLogic){
+        this.playerList = playerList;
+        this.menuLogic = menuLogic;
+        this.guiLogic = guiLogic;
     }
-
+    
     /**
      * Start auction if player does not want to buy the square he landed on.
      * @param square the squre where player landed on
-     * @param playerList List of all players
      * @param player the player who landed on a square
      */
-
-    public void auctioning(OwnableSquare square , PlayerList playerList, Player player , MenuLogic menuLogic , GUILogic guiLogic){
+    public void auctioning(OwnableSquare square , Player player){
         menuLogic.auctionStartMenu(square);
         // the current bid
         int bid = 0;
