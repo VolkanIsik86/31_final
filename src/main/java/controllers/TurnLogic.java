@@ -235,9 +235,9 @@ public class TurnLogic {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
                 }
-//                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-//                    auctioning(((OwnableSquare) nextLocation),playerList,player );
-//                }
+                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
+                    auctioning(((OwnableSquare) nextLocation),playerList,player );
+                }
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
             }
