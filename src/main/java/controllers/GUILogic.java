@@ -33,6 +33,8 @@ public class GUILogic {
 
     /**
      * Creates an array of fields for the game and initialize it.
+     *
+     * @param squaresTxt loads in the square name for each square in the array
      */
     private void makeBoard(TxtReader squaresTxt) {
         gui = new GUI();
@@ -53,6 +55,7 @@ public class GUILogic {
      * Adds player to the Graphical User Interface (GUI).
      *
      * @param numberofPlayers Adds quantity of player into the GUI.
+     * @param startbalance    Adds the startbalance to the add player method
      */
     protected void addPlayers(int numberofPlayers, int startbalance) {
 
@@ -111,10 +114,14 @@ public class GUILogic {
 
     /**
      * Define and creates players for the game and uses addPlayer method number of players.
+     *
+     * @param startbalance Adds the specified startbalance to the new
      */
     protected void makeUsers(int startbalance) {
+
         String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3", "4", "5", "6");
         int NumberOfPlayers = Integer.parseInt(nrPlayers);
+
         String names[] = new String[NumberOfPlayers];
         addPlayers(NumberOfPlayers, startbalance);
     }
@@ -131,7 +138,7 @@ public class GUILogic {
         GUI_Player guiPlayer = getGUIPlayer(player);
         int movesDone = 0; //Bruges til at holde styr på antal moves udført
         if (moves != 0) {
-
+            
             //Controls figure position + move and board length.
             //Tells if the play passes the finish line, depending on "N_FIELDS"(40).
             if (currentField + moves >= N_FIELDS) {
@@ -141,7 +148,6 @@ public class GUILogic {
                     moveRest(guiPlayer, currentField, i);
                     movesDone++;
                     sleep(delay);
-
 
                 }
                 //Pays the player 4000 for passing "Start"
@@ -216,7 +222,8 @@ public class GUILogic {
     /**
      * Places players figure to jail.
      *
-     * @param player
+     * @param player moves the current player to jail
+     *
      */
     public void moveToJail(Player player) {
 
@@ -294,7 +301,8 @@ public class GUILogic {
     /**
      * Displays Die on the GUI.
      *
-     * @param faceValue at the backend is showed on GUI.
+     * @param faceValue  facevalue of die one
+     * @param faceValue2 face value of die two
      */
     public void displayDie(int faceValue, int faceValue2) {
         gui.setDice(faceValue, faceValue2);
@@ -339,6 +347,7 @@ public class GUILogic {
      */
     public void setPlayerBalance(Player player) {
         GUI_Player guiPlayer = getGUIPlayer(player);
+        assert guiPlayer != null;
         guiPlayer.setBalance(player.getBalance());
     }
 
@@ -396,7 +405,7 @@ public class GUILogic {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
         fields[index].setCar(getGUIPlayer(player), true);
     }
-    
+
     public void deletePlayer(Player player){
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
     }

@@ -33,7 +33,6 @@ public class TurnLogic {
         auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic);
     }
 
-    //todo hmm private..?
     public void playRound() {
         
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
@@ -64,7 +63,10 @@ public class TurnLogic {
             }
         }
     }
-    
+    /**
+     * Shows auction start menu
+     * @param player
+     */
     private void auctionPlayerProperties(Player player){
         
         guiLogic.showMessage(turnLogicTxt.getLine("All player properties auction"));

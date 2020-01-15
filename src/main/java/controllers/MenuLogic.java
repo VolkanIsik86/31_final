@@ -131,7 +131,9 @@ public class MenuLogic {
     /**
      * The menu will be showed when auctioning is invoked.
      * @param player the player who has bidding turn
-     * @return String of bidding value or pass if he press pass
+     * @param highestbid String of bidding value with the highest vid
+     * @param ownableSquare Gets the square that is put up for auction
+     * @return userInput return the highest bid from a user
      */
      String auctionMenu(Player player , int highestbid ,OwnableSquare ownableSquare){
         String[] manageAuctionItems = {turnLogicTxt.getLine("byd"),turnLogicTxt.getLine("pass")};
