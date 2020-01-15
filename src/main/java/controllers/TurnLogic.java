@@ -326,11 +326,13 @@ public class TurnLogic {
             String choice = menuLogic.displayManagePropertyMenu(squareToManage);
             if (choice.equals(turnLogicTxt.getLine("House")))
                 housePrice = 0;
+            
             if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
                 buildHouse(board.getPropertyFromName(selection));
             } else {
                 guiLogic.showMessage(turnLogicTxt.getLine("attempt to buy"));
             }
+            
             if (player.attemptToPay(housePrice)) {
                 player.withdraw(housePrice);
                 guiLogic.setPlayerBalance(player);
