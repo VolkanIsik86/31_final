@@ -34,25 +34,31 @@ public class TurnLogic {
     }
 
     //todo hmm private..?
-    String playRound() {
-
-        looser = "none";
-
+    public void playRound() {
+        
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
 
             //If player is in jail
             if (currentPlayer.getJail()) {
-                System.out.println(hasThrown);
                 takeJailTurn(currentPlayer);
             } else {
                 takeTurn(currentPlayer);
             }
-            if (currentPlayer.getLost()) break;
+            
+            //Remove player from game and check if game is over
+            if (currentPlayer.getLost()){
+                playerList.removePlayer(currentPlayer);
+                
+                if (playerList.NumberOfPlayers() > 1){
+                    i = i -1;
+                } else {
+                    break;
+                }
+                
+            }
         }
-
-        return looser;
     }
 
     private void takeTurn(Player player) {
