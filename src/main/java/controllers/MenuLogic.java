@@ -142,7 +142,7 @@ public class MenuLogic {
         }
         else
             // user input has to be higher than highestbid
-            while (currentBid < highestbid) {
+            while (currentBid < (highestbid+100)) {
                 currentBid = auctionInput(highestbid);
                 }
             userInput = userInput+currentBid;
@@ -157,7 +157,7 @@ public class MenuLogic {
     private int auctionInput(int highestbid){
         int temp = 0;
         try {
-           temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + highestbid + " kr."));
+           temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + " " + (highestbid+100) + " kr."));
            return temp;
         }catch (NumberFormatException e){
             guiLogic.showMessage(turnLogicTxt.getLine("onlynumbers"));
