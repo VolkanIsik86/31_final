@@ -257,7 +257,7 @@ public class TurnLogic {
             guiLogic.moveToJail(player);
 
         if (message.charAt(message.length() - 1) != 'T') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message));
+            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
         }
 
 
