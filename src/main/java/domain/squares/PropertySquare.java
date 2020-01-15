@@ -45,8 +45,9 @@ public class PropertySquare extends OwnableSquare {
     public String getInfo(){
 
         return
+                getName() +
 //                this.getLandedOnTxt().getLine("Status") + " " +
-                "" + getLandedOnTxt().getLine("Price pr. house/hotel") + " " + getHOUSE_PRICE() +
+                "\n" + getLandedOnTxt().getLine("Price pr. house/hotel") + " " + getHOUSE_PRICE() +
 //                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
                 "" + getLandedOnTxt().getLine("Standard rent") + " " + getRentLadder()[0] +
                 "\n" + getLandedOnTxt().getLine("Price at same color") + " " + getPRICE_OF_OWNING_ALL() +

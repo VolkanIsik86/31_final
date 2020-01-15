@@ -9,18 +9,18 @@ import services.TxtReader;
 public class TurnLogic {
     
     protected Board board;
-    protected GUILogic guiLogic;
-    protected TxtReader turnLogicTxt;
+    private GUILogic guiLogic;
+    private TxtReader turnLogicTxt;
     protected TxtReader cardsTxt;
-    ChanceDeck chanceDeck;
-    protected Die die;
+    private ChanceDeck chanceDeck;
+    private Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
     private String looser;
-    MenuLogic menuLogic;
-    private int housePrice = 0;
-    protected PlayerList playerList;
+    private MenuLogic menuLogic;
     private AuctionLogic auctionLogic = new AuctionLogic();
+    private PlayerList playerList;
+
 
     public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck){
         this.die = die;
@@ -55,7 +55,7 @@ public class TurnLogic {
         return looser;
     }
 
-    public void takeTurn(Player player) {
+    private void takeTurn(Player player) {
 
         boolean endTurn = false;
         String choice;
@@ -73,17 +73,17 @@ public class TurnLogic {
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
                 
-                //Do a turn - as long as player gets two identical and has not lost. Max 3 three times
+                //Do a turn - as long as player gets two identical and has not lost. No more than three times
                 do{
                     
                     throwCounter++;
                     rollDice();
-                    
+    
+                    //If players has struck two identical three time, put him in jail, otherwise do his turn
                     if(throwCounter < 3 || roll1!=roll2){
                         doTurn(player);
                         
-                    //If players has struck two identical three time, put him in jail
-                    }else{
+                    } else {
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
                         break outer;
@@ -99,7 +99,7 @@ public class TurnLogic {
                         takeJailTurn(player);
                         break outer;
                     }
-
+                    
                 } while(roll1 == roll2 && player.getLost() != true);
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
@@ -109,10 +109,12 @@ public class TurnLogic {
                 endTurn = true;
             }
         }
+        
         hasThrown = false;
 
     }
-    public void withDrawMoneyFromPlayers (int amount, Player currentPlayer) {
+    
+    private void withDrawMoneyFromPlayers (int amount, Player currentPlayer) {
         int tempo = 0;
         int totalMoneyFromOthers = -500;
         Player[] restOfPlayers = new Player[playerList.getPlayers().length-1];
@@ -188,7 +190,7 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
             takeTurn(currentPlayer);
         
-        //If player if out of attempts but cant pay
+        //If player is out of attempts but cant pay
         } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2){
         
             //Player has lost

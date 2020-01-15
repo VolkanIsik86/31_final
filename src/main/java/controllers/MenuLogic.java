@@ -101,17 +101,19 @@ public class MenuLogic {
                     player.getName() + turnLogicTxt.getLine("s") + " " +
                     turnLogicTxt.getLine("In jail 2 options");
             jailMenuItems = new String[]{turnLogicTxt.getLine("Jail buy out"), turnLogicTxt.getLine("Jail roll dice")};
-
-            //If player has a balance under 1000, they can only roll the dice
+            
+        //If player has a balance under 1000, they can only roll the dice
         } else {
             greeting = turnLogicTxt.getLine("It is") + " " +
                     player.getName() + turnLogicTxt.getLine("s") + " " +
                     turnLogicTxt.getLine("In jail 1 option");
             jailMenuItems = new String[]{turnLogicTxt.getLine("Jail roll dice")};
         }
+        
         //Display jail menu and return choice
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
+    
     public String PledgeOwnables(Player player){
 
         String[] properties = board.getPlayerSquareNames(player);
