@@ -24,21 +24,21 @@ public class Game {
         initializeGame();
 
         //Play game as long as at least two people are alive
-        while (playerList.NumberOfPlayers() > 1){
+        while (playerList.NumberOfPlayers() > 1) {
             turnLogic.playRound();
-            }
-        
+        }
+
         //End game
         announceWinner();
         guiLogic.showMessage(guiTxt.getLine("Close"));
         guiLogic.close();
-        
-        }
+
+    }
 
     private void announceWinner() {
-    
+
         String coolwinner =
-                
+
                 "<table width=\"173\" cellspacing=\"11\" bgcolor=\"#000000\"><tr><td align=\"center\">" +
                         "<font color=\"white\" size=\"6\">" + winnerTxt.getLine("1") +
                         "</font>" +
@@ -55,11 +55,10 @@ public class Game {
                         playerList.getPlayer(0).getName() +
                         "</font>" +
                         "</td></tr></table>";
-    
-        guiLogic.getGui().displayChanceCard(coolwinner);
-        
-    }
 
+        guiLogic.getGui().displayChanceCard(coolwinner);
+
+    }
 
 
     private void initializeGame() {
@@ -72,6 +71,7 @@ public class Game {
         initPlayerList();
         initTurnLogic();
     }
+
     //Method to initialize the language, the Language adds either "da" or en" to the filepath.
     private void initLanguage() {
 
@@ -114,23 +114,23 @@ public class Game {
         //Includes the initialization of the chance deck
         board = new Board(squaresTxt, turnLogicTxt, new ChanceDeck(cardsTxt, board));
         chanceDeck = board.getChanceDeck();
-   }
-   
-   protected void initTurnLogic(){
-       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
-   }
-   
-   protected void initPlayerList(){
-       
-       //Creates a playerList and adds the players from guiLogic
-       playerList = new PlayerList(board.getSquare(0), guiLogic);
-       String[] playerNames = guiLogic.getPlayerNames();
+    }
 
-       for (int i = 0; i < playerNames.length; i++) {
-           playerList.addPlayer(playerNames[i], STARTBALANCE);
-       }
-   }
-   
+    protected void initTurnLogic() {
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
+    }
+
+    protected void initPlayerList() {
+
+        //Creates a playerList and adds the players from guiLogic
+        playerList = new PlayerList(board.getSquare(0), guiLogic);
+        String[] playerNames = guiLogic.getPlayerNames();
+
+        for (int i = 0; i < playerNames.length; i++) {
+            playerList.addPlayer(playerNames[i], STARTBALANCE);
+        }
+    }
+
 }
 
 

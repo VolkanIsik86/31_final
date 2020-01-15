@@ -7,7 +7,7 @@ import domain.squares.*;
 import services.TxtReader;
 
 public class TurnLogic {
-    
+
     protected Board board;
     private GUILogic guiLogic;
     private TxtReader turnLogicTxt;
@@ -21,7 +21,7 @@ public class TurnLogic {
     private PlayerList playerList;
 
 
-    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck){
+    public TurnLogic(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck) {
         this.die = die;
         this.board = board;
         this.guiLogic = guiLogic;
@@ -34,7 +34,7 @@ public class TurnLogic {
     }
 
     public void playRound() {
-        
+
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
@@ -45,16 +45,16 @@ public class TurnLogic {
             } else {
                 takeTurn(currentPlayer);
             }
-            
+
             //Remove player from game and check if game is over
-            if (currentPlayer.getLost()){
-                
-                if (playerList.NumberOfPlayers() > 2){
-                    i = i -1;
+            if (currentPlayer.getLost()) {
+
+                if (playerList.NumberOfPlayers() > 2) {
+                    i = i - 1;
                     guiLogic.deletePlayer(currentPlayer);
                     auctionPlayerProperties(currentPlayer);
                     playerList.removePlayer(currentPlayer);
-                    
+
                 } else {
                     playerList.removePlayer(currentPlayer);
                     guiLogic.showMessage(turnLogicTxt.getLine("The game ends"));
@@ -63,20 +63,22 @@ public class TurnLogic {
             }
         }
     }
+
     /**
      * Shows auction start menu
+     *
      * @param player
      */
-    private void auctionPlayerProperties(Player player){
-        
+    private void auctionPlayerProperties(Player player) {
+
         guiLogic.showMessage(turnLogicTxt.getLine("All player properties auction"));
-        
+
         //Find properties to auktion
         Square[] squaresToAuction = board.getPlayerSquares(player);
-    
+
         //Auction them
         for (int i = 0; i < squaresToAuction.length; i++) {
-            auctionLogic.auctioning( ((OwnableSquare) squaresToAuction[i]), player);
+            auctionLogic.auctioning(((OwnableSquare) squaresToAuction[i]), player);
         }
     }
 
@@ -87,45 +89,45 @@ public class TurnLogic {
 
         //Start of user menu loop
         outer:
-        while(!endTurn){
+        while (!endTurn) {
 
             if (player.getLost()) break;
             int throwCounter = 0;
-            
+
             //Start menu loop
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
-                
+
                 //Do a turn - as long as player gets two identical and has not lost. No more than three times
-                do{
-                    
+                do {
+
                     throwCounter++;
                     rollDice();
-    
+
                     //If players has struck two identical three time, put him in jail, otherwise do his turn
-                    if(throwCounter < 3 || roll1!=roll2){
+                    if (throwCounter < 3 || roll1 != roll2) {
                         doTurn(player);
-                        
+
                     } else {
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
                         break outer;
                     }
-                    
-                    if(roll1 == roll2 && player.getLost() != true && player.getJail() != true){
+
+                    if (roll1 == roll2 && player.getLost() != true && player.getJail() != true) {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical OK to throw"));
                     }
-                    
+
                     //If players has rolled 2 identical and ended up in jail
-                    if (roll1 == roll2 && player.getLost() != true && player.getJail()){
+                    if (roll1 == roll2 && player.getLost() != true && player.getJail()) {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                         takeJailTurn(player);
                         break outer;
                     }
-                    
-                } while(roll1 == roll2 && player.getLost() != true);
+
+                } while (roll1 == roll2 && player.getLost() != true);
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
@@ -134,22 +136,22 @@ public class TurnLogic {
                 endTurn = true;
             }
         }
-        
+
         hasThrown = false;
 
     }
-    
-    private void withDrawMoneyFromPlayers (int amount, Player currentPlayer) {
+
+    private void withDrawMoneyFromPlayers(int amount, Player currentPlayer) {
         int tempo = 0;
         int totalMoneyFromOthers = -500;
-        Player[] restOfPlayers = new Player[playerList.getPlayers().length-1];
-        for (int i = 0; i < playerList.getPlayers().length ; i++) {
-            if(!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))){
+        Player[] restOfPlayers = new Player[playerList.getPlayers().length - 1];
+        for (int i = 0; i < playerList.getPlayers().length; i++) {
+            if (!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))) {
                 restOfPlayers[tempo] = playerList.getPlayers()[i];
                 tempo++;
             }
         }
-        for (int i = 0; i < restOfPlayers.length ; i++) {
+        for (int i = 0; i < restOfPlayers.length; i++) {
             if (restOfPlayers[i].attemptToPay(amount)) {
                 restOfPlayers[i].withdraw(amount);
                 guiLogic.setPlayerBalance(restOfPlayers[i]);
@@ -161,7 +163,7 @@ public class TurnLogic {
 
     }
 
-    private void takeJailTurn(Player currentPlayer){
+    private void takeJailTurn(Player currentPlayer) {
 
         //todo tjek tekstfilen
 
@@ -171,13 +173,13 @@ public class TurnLogic {
         String choice = menuLogic.displayJailMenu(currentPlayer);
 
         //If player chooses to buy out
-        if(choice.equals(turnLogicTxt.getLine("Jail buy out"))){
+        if (choice.equals(turnLogicTxt.getLine("Jail buy out"))) {
 
             buyPlayerOutOfJail(currentPlayer);
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
             takeTurn(currentPlayer);
 
-        //If player chooses to throw the dice
+            //If player chooses to throw the dice
         } else {
 
             //Keep track on number of attempts
@@ -187,17 +189,17 @@ public class TurnLogic {
             rollDice();
             currentPlayer.setLastRoll((rollSum));
             guiLogic.displayDie(roll1, roll2);
-    
+
             attemptEscapeWithDice(currentPlayer);
-            
+
         }
     }
-    
-    private void attemptEscapeWithDice(Player currentPlayer){
-        
+
+    private void attemptEscapeWithDice(Player currentPlayer) {
+
         //If 2 identical
-        if(roll1 == roll2){
-        
+        if (roll1 == roll2) {
+
             //Free the player
             currentPlayer.setJail(false);
             currentPlayer.setAttemptsToGetOutOfJail(0);
@@ -205,36 +207,36 @@ public class TurnLogic {
 
             hasThrown = false;
             takeTurn(currentPlayer);
-        
-        //If player is out of attempts but can pay
-        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2 && currentPlayer.getBalance() >= 1000){
-        
+
+            //If player is out of attempts but can pay
+        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2 && currentPlayer.getBalance() >= 1000) {
+
             //Buy player out and take a turn
             guiLogic.showMessage(turnLogicTxt.getLine("Forced to buy out of jail"));
             buyPlayerOutOfJail(currentPlayer);
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
             takeTurn(currentPlayer);
-        
-        //If player is out of attempts but cant pay
-        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2){
-        
+
+            //If player is out of attempts but cant pay
+        } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2) {
+
             //Player has lost
             currentPlayer.setLost(true);
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail throws and lost"));
-        
-        //If player is just still in jail
+
+            //If player is just still in jail
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("Did not come out of jail"));
-    
+
             hasThrown = true;
             takeTurn(currentPlayer);
         }
-        
+
     }
 
-    private void doTurn(Player player){
+    private void doTurn(Player player) {
         hasThrown = true;
-        
+
         player.setLastRoll(rollSum);
         guiLogic.displayDie(roll1, roll2);
 
@@ -247,7 +249,7 @@ public class TurnLogic {
         doLandedOnTurn(player);
     }
 
-    private void buyPlayerOutOfJail(Player currentPlayer){
+    private void buyPlayerOutOfJail(Player currentPlayer) {
         currentPlayer.withdraw(1000);
         guiLogic.setPlayerBalance(currentPlayer);
         currentPlayer.setJail(false);
@@ -263,7 +265,7 @@ public class TurnLogic {
         return -1;
     }
 
-    public void doLandedOnTurn(Player player){
+    public void doLandedOnTurn(Player player) {
 
         Square nextLocation = player.getLocation();
         String message = nextLocation.landedOn(player);
@@ -278,9 +280,8 @@ public class TurnLogic {
                 if (choice.equals(turnLogicTxt.getLine("buy"))) {
                     guiLogic.setSquareOwner(player);
                     player.attemptToPurchase((OwnableSquare) nextLocation);
-                }
-                else if (choice.equals(turnLogicTxt.getLine("dont buy"))){
-                    auctionLogic.auctioning(((OwnableSquare) nextLocation),player);
+                } else if (choice.equals(turnLogicTxt.getLine("dont buy"))) {
+                    auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
                     //auctioning(((OwnableSquare) nextLocation),playerList,player );
                 }
             } else {
@@ -294,15 +295,15 @@ public class TurnLogic {
             guiLogic.showChanceCard(pulledCard.getDescription());
             int tempValue = pulledCard.applyEffect(player);
             String tempCard = pulledCard.getType();
-            if(tempCard.equalsIgnoreCase("move")){
+            if (tempCard.equalsIgnoreCase("move")) {
                 guiLogic.movePiece(player, tempValue);
                 doLandedOnTurn(player);
             }
-            if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& !player.attemptToPay(tempValue)){
+            if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
                 guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
-            if (tempCard.equalsIgnoreCase("Earn")){
-                if (((EarnCard)pulledCard).getAmount() == 500) {
+            if (tempCard.equalsIgnoreCase("Earn")) {
+                if (((EarnCard) pulledCard).getAmount() == 500) {
                     guiLogic.showMessage("du får 500 fra alle andre");
                     withDrawMoneyFromPlayers(500, player);
                 }
@@ -316,7 +317,7 @@ public class TurnLogic {
             guiLogic.moveToJail(player);
 
         if (message.charAt(message.length() - 1) == 'f') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message)+ ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
         }
 
         if (message.charAt(message.length() - 1) == 'o') {
@@ -337,8 +338,8 @@ public class TurnLogic {
         guiLogic.setPlayerBalance(player);
 
     }
-    
-    private void putInJail(Player player){
+
+    private void putInJail(Player player) {
         player.setLocation(board.getJail());
         player.setJail(true);
         guiLogic.moveToJail(player);
@@ -352,20 +353,20 @@ public class TurnLogic {
         rollSum = roll1 + roll2;
     }
 
-    private boolean taxSquare(String message){
+    private boolean taxSquare(String message) {
         return message.equals(("Tax square"));
     }
 
-    private void doTax(Player p, Square nextLocation){
-        if(nextLocation.getIndex() == 4){
+    private void doTax(Player p, Square nextLocation) {
+        if (nextLocation.getIndex() == 4) {
 
             String choice = menuLogic.displayTaxMenu();
 
-            if(choice.equals(turnLogicTxt.getLine("pay 4000"))) {
+            if (choice.equals(turnLogicTxt.getLine("pay 4000"))) {
                 p.withdraw(4000);
             }
-            if(choice.equals(turnLogicTxt.getLine("pay 10"))){
-                int tempTax = (int)Math.round(board.getPlayerValue(p)*0.1);
+            if (choice.equals(turnLogicTxt.getLine("pay 10"))) {
+                int tempTax = (int) Math.round(board.getPlayerValue(p) * 0.1);
                 System.out.println(tempTax);
                 p.withdraw(tempTax);
             }
@@ -380,67 +381,68 @@ public class TurnLogic {
 
         //Prompt player to choose a field
         String selection = menuLogic.displayPropertyMenu(player);
-    
+
         //Show property information in the middle of board
         OwnableSquare squareToManage = board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
 
         String choice = "START";
 
-            //Property menu loop
-            while (!choice.equals("END")){
+        //Property menu loop
+        while (!choice.equals("END")) {
 
-                //Prompt player to choose something to do with that field
-                choice = menuLogic.displayManagePropertyMenu(squareToManage);
+            //Prompt player to choose something to do with that field
+            choice = menuLogic.displayManagePropertyMenu(squareToManage);
 
-                if (choice.equals(turnLogicTxt.getLine("House"))){
+            if (choice.equals(turnLogicTxt.getLine("House"))) {
 
-                    PropertySquare propertyToManage = ((PropertySquare) squareToManage);
+                PropertySquare propertyToManage = ((PropertySquare) squareToManage);
 
-                    boolean playerOwnAllColors = board.searchColors(propertyToManage) == 0;
-                    boolean playerHasEnoughMoney = player.getBalance() >= propertyToManage.getHOUSE_PRICE();
-                    boolean numberOfHousesIsLessThan5 = propertyToManage.getHouseCount() < 5;
+                boolean playerOwnAllColors = board.searchColors(propertyToManage) == 0;
+                boolean playerHasEnoughMoney = player.getBalance() >= propertyToManage.getHOUSE_PRICE();
+                boolean numberOfHousesIsLessThan5 = propertyToManage.getHouseCount() < 5;
 
-                    if (playerOwnAllColors){
-                        if (numberOfHousesIsLessThan5){
-                            if (playerHasEnoughMoney) {
-                                buildHouse(propertyToManage, player);
-                            } else {
-                                guiLogic.showMessage(turnLogicTxt.getLine("Player does not have enough money"));
-                            }
+                if (playerOwnAllColors) {
+                    if (numberOfHousesIsLessThan5) {
+                        if (playerHasEnoughMoney) {
+                            buildHouse(propertyToManage, player);
                         } else {
-                            guiLogic.showMessage(turnLogicTxt.getLine("Property has too many houses"));
+                            guiLogic.showMessage(turnLogicTxt.getLine("Player does not have enough money"));
                         }
                     } else {
-                        guiLogic.showMessage(turnLogicTxt.getLine("Player does not own all colors"));
+                        guiLogic.showMessage(turnLogicTxt.getLine("Property has too many houses"));
                     }
-
-                } else if (choice.equals(turnLogicTxt.getLine("Pledge"))){
-                    guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
-
-                } else if (choice.equals(turnLogicTxt.getLine("Trade"))){
-                    guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
-
-                } else if (choice.equals(turnLogicTxt.getLine("Back"))) {
-                    choice = "END";
+                } else {
+                    guiLogic.showMessage(turnLogicTxt.getLine("Player does not own all colors"));
                 }
+
+            } else if (choice.equals(turnLogicTxt.getLine("Pledge"))) {
+                guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
+
+            } else if (choice.equals(turnLogicTxt.getLine("Trade"))) {
+                guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
+
+            } else if (choice.equals(turnLogicTxt.getLine("Back"))) {
+                choice = "END";
             }
+        }
     }
 
-    private void buildHouse(PropertySquare propertyToManage, Player player){
+    private void buildHouse(PropertySquare propertyToManage, Player player) {
         player.withdraw(propertyToManage.getHOUSE_PRICE());
         propertyToManage.addHouse();
         guiLogic.setPlayerBalance(player);
         guiLogic.updateHouses(propertyToManage.getIndex(), propertyToManage.getHouseCount());
 
-        if(propertyToManage.getHouseCount() == 5){
+        if (propertyToManage.getHouseCount() == 5) {
             guiLogic.showMessage(turnLogicTxt.getLine("Hotel has been build"));
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("House has been build"));
         }
     }
+
     private void updateGUI(Player player) {
 
     }
-    
+
 }

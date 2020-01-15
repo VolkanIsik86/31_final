@@ -8,6 +8,7 @@ import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import services.TxtReader;
+
 import java.awt.*;
 
 
@@ -138,7 +139,7 @@ public class GUILogic {
         GUI_Player guiPlayer = getGUIPlayer(player);
         int movesDone = 0; //Bruges til at holde styr på antal moves udført
         if (moves != 0) {
-            
+
             //Controls figure position + move and board length.
             //Tells if the play passes the finish line, depending on "N_FIELDS"(40).
             if (currentField + moves >= N_FIELDS) {
@@ -223,7 +224,6 @@ public class GUILogic {
      * Places players figure to jail.
      *
      * @param player moves the current player to jail
-     *
      */
     public void moveToJail(Player player) {
 
@@ -246,7 +246,7 @@ public class GUILogic {
         fields[player.getLocation().getIndex()].setSubText(player.getName());
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
         try {
-            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor , Color.black);
+            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor, Color.black);
         } catch (ClassCastException e) {
             System.out.println(e);
         }
@@ -254,13 +254,14 @@ public class GUILogic {
 
     /**
      * Changes border color and writes player name of a field.
+     *
      * @param ownableSquare Uses an OwnableSquare to manage colors and text.
      */
     public void setSquareAuction(OwnableSquare ownableSquare) {
         fields[ownableSquare.getIndex()].setSubText(ownableSquare.getOwner().getName());
         Color playercolor = getGUIPlayer(ownableSquare.getOwner()).getCar().getPrimaryColor();
         try {
-            ((GUI_Street) fields[ownableSquare.getIndex()]).setBorder(playercolor , Color.black);
+            ((GUI_Street) fields[ownableSquare.getIndex()]).setBorder(playercolor, Color.black);
         } catch (ClassCastException e) {
             System.out.println(e);
         }
@@ -372,19 +373,19 @@ public class GUILogic {
         return gui.getUserSelection(msg, options);
     }
 
-    public String getUserString(String input){
+    public String getUserString(String input) {
         return gui.getUserString(input);
     }
 
     /**
      * Updates the house, if user buys more than 4.
      *
-     * @param square    which square need to be updated visually
-     * @param houses    Needs the variable, to check if they need a hotel instead of 4 houses
+     * @param square which square need to be updated visually
+     * @param houses Needs the variable, to check if they need a hotel instead of 4 houses
      */
-    public void updateHouses(int square,int houses){
-        try{
-            if (houses < 5){
+    public void updateHouses(int square, int houses) {
+        try {
+            if (houses < 5) {
                 ((GUI_Street) fields[square]).setHouses(houses);
             } else {
                 ((GUI_Street) fields[square]).setHotel(true);
@@ -395,22 +396,23 @@ public class GUILogic {
         }
 
     }
+
     /**
      * Moves the player to the correct location on the GUI
      *
-     * @param player   Which player needs to be moved
-     * @param index    Moves the player to the correct index on the board
+     * @param player Which player needs to be moved
+     * @param index  Moves the player to the correct index on the board
      */
     protected void placePlayer(Player player, int index) {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
         fields[index].setCar(getGUIPlayer(player), true);
     }
 
-    public void deletePlayer(Player player){
+    public void deletePlayer(Player player) {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
     }
 
-    public void setDelay(int newDelay){
+    public void setDelay(int newDelay) {
         delay = newDelay;
     }
 

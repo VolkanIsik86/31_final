@@ -89,9 +89,9 @@ public class MenuLogic {
         //Display manage properies menu and return choice
         return guiLogic.getUserButtonPressed(turnLogicTxt.getLine("Choose option"), managePropertyMenuItems);
     }
-    
-    public String displayJailMenu(Player player){
-        
+
+    public String displayJailMenu(Player player) {
+
         String[] jailMenuItems;
         String greeting;
 
@@ -101,20 +101,20 @@ public class MenuLogic {
                     player.getName() + turnLogicTxt.getLine("s") + " " +
                     turnLogicTxt.getLine("In jail 2 options");
             jailMenuItems = new String[]{turnLogicTxt.getLine("Jail buy out"), turnLogicTxt.getLine("Jail roll dice")};
-            
-        //If player has a balance under 1000, they can only roll the dice
+
+            //If player has a balance under 1000, they can only roll the dice
         } else {
             greeting = turnLogicTxt.getLine("It is") + " " +
                     player.getName() + turnLogicTxt.getLine("s") + " " +
                     turnLogicTxt.getLine("In jail 1 option");
             jailMenuItems = new String[]{turnLogicTxt.getLine("Jail roll dice")};
         }
-        
+
         //Display jail menu and return choice
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
-    
-    public String PledgeOwnables(Player player){
+
+    public String PledgeOwnables(Player player) {
 
         String[] properties = board.getPlayerSquareNames(player);
 
@@ -123,47 +123,50 @@ public class MenuLogic {
 
     /**
      * Shows auction start menu
+     *
      * @param ownableSquare the square that will be auctioned.
      */
-    void auctionStartMenu(OwnableSquare ownableSquare){
-    guiLogic.showMessage(turnLogicTxt.getLine("auction")+" "+ownableSquare.getName());
-}
+    void auctionStartMenu(OwnableSquare ownableSquare) {
+        guiLogic.showMessage(turnLogicTxt.getLine("auction") + " " + ownableSquare.getName());
+    }
+
     /**
      * The menu will be showed when auctioning is invoked.
-     * @param player the player who has bidding turn
-     * @param highestbid String of bidding value with the highest vid
+     *
+     * @param player        the player who has bidding turn
+     * @param highestbid    String of bidding value with the highest vid
      * @param ownableSquare Gets the square that is put up for auction
      * @return userInput return the highest bid from a user
      */
-     String auctionMenu(Player player , int highestbid ,OwnableSquare ownableSquare){
-        String[] manageAuctionItems = {turnLogicTxt.getLine("byd"),turnLogicTxt.getLine("pass")};
+    String auctionMenu(Player player, int highestbid, OwnableSquare ownableSquare) {
+        String[] manageAuctionItems = {turnLogicTxt.getLine("byd"), turnLogicTxt.getLine("pass")};
         String userInput = "";
         int currentBid = -1;
         // shows a menu of choice that user can choose from (pass or bid)
-        if(guiLogic.getUserButtonPressed(ownableSquare.getName()+" "+player.getName()+turnLogicTxt.getLine("s"),
-                                          manageAuctionItems).equals(turnLogicTxt.getLine("pass"))){
+        if (guiLogic.getUserButtonPressed(ownableSquare.getName() + " " + player.getName() + turnLogicTxt.getLine("s"),
+                manageAuctionItems).equals(turnLogicTxt.getLine("pass"))) {
             return "pass";
-        }
-        else
+        } else
             // user input has to be higher than highestbid
-            while (currentBid < (highestbid+100)) {
+            while (currentBid < (highestbid + 100)) {
                 currentBid = auctionInput(highestbid);
-                }
-            userInput = userInput+currentBid;
-            return userInput;
+            }
+        userInput = userInput + currentBid;
+        return userInput;
     }
 
     /**
      * Makes sure that user input consists of numbers.
+     *
      * @param highestbid used to show massage at gui*
      * @return returns user input in integer
      */
-    private int auctionInput(int highestbid){
+    private int auctionInput(int highestbid) {
         int temp = 0;
         try {
-           temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + " " + (highestbid+100) + " kr."));
-           return temp;
-        }catch (NumberFormatException e){
+            temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + " " + (highestbid + 100) + " kr."));
+            return temp;
+        } catch (NumberFormatException e) {
             guiLogic.showMessage(turnLogicTxt.getLine("onlynumbers"));
             //recusrive function that repeats until user has the right input
             temp = auctionInput(highestbid);
