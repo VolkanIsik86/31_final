@@ -9,77 +9,75 @@ public class Player {
 
     private final Account account;
     private final Piece piece;
-    
+
     private final String name;
-   
+
     private boolean lost = false;
     private boolean jail = false;
     private int lastRoll = 0;
     private int attemptsToGetOutOfJail = 0;
-    
-    public Player(String name, int balance, Piece piece){
+
+    public Player(String name, int balance, Piece piece) {
         this.name = name;
         account = new Account(balance);
         this.piece = piece;
     }
 
-    public void setAttemptsToGetOutOfJail(int value){
+    public void setAttemptsToGetOutOfJail(int value) {
         attemptsToGetOutOfJail = value;
     }
-    
-    public int getAttemptsToGetOutOfJail(){
+
+    public int getAttemptsToGetOutOfJail() {
         return attemptsToGetOutOfJail;
     }
-    
-    public void incrementAttemptsToGetOutOfJail(){
-        attemptsToGetOutOfJail = attemptsToGetOutOfJail+1;
+
+    public void incrementAttemptsToGetOutOfJail() {
+        attemptsToGetOutOfJail = attemptsToGetOutOfJail + 1;
     }
-    
+
     public void setLastRoll(int lastRoll) {
         this.lastRoll = lastRoll;
     }
-    
-    public void setJail(boolean status){
+
+    public void setJail(boolean status) {
         jail = status;
     }
-    
-    public boolean getJail(){
+
+    public boolean getJail() {
         return jail;
     }
-    
-    public boolean attemptToPurchase(OwnableSquare property){
+
+    public boolean attemptToPurchase(OwnableSquare property) {
 
         if (property.getPrice() <= this.getBalance()) {
             property.purchase(this);
             return true;
-        }
-        else{
+        } else {
             setLost(true);
             setBalance(0);
             return false;
         }
     }
-    
+
     //todo burde den ikke trække pengene her så også? -Mikkel
-    public boolean attemptToPay(int amount){
-        if(amount <= this.getBalance()){
+    public boolean attemptToPay(int amount) {
+        if (amount <= this.getBalance()) {
             return true;
-        }
-        else{
+        } else {
             setLost(true);
             setBalance(0);
             return false;
         }
 
     }
-    
-    public boolean equals(Player player){
-        
+
+    public boolean equals(Player player) {
+
         return this.getName().equals(player.getName());
-        
+
     }
-    
-    public void setLocation(Square newLocation){
+
+    public void setLocation(Square newLocation) {
         piece.setLocation(newLocation);
     }
 
@@ -91,44 +89,44 @@ public class Player {
         this.lost = status;
     }
 
-    public Square getLocation(){
+    public Square getLocation() {
         return piece.getLocation();
     }
 
-    public int getBalance(){
+    public int getBalance() {
         return account.getBalance();
     }
-    
-    public void setBalance(int points){
+
+    public void setBalance(int points) {
         account.setBalance(points);
     }
-    
-    public void withdraw(int amount){
-         account.withdraw(amount);
+
+    public void withdraw(int amount) {
+        account.withdraw(amount);
     }
-    
-    public void deposit(int amount){
+
+    public void deposit(int amount) {
         account.deposit(amount);
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public Square getLastLocation(){
+
+    public Square getLastLocation() {
         return piece.getLastLocation();
     }
 
-    public int getLocationPrice(OwnableSquare property){
+    public int getLocationPrice(OwnableSquare property) {
         return property.getPrice();
 
     }
-    
-    public int getLastRoll(){
+
+    public int getLastRoll() {
         return lastRoll;
     }
 
-    
+
     @Override
     public String toString() {
         return "Player{" +

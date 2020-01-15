@@ -44,11 +44,10 @@ public class TurnLogic {
             if (currentPlayer.getJail()) {
                 System.out.println(hasThrown);
                 takeJailTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             } else {
                 takeTurn(currentPlayer);
-                if (currentPlayer.getLost()) break;
             }
+            if (currentPlayer.getLost()) break;
         }
 
         return looser;
@@ -57,11 +56,11 @@ public class TurnLogic {
     public void takeTurn(Player player) {
 
         boolean endTurn = false;
-        String choice ="";
+        String choice;
 
         //Start of user menu loop
         outer:
-        while(endTurn == false){
+        while(!endTurn){
 
             if (player.getLost()) break;
             int throwCounter = 0;
@@ -85,7 +84,6 @@ public class TurnLogic {
                     }else{
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
-                        endTurn = true;
                         break outer;
                     }
                     
@@ -118,10 +116,10 @@ public class TurnLogic {
         //todo tjek tekstfilen
 
         hasThrown = false;
-        
+
         //Displays the proper jail menu depending on player funds and return choice
         String choice = menuLogic.displayJailMenu(currentPlayer);
-        
+
         //If player chooses to buy out
         if(choice.equals(turnLogicTxt.getLine("Jail buy out"))){
 
@@ -154,9 +152,9 @@ public class TurnLogic {
             currentPlayer.setJail(false);
             currentPlayer.setAttemptsToGetOutOfJail(0);
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail and move"));
-            
+
             doTurn(currentPlayer);
-    
+
             if(currentPlayer.getLost() != true){
                 guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                 hasThrown = false;
@@ -214,7 +212,7 @@ public class TurnLogic {
 
     public int getOwnerIndex(Square nextLocation) {
         for (int i = 0; i < board.getOwnables().length; i++) {
-            if (board.getOwnables()[i].getName() == nextLocation.getName()) {
+            if (board.getOwnables()[i].getName().equals(nextLocation.getName())) {
                 return i;
             }
         }

@@ -32,13 +32,6 @@ public class ChanceCardTest {
         squareTxt.readLines();
         board.makeBoard(squareTxt, landedOnTxt, cardsTxt);
         chanceDeck = new ChanceDeck(cardsTxt, board);
-
-
-
-
-
-
-
     }
 
     @Test

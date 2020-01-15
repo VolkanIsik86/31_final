@@ -1,6 +1,5 @@
 package domain;
 
-import controllers.GUILogic;
 import domain.chanceCards.ChanceCard;
 import domain.chanceCards.EarnCard;
 import domain.chanceCards.PayHouseCard;
