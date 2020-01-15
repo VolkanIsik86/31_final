@@ -1,22 +1,20 @@
 package controllers;
 
 import domain.Player;
-import domain.squares.PropertySquare;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import services.TxtReader;
-
 import java.awt.*;
-import java.io.IOException;
 
 
 public class GUILogic {
 
     private final Color BROWN = new Color(153, 102, 0);
     private final Color GOLD = new Color(255, 204, 51);
+    private int delay = 200;
     private final int N_FIELDS = 40;
     private final int PASSEDSTART = 4000;
     protected GUI_Field[] fields;
@@ -135,14 +133,13 @@ public class GUILogic {
 
             //Controls figure position + move and board length.
             //Tells if the play passes the finish line, depending on "N_FIELDS"(40).
-            int DELAY = 200;
             if (currentField + moves >= N_FIELDS) {
 
                 //Runs fields until the start  point.
                 for (int i = 1; currentField + i < N_FIELDS; i++) {
                     moveRest(guiPlayer, currentField, i);
                     movesDone++;
-                    sleep(DELAY);
+                    sleep(delay);
 
 
                 }
@@ -150,14 +147,14 @@ public class GUILogic {
                 currentField = passStart(guiPlayer);
                 passedStart(player);
                 movesDone++;
-                sleep(DELAY);
+                sleep(delay);
 
             }
 
             //Run figure and controls moves done.
             for (int i = 0; i + movesDone < moves; i++) {
                 currentField = moveOnce(guiPlayer, currentField);
-                sleep(DELAY);
+                sleep(delay);
             }
 
         } else {
@@ -384,6 +381,11 @@ public class GUILogic {
         fields[player.getLocation().getIndex()].setCar(getGUIPlayer(player), false);
         fields[index].setCar(getGUIPlayer(player), true);
     }
+
+    public void setDelay(int newDelay){
+        delay = newDelay;
+    }
+
 }
 
 
