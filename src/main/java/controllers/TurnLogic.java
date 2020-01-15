@@ -50,16 +50,38 @@ public class TurnLogic {
             
             //Remove player from game and check if game is over
             if (currentPlayer.getLost()){
-                playerList.removePlayer(currentPlayer);
                 
-                if (playerList.NumberOfPlayers() > 1){
+                if (playerList.NumberOfPlayers() > 2){
                     i = i -1;
+                    guiLogic.deletePlayer(currentPlayer);
+                    auctionPlayerProperties(currentPlayer);
+                    playerList.removePlayer(currentPlayer);
+                    
                 } else {
+                    guiLogic.showMessage(turnLogicTxt.getLine("The game ends"));
                     break;
                 }
-                
             }
         }
+    }
+    
+    private void auctionPlayerProperties(Player player){
+        
+        guiLogic.showMessage(turnLogicTxt.getLine("All player properties auction"));
+        
+        //Find properties to auktion
+        Square[] squaresToAuction = board.getPlayerSquares(player);
+    
+        //Auction them
+        for (int i = 0; i < squaresToAuction.length; i++) {
+            auctionLogic.auctioning( ((OwnableSquare) squaresToAuction[i]), player);
+        }
+        
+        
+        
+        
+        
+        
     }
 
     private void takeTurn(Player player) {
