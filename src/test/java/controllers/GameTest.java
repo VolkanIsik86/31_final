@@ -9,10 +9,12 @@ public class GameTest {
         //Kommer i fængsel. Slår med terningerne 3 gange og kommer ikke ud. Kommer i fængsel med to ens. Har ikke råd til at betale sig ud.
         new GameStub(new int[]{
         
-                1,2,1,2
+                0,1,0,1,0,1,
+                1,1,1,2,
+                1,1,1,2
                 
                 
-        }, new int[]{30000, 30000, 30000}, new int[]{0,0,0}).playGame();
+        }, new int[]{9000, 30000, 30000}, new int[]{0,0,0}).playGame();
     }
     
 //    //Kommer i fængsel. Slår med terningerne 3 gange og kommer ikke ud. Kommer i fængsel med to ens. Har ikke råd til at betale sig ud.

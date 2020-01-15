@@ -65,7 +65,7 @@ public class TurnLogic {
             if (player.getLost()) break;
             int throwCounter = 0;
             
-            //Display start menu
+            //Start menu loop
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...
@@ -323,38 +323,59 @@ public class TurnLogic {
         OwnableSquare squareToManage = board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
         
-            //Prompt player to choose something to do with that field
-            String choice = menuLogic.displayManagePropertyMenu(squareToManage);
-            if (choice.equals(turnLogicTxt.getLine("House"))){
-                housePrice = 0;
-
-            } else if (choice.equals(turnLogicTxt.getLine("Pledge"))){
-            
-            } else if (choice.equals(turnLogicTxt.getLine("Trade"))){
-            
-            } else if (choice.equals(turnLogicTxt.getLine("Back")))
+        String choice = "START";
+        
+            //Property menu loop
+            while (!choice.equals("END")){
+    
+                //Prompt player to choose something to do with that field
+                choice = menuLogic.displayManagePropertyMenu(squareToManage);
                 
-            
-            if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
-                buildHouse(board.getPropertyFromName(selection));
-            } else {
-                guiLogic.showMessage(turnLogicTxt.getLine("attempt to buy"));
-            }
-            
-            if (player.attemptToPay(housePrice)) {
-                player.withdraw(housePrice);
-                guiLogic.setPlayerBalance(player);
+                if (choice.equals(turnLogicTxt.getLine("House"))){
+        
+                    PropertySquare propertyToManage = ((PropertySquare) squareToManage);
+        
+                    boolean playerOwnAllColors = board.searchColors(propertyToManage) == 0;
+                    boolean playerHasEnoughMoney = player.getBalance() >= propertyToManage.getHOUSE_PRICE();
+                    boolean numberOfHousesIsLessThan5 = propertyToManage.getHouseCount() < 5;
+        
+                    if (playerOwnAllColors){
+                        if (numberOfHousesIsLessThan5){
+                            if (playerHasEnoughMoney) {
+                                buildHouse(propertyToManage, player);
+                            } else {
+                                guiLogic.showMessage(turnLogicTxt.getLine("Player does not have enough money"));
+                            }
+                        } else {
+                            guiLogic.showMessage(turnLogicTxt.getLine("Property has too many houses"));
+                        }
+                    } else {
+                        guiLogic.showMessage(turnLogicTxt.getLine("Player does not own all colors"));
+                    }
+        
+                } else if (choice.equals(turnLogicTxt.getLine("Pledge"))){
+                    guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
+        
+                } else if (choice.equals(turnLogicTxt.getLine("Trade"))){
+                    guiLogic.showMessage(turnLogicTxt.getLine("Not yet implemented"));
+                    
+                } else if (choice.equals(turnLogicTxt.getLine("Back"))) {
+                    choice = "END";
+                }
             }
     }
 
-    private void buildHouse(PropertySquare square){
-        housePrice = square.addHouse();
-        if (housePrice == 0) {
-            guiLogic.showMessage(turnLogicTxt.getLine("no more house"));
+    private void buildHouse(PropertySquare propertyToManage, Player player){
+        player.withdraw(propertyToManage.getHOUSE_PRICE());
+        propertyToManage.addHouse();
+        guiLogic.setPlayerBalance(player);
+        guiLogic.updateHouses(propertyToManage.getIndex(), propertyToManage.getHouseCount());
+        
+        if(propertyToManage.getHouseCount() == 5){
+            guiLogic.showMessage(turnLogicTxt.getLine("Hotel has been build"));
+        } else {
+            guiLogic.showMessage(turnLogicTxt.getLine("House has been build"));
         }
-        int houses = square.getHouseCount();
-        Square realSquare = board.getSquareFromName(square.getName());
-        guiLogic.updateHouses(realSquare.getIndex(),houses);
     }
 
     /**
