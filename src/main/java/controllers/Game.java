@@ -23,20 +23,21 @@ public class Game {
 
         initializeGame();
 
-        while (true){
-            looser = turnLogic.playRound();
-            if (looser != "none"){
-                announceWinner();
-                guiLogic.showMessage(guiTxt.getLine("Close"));
-                guiLogic.close();
-                break;
+        //Play game as long as at least two people are alive
+        while (playerList.NumberOfPlayers() > 1){
+            turnLogic.playRound();
             }
+        
+        //End game
+        announceWinner();
+        guiLogic.showMessage(guiTxt.getLine("Close"));
+        guiLogic.close();
+        
         }
-    }
 
     private void announceWinner() {
         //If it's a draw
-        if (playerList.getWinner() == null) {
+        if (playerList.getPlayer(0) == null) {
             String coolWinner =
 
                     "<table width=\"173\" cellspacing=\"17\" bgcolor=\"#000000\"><tr><td>\n</td></tr><tr><td align=\"center\">" +
