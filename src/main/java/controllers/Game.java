@@ -12,7 +12,7 @@ public class Game {
     protected final Board board = new Board();
     protected TurnLogic turnLogic;
     protected PlayerList playerList;
-    private final int STARTBALANCE = 30000;
+    protected final int STARTBALANCE = 30000;
 
     protected String looser = "null";
     protected TxtReader turnLogicTxt;
