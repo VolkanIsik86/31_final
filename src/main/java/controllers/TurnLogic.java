@@ -16,7 +16,6 @@ public class TurnLogic {
     private Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
-    private String looser;
     private MenuLogic menuLogic;
     private AuctionLogic auctionLogic;
     private PlayerList playerList;
@@ -224,7 +223,6 @@ public class TurnLogic {
         
             //Player has lost
             currentPlayer.setLost(true);
-            looser = currentPlayer.getName();
             guiLogic.showMessage(turnLogicTxt.getLine("Out of jail throws and lost"));
         
         //If player is just still in jail
