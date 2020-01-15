@@ -57,6 +57,7 @@ public class TurnLogic {
                     playerList.removePlayer(currentPlayer);
                     
                 } else {
+                    playerList.removePlayer(currentPlayer);
                     guiLogic.showMessage(turnLogicTxt.getLine("The game ends"));
                     break;
                 }
@@ -75,12 +76,6 @@ public class TurnLogic {
         for (int i = 0; i < squaresToAuction.length; i++) {
             auctionLogic.auctioning( ((OwnableSquare) squaresToAuction[i]), player);
         }
-        
-        
-        
-        
-        
-        
     }
 
     private void takeTurn(Player player) {

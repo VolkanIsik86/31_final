@@ -36,46 +36,28 @@ public class Game {
         }
 
     private void announceWinner() {
-        //If it's a draw
-        if (playerList.getPlayer(0) == null) {
-            String coolWinner =
-
-                    "<table width=\"173\" cellspacing=\"17\" bgcolor=\"#000000\"><tr><td>\n</td></tr><tr><td align=\"center\">" +
-                            "<font color=\"white\" size=\"6" +
-                            "" +
-                            "\">" +
-                            winnerTxt.getLine("3") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td>\n</td></tr>" +
-                            "</table>";
-
-            guiLogic.getGui().displayChanceCard(coolWinner);
-        }
-
-        //Else if not a draw
-        else {
-            String coolwinner =
-
-                    "<table width=\"173\" cellspacing=\"11\" bgcolor=\"#000000\"><tr><td align=\"center\">" +
-                            "<font color=\"white\" size=\"6\">" + winnerTxt.getLine("1") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td align=\"center\">" +
-                            "\n" +
-                            "<font size=\"5\" color=\"red\">" +
-                            winnerTxt.getLine("2") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td align=\"center\">" +
-                            "\n" +
-                            "<font size=\"6\" color=\"yellow\">" +
-                            playerList.getWinner().getName() +
-                            "</font>" +
-                            "</td></tr></table>";
-
-            guiLogic.getGui().displayChanceCard(coolwinner);
-        }
+    
+        String coolwinner =
+                
+                "<table width=\"173\" cellspacing=\"11\" bgcolor=\"#000000\"><tr><td align=\"center\">" +
+                        "<font color=\"white\" size=\"6\">" + winnerTxt.getLine("1") +
+                        "</font>" +
+                        "</td></tr>" +
+                        "<tr><td align=\"center\">" +
+                        "\n" +
+                        "<font size=\"5\" color=\"red\">" +
+                        winnerTxt.getLine("2") +
+                        "</font>" +
+                        "</td></tr>" +
+                        "<tr><td align=\"center\">" +
+                        "\n" +
+                        "<font size=\"6\" color=\"yellow\">" +
+                        playerList.getPlayer(0).getName() +
+                        "</font>" +
+                        "</td></tr></table>";
+    
+        guiLogic.getGui().displayChanceCard(coolwinner);
+        
     }
 
 
