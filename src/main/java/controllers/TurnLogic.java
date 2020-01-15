@@ -91,7 +91,7 @@ public class TurnLogic {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical OK to throw"));
                     }
                     
-                    //If players has rolled to identical and ended up in jail
+                    //If players has rolled 2 identical and ended up in jail
                     if (roll1 == roll2 && player.getLost() != true && player.getJail()){
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                         takeJailTurn(player);
@@ -124,7 +124,7 @@ public class TurnLogic {
         if(choice.equals(turnLogicTxt.getLine("Jail buy out"))){
 
             buyPlayerOutOfJail(currentPlayer);
-            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail"));
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
             takeTurn(currentPlayer);
 
         //If player chooses to throw the dice
@@ -151,15 +151,10 @@ public class TurnLogic {
             //Free the player
             currentPlayer.setJail(false);
             currentPlayer.setAttemptsToGetOutOfJail(0);
-            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail and move"));
-
-            doTurn(currentPlayer);
-
-            if(currentPlayer.getLost() != true){
-                guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
-                hasThrown = false;
-                takeTurn(currentPlayer);
-            }
+            guiLogic.showMessage(turnLogicTxt.getLine("Out of jail take turn"));
+    
+            hasThrown = false;
+            takeTurn(currentPlayer);
         
         //If player is out of attempts but can pay
         } else if (currentPlayer.getAttemptsToGetOutOfJail() > 2 && currentPlayer.getBalance() >= 1000){
@@ -263,7 +258,7 @@ public class TurnLogic {
             guiLogic.moveToJail(player);
 
         if (message.charAt(message.length() - 1) != 'T') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message));
+            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
         }
 
 

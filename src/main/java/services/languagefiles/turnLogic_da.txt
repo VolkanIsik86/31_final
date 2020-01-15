@@ -8,7 +8,7 @@ Owned by yourself factory square,,Du er landet på en fabrik du allerede selv ej
 Not owned property square,,Du er landet på en ejendom, som ingen ejer, og skal derfor købe den
 Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal derfor købe den
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
-GoToJail square,,Du er landet på "Gå i fængsel" og rykkes derfor i fængsel
+GoToJail square,,Du er landet på "Gå i fængsel" og er derfor blevet rykket i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
 Tax square,, Du er landet på et skattefelt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og spillet stopper derfor
@@ -22,9 +22,9 @@ Out of jail throws and lost,,Da du forgæves har forsøgt at komme ud af fængsl
 Did not come out of jail,,Du kom desværre ikke ud af fængslet.
 Jail buy out,,Betal 1000kr.
 Jail roll dice,,Kast terningerne
-Out of jail and move,,Du er nu ude af fængslet og rykkes det antal øjne du slog
 Out of jail take turn,,Du er nu ude af fængslet og skal tage din tur
 2 identical OK to throw,,Da du slog to ens, får du en ekstra tur. Tryk OK for at kaste
+2 identical,,Da du slog to ens, får du en ekstra tur.
 it is,,Det er
 s,,s tur.
 Choose option,,Vælg et menupunkt
@@ -62,4 +62,4 @@ dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
 no more house,, Du kan ikke købe flere huse på denne grund
 attempt to buy,, Du skal eje alle grunde af en slags for at kunne bygge huse
-too many identical,, Du har slået for mange ens og går derfor i fængsel
+too many identical,, Du har slået for mange ens og er derfor rykket i fængsel
