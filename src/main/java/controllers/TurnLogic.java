@@ -20,19 +20,19 @@ public class TurnLogic {
     private int housePrice = 0;
     private PlayerList playerList;
 
-    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die){
+    public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList){
         this.die = die;
         this.board = board;
         this.guiLogic = guiLogic;
         this.turnLogicTxt = turnLogicTxt;
         this.cardsTxt = cardsTxt;
+        this.playerList = playerList;
         chanceDeck = new ChanceDeck(cardsTxt, board);
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
     }
 
     //todo hmm private..?
-    String playRound(PlayerList playerList) {
-        this.playerList = playerList;
+    String playRound() {
 
         looser = "none";
 

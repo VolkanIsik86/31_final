@@ -26,7 +26,7 @@ public class Game {
         initializeGame();
 
         while (true){
-            looser = turnLogic.playRound(playerList);
+            looser = turnLogic.playRound();
             if (looser != "none"){
                 announceWinner();
                 guiLogic.showMessage(guiTxt.getLine("Close"));
@@ -89,8 +89,8 @@ public class Game {
         initLanguage();
         initGUILogic();
         initBoard();
-        initTurnLogic();
         initPlayerList();
+        initTurnLogic();
     }
     //Method to initialize the language, the Language adds either "da" or en" to the filepath.
     private void initLanguage() {
@@ -137,7 +137,7 @@ public class Game {
    }
    
    protected void initTurnLogic(){
-       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die());
+       turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(),playerList);
    }
    
    protected void initPlayerList(){
