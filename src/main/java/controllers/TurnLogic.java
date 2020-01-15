@@ -110,6 +110,22 @@ public class TurnLogic {
         hasThrown = false;
 
     }
+    public void WithDrawMoneyFromPlayers (int amount, Player player) {
+        int tempo = 0;
+        int totalMoneyFromOthers = amount;
+        Player[] restOfPlayers = new Player[playerList.getPlayers().length-1];
+        for (int i = 0; i < playerList.getPlayers().length ; i++) {
+            if(!(player.getName().equals(playerList.getPlayers()[i].getName()))){
+                restOfPlayers[tempo] = playerList.getPlayers()[i];
+                tempo++;
+                restOfPlayers[tempo].attemptToPay(amount);
+                restOfPlayers[tempo].withdraw(amount);
+                amount+=amount;
+            }
+        }
+        player.deposit(totalMoneyFromOthers);
+        guiLogic.setPlayerBalance(player);
+    }
 
     private void takeJailTurn(Player currentPlayer){
 
