@@ -18,7 +18,7 @@ public class TurnLogic {
     private String looser;
     MenuLogic menuLogic;
     private int housePrice = 0;
-    private PlayerList playerList;
+    protected PlayerList playerList;
 
     public TurnLogic (Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList){
         this.die = die;
@@ -254,13 +254,17 @@ public class TurnLogic {
             message = message.substring(0, message.length() - 1);
         }
 
+
         if (message.equals("GoToJail square"))
             guiLogic.moveToJail(player);
 
-        if (message.charAt(message.length() - 1) != 'T') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+        if (message.charAt(message.length() - 1) == 'f') {
+            guiLogic.showMessage(turnLogicTxt.getLine(message)+ ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
         }
 
+        if (message.charAt(message.length() - 1) == 'o') {
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
+        }
 
         if (taxSquare(message)) {
             doTax(player, nextLocation);
