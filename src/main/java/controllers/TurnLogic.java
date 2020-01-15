@@ -80,7 +80,7 @@ public class TurnLogic {
                     if(throwCounter < 3 || roll1!=roll2){
                         doTurn(player);
                         
-                    //If players has struck three identical three time, put him in jail
+                    //If players has struck two identical three time, put him in jail
                     }else{
                         putInJail(player);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
@@ -322,10 +322,18 @@ public class TurnLogic {
         //Show property information in the middle of board
         OwnableSquare squareToManage = board.getOwnableSquareFromName(selection);
         guiLogic.showChanceCard(squareToManage.getInfo());
+        
             //Prompt player to choose something to do with that field
             String choice = menuLogic.displayManagePropertyMenu(squareToManage);
-            if (choice.equals(turnLogicTxt.getLine("House")))
+            if (choice.equals(turnLogicTxt.getLine("House"))){
                 housePrice = 0;
+
+            } else if (choice.equals(turnLogicTxt.getLine("Pledge"))){
+            
+            } else if (choice.equals(turnLogicTxt.getLine("Trade"))){
+            
+            } else if (choice.equals(turnLogicTxt.getLine("Back")))
+                
             
             if (board.searchColors(board.getOwnableSquareFromName(selection)) == 0) {
                 buildHouse(board.getPropertyFromName(selection));
