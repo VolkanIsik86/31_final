@@ -112,10 +112,16 @@ public class MenuLogic {
         //Display jail menu and return choice
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
-    public String auctionMenu(Player p){
+
+    /**
+     * The menu will be showed when auctioning is invoked.
+     * @param player the player who has bidding turn
+     * @return String of bidding value or pass if he press pass
+     */
+    public String auctionMenu(Player player){
         String[] manageAuctionItems = {"byd","pass"};
 
-        if(guiLogic.getUserButtonPressed(p.getName(),manageAuctionItems).equals("pass")){
+        if(guiLogic.getUserButtonPressed(player.getName(),manageAuctionItems).equals("pass")){
             return "pass";
         }
         else
