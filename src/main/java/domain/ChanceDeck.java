@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class ChanceDeck {
     
-    private final int N_CARDS = 16;
+    private final int N_CARDS = 17;
     protected final ChanceCard[] chanceCards;
     private final Random rnd = new Random();
     

@@ -2,6 +2,7 @@ package controllers;
 
 import domain.*;
 import domain.chanceCards.ChanceCard;
+import domain.chanceCards.EarnCard;
 import domain.squares.*;
 import services.TxtReader;
 
@@ -112,21 +113,24 @@ public class TurnLogic {
     }
     public void withDrawMoneyFromPlayers (int amount, Player currentPlayer) {
         int tempo = 0;
-        int totalMoneyFromOthers = 0;
+        int totalMoneyFromOthers = -500;
         Player[] restOfPlayers = new Player[playerList.getPlayers().length-1];
         for (int i = 0; i < playerList.getPlayers().length ; i++) {
             if(!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))){
                 restOfPlayers[tempo] = playerList.getPlayers()[i];
                 tempo++;
-                if (restOfPlayers[tempo].attemptToPay(amount)) {
-                    restOfPlayers[tempo].withdraw(amount);
-                    guiLogic.setPlayerBalance(restOfPlayers[tempo]);
-                    totalMoneyFromOthers += amount;
-                }
             }
         }
+        for (int i = 0; i < restOfPlayers.length ; i++) {
+            if (restOfPlayers[i].attemptToPay(amount)) {
+                restOfPlayers[i].withdraw(amount);
+                guiLogic.setPlayerBalance(restOfPlayers[i]);
+                totalMoneyFromOthers += amount;
+            }
+        }
+
         currentPlayer.deposit(totalMoneyFromOthers);
-        guiLogic.setPlayerBalance(currentPlayer);
+
     }
 
     private void takeJailTurn(Player currentPlayer){
@@ -264,6 +268,7 @@ public class TurnLogic {
             guiLogic.showChanceCard(pulledCard.getDescription());
             int tempValue = pulledCard.applyEffect(player);
             String tempCard = pulledCard.getType();
+
             if(tempCard.equalsIgnoreCase("move")){
                 guiLogic.movePiece(player, tempValue);
                 doLandedOnTurn(player);
@@ -271,10 +276,14 @@ public class TurnLogic {
             if(tempCard.equalsIgnoreCase("PayHouseCard")||(tempCard.equalsIgnoreCase("pay"))&& !player.attemptToPay(tempValue)){
                 guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
             }
+            if (tempCard.equalsIgnoreCase("Earn")){
+                if (((EarnCard)pulledCard).getAmount() == 500) {
+                    guiLogic.showMessage("du får 500 fra alle andre");
+                    withDrawMoneyFromPlayers(500, player);
+                }
+            }
 
-           if (pulledCard.getType().equalsIgnoreCase("Earn") && pulledCard.applyEffect(player)==500){
-               withDrawMoneyFromPlayers(500,player);
-           }
+
             message = message.substring(0, message.length() - 1);
         }
 
