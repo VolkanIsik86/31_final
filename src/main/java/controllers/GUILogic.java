@@ -2,6 +2,7 @@ package controllers;
 
 import domain.Player;
 import domain.squares.OwnableSquare;
+import domain.squares.PropertySquare;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -245,10 +246,12 @@ public class GUILogic {
     public void setSquareOwner(Player player) {
         fields[player.getLocation().getIndex()].setSubText(player.getName());
         Color playercolor = getGUIPlayer(player).getCar().getPrimaryColor();
-        try {
-            ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor, Color.black);
-        } catch (ClassCastException e) {
-            System.out.println(e);
+        if (player.getLocation() instanceof PropertySquare) {
+            try {
+                ((GUI_Street) fields[player.getLocation().getIndex()]).setBorder(playercolor, Color.black);
+            } catch (ClassCastException e) {
+                System.out.println(e);
+            }
         }
     }
 
@@ -260,10 +263,12 @@ public class GUILogic {
     public void setSquareAuction(OwnableSquare ownableSquare) {
         fields[ownableSquare.getIndex()].setSubText(ownableSquare.getOwner().getName());
         Color playercolor = getGUIPlayer(ownableSquare.getOwner()).getCar().getPrimaryColor();
-        try {
-            ((GUI_Street) fields[ownableSquare.getIndex()]).setBorder(playercolor, Color.black);
-        } catch (ClassCastException e) {
-            System.out.println(e);
+        if (ownableSquare.isRealEstate()) {
+            try {
+                ((GUI_Street) fields[ownableSquare.getIndex()]).setBorder(playercolor, Color.black);
+            } catch (ClassCastException e) {
+                System.out.println(e);
+            }
         }
     }
 
