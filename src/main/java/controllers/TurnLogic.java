@@ -52,7 +52,11 @@ public class TurnLogic {
                 if (playerList.NumberOfPlayers() > 2) {
                     i = i - 1;
                     guiLogic.deletePlayer(currentPlayer);
-                    auctionPlayerProperties(currentPlayer);
+                    
+                    if(board.getPlayerSquares(currentPlayer).length > 0){
+                        auctionPlayerProperties(currentPlayer);
+                    }
+                    
                     playerList.removePlayer(currentPlayer);
 
                 } else {

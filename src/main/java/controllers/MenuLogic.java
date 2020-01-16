@@ -126,7 +126,7 @@ public class MenuLogic {
      *
      * @param ownableSquare the square that will be auctioned.
      */
-    void auctionStartMenu(OwnableSquare ownableSquare) {
+    public void auctionStartMenu(OwnableSquare ownableSquare) {
         guiLogic.showMessage(turnLogicTxt.getLine("auction") + " " + ownableSquare.getName());
     }
 
@@ -138,7 +138,7 @@ public class MenuLogic {
      * @param ownableSquare Gets the square that is put up for auction
      * @return userInput return the highest bid from a user
      */
-    String auctionMenu(Player player, int highestbid, OwnableSquare ownableSquare) {
+    public String auctionMenu(Player player, int highestbid, OwnableSquare ownableSquare) {
         String[] manageAuctionItems = {turnLogicTxt.getLine("byd"), turnLogicTxt.getLine("pass")};
         String userInput = "";
         int currentBid = -1;

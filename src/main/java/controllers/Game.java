@@ -55,9 +55,7 @@ public class Game {
                         playerList.getPlayer(0).getName() +
                         "</font>" +
                         "</td></tr></table>";
-
-        guiLogic.getGui().displayChanceCard(coolwinner);
-
+        guiLogic.showChanceCard(coolwinner);
     }
 
 

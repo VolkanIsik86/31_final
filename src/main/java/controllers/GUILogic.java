@@ -267,16 +267,6 @@ public class GUILogic {
         }
     }
 
-
-    /**
-     * GUI of the game can be interacted from here.
-     *
-     * @return GUI that is initialized.
-     */
-    public GUI getGui() {
-        return gui;
-    }
-
     /**
      * Synchronize backend player with the GUI player.
      *
