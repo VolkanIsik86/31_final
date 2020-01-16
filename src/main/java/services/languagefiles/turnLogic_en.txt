@@ -1,21 +1,21 @@
-Regular square,,You landed on a regular square, nothings happens
-Owned by another property square f,,You landed on an owned property, you must pay rent
-Owned by another shipyard square f,,You have landed on a shipping company owned by another player, you must pay rent.
-Owned by another factory square f,,You landed on a factory owned by another player, you must pay rent.
+Regular square R,,You landed on a regular square, nothings happens
+Owned by another property square O,,You landed on an owned property, you must pay rent
+Owned by another shipyard square O,,You have landed on a shipping company owned by another player, you must pay rent.
+Owned by another factory square O,,You landed on a factory owned by another player, you must pay rent.
 Owned by yourself property square o,,You landed on your own property, nothing happens
 Owned by yourself shipyard square o,,you have landed on your own shipping company, nothing happens.
 Owned by yourself factory square o,,you have landed on your own factory, nothing happens.
-Not owned property square,,You landed on an unowned property, you must purchase it
-Owner is in jail,,You landed on an owned property, that owner sits in jail therefore nothing happens
-Not owned shipyard square,,You landed on an unowned shipyard, you must purchase it
-Not owned factory square,,You landed on an unowned factory, you must purchase it
-GoToJail square,,You have landed on "Go to jail", you are therefore moved to jail
-Chance square,,You have landed on a chance square, you must draw a chance card
-Tax square,,You have landed on a tax square, you must pay the tax.
+Not owned property square N,,You landed on an unowned property, you must purchase it
+Not owned shipyard square N,,You landed on an unowned shipyard, you must purchase it
+Not owned factory square N,,You landed on an unowned factory, you must purchase it
+Owner is in jail j,,You landed on an owned property, that owner sits in jail therefore nothing happens
+GoToJail square J,,You have landed on "Go to jail", you are therefore moved to jail
+Chance square C,,You have landed on a chance square, you must draw a chance card
+Tax square T,,You have landed on a tax square, you must pay the tax.
 Does not have fonds for rent,,You do not have the funds to pay rent, the game ends
 Does not have fonds to buy,,You do not have the funds to purchase the property, the game ends
 Does not have fonds to pay,,You do not have the funds to pay this expense, the game ends
-Press OK,,Press OK when you have read the card
+Press OKS,,Press OK when you have read the card
 In jail 2 options,,You are in a jail. You have to chose an option.
 In jail 1 option,,You are in a jail. You don't have enough money, you must roll the dice.
 Forced to buy out of jail,,Since you have tried to get out of prison with rolling of the dice 3 times, you are forced to pay yourself out. Press OK to pay.

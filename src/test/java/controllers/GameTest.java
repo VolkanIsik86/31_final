@@ -9,7 +9,7 @@ public class GameTest {
         new GameStub(new int[]{
 
 
-        3,3 , 2,2 , 4,4 , 2,4 , 5,6 , 7,8
+        0,2 , 0,3 , 0,4 , 0,1 , 0,1 , 0,1
 
 
         }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();

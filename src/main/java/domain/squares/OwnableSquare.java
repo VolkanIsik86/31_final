@@ -112,11 +112,11 @@ public abstract class OwnableSquare extends Square {
         else if (owner == null) {
 
             message = "Not owned " + this.type + " square";
-            message = message + "T";
+            message = message + " N";
         }
 
         else if (owner.getJail()){
-            message = "Owner is in jail";
+            message = "Owner is in jail" + " j";
         }
 
         //If property is owned
@@ -124,7 +124,7 @@ public abstract class OwnableSquare extends Square {
 
             this.updateRent(player.getLastRoll());
 
-            message = "Owned by another " + this.type + " square" +" " + "f";
+            message = "Owned by another " + this.type + " square" +" " + "O";
 
             //If player has the requested fonds
             if (player.attemptToPay(this.getRent())) {

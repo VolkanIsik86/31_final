@@ -12,6 +12,6 @@ public class RegularSquare extends Square {
 
     @Override
     public String landedOn(Player p) {
-        return "Regular square";
+        return "Regular square" +" R";
     }
 }
