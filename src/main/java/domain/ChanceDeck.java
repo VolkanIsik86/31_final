@@ -1,18 +1,14 @@
 package domain;
 
 import controllers.GUILogic;
-import domain.chanceCards.ChanceCard;
-import domain.chanceCards.EarnCard;
-import domain.chanceCards.PayHouseCard;
-import domain.chanceCards.MoveCard;
-import domain.chanceCards.PayCard;
+import domain.chanceCards.*;
 import services.TxtReader;
 
 import java.util.Random;
 
 public class ChanceDeck {
     
-    private final int N_CARDS = 18;
+    private final int N_CARDS = 19;
     protected final ChanceCard[] chanceCards;
     private final Random rnd = new Random();
     
@@ -39,7 +35,9 @@ public class ChanceDeck {
     
             } else if ("PayHouseCard".equals(oneLine[0])) {
                 chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], this, Integer.parseInt(oneLine[1]), cardsTxt, board);
-        }
+            } else if ("MoveToShipyardCard".equals(oneLine[0])) {
+                chanceCards[i] = new MoveToShipyardCard(oneLine[0], oneLine[2], this, board);
+            }
         }
     }
 

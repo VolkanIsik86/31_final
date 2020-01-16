@@ -17,6 +17,7 @@ public class ShipyardSquare extends OwnableSquare {
         return false;
     }
 
+
     @Override
     public int getHouseCount() {
         return 0;

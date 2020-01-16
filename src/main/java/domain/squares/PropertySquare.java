@@ -36,6 +36,7 @@ public class PropertySquare extends OwnableSquare {
         return true;
     }
 
+
     @Override
     public int getHouseCount(){
         return numberOfHouse;

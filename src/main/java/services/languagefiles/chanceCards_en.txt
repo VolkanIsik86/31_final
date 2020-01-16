@@ -15,4 +15,6 @@
 14,, Earn-1000-Receive dividend from your shares - $ 1,000.
 15,, PayHouseCard-800-Property taxes have increased. The additional costs are: "DKK 800 per house", "DKK 2,300 per hotel"
 16,, PayHouseCard-500-Property taxes have increased. The additional costs are: "DKK 500 per house", "DKK 2,000 per hotel"
+17,,Earn-500-Recieve 500 from each player.
+18,,MoveToShipyardCard-0-Move to the nearest Shipyard. If it is owned by another player, pay the player double the rent. If it is unowned you may buy it.
 Unfortunately, you can't afford to pay this amount, so the game stops
