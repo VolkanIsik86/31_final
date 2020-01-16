@@ -318,6 +318,9 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine(message));
         }
 
+        if (message.equals("Owner is in jail")){
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
+        }
 
         if (taxSquare(message)) {
             doTax(player, nextLocation);
