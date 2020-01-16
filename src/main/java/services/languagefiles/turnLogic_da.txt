@@ -73,6 +73,7 @@ auction,,Auktionen er startet for
 Cant afford to bid,,Du har desværre ikke råd til at byde over, og kan derfor kun afslå
 All player properties auction,,Alle den tabende spillers grunde auktioneres nu
 Highest bid,,Højeste bud er p.t.:
+The winner of the auction is,,Vinderen af auktionen blev:
 onlynumbers,,Indstast venligst kun tal
 minimum,,indtast beløb du vil byde dog minimum
 The game ends,,Da der kun er 1 spiller tilbage, er spillet færdigt

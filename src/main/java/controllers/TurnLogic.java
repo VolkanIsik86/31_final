@@ -30,7 +30,7 @@ public class TurnLogic {
         this.playerList = playerList;
         this.chanceDeck = chanceDeck;
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
-        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic);
+        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic, turnLogicTxt);
     }
 
     public void playRound() {
@@ -142,28 +142,6 @@ public class TurnLogic {
         }
 
         hasThrown = false;
-
-    }
-
-    private void withDrawMoneyFromPlayers(int amount, Player currentPlayer) {
-        int tempo = 0;
-        int totalMoneyFromOthers = -500;
-        Player[] restOfPlayers = new Player[playerList.getPlayers().length - 1];
-        for (int i = 0; i < playerList.getPlayers().length; i++) {
-            if (!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))) {
-                restOfPlayers[tempo] = playerList.getPlayers()[i];
-                tempo++;
-            }
-        }
-        for (int i = 0; i < restOfPlayers.length; i++) {
-            if (restOfPlayers[i].attemptToPay(amount)) {
-                restOfPlayers[i].withdraw(amount);
-                guiLogic.setPlayerBalance(restOfPlayers[i]);
-                totalMoneyFromOthers += amount;
-            }
-        }
-
-        currentPlayer.deposit(totalMoneyFromOthers);
 
     }
 
@@ -309,7 +287,7 @@ public class TurnLogic {
             if (tempCard.equalsIgnoreCase("Earn")) {
                 if (((EarnCard) pulledCard).getAmount() == 500) {
                     guiLogic.showMessage("du får 500 fra alle andre");
-                    withDrawMoneyFromPlayers(500, player);
+                    chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
                 }
             }
 

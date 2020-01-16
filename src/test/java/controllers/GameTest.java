@@ -7,8 +7,10 @@ public class GameTest {
     public static void main(String[] args) {
 
         new GameStub(new int[]{
-        
-                1,2 , 2,2 , 3,3
+
+
+        2,2 , 3,3 , 4,4
+
 
         }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
 
