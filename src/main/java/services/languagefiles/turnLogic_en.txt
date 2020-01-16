@@ -5,9 +5,9 @@ Owned by another factory square O,,You landed on a factory owned by another play
 Owned by yourself property square o,,You landed on your own property, nothing happens
 Owned by yourself shipyard square o,,you have landed on your own shipping company, nothing happens.
 Owned by yourself factory square o,,you have landed on your own factory, nothing happens.
-Not owned property square N,,You landed on an unowned property, you must purchase it
-Not owned shipyard square N,,You landed on an unowned shipyard, you must purchase it
-Not owned factory square N,,You landed on an unowned factory, you must purchase it
+Not owned property square N,,You landed on an unowned property
+Not owned shipyard square N,,You landed on an unowned shipyard
+Not owned factory square N,,You landed on an unowned factory
 Owner is in jail j,,You landed on an owned property, that owner sits in jail therefore nothing happens
 GoToJail square J,,You have landed on "Go to jail", you are therefore moved to jail
 Chance square C,,You have landed on a chance square, you must draw a chance card
