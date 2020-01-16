@@ -10,7 +10,8 @@ public class GameTest {
 
                 1, 1, 3, 4, 1, 2,1,2
 
-        }, new int[]{2500, 2500, 30000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
+        }, new int[]{2500, 2500, 30000}, new int[]{0, 0, 0},
+                new int[]{17,17,17}).playGame();  // tester kun chancekort nummer 17.
 
 //        //Demonstrer hvordan spillet slutter, ift. auktionering af grunde
 //        new GameStub(new int[]{
