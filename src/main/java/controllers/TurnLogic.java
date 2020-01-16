@@ -30,7 +30,7 @@ public class TurnLogic {
         this.playerList = playerList;
         this.chanceDeck = chanceDeck;
         menuLogic = new MenuLogic(turnLogicTxt, board, guiLogic);
-        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic);
+        auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic, turnLogicTxt);
     }
 
     public void playRound() {

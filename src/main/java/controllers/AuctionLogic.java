@@ -5,18 +5,21 @@ import controllers.MenuLogic;
 import domain.Player;
 import domain.PlayerList;
 import domain.squares.OwnableSquare;
+import services.TxtReader;
 
 public class AuctionLogic {
 
     PlayerList playerList;
     MenuLogic menuLogic;
     GUILogic guiLogic;
+    TxtReader turnLogicTxt;
 
 
-    public AuctionLogic(PlayerList playerList, MenuLogic menuLogic, GUILogic guiLogic) {
+    public AuctionLogic(PlayerList playerList, MenuLogic menuLogic, GUILogic guiLogic, TxtReader turnLogicTxt) {
         this.playerList = playerList;
         this.menuLogic = menuLogic;
         this.guiLogic = guiLogic;
+        this.turnLogicTxt = turnLogicTxt;
     }
 
     /**
@@ -54,6 +57,7 @@ public class AuctionLogic {
                         guiLogic.setSquareAuction(square);
                         auctionWinner.withdraw(highestBid);
                         guiLogic.setPlayerBalance(auctionWinner);
+                        guiLogic.showMessage(turnLogicTxt.getLine("The winner of the auction is") + " " + auctionWinner.getName());
                         return;
                     }
                 } else {
@@ -73,9 +77,11 @@ public class AuctionLogic {
                 auctionWinner = playerList.getPlayer((int)(Math.random()*(playerList.getPlayers().length)));
                 square.setOwner(auctionWinner);
                 guiLogic.setSquareAuction(square);
+                guiLogic.showMessage(turnLogicTxt.getLine("The winner of the auction is") + " " + auctionWinner.getName());
                 return;
             }
         }
+        
         // square owner will be set to auction winner
         square.setOwner(auctionWinner);
         guiLogic.setSquareAuction(square);
