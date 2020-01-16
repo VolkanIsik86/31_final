@@ -1,9 +1,6 @@
-Enter name,,Enter name (between 2 to 8 characters)
-Already in use,,name is already in use, type another name:
-Age,,Enter age (minimum 5) for
-player numbers,,How many players?
-it is,,It is
-throw dice,,´s turn, press OK to throw the dice
-length,,Name length is not valid (between 2 to 8 characters)
+Enter name,,Write your name (between 2 to 8 characters)
+Already in use,,Name is already in use, write another:
+player numbers,,How many players want to play the game?
+length,,Name is not valid (between 2 to 8 characters)
 Play again,,Play again ?
-Close,, Closing game
+Close,, Closing the game.
