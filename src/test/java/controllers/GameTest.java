@@ -8,9 +8,15 @@ public class GameTest {
 
         new GameStub(new int[]{
 
-                0,1, 1,2, 2,3, 2,3, 2,3, 2,2, 4,4
+                3,3,3,3,1,2,
+                1,2,1,2,
+                7,8,
+                1,2,
+                3,6,
+                1,2,
+                3,6
 
-        }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
+        }, new int[]{30000, 30000, 30000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
 
 //        //Demonstrer hvordan spillet slutter, ift. auktionering af grunde
 //        new GameStub(new int[]{
