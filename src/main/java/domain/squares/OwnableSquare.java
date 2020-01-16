@@ -115,6 +115,10 @@ public abstract class OwnableSquare extends Square {
             message = message + "T";
         }
 
+        else if (owner.getJail()){
+            message = "Owner is in jail";
+        }
+
         //If property is owned
         else {
 
