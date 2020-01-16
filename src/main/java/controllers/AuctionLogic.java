@@ -46,6 +46,7 @@ public class AuctionLogic {
                 // if a player presses pass biddingplayers array will me rearranged.
                 if (bided.equals("pass")) {
                     Player[] temparr = downgradePlayersarr(biddingPlayers, biddingPlayers[i]);
+                    i = i-1;
                     count--;
                     biddingPlayers = temparr;
                     if (auctionWinner != null && biddingPlayers.length == 1) {
