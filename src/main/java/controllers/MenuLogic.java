@@ -163,7 +163,7 @@ public class MenuLogic {
             
             // user input has to be higher than highestbid
             while (currentBid < (highestbid + 100)) {
-                currentBid = auctionInput(highestbid);
+                currentBid = auctionInput(highestbid , player);
             }
             
         userInput = userInput + currentBid;
@@ -176,19 +176,20 @@ public class MenuLogic {
      * @param highestbid used to show massage at gui*
      * @return returns user input in integer
      */
-    private int auctionInput(int highestbid) {
-        
+    private int auctionInput(int highestbid ,Player player) {
         int temp = 0;
-        
         try {
             temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + " " + (highestbid + 100) + " kr."));
-            return temp;
         } catch (NumberFormatException e) {
             guiLogic.showMessage(turnLogicTxt.getLine("onlynumbers"));
-            //recusrive function that repeats until user has the right input
-            temp = auctionInput(highestbid);
+            //recursive function that repeats until user has the right input
+            temp = auctionInput(highestbid, player);
         }
-        
+        // shows a message to player that he bidded over his balance
+        if (temp > player.getBalance()){
+            guiLogic.showMessage(turnLogicTxt.getLine("toohigh"));
+            temp = auctionInput(highestbid, player);
+        }
         return temp;
     }
 }
