@@ -36,7 +36,7 @@ Choose property,,Choose one of your properties
 House,,Houses and hotels
 Pledge,,Pledge
 Trade,,Trade
-Sell,, sell ground
+Sell,, sell the ground
 Back,,Back
 Price pr. house/hotel,,Price pr. house/hotel:
 Pledge value,,Pledge value:
