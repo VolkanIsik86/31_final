@@ -91,14 +91,14 @@ public class TurnLogic {
         boolean endTurn = false;
         String choice;
 
-        //Start of user menu loop
+        //Start of menu loop
         outer:
         while (!endTurn) {
 
             if (player.getLost()) break;
             int throwCounter = 0;
 
-            //Start menu loop
+            //Display user menu choices
             choice = menuLogic.displayStartMenu(player, hasThrown);
 
             //Depending on menu choice, program does...

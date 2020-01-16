@@ -95,14 +95,14 @@ public class MenuLogic {
         String[] jailMenuItems;
         String greeting;
 
-        //Lets the user choose to either but out of jail, or try roll two identical dice
+        //Lets the user choose to either buy out of jail or try to roll two identical dice
         if (player.getBalance() >= 1000) {
             greeting = turnLogicTxt.getLine("It is") + " " +
                     player.getName() + turnLogicTxt.getLine("s") + " " +
                     turnLogicTxt.getLine("In jail 2 options");
             jailMenuItems = new String[]{turnLogicTxt.getLine("Jail buy out"), turnLogicTxt.getLine("Jail roll dice")};
 
-            //If player has a balance under 1000, they can only roll the dice
+        //If player has a balance under 1000, they can only roll the dice
         } else {
             greeting = turnLogicTxt.getLine("It is") + " " +
                     player.getName() + turnLogicTxt.getLine("s") + " " +
@@ -139,18 +139,33 @@ public class MenuLogic {
      * @return userInput return the highest bid from a user
      */
     public String auctionMenu(Player player, int highestbid, OwnableSquare ownableSquare) {
-        String[] manageAuctionItems = {turnLogicTxt.getLine("byd"), turnLogicTxt.getLine("pass")};
+    
+        String[] manageAuctionItems;
+        String comment = "";
+        
+        //Choose correct menu items
+        if (player.getBalance() >= highestbid + 100){
+            manageAuctionItems = new String[]{turnLogicTxt.getLine("byd"), turnLogicTxt.getLine("pass")};
+        } else {
+            manageAuctionItems = new String[]{turnLogicTxt.getLine("pass")};
+            comment = turnLogicTxt.getLine("Cant afford to bid");
+        }
+        
         String userInput = "";
         int currentBid = -1;
+        
+        String choice = guiLogic.getUserButtonPressed(ownableSquare.getName() + ", " + player.getName() + turnLogicTxt.getLine("s") + " " + turnLogicTxt.getLine("Highest bid") + " " + highestbid + " kr." +"\n" +  comment, manageAuctionItems);
+        
         // shows a menu of choice that user can choose from (pass or bid)
-        if (guiLogic.getUserButtonPressed(ownableSquare.getName() + " " + player.getName() + turnLogicTxt.getLine("s"),
-                manageAuctionItems).equals(turnLogicTxt.getLine("pass"))) {
+        if (choice.equals(turnLogicTxt.getLine("pass"))) {
             return "pass";
         } else
+            
             // user input has to be higher than highestbid
             while (currentBid < (highestbid + 100)) {
                 currentBid = auctionInput(highestbid);
             }
+            
         userInput = userInput + currentBid;
         return userInput;
     }
@@ -162,7 +177,9 @@ public class MenuLogic {
      * @return returns user input in integer
      */
     private int auctionInput(int highestbid) {
+        
         int temp = 0;
+        
         try {
             temp = Integer.parseInt(guiLogic.getUserString(turnLogicTxt.getLine("minimum") + " " + (highestbid + 100) + " kr."));
             return temp;
@@ -171,6 +188,7 @@ public class MenuLogic {
             //recusrive function that repeats until user has the right input
             temp = auctionInput(highestbid);
         }
+        
         return temp;
     }
 }
