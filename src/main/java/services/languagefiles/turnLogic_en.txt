@@ -22,10 +22,10 @@ Forced to buy out of jail,,Since you have tried to get out of prison with rollin
 Out of jail throws and lost,,Since you have tried to get out of prison with rolling of the dice 3 times now, and you don't have enough balance, you lose!
 Did not come out of jail,,you don't come out of jail!
 Jail buy out,,Pay 1000kr.
-Jail roll dice,,Roll dice
+Jail roll dice,,Throw dice
 Out of jail take turn,,You are now out of jail, take your turn
-2 identical OK to throw,,you rolled two identicals, you get an extra turn. press ok to roll.
-2 identical,,since you rolled two identicals, you get an extra turn.
+2 identical OK to throw,,you rolled two identical, you get an extra turn. press ok to roll.
+2 identical,,since you rolled two identicals you get an extra turn.
 it is,,It is
 s,,'s turn.
 Choose option,,Choose a menu option
@@ -50,10 +50,10 @@ Standard rent,,Standard rent:
 Price at same color,,Same color:
 Status,,Status:
 #Houses/hotels:,,Houses/hotels
-Rent factories,,Husleje: 100 * øjnene
-Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange øjnene
+Rent factories,,Rent: 100 * value of rolled dice.
+Rent when owning all factories,,If both the factories are owned then the price is multiplied 200 times the value of rolled dice.
 Rent shipyard,,Rent: 500
-Rent when owning more shipyards,,The rent dobbles for every ekstra shipyard owned.
+Rent when owning more shipyards,,The rent doubles for every extra shipyard owned.
 pay 4000,,pay 4000 in taxes
 pay 10,,pay 10% in taxes
 pay 2000,,pay 2000 i taxes
@@ -66,11 +66,11 @@ Property has too many houses,,You can't have more than one hotel.
 Player does not have enough money,,You don't have enough money to pay.
 House has been build,,House is built
 Hotel has been build,,Hotel is built
-too many identical,,You have too many identicals, therefor you move to jail.
+too many identical,,You have thrown too many identical, therefor you move to jail.
 Not yet implemented,,The Function is not yet implemented
 byd,,Bid
 pass,,Refuse
-auction,,Auktionen is Started
+auction,,Auction is Started
 Cant afford to bid,,You don't have enough balance to bid, therefor you have to refuse
 All player properties auction,,Properties of the losing players are on auction.
 Highest bid,,Highest bid is p.t.:

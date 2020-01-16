@@ -286,7 +286,7 @@ public class TurnLogic {
             }
             if (tempCard.equalsIgnoreCase("Earn")) {
                 if (((EarnCard) pulledCard).getAmount() == 500) {
-                    guiLogic.showMessage("du får 500 fra alle andre");
+                    guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
                     chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
                 }
             }
