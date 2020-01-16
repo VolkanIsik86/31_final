@@ -68,8 +68,9 @@ public class AuctionLogic {
                     auctionWinner = biddingPlayers[i];
                 }
             }
+            // if all passes the auction then th square will be given to a random player in playerlist.
             if (count == 0 && auctionWinner == null) {
-                auctionWinner = player;
+                auctionWinner = playerList.getPlayer((int)(Math.random()*(playerList.getPlayers().length)));
                 square.setOwner(auctionWinner);
                 guiLogic.setSquareAuction(square);
                 return;
