@@ -76,3 +76,4 @@ Highest bid,,Højeste bud er p.t.:
 onlynumbers,,Indstast venligst kun tal
 minimum,,indtast beløb du vil byde dog minimum
 The game ends,,Da der kun er 1 spiller tilbage, er spillet færdigt
+toohigh,,Det indtastede beløb er over din pengebeholdning.
