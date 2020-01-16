@@ -16,4 +16,4 @@
 15,,PayHouseCard-800-Property taxes have increased. The additional costs are: "DKK 800 per house", "DKK 2,300 per hotel"
 16,,PayHouseCard-500-Property taxes have increased. The additional costs are: "DKK 500 per house", "DKK 2,000 per hotel"
 17,,Earn-500-They have put the money out for a potluck dinner. Receive kr. 500. from every Player.
-Does not have fonds to pay,,you can't afford to pay this amount, your turn is finished
+Does not have fonds to pay,,You don't have enough funds to pay this amount, your turn is finished!
