@@ -10,7 +10,7 @@ Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal d
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
 GoToJail square,,Du er landet på "Gå i fængsel" og er derfor blevet rykket i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
-Tax square,, Du er landet på et skattefelt, og skal derfor betale skat
+Tax square,,Du er landet på et skattefelt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og er derfor ikke længere med i spillet
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen, og er derfor ikke længere med i spillet
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og er derfor ikke længere med i spillet
@@ -54,10 +54,10 @@ Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange ø
 Rent shipyard,,Husleje: 500
 Rent when owning more shipyards,,Huslejen fordobles pr. ekstra rederi man ejer
 pay 4000,,Betal 4000 i skat
-pay 10,, Betal 10% i skat
-pay 2000,, Betal 2000 i skat
-tax,, Vælg mellem 4000 eller 10%
-buy,, Køb grund
+pay 10,,Betal 10% i skat
+pay 2000,,Betal 2000 i skat
+tax,,Vælg mellem 4000 eller 10%
+buy,,Køb grund
 dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
 Player does not own all colors,,Du skal eje alle grunde af en slags for at kunne bygge huse
@@ -73,6 +73,8 @@ auction,,Auktionen er startet for
 Cant afford to bid,,Du har desværre ikke råd til at byde over, og kan derfor kun afslå
 All player properties auction,,Alle den tabende spillers grunde auktioneres nu
 Highest bid,,Højeste bud er p.t.:
+The winner of the auction is,,Vinderen af auktionen blev:
 onlynumbers,,Indstast venligst kun tal
 minimum,,indtast beløb du vil byde dog minimum
 The game ends,,Da der kun er 1 spiller tilbage, er spillet færdigt
+toohigh,,Det indtastede beløb er over din pengebeholdning.
