@@ -6,6 +6,7 @@ Owned by yourself property square o,,You landed on your own property, nothing ha
 Owned by yourself shipyard square o,,you have landed on your own shipping company, nothing happens.
 Owned by yourself factory square o,,you have landed on your own factory, nothing happens.
 Not owned property square,,You landed on an unowned property, you must purchase it
+Owner is in jail,,You landed on an owned property, that owner sits in jail therefore nothing happens
 Not owned shipyard square,,You landed on an unowned shipyard, you must purchase it
 Not owned factory square,,You landed on an unowned factory, you must purchase it
 GoToJail square,,You have landed on "Go to jail", you are therefore moved to jail
