@@ -2,6 +2,7 @@ Regular square,,You landed on a regular square, nothings happens
 Owned by another property square,,You landed on an owned property, you must pay rent
 Owned by yourself property square,,You landed on your own property, nothing happens
 Not owned property square,,You landed on an unowned property, you must purchase it
+Owner is in jail,,You landed on an owned property, that owner sits in jail therefore nothing happens
 GoToJail square,,You have landed on "Go to jail", you are therefore moved to jail
 Chance square,,You have landed on a chance square, you must draw a chance card
 Does not have fonds for rent,,You do not have the funds to pay rent, the game ends
