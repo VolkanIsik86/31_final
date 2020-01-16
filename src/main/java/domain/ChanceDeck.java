@@ -42,6 +42,15 @@ public class ChanceDeck {
         }
         }
     }
+
+    /**
+     * method Withdraws given amount from other Players and desposits into current players account.
+     *
+     * @param amount
+     * @param currentPlayer
+     * @param guiLogic
+     * @param playerList
+     */
     public void withDrawMoneyFromPlayers(int amount, Player currentPlayer, PlayerList playerList, GUILogic guiLogic) {
         int tempo = 0;
         int totalMoneyFromOthers = -500;
