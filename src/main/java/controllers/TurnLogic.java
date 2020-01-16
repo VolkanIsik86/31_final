@@ -291,7 +291,7 @@ public class TurnLogic {
                 }
             } if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
                 Player tempOwner = board.getOwnables()[tempValue].getOwner();
-                guiLogic.movePiece(player, tempValue);
+                guiLogic.updatePlayerLocation(player);
                 if(tempOwner == player || tempOwner == null) {
                     doLandedOnTurn(player);
                 } else{
