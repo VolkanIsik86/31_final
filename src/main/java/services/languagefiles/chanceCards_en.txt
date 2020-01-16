@@ -1,18 +1,19 @@
-0,, Move-3-You advance 3 fields
-1,, Pay-300-Pay for car wash and lubrication DKK 300.
-2, Pay-2000-You have received your dental care. Pay £ 2,000.
-3,, the Earn-3000 Municipality has abandoned a quarter's tax. Raise in the bank DKK 3,000.
-4,, Pay-1000-You have purchased 4 new tires for your car. Pay £ 1000.
-5,, Pay-1000-They have run for: "Full stop". Pay DKK 1000 in fine.
-6,, Earn-1000-They have sold some old furniture at auction. Receive DKK 1,000 from the bank.
-7, Pay-3000-Pay DKK 3,000 for repair of your car.
-8, Earn-1000-Your premium bond has been withdrawn. They receive DKK 1,000 from the bank.
-9, Pay-200-They've got a parking ticket. Pay DKK 200 in fine.
-10, Pay-200-They have been traveling abroad and brought too many cigarettes home. Pay duty DKK 200.
-11,, Earn-1000-They had a row of eleven right in tipping. Receive $ 1,000.
-12,, Earn-1000-Due to expensive time they have received gage increase. Receive $ 1,000.
-13,, Earn-200-The value of own breeding from the commercial garden is DKK 200, which you receive from the bank.
-14,, Earn-1000-Receive dividend from your shares - $ 1,000.
-15,, PayHouseCard-800-Property taxes have increased. The additional costs are: "DKK 800 per house", "DKK 2,300 per hotel"
-16,, PayHouseCard-500-Property taxes have increased. The additional costs are: "DKK 500 per house", "DKK 2,000 per hotel"
-Unfortunately, you can't afford to pay this amount, so the game stops
+0,,Move-3-You advance 3 fields
+1,,Pay-300-Pay for car wash and lubrication DKK 300.
+2,,Pay-2000-You have received your dental care. Pay £ 2,000.
+3,,the Earn-3000 Municipality has abandoned a quarter's tax. Raise in the bank DKK 3,000.
+4,,Pay-1000-You have purchased 4 new tires for your car. Pay £ 1000.
+5,,Pay-1000-They have run for: "Full stop". Pay DKK 1000 in fine.
+6,,Earn-1000-They have sold some old furniture at auction. Receive DKK 1,000 from the bank.
+7,,Pay-3000-Pay DKK 3,000 for repair of your car.
+8,,Earn-1000-Your premium bond has been withdrawn. They receive DKK 1,000 from the bank.
+9,,Pay-200-They've got a parking ticket. Pay DKK 200 in fine.
+10,,Pay-200-They have been traveling abroad and brought too many cigarettes home. Pay duty DKK 200.
+11,,Earn-1000-They had a row of eleven right in tipping. Receive $ 1,000.
+12,,Earn-1000-Due to expensive time they have received gage increase. Receive $ 1,000.
+13,,Earn-200-The value of own breeding from the commercial garden is DKK 200, which you receive from the bank.
+14,,Earn-1000-Receive dividend from your shares - $ 1,000.
+15,,PayHouseCard-800-Property taxes have increased. The additional costs are: "DKK 800 per house", "DKK 2,300 per hotel"
+16,,PayHouseCard-500-Property taxes have increased. The additional costs are: "DKK 500 per house", "DKK 2,000 per hotel"
+17,,Earn-500-They have put the money out for a potluck dinner. Receive kr. 500. from every Player.
+Does not have fonds to pay,,You don't have enough funds to pay this amount, your turn is finished!
