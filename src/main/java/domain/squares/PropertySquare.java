@@ -36,6 +36,7 @@ public class PropertySquare extends OwnableSquare {
         return true;
     }
 
+
     @Override
     public int getHouseCount(){
         return numberOfHouse;
@@ -79,44 +80,47 @@ public class PropertySquare extends OwnableSquare {
     @Override
     public void updateRent(int lastRoll) {
 
-        //If the square has an owner
-        if(getOwner() != null){
-
-            //If the square has a building
-            if(numberOfHouse > 0){
-                
-                switch(numberOfHouse){
-                    case 1:
-                        setRent(rentLadder[1]);
-                        break;
-                    case 2:
-                        setRent(rentLadder[2]);
-                        break;
-                    case 3:
-                        setRent(rentLadder[3]);
-                        break;
-                    case 4:
-                        setRent(rentLadder[4]);
-                        break;
-                    case 5:
-                        setRent(rentLadder[5]);
-                        break;
-                    default:
-                        setRent(0);
-                }
-                
-            } else{
-
-                //If owner owns all properties
-                if (board.searchColors(this) == 0 ){
-                    setRent(rentLadder[0]*2);
-                } else {
-                    setRent(rentLadder[0]);
+        if(getOwner().getJail()){
+            setRent(0);
+        } else {
+    
+            //If the square has an owner
+            if(getOwner() != null){
+        
+                //If the square has a building
+                if(numberOfHouse > 0){
+            
+                    switch(numberOfHouse){
+                        case 1:
+                            setRent(rentLadder[1]);
+                            break;
+                        case 2:
+                            setRent(rentLadder[2]);
+                            break;
+                        case 3:
+                            setRent(rentLadder[3]);
+                            break;
+                        case 4:
+                            setRent(rentLadder[4]);
+                            break;
+                        case 5:
+                            setRent(rentLadder[5]);
+                            break;
+                        default:
+                            setRent(0);
+                    }
+            
+                } else{
+            
+                    //If owner owns all properties
+                    if (board.searchColors(this) == 0 ){
+                        setRent(rentLadder[0]*2);
+                    } else {
+                        setRent(rentLadder[0]);
+                    }
                 }
             }
-            
         }
-        
     }
     
 }

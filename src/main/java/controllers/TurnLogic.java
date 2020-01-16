@@ -275,29 +275,41 @@ public class TurnLogic {
                 }
                 break;
 
-            // S for Chancecard (confirms that player has landed on chancesquare)
-            case 'S':
-                guiLogic.showMessage(turnLogicTxt.getLine("Chance square C"));
-                ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
-                guiLogic.showChanceCard(pulledCard.getDescription());
-                guiLogic.showMessage(turnLogicTxt.getLine(message));
-                int tempValue = pulledCard.applyEffect(player);
-                String tempCard = pulledCard.getType();
-                if (tempCard.equalsIgnoreCase("move")) {
-                    guiLogic.movePiece(player, tempValue);
+        //Tjekker om man er landet på et chancefelt
+        if (message.charAt(message.length() - 1) == 'S') {
+            ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
+            guiLogic.showChanceCard(pulledCard.getDescription());
+            int tempValue = pulledCard.applyEffect(player);
+            String tempCard = pulledCard.getType();
+            if (tempCard.equalsIgnoreCase("move")) {
+                guiLogic.movePiece(player, tempValue);
+                doLandedOnTurn(player);
+            }
+            if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
+                guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
+            }
+            if (tempCard.equalsIgnoreCase("Earn")) {
+                if (((EarnCard) pulledCard).getAmount() == 500) {
+                    guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
+                    chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
+                }
+            } if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
+                Player tempOwner = board.getOwnables()[tempValue].getOwner();
+                guiLogic.updatePlayerLocation(player);
+                if(tempOwner == player || tempOwner == null) {
                     doLandedOnTurn(player);
+                } else{
+                    int tempRent = board.getOwnables()[tempValue].getRent();
+                    board.getOwnables()[tempValue].setRent(tempRent*2);
+                    doLandedOnTurn(player);
+                    board.getOwnables()[tempValue].setRent(tempRent);
                 }
-                if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
-                    guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
-                }
-                if (tempCard.equalsIgnoreCase("Earn")) {
-                    if (((EarnCard) pulledCard).getAmount() == 500) {
-                        guiLogic.showMessage("du får 500 fra alle andre");
-                        chanceDeck.withDrawMoneyFromPlayers(500, player, playerList, guiLogic);
-                    }
-                }
-                 message = message.substring(0, message.length() - 1);
-                  break;
+
+            }
+
+
+            message = message.substring(0, message.length() - 1);
+        }
 
             // J for moveToJail (confirms that player has landed on jailsquare)
             case 'J':

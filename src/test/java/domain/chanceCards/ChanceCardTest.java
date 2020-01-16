@@ -66,9 +66,21 @@ public class ChanceCardTest {
                 if(oldBalance != 0){
                     assertNotEquals(testPlayer.getBalance(),oldBalance);
                 }
+            }else if(tempChanceCardType.equalsIgnoreCase("MoveToShipyardCard")){
+                nearestShipyardTest(chanceCard, testPlayer, 2, 5);
+                nearestShipyardTest(chanceCard, testPlayer, 10, 15);
+                nearestShipyardTest(chanceCard, testPlayer, 9, 5);
+                nearestShipyardTest(chanceCard, testPlayer, 39, 35);
+                nearestShipyardTest(chanceCard, testPlayer, 20, 25);
             }
         }
 
+    }
+
+    private void nearestShipyardTest(ChanceCard chanceCard, Player testPlayer, int newLocation, int expected) {
+        testPlayer.setLocation(board.getSquare(newLocation));
+        chanceCard.applyEffect(testPlayer);
+        assertEquals(testPlayer.getLocation().getIndex(),expected);
     }
 
 //    @Test

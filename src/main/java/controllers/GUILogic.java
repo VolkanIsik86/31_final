@@ -237,6 +237,15 @@ public class GUILogic {
         fields[10].setCar(guiPlayer, true);
     }
 
+    public void updatePlayerLocation(Player player){
+        GUI_Player guiPlayer = getGUIPlayer(player);
+
+        for(int i = 0; i < N_FIELDS; i++){
+            fields[i].setCar(guiPlayer, false);
+        }
+        fields[player.getLocation().getIndex()].setCar((guiPlayer),true);
+    }
+
 
     /**
      * Changes border color and writes player name of a field.
