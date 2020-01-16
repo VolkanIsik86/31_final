@@ -21,7 +21,7 @@ public class TaxSquare extends Square {
     @Override
     public String landedOn(Player p) {
         String message;
-        message = "Tax square";
+        message = "Tax square" + " T";
         return message;
     }
 

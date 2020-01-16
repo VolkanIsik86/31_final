@@ -250,90 +250,101 @@ public class TurnLogic {
     public void doLandedOnTurn(Player player) {
 
         Square nextLocation = player.getLocation();
+        char lastCharofMessage = nextLocation.landedOn(player).charAt(nextLocation.landedOn(player).length()-1);
         String message = nextLocation.landedOn(player);
 
-        /**
-         * Shows menu to buy or not to buy if player lands on unowned square
-         * if players chose is not to buy auctioning method will be invoked.
-         */
-        if (message.charAt(message.length() - 1) == 'T') {
-            if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
-                String choice = menuLogic.displayBuyNotBuyMenu();
-                if (choice.equals(turnLogicTxt.getLine("buy"))) {
-                    guiLogic.setSquareOwner(player);
-                    player.attemptToPurchase((OwnableSquare) nextLocation);
-                } else if (choice.equals(turnLogicTxt.getLine("dont buy"))) {
-                    auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
-                    //auctioning(((OwnableSquare) nextLocation),playerList,player );
-                }
-            } else {
-                guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
-            }
-        }
 
-        //Tjekker om man er landet på et chancefelt
-        if (message.charAt(message.length() - 1) == 'S') {
-            ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
-            guiLogic.showChanceCard(pulledCard.getDescription());
-            int tempValue = pulledCard.applyEffect(player);
-            String tempCard = pulledCard.getType();
-            if (tempCard.equalsIgnoreCase("move")) {
-                guiLogic.movePiece(player, tempValue);
-                doLandedOnTurn(player);
-            }
-            if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
-                guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
-            }
-            if (tempCard.equalsIgnoreCase("Earn")) {
-                if (((EarnCard) pulledCard).getAmount() == 500) {
-                    guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
-                    chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
+        switch (lastCharofMessage) {
+            /*
+             * Shows menu to buy or not to buy if player lands on unowned square
+             * if players chose is not to buy auctioning method will be invoked.
+             */
+            case 'N':
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
+                    String choice = menuLogic.displayBuyNotBuyMenu();
+                    if (choice.equals(turnLogicTxt.getLine("buy"))) {
+                        guiLogic.setSquareOwner(player);
+                        player.attemptToPurchase((OwnableSquare) nextLocation);
+                    } else if (choice.equals(turnLogicTxt.getLine("dont buy"))) {
+                        auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
+                        //auctioning(((OwnableSquare) nextLocation),playerList,player );
+                    }
+                } else {
+                    guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
                 }
-            } if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
-                Player tempOwner = board.getOwnables()[tempValue].getOwner();
-                guiLogic.updatePlayerLocation(player);
-                if(tempOwner == player || tempOwner == null) {
+                break;
+                //Tjekker om man er landet på et chancefelt
+            case 'S':
+                guiLogic.showMessage(turnLogicTxt.getLine("Chance square C"));
+                ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
+                guiLogic.showChanceCard(pulledCard.getDescription());
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                int tempValue = pulledCard.applyEffect(player);
+                String tempCard = pulledCard.getType();
+                if (tempCard.equalsIgnoreCase("move")) {
+                    guiLogic.movePiece(player, tempValue);
                     doLandedOnTurn(player);
-                } else{
+                }
+                if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
+                    guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
+                }
+                if (tempCard.equalsIgnoreCase("Earn")) {
+                    if (((EarnCard) pulledCard).getAmount() == 500) {
+                        guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
+                        chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
+                    }
+                }
+                if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
+                    Player tempOwner = board.getOwnables()[tempValue].getOwner();
+                    guiLogic.updatePlayerLocation(player);
+                    if(tempOwner == player || tempOwner == null) {
+                    doLandedOnTurn(player);
+                }
+                    else{
                     int tempRent = board.getOwnables()[tempValue].getRent();
                     board.getOwnables()[tempValue].setRent(tempRent*2);
                     doLandedOnTurn(player);
                     board.getOwnables()[tempValue].setRent(tempRent);
                 }
-
             }
-
-
             message = message.substring(0, message.length() - 1);
+            break;
+
+            // J for moveToJail (confirms that player has landed on jailsquare)
+            case 'J':
+                guiLogic.moveToJail(player);
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                break;
+            // j for owner in Jail (confirms that owner of ownablesquare is jailed)
+            case 'j':
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                break;
+            // O for Owned by another (confirms that square is owned by another)
+            case 'O':
+                guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+                break;
+            // o for owned by yourself (confirms that square is owned by yourself)
+            case 'o':
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                break;
+            // R for player hsa landed on regular square
+            case 'R':
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                break;
+            // T for player has landed on Tax square
+            case 'T':
+                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                doTax(player, nextLocation);
+                break;
         }
+        updateBalances();
+    }
 
-        if (message.equals("GoToJail square"))
-            guiLogic.moveToJail(player);
-
-        if (message.charAt(message.length() - 1) == 'f') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+    private void updateBalances(){
+        for (int i = 0; i < playerList.getPlayers().length ; i++) {
+            guiLogic.setPlayerBalance(playerList.getPlayer(i));
         }
-
-        if (message.charAt(message.length() - 1) == 'o') {
-            guiLogic.showMessage(turnLogicTxt.getLine(message));
-        }
-
-        if (message.equals("Owner is in jail")){
-            guiLogic.showMessage(turnLogicTxt.getLine(message));
-        }
-
-        if (taxSquare(message)) {
-            doTax(player, nextLocation);
-        }
-
-        if (getOwnerIndex(nextLocation) != -1 && message.charAt(message.length() - 1) != 'T') {
-            guiLogic.setPlayerBalance(board.getOwnables()[getOwnerIndex(nextLocation)].getOwner());
-        } else {
-            message = message.substring(0, message.length() - 1);
-        }
-
-        guiLogic.setPlayerBalance(player);
-
     }
 
     private void putInJail(Player player) {
