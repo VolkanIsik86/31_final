@@ -8,9 +8,10 @@ Owned by yourself factory square o,,Du er landet på en fabrik du allerede selv 
 Not owned property square,,Du er landet på en ejendom, som ingen ejer, og skal derfor købe den
 Not owned shipyard square,,Du er landet på et rederi, som ingen ejer, og skal derfor købe den
 Not owned factory square,,Du er landet på en fabrik, som ingen ejer, og skal derfor købe den
+Owner is in jail,,Du er landet på en ejendom ejet af en anden spiller som sidder i fængsel derfor skal ikke foretage dig noget
 GoToJail square,,Du er landet på "Gå i fængsel" og er derfor blevet rykket i fængsel
 Chance square,,Du er landet på et chancefelt, og skal derfor trække et chancekort
-Tax square,, Du er landet på et skattefelt, og skal derfor betale skat
+Tax square,,Du er landet på et skattefelt, og skal derfor betale skat
 Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og er derfor ikke længere med i spillet
 Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen, og er derfor ikke længere med i spillet
 Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og er derfor ikke længere med i spillet
@@ -54,10 +55,10 @@ Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange ø
 Rent shipyard,,Husleje: 500
 Rent when owning more shipyards,,Huslejen fordobles pr. ekstra rederi man ejer
 pay 4000,,Betal 4000 i skat
-pay 10,, Betal 10% i skat
-pay 2000,, Betal 2000 i skat
-tax,, Vælg mellem 4000 eller 10%
-buy,, Køb grund
+pay 10,,Betal 10% i skat
+pay 2000,,Betal 2000 i skat
+tax,,Vælg mellem 4000 eller 10%
+buy,,Køb grund
 dont buy,, Ikke køb grund
 buy choice,, Vil du købe denne grund?
 Player does not own all colors,,Du skal eje alle grunde af en slags for at kunne bygge huse

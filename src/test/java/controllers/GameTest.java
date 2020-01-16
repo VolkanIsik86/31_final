@@ -8,9 +8,11 @@ public class GameTest {
         
         new GameStub(new int[]{
 
-        
 
-        }, new int[]{30000, 30000, 30000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
+        1,1 , 1,1 , 3,4 , 2,4 , 5,6 , 7,8
+
+
+        }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{17, 17, 17, 17, 17, 17, 7, 7, 7, 7, 7}).playGame();
     
 //        //Demonstrer hvordan huslejen ændres, hvis en spiller er i fængsel
 //        new GameStub(new int[]{

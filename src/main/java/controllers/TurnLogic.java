@@ -286,9 +286,21 @@ public class TurnLogic {
             }
             if (tempCard.equalsIgnoreCase("Earn")) {
                 if (((EarnCard) pulledCard).getAmount() == 500) {
-                    guiLogic.showMessage("du får 500 fra alle andre");
+                    guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
                     chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
                 }
+            } if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
+                Player tempOwner = board.getOwnables()[tempValue].getOwner();
+                guiLogic.updatePlayerLocation(player);
+                if(tempOwner == player || tempOwner == null) {
+                    doLandedOnTurn(player);
+                } else{
+                    int tempRent = board.getOwnables()[tempValue].getRent();
+                    board.getOwnables()[tempValue].setRent(tempRent*2);
+                    doLandedOnTurn(player);
+                    board.getOwnables()[tempValue].setRent(tempRent);
+                }
+
             }
 
 
@@ -306,6 +318,9 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine(message));
         }
 
+        if (message.equals("Owner is in jail")){
+            guiLogic.showMessage(turnLogicTxt.getLine(message));
+        }
 
         if (taxSquare(message)) {
             doTax(player, nextLocation);
