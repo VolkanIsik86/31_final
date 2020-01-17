@@ -52,7 +52,7 @@ public class GameTestDriver extends Game {
 
     @Override
     protected void initTurnLogic() {
-        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls), playerList, new ChanceDeckStub(cardsTxt, board, chanceCardSequence));
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new DieStub(dieRolls), playerList, new ChanceDeckStub(cardsTxt, board, chanceCardSequence,playerList));
     }
 
 }

@@ -378,6 +378,9 @@ public class TurnLogic {
                 chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
             }
         }
+        if (tempCard.equalsIgnoreCase("WithDraw")){
+            guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
+        }
         if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
             Player tempOwner = board.getOwnables()[tempValue].getOwner();
             guiLogic.updatePlayerLocation(player);

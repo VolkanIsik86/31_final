@@ -7,6 +7,7 @@ public class Game {
 
     protected GUILogic guiLogic;
     protected Board board;
+    protected ChanceDeck chanceDeck;
     protected TurnLogic turnLogic;
     protected PlayerList playerList;
     protected final int STARTBALANCE = 30000;
@@ -112,7 +113,7 @@ public class Game {
 
     //Creates the logic object for running the game
     protected void initTurnLogic() {
-        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board, playerList));
     }
 
     protected void initPlayerList() {
