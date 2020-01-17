@@ -79,3 +79,4 @@ onlynumbers,,Please, write the numbers only.
 minimum,,Write the amount you want to bid, kindly the minimum.
 The game ends,,Since there is only one player left in the game, the game ends!
 toohigh,,The amount entered is over your balance.
+Nobody bid randon new owner,,Nobody has bade, therefore ground will be given to a random player.
