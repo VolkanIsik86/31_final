@@ -4,14 +4,14 @@ import domain.DieStub;
 import domain.PlayerList;
 import domain.ChanceDeckStub;
 
-public class GameStub extends Game {
+public class GameTestDriver extends Game {
 
     private final int[] dieRolls;
     private final int[] playerBalances;
     private final int[] playerLocations;
     private final int[] chanceCardSequence;
 
-    public GameStub(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence) {
+    public GameTestDriver(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence) {
         this.dieRolls = dieRolls;
         this.playerBalances = playerBalances;
         this.playerLocations = playerLocations;
