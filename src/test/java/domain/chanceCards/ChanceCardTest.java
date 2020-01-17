@@ -14,6 +14,7 @@ public class ChanceCardTest {
     private final Board board;
     Player testPlayer;
     final ChanceDeck chanceDeck;
+    PlayerList playerList;
     public ChanceCardTest() {
         TxtReader cardsTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
@@ -26,7 +27,7 @@ public class ChanceCardTest {
         squareTxt.openFile(languagePath,"squares_da");
         squareTxt.readLines();
         board = new Board(squareTxt, landedOnTxt);
-        chanceDeck = new ChanceDeck(cardsTxt, board);
+        chanceDeck = new ChanceDeck(cardsTxt, board, playerList);
     }
 
     @Test

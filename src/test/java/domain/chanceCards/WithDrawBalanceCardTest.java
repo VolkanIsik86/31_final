@@ -16,7 +16,7 @@ public class WithDrawBalanceCardTest {
 
     @Test
     public void pullWithDrawBalanceCard() {
-        PlayerList playerList = new PlayerList(null,null);
+        PlayerList playerList = new PlayerList(null);
         WithDrawBalanceCard drawBalanceCard = new WithDrawBalanceCard(null, null,500,playerList);
 
 
