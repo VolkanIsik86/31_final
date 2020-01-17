@@ -1,12 +1,10 @@
 package controllers;
 
-import static org.junit.Assert.*;
-
 public class GameTest {
 
     public static void main(String[] args) {
 
-        new GameStub(new int[]{
+        new GameTestDriver(new int[]{
 
 
         0,2 , 2,2 , 4,4 , 2,4 , 5,6 , 7,8

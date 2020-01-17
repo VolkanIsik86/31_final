@@ -97,6 +97,7 @@ public class AuctionLogic {
      * @param player  the player who will be removed from array
      * @return an array of players that has reduced by 1
      */
+    
     //todo logikken er også skrevet i playerlist -Mikkel
     public Player[] downgradePlayersarr(Player[] players, Player player) {
         // used to create a new array that consist of players who has not pressed pass
