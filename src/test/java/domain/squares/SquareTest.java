@@ -11,7 +11,7 @@ public class SquareTest {
     final Square square0 = new TaxSquare("square0",0,null);
     final Square square1 = new PropertySquare("square1",1,null,1000,"PropertySquare","red",100, rentLadder, null);
     final Square square2 = new RegularSquare("square2",2,null);
-    final Square square3 = new GoToJailSquare("square3",3,null,square2);
+    final Square square3 = new GoToJailSquare("square3",3,null);
     final Square square4 = new ChanceSquare("square4",4,null);
     final Piece testpiece = new Piece(square0);
     final Player testPlayer = new Player("Test",1000,testpiece);
