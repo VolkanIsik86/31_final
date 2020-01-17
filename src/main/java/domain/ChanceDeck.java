@@ -43,36 +43,6 @@ public class ChanceDeck {
             }
         }
     }
-
-    /**
-     * method Withdraws given amount from other Players and desposits into current players account.
-     *
-     * @param amount
-     * @param currentPlayer
-     * @param guiLogic
-     * @param playerList
-     */
-    public void withDrawMoneyFromPlayers(int amount, Player currentPlayer, PlayerList playerList, GUILogic guiLogic) {
-        int tempo = 0;
-        int totalMoneyFromOthers = -500;
-        Player[] restOfPlayers = new Player[playerList.getPlayers().length - 1];
-        for (int i = 0; i < playerList.getPlayers().length; i++) {
-            if (!(currentPlayer.getName().equals(playerList.getPlayers()[i].getName()))) {
-                restOfPlayers[tempo] = playerList.getPlayers()[i];
-                tempo++;
-            }
-        }
-        for (int i = 0; i < restOfPlayers.length; i++) {
-            if (restOfPlayers[i].attemptToPay(amount)) {
-                restOfPlayers[i].withdraw(amount);
-                guiLogic.setPlayerBalance(restOfPlayers[i]);
-                totalMoneyFromOthers += amount;
-            }
-        }
-
-        currentPlayer.deposit(totalMoneyFromOthers);
-
-    }
     
     public ChanceCard pullRandomChanceCard(){
     
