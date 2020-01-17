@@ -38,7 +38,7 @@ public class TurnLogic {
      */
     public void playRound() {
 
-        for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
+        for (int i = 0; i < playerList.getNumberOfPlayers(); i++) {
 
             Player currentPlayer = playerList.getPlayer(i);
 
@@ -52,7 +52,7 @@ public class TurnLogic {
             //Remove player from game and check if game is over
             if (currentPlayer.getLost()) {
 
-                if (playerList.NumberOfPlayers() > 2) {
+                if (playerList.getNumberOfPlayers() > 2) {
                     i = i - 1;
                     guiLogic.deletePlayer(currentPlayer);
                     

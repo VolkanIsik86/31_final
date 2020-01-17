@@ -31,7 +31,7 @@ public abstract class OwnableSquare extends Square {
         rent = newRent;
     }
 
-    public int getPLEDGE_VALUE() {
+    public int getPledge_Value() {
         return PLEDGE_VALUE;
     }
 
@@ -78,6 +78,10 @@ public abstract class OwnableSquare extends Square {
         owner.deposit(rent);
     }
 
+    /**
+     * Sets the owner of the property and withdraws price for property from player
+     * @param p
+     */
     public void purchase(Player p) {
         this.setOwner(p);
         payPrice(p);
@@ -90,6 +94,12 @@ public abstract class OwnableSquare extends Square {
     }
 
     public abstract String getInfo();
+
+    /**
+     * landedOn() is called everytime a player stops at a square.
+     * @param player
+     * @return Returns a message that turnLogic can use to figure out what action to take
+     */
 
     public String landedOn(Player player) {
 

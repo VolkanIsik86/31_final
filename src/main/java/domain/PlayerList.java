@@ -12,7 +12,12 @@ public class PlayerList {
     public PlayerList(Square startSquare){
         this.startSquare = startSquare;
     }
-    
+
+    /**
+     * add player to game
+     * @param name player name
+     * @param startBalance The amount the player starts with
+     */
     public void addPlayer(String name, int startBalance){
         
         // Increase size of player-array by 1
@@ -35,7 +40,7 @@ public class PlayerList {
         return players[index];
     }
     
-    public int NumberOfPlayers(){
+    public int getNumberOfPlayers(){
         return players.length;
     }
 

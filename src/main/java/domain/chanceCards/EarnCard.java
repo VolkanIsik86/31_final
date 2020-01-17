@@ -11,6 +11,7 @@ public class EarnCard extends ChanceCard {
         this.amount = amount;
     }
 
+    //Adds x amount to the players account
     public int applyEffect(Player player) {
 
         player.deposit(amount);

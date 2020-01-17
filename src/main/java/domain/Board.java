@@ -111,7 +111,7 @@ public class Board {
                 countcolor++;
         }
 
-        //
+        //Counts number of squares owner does not own
         for (int i = 0; i < ownables.length; i++) {
             if (ownables[i].getOwner() != null && s.getOwner() == ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())) {
                 playerowns++;
@@ -154,6 +154,11 @@ public class Board {
     }
 
 
+    /**
+     * Calculates players total value.
+     *
+     * @return total player value
+     */
     public int getPlayerValue(Player player) {
         int value = 0;
         value = value + player.getBalance();
@@ -232,6 +237,11 @@ public class Board {
 
     }
 
+    /**
+     * Returns OwnableSquare from name
+     * @param name The name of the OwnableSquare we want to find
+     * @return returns OwnableSquare from name or null if not found
+     */
     public OwnableSquare getOwnableSquareFromName(String name) {
         for (int i = 0; i < ownables.length; i++) {
             if (ownables[i].getName().equals((name))) {
@@ -240,7 +250,11 @@ public class Board {
         }
         return null;
     }
-
+    /**
+     * Returns PropertySquare from name
+     * @param name The name of the PropertySquare we want to find
+     * @return returns PropertySquare from name or null if not found
+     */
     public PropertySquare getPropertyFromName(String name) {
         for (int i = 0; i < properties.length; i++) {
             if (properties[i].getName().equals((name))) {

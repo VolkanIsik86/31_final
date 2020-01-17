@@ -15,6 +15,7 @@ public class MoveCard extends ChanceCard {
         this.board = board;
     }
 
+    //Moves the player x squares
     public int applyEffect(Player player) {
         Square nextLocation = board.nextLocation(player, moves);
         player.setLocation(nextLocation);

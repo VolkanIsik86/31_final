@@ -36,12 +36,13 @@ public class PayHouseCard extends ChanceCard {
         int tempHouses = 0;
         int tempHotels = 0;
         int tempAmount;
-        //Dårlig workaround for specialpriser til hoteller
+        //Checks which card is pulled and sets the hotel price (Bad method)
         if (amount == 500) {
             tempAmount = 2000;
         } else {
             tempAmount = 2300;
         }
+        //Find the amount of realEstateSquares owned by player and count houses + hotels
         OwnableSquare[] realEstateSquares = getRealEstateSquares(player);
         assert realEstateSquares != null;
         for (OwnableSquare realEstateSquare : realEstateSquares) {
@@ -52,6 +53,7 @@ public class PayHouseCard extends ChanceCard {
                 tempHotels++;
             }
         }
+        //Attempt to pay
         int toPay = tempHouses * amount + tempHotels * tempAmount;
         if (player.attemptToPay(toPay)) {
             player.withdraw(toPay);

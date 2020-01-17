@@ -19,6 +19,7 @@ public class FactorySquare extends OwnableSquare {
         return 0;
     }
 
+    //updates the rent from the eyes on the dice
     @Override
     public void updateRent(int lastRoll) {
         final int RENT_MODIFIER = 100;
@@ -45,7 +46,7 @@ public class FactorySquare extends OwnableSquare {
         return
                 getName() +
 //                getLandedOnTxt().getLine("Status") + " " +
-                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPledge_Value() +
                 "\n" + getLandedOnTxt().getLine("Rent factories") +
                 "\n\n" + getLandedOnTxt().getLine("Rent when owning all factories")
                 ;

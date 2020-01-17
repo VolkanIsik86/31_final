@@ -22,7 +22,7 @@ public class Game {
         initializeGame();
 
         //Play game as long as at least two people are alive
-        while (playerList.NumberOfPlayers() > 1) {
+        while (playerList.getNumberOfPlayers() > 1) {
             turnLogic.playRound();
         }
 
@@ -110,6 +110,7 @@ public class Game {
         board = new Board(squaresTxt, turnLogicTxt);
     }
 
+    //Creates the logic object for running the game
     protected void initTurnLogic() {
         turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
     }

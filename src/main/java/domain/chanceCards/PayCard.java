@@ -11,6 +11,7 @@ public class PayCard extends ChanceCard {
         this.amount = amount;
     }
 
+    //The player tries to pay the amount
     public int applyEffect(Player player) {
         if (player.attemptToPay(amount)) {
             player.withdraw(amount);

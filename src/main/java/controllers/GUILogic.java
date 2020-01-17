@@ -234,6 +234,10 @@ public class GUILogic {
         fields[10].setCar(guiPlayer, true);
     }
 
+    /**
+     * Removes player piece from all squares, then gets the square the player is standing on and places the piece on that square
+     * @param player
+     */
     public void updatePlayerLocation(Player player){
         GUI_Player guiPlayer = getGUIPlayer(player);
 

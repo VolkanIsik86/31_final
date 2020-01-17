@@ -78,6 +78,7 @@ public class PropertySquare extends OwnableSquare {
         return value;
     }
 
+    //Updates rent depending on how many properties of the same color is owned and how many buildings are placed
     @Override
     public void updateRent(int lastRoll) {
 
