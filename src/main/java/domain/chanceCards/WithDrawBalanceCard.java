@@ -11,8 +11,8 @@ public class WithDrawBalanceCard extends ChanceCard{
 
 
 
-    public WithDrawBalanceCard(String type, String description, ChanceDeck chanceDeck, int amount, PlayerList playerList) {
-        super(type, description, chanceDeck);
+    public WithDrawBalanceCard(String type, String description, int amount, PlayerList playerList) {
+        super(type, description);
         this.amount = amount;
         this.playerList = playerList;
 

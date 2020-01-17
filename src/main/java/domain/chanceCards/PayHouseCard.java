@@ -13,8 +13,8 @@ public class PayHouseCard extends ChanceCard {
     private final TxtReader cardsTxt;
     protected Board board;
 
-    public PayHouseCard(String type, String description, ChanceDeck chanceDeck, int amount, TxtReader cardsTxt, Board board) {
-        super(type, description, chanceDeck);
+    public PayHouseCard(String type, String description, int amount, TxtReader cardsTxt, Board board) {
+        super(type, description);
         this.amount = amount;
         this.cardsTxt = cardsTxt;
         this.board = board;

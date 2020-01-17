@@ -10,7 +10,7 @@ public abstract class ChanceCard {
     private final String type;
     private final String description;
 
-    ChanceCard(String type, String description, ChanceDeck chanceDeck) {
+    ChanceCard(String type, String description) {
         this.type = type;
         this.description = description;
     }

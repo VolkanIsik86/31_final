@@ -11,8 +11,8 @@ public class MoveToShipyardCard extends ChanceCard {
     protected int moves;
     protected final Board board;
 
-    public MoveToShipyardCard(String type, String description, ChanceDeck chanceDeck, Board board) {
-        super(type, description, chanceDeck);
+    public MoveToShipyardCard(String type, String description, Board board) {
+        super(type, description);
         this.board = board;
     }
 
