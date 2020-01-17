@@ -12,7 +12,7 @@ public class GameTest {
         1,1 , 1,1 , 3,4 , 1,1 , 5,6 , 7,8
 
 
-        }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{17, 17, 17, 17, 7, 7, 7, 7, 7, 7, 7}).playGame();
+        }, new int[]{5000, 5000, 5000, 5000}, new int[]{0, 0, 0, 0}, new int[]{17, 17, 17, 17, 7, 7, 7, 7, 7, 7, 7}).playGame();
 
 //        //Demonstrer hvordan spillet slutter, ift. auktionering af grunde
 //        new GameStub(new int[]{
