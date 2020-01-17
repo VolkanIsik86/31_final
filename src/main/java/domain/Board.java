@@ -1,6 +1,5 @@
 package domain;
 
-import controllers.GUILogic;
 import domain.squares.*;
 import services.TxtReader;
 
@@ -9,21 +8,19 @@ import services.TxtReader;
  */
 public class Board {
 
-    private int SIZE;
-    private ChanceDeck chanceDeck;
-    private Square[] squares;
+    private final int SIZE;
+    private final Square[] squares;
     //todo skal da være private
-    OwnableSquare[] ownables = new OwnableSquare[28];
-    PropertySquare[] properties = new PropertySquare[22];
+    final OwnableSquare[] ownables = new OwnableSquare[28];
+    final PropertySquare[] properties = new PropertySquare[22];
     int rekt = 0;
     int prop = 0;
 
     /**
      * Creates a board this constructor also create an ownablesquare array to manage them.
      */
-    public Board(TxtReader squareTxt, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
-        
-        this.chanceDeck = chanceDeck;
+    public Board(TxtReader squareTxt, TxtReader landedOnTxt) {
+
         
         SIZE = squareTxt.getN_LINES();
         squares = new Square[SIZE];
@@ -47,7 +44,7 @@ public class Board {
                 squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, getJail());
 
             } else if ("Chance".equals(oneLine[0])) {
-                squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, chanceDeck);
+                squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             } else if ("Property".equals(oneLine[0])) {
 
@@ -86,20 +83,6 @@ public class Board {
         return squares[index];
     }
 
-    /**
-     * Returns square by name
-     *
-     * @param name square name
-     * @return returns square by name
-     */
-    public Square getSquare(String name) {
-        Square currentSquare = null;
-        for (Square square : squares) {
-            if (square.getName().equals(name))
-                currentSquare = square;
-        }
-        return currentSquare;
-    }
 
     /**
      * Ownablesquare
@@ -110,14 +93,6 @@ public class Board {
         return ownables;
     }
 
-    /**
-     * Propertysquare
-     *
-     * @return Returns property squares
-     */
-    public PropertySquare[] getProperties() {
-        return properties;
-    }
 
     /**
      * Searches through the ownablesquare and returns number of not owned by same player and color
@@ -136,15 +111,14 @@ public class Board {
                 countcolor++;
         }
 
-        //
+        //Counts number of squares owner does not own
         for (int i = 0; i < ownables.length; i++) {
             if (ownables[i].getOwner() != null && s.getOwner() == ownables[i].getOwner() && s.getColor().equals(ownables[i].getColor())) {
                 playerowns++;
             }
         }
 
-        int getrekt = countcolor - playerowns;
-        return getrekt;
+        return countcolor - playerowns;
     }
 
     /**
@@ -178,11 +152,13 @@ public class Board {
     public Square getStart() {
         return squares[0];
     }
-    
-    public ChanceDeck getChanceDeck(){
-        return chanceDeck;
-    }
 
+
+    /**
+     * Calculates players total value.
+     *
+     * @return total player value
+     */
     public int getPlayerValue(Player player) {
         int value = 0;
         value = value + player.getBalance();
@@ -257,14 +233,15 @@ public class Board {
      * @return boolean
      */
     public boolean doesPlayerOwnAnySquares(Player player) {
-        if (getPlayerSquares(player).length > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return getPlayerSquares(player).length > 0;
 
     }
 
+    /**
+     * Returns OwnableSquare from name
+     * @param name The name of the OwnableSquare we want to find
+     * @return returns OwnableSquare from name or null if not found
+     */
     public OwnableSquare getOwnableSquareFromName(String name) {
         for (int i = 0; i < ownables.length; i++) {
             if (ownables[i].getName().equals((name))) {
@@ -273,16 +250,11 @@ public class Board {
         }
         return null;
     }
-
-    public Square getSquareFromName(String name) {
-        for (int i = 0; i < squares.length; i++) {
-            if (squares[i].getName().equals((name))) {
-                return squares[i];
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Returns PropertySquare from name
+     * @param name The name of the PropertySquare we want to find
+     * @return returns PropertySquare from name or null if not found
+     */
     public PropertySquare getPropertyFromName(String name) {
         for (int i = 0; i < properties.length; i++) {
             if (properties[i].getName().equals((name))) {

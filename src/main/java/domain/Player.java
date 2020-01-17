@@ -1,8 +1,6 @@
 package domain;
 
-import controllers.GUILogic;
 import domain.squares.OwnableSquare;
-import domain.squares.PropertySquare;
 import domain.squares.Square;
 
 public class Player {

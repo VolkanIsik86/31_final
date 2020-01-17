@@ -1,0 +1,6 @@
+Enter name,,Write your name (between 2 to 8 characters)
+Already in use,,Name is already in use, write another:
+player numbers,,Choose the number of players, who want to play the game.
+length,,Name is not valid (between 2 to 8 characters)
+Play again,,Play again ?
+Close,,Closing the game.

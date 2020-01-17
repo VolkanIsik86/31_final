@@ -7,12 +7,10 @@ public class Game {
 
     protected GUILogic guiLogic;
     protected Board board;
-    protected ChanceDeck chanceDeck;
     protected TurnLogic turnLogic;
     protected PlayerList playerList;
     protected final int STARTBALANCE = 30000;
 
-    protected String looser = "null";
     protected TxtReader turnLogicTxt;
     protected TxtReader squaresTxt;
     protected TxtReader cardsTxt;
@@ -24,7 +22,7 @@ public class Game {
         initializeGame();
 
         //Play game as long as at least two people are alive
-        while (playerList.NumberOfPlayers() > 1) {
+        while (playerList.getNumberOfPlayers() > 1) {
             turnLogic.playRound();
         }
 
@@ -61,7 +59,6 @@ public class Game {
 
     private void initializeGame() {
 
-        looser = "null";
 
         initLanguage();
         initGUILogic();
@@ -110,10 +107,10 @@ public class Game {
 
     protected void initBoard() {
         //Includes the initialization of the chance deck
-        board = new Board(squaresTxt, turnLogicTxt, new ChanceDeck(cardsTxt, board));
-        chanceDeck = board.getChanceDeck();
+        board = new Board(squaresTxt, turnLogicTxt);
     }
 
+    //Creates the logic object for running the game
     protected void initTurnLogic() {
         turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
     }
@@ -121,7 +118,7 @@ public class Game {
     protected void initPlayerList() {
 
         //Creates a playerList and adds the players from guiLogic
-        playerList = new PlayerList(board.getSquare(0), guiLogic);
+        playerList = new PlayerList(board.getSquare(0));
         String[] playerNames = guiLogic.getPlayerNames();
 
         for (int i = 0; i < playerNames.length; i++) {

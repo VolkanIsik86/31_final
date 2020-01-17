@@ -1,6 +1,5 @@
 package domain;
 
-import controllers.GUILogic;
 import domain.squares.*;
 import org.junit.Test;
 import services.TxtReader;
@@ -9,8 +8,7 @@ import static org.junit.Assert.*;
 //Testes kun positivt, da brugeren ikke skal interegere direkte med objektet
 public class BoardTest {
 
-    private GUILogic guiLogic;
-    private Board board;
+    private final Board board;
     
     private final Player player;
     
@@ -32,7 +30,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
+        board = new Board(squareTxt, landedOnTxt);
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }
@@ -101,8 +99,8 @@ public class BoardTest {
 
     @Test
     public void doesPlayerOwnAnySquares() {
-        assertEquals(false,board.doesPlayerOwnAnySquares(player));
+        assertFalse(board.doesPlayerOwnAnySquares(player));
         board.ownables[2].setOwner(player);
-        assertEquals(true,board.doesPlayerOwnAnySquares(player));
+        assertTrue(board.doesPlayerOwnAnySquares(player));
     }
 }

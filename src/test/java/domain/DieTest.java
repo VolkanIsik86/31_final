@@ -19,7 +19,7 @@ public class DieTest {
             die.roll();
             
             //Check to see if facevalue is integer from 1-6
-            assertTrue(die.getFaceValue()%1==0);
+            assertEquals(0, die.getFaceValue() % 1);
             assertEquals(3.5, die.getFaceValue(),2.5);
             
             //And record in array
@@ -45,7 +45,7 @@ public class DieTest {
 
 
             // checks if the overall dice value is between 2-12. (tested for upto 6 million iterations)
-            assertTrue(rollSum % 1 == 0);
+            assertEquals(0, rollSum % 1);
             assertTrue(rollSum >= 2 && rollSum <= 12);
             assertEquals(7, rollSum, 5);
 
