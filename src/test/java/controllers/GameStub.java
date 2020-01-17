@@ -1,14 +1,15 @@
 package controllers;
 
-import domain.Board;
-import domain.ChanceDeck;
 import domain.DieStub;
 import domain.PlayerList;
 import domain.ChanceDeckStub;
 
 public class GameStub extends Game {
 
-    private int[] dieRolls, playerBalances, playerLocations, chanceCardSequence;
+    private final int[] dieRolls;
+    private final int[] playerBalances;
+    private final int[] playerLocations;
+    private final int[] chanceCardSequence;
 
     public GameStub(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence) {
         this.dieRolls = dieRolls;
@@ -28,7 +29,7 @@ public class GameStub extends Game {
     protected void initPlayerList() {
 
         //Creates a playerList and adds the players from guiLogic
-        playerList = new PlayerList(board.getSquare(0), guiLogic);
+        playerList = new PlayerList(board.getSquare(0));
         String[] playerNames = guiLogic.getPlayerNames();
 
 

@@ -1,6 +1,5 @@
 package domain;
 
-import controllers.GUILogic;
 import domain.squares.*;
 import services.TxtReader;
 
@@ -9,21 +8,19 @@ import services.TxtReader;
  */
 public class Board {
 
-    private int SIZE;
-    private ChanceDeck chanceDeck;
-    private Square[] squares;
+    private final int SIZE;
+    private final Square[] squares;
     //todo skal da være private
-    OwnableSquare[] ownables = new OwnableSquare[28];
-    PropertySquare[] properties = new PropertySquare[22];
+    final OwnableSquare[] ownables = new OwnableSquare[28];
+    final PropertySquare[] properties = new PropertySquare[22];
     int rekt = 0;
     int prop = 0;
 
     /**
      * Creates a board this constructor also create an ownablesquare array to manage them.
      */
-    public Board(TxtReader squareTxt, TxtReader landedOnTxt, ChanceDeck chanceDeck) {
-        
-        this.chanceDeck = chanceDeck;
+    public Board(TxtReader squareTxt, TxtReader landedOnTxt) {
+
         
         SIZE = squareTxt.getN_LINES();
         squares = new Square[SIZE];
@@ -47,7 +44,7 @@ public class Board {
                 squares[i] = new GoToJailSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, getJail());
 
             } else if ("Chance".equals(oneLine[0])) {
-                squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt, chanceDeck);
+                squares[i] = new ChanceSquare(oneLine[1], Integer.parseInt(oneLine[2]), landedOnTxt);
 
             } else if ("Property".equals(oneLine[0])) {
 
@@ -86,20 +83,6 @@ public class Board {
         return squares[index];
     }
 
-    /**
-     * Returns square by name
-     *
-     * @param name square name
-     * @return returns square by name
-     */
-    public Square getSquare(String name) {
-        Square currentSquare = null;
-        for (Square square : squares) {
-            if (square.getName().equals(name))
-                currentSquare = square;
-        }
-        return currentSquare;
-    }
 
     /**
      * Ownablesquare
@@ -110,14 +93,6 @@ public class Board {
         return ownables;
     }
 
-    /**
-     * Propertysquare
-     *
-     * @return Returns property squares
-     */
-    public PropertySquare[] getProperties() {
-        return properties;
-    }
 
     /**
      * Searches through the ownablesquare and returns number of not owned by same player and color
@@ -143,8 +118,7 @@ public class Board {
             }
         }
 
-        int getrekt = countcolor - playerowns;
-        return getrekt;
+        return countcolor - playerowns;
     }
 
     /**
@@ -178,10 +152,7 @@ public class Board {
     public Square getStart() {
         return squares[0];
     }
-    
-    public ChanceDeck getChanceDeck(){
-        return chanceDeck;
-    }
+
 
     public int getPlayerValue(Player player) {
         int value = 0;
@@ -257,11 +228,7 @@ public class Board {
      * @return boolean
      */
     public boolean doesPlayerOwnAnySquares(Player player) {
-        if (getPlayerSquares(player).length > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return getPlayerSquares(player).length > 0;
 
     }
 
@@ -269,15 +236,6 @@ public class Board {
         for (int i = 0; i < ownables.length; i++) {
             if (ownables[i].getName().equals((name))) {
                 return ownables[i];
-            }
-        }
-        return null;
-    }
-
-    public Square getSquareFromName(String name) {
-        for (int i = 0; i < squares.length; i++) {
-            if (squares[i].getName().equals((name))) {
-                return squares[i];
             }
         }
         return null;

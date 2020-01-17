@@ -15,17 +15,14 @@ import java.awt.*;
 
 public class GUILogic {
 
-    private final Color BROWN = new Color(153, 102, 0);
-    private final Color GOLD = new Color(255, 204, 51);
     private int delay = 200;
     private final int N_FIELDS = 40;
-    private final int PASSEDSTART = 4000;
     protected GUI_Field[] fields;
     protected GUI gui;
     protected String[] names = new String[0];
     protected GUI_Player[] guiPlayers = new GUI_Player[0];
     protected final Color[] carcolor = {Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.WHITE};
-    protected TxtReader guiTxt;
+    protected final TxtReader guiTxt;
 
     public GUILogic(TxtReader squaresTxt, TxtReader guiTxt, int startbalance) {
         this.guiTxt = guiTxt;
@@ -124,7 +121,6 @@ public class GUILogic {
         String nrPlayers = gui.getUserSelection(guiTxt.getLine("player numbers"), "3", "4", "5", "6");
         int NumberOfPlayers = Integer.parseInt(nrPlayers);
 
-        String names[] = new String[NumberOfPlayers];
         addPlayers(NumberOfPlayers, startbalance);
     }
 
@@ -177,6 +173,7 @@ public class GUILogic {
      * @param player Player figure needs to be moved.
      */
     private void passedStart(Player player) {
+        int PASSEDSTART = 4000;
         player.deposit(PASSEDSTART);
         setPlayerBalance(player);
     }

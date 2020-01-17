@@ -6,12 +6,12 @@ import services.TxtReader;
 
 public abstract class OwnableSquare extends Square {
 
-    private String type;
-    private String color;
-    private int price;
+    private final String type;
+    private final String color;
+    private final int price;
     private final int PLEDGE_VALUE;
     private int rent;
-    protected Board board;
+    protected final Board board;
     protected Player owner;
 
     public OwnableSquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, Board board) {
@@ -49,20 +49,12 @@ public abstract class OwnableSquare extends Square {
         return owner;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
     public String getColor() {
         return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public abstract boolean isRealEstate();

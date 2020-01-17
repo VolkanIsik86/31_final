@@ -8,17 +8,17 @@ import services.TxtReader;
 
 public class TurnLogic {
 
-    protected Board board;
-    private GUILogic guiLogic;
-    private TxtReader turnLogicTxt;
-    protected TxtReader cardsTxt;
-    private ChanceDeck chanceDeck;
-    private Die die;
+    protected final Board board;
+    private final GUILogic guiLogic;
+    private final TxtReader turnLogicTxt;
+    protected final TxtReader cardsTxt;
+    private final ChanceDeck chanceDeck;
+    private final Die die;
     private int roll1, roll2, rollSum = 0;
     private boolean hasThrown = false;
-    private MenuLogic menuLogic;
-    private AuctionLogic auctionLogic;
-    private PlayerList playerList;
+    private final MenuLogic menuLogic;
+    private final AuctionLogic auctionLogic;
+    private final PlayerList playerList;
 
 
     public TurnLogic(Board board, GUILogic guiLogic, TxtReader turnLogicTxt, TxtReader cardsTxt, Die die, PlayerList playerList, ChanceDeck chanceDeck) {
@@ -73,6 +73,7 @@ public class TurnLogic {
      *
      * @param player
      */
+    @SuppressWarnings("JavaDoc")
     private void auctionPlayerProperties(Player player) {
 
         guiLogic.showMessage(turnLogicTxt.getLine("All player properties auction"));
@@ -120,18 +121,18 @@ public class TurnLogic {
                         break outer;
                     }
 
-                    if (roll1 == roll2 && player.getLost() != true && player.getJail() != true) {
+                    if (roll1 == roll2 && !player.getLost() && !player.getJail()) {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical OK to throw"));
                     }
 
                     //If players has rolled 2 identical and ended up in jail
-                    if (roll1 == roll2 && player.getLost() != true && player.getJail()) {
+                    if (roll1 == roll2 && !player.getLost() && player.getJail()) {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                         takeJailTurn(player);
                         break outer;
                     }
 
-                } while (roll1 == roll2 && player.getLost() != true);
+                } while (roll1 == roll2 && !player.getLost());
 
             } else if (choice.equals(turnLogicTxt.getLine("Properties"))) {
                 manageProperties(player);
@@ -238,22 +239,13 @@ public class TurnLogic {
         currentPlayer.setAttemptsToGetOutOfJail(0);
     }
 
-    public int getOwnerIndex(Square nextLocation) {
-        for (int i = 0; i < board.getOwnables().length; i++) {
-            if (board.getOwnables()[i].getName().equals(nextLocation.getName())) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public void doLandedOnTurn(Player player) {
 
         Square nextLocation = player.getLocation();
-        char lastCharofMessage = nextLocation.landedOn(player).charAt(nextLocation.landedOn(player).length()-1);
         String message = nextLocation.landedOn(player);
+        char lastCharOfMessage = message.charAt(message.length()-1);
 
-        switch (lastCharofMessage) {
+        switch (lastCharOfMessage) {
             /*
              * Shows menu to buy or not to buy if player lands on unowned square
              * if players chose is not to buy auctioning method will be invoked.
@@ -268,6 +260,7 @@ public class TurnLogic {
             // J for moveToJail (confirms that player has landed on jailsquare)
             case 'J':
                 guiLogic.moveToJail(player);
+                guiLogic.updatePlayerLocation(player);
                 guiLogic.showMessage(turnLogicTxt.getLine(message));
                 break;
             // j for owner in Jail (confirms that owner of ownablesquare is jailed)
@@ -366,10 +359,6 @@ public class TurnLogic {
         rollSum = roll1 + roll2;
     }
 
-    private boolean taxSquare(String message) {
-        return message.equals(("Tax square"));
-    }
-
     private void doTax(Player p, Square nextLocation) {
         if (nextLocation.getIndex() == 4) {
 
@@ -452,10 +441,6 @@ public class TurnLogic {
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("House has been build"));
         }
-    }
-
-    private void updateGUI(Player player) {
-
     }
 
 }

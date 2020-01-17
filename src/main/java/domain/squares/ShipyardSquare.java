@@ -29,6 +29,7 @@ public class ShipyardSquare extends OwnableSquare {
         if(getOwner().getJail()){
             setRent(0);
         } else {
+            System.out.println(board.searchColors(this));
             
             switch (board.searchColors(this)) {
                 case 0:

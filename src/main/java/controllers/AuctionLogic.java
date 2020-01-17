@@ -9,10 +9,10 @@ import services.TxtReader;
 
 public class AuctionLogic {
 
-    PlayerList playerList;
-    MenuLogic menuLogic;
-    GUILogic guiLogic;
-    TxtReader turnLogicTxt;
+    final PlayerList playerList;
+    final MenuLogic menuLogic;
+    final GUILogic guiLogic;
+    final TxtReader turnLogicTxt;
 
 
     public AuctionLogic(PlayerList playerList, MenuLogic menuLogic, GUILogic guiLogic, TxtReader turnLogicTxt) {
@@ -45,7 +45,6 @@ public class AuctionLogic {
             // auction within players bidding
             for (int i = 0; i < biddingPlayers.length; i++) {
                 String bided = menuLogic.auctionMenu(biddingPlayers[i], highestBid, square);
-                Player[] temp = new Player[biddingPlayers.length - 1];
                 // if a player presses pass biddingplayers array will me rearranged.
                 if (bided.equals("pass")) {
                     Player[] temparr = downgradePlayersarr(biddingPlayers, biddingPlayers[i]);

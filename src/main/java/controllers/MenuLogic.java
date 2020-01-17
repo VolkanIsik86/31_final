@@ -7,10 +7,9 @@ import services.TxtReader;
 
 public class MenuLogic {
 
-    private TxtReader turnLogicTxt;
-    private Board board;
-    private GUILogic guiLogic;
-    private String[] startMenuItems;
+    private final TxtReader turnLogicTxt;
+    private final Board board;
+    private final GUILogic guiLogic;
 
     public MenuLogic(TxtReader turnLogicTxt, Board board, GUILogic guiLogic) {
         this.turnLogicTxt = turnLogicTxt;
@@ -29,7 +28,7 @@ public class MenuLogic {
         boolean ownsASquares = board.doesPlayerOwnAnySquares(player);
 
         //Chooses the correct start menu items
-        startMenuItems = updateStartMenuItems(hasThrown, ownsASquares);
+        String[] startMenuItems = updateStartMenuItems(hasThrown, ownsASquares);
 
         //Displays the start menu and returns choice
         return guiLogic.getUserButtonPressed(greeting, startMenuItems);
@@ -39,9 +38,9 @@ public class MenuLogic {
     //Controls what to show in the GUI, depending on if player has thrown and/or own squares
     public String[] updateStartMenuItems(boolean hasThrown, boolean ownsASquares) {
         String[] menuItems;
-        if (hasThrown == false && ownsASquares) {
+        if (!hasThrown && ownsASquares) {
             menuItems = new String[]{turnLogicTxt.getLine("Throw"), turnLogicTxt.getLine("Properties")};
-        } else if (hasThrown == false && ownsASquares == false) {
+        } else if (!hasThrown && !ownsASquares) {
             menuItems = new String[]{turnLogicTxt.getLine("Throw")};
         } else if (hasThrown && ownsASquares) {
             menuItems = new String[]{turnLogicTxt.getLine("Properties"), turnLogicTxt.getLine("End")};
@@ -114,12 +113,6 @@ public class MenuLogic {
         return guiLogic.getUserButtonPressed(greeting, jailMenuItems);
     }
 
-    public String PledgeOwnables(Player player) {
-
-        String[] properties = board.getPlayerSquareNames(player);
-
-        return guiLogic.getUserSelection(turnLogicTxt.getLine("pledged properties"), properties);
-    }
 
     /**
      * Shows auction start menu

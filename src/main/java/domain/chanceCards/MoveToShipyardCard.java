@@ -1,23 +1,19 @@
 package domain.chanceCards;
 
-import controllers.GUILogic;
 import domain.Board;
-import domain.ChanceDeck;
 import domain.Player;
-import domain.squares.Square;
 
 public class MoveToShipyardCard extends ChanceCard {
 
-    protected int moves;
     protected final Board board;
 
-    public MoveToShipyardCard(String type, String description, ChanceDeck chanceDeck, Board board) {
-        super(type, description, chanceDeck);
+    public MoveToShipyardCard(String type, String description, Board board) {
+        super(type, description);
         this.board = board;
     }
 
-    //https://www.geeksforgeeks.org/find-closest-number-array/ for algoritme til at finde nærmeste tal
-    private int findClosest(int arr[], int target)
+    //https://www.geeksforgeeks.org/find-closest-number-array/ for algoritme til at finde nærmeste tal i et sorteret array
+    private int findClosest(int[] arr, int target)
     {
         int n = arr.length;
 

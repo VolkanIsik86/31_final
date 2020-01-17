@@ -5,11 +5,12 @@ import domain.Board;
 import services.TxtReader;
 
 // Property square is the square that can be owned and other players, who land on it, pays to the owner.
+@SuppressWarnings("UnusedReturnValue")
 public class PropertySquare extends OwnableSquare {
 
     private final int HOUSE_PRICE;
     private final int PRICE_IF_OWNING_ALL;
-    private int[] rentLadder;
+    private final int[] rentLadder;
     private int numberOfHouse;
 
     public PropertySquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, int HOUSE_PRICE, int[] rentLadder, Board board) {

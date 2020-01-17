@@ -1,7 +1,5 @@
 package domain.squares;
 
-import controllers.GUILogic;
-import domain.Board;
 import domain.Player;
 import services.TxtReader;
 
@@ -9,8 +7,6 @@ import services.TxtReader;
 public abstract class Square {
 
     private final String name;
-    private Player owner;
-    private int tax;
     private final int index;
     protected final TxtReader landedOnTxt;
     

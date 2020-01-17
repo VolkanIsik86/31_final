@@ -2,7 +2,7 @@ package domain;
 
 public class DieStub extends Die {
     
-    private int[] dieRolls;
+    private final int[] dieRolls;
     private int counter = 0;
     
     public DieStub(int[] dieRolls){
