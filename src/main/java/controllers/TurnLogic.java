@@ -289,11 +289,14 @@ public class TurnLogic {
                 if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
                     guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
                 }
-                if (tempCard.equalsIgnoreCase("Earn")) {
-                    if (((EarnCard) pulledCard).getAmount() == 500) {
-                        guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
-                        chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
-                    }
+//                if (tempCard.equalsIgnoreCase("Earn")) {
+//                    if (((EarnCard) pulledCard).getAmount() == 500) {
+//                        guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
+//                        chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
+//                    }
+//                }
+                if (tempCard.equalsIgnoreCase("WithDraw")){
+                    guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
                 }
                 if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
                     Player tempOwner = board.getOwnables()[tempValue].getOwner();

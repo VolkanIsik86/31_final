@@ -110,12 +110,12 @@ public class Game {
 
     protected void initBoard() {
         //Includes the initialization of the chance deck
-        board = new Board(squaresTxt, turnLogicTxt, new ChanceDeck(cardsTxt, board));
+        board = new Board(squaresTxt, turnLogicTxt, new ChanceDeck(cardsTxt, board, playerList));
         chanceDeck = board.getChanceDeck();
     }
 
     protected void initTurnLogic() {
-        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board));
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board, playerList));
     }
 
     protected void initPlayerList() {

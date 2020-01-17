@@ -2,6 +2,7 @@ package domain;
 
 import controllers.GUILogic;
 import domain.squares.*;
+import javafx.print.PageLayout;
 import org.junit.Test;
 import services.TxtReader;
 import static org.junit.Assert.*;
@@ -13,6 +14,7 @@ public class BoardTest {
     private Board board;
     
     private final Player player;
+    private PlayerList playerList;
     
     public BoardTest(){
         TxtReader squareTxt = new TxtReader();
@@ -32,7 +34,7 @@ public class BoardTest {
         guiTxt.openFile(languagePath, "guitext_da");
         guiTxt.readLines();
         
-        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
+        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board,playerList));
         
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }

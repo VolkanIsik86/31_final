@@ -11,9 +11,10 @@ public class ChanceDeck {
     private final int N_CARDS = 19;
     protected final ChanceCard[] chanceCards;
     private final Random rnd = new Random();
+    private PlayerList playerList;
     
     //Creates all the Chance cards and adds them to an array
-    public ChanceDeck(TxtReader cardsTxt, Board board) {
+    public ChanceDeck(TxtReader cardsTxt, Board board, PlayerList playerList) {
         
         chanceCards = new ChanceCard[N_CARDS];
     
@@ -37,6 +38,8 @@ public class ChanceDeck {
                 chanceCards[i] = new PayHouseCard(oneLine[0], oneLine[2], this, Integer.parseInt(oneLine[1]), cardsTxt, board);
             } else if ("MoveToShipyardCard".equals(oneLine[0])) {
                 chanceCards[i] = new MoveToShipyardCard(oneLine[0], oneLine[2], this, board);
+            } else if ("WithDraw".equalsIgnoreCase(oneLine[0])){
+                chanceCards[i] = new WithDrawBalanceCard(oneLine[0],oneLine [2], this,Integer.parseInt(oneLine[1]), playerList);
             }
         }
     }
