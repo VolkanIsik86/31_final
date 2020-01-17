@@ -253,64 +253,18 @@ public class TurnLogic {
         char lastCharofMessage = nextLocation.landedOn(player).charAt(nextLocation.landedOn(player).length()-1);
         String message = nextLocation.landedOn(player);
 
-
         switch (lastCharofMessage) {
             /*
              * Shows menu to buy or not to buy if player lands on unowned square
              * if players chose is not to buy auctioning method will be invoked.
              */
             case 'N':
-                guiLogic.showMessage(turnLogicTxt.getLine(message));
-                if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
-                    String choice = menuLogic.displayBuyNotBuyMenu();
-                    if (choice.equals(turnLogicTxt.getLine("buy"))) {
-                        guiLogic.setSquareOwner(player);
-                        player.attemptToPurchase((OwnableSquare) nextLocation);
-                    } else if (choice.equals(turnLogicTxt.getLine("dont buy"))) {
-                        auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
-                        //auctioning(((OwnableSquare) nextLocation),playerList,player );
-                    }
-                } else {
-                    guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
-                }
+                doUnownedProperty(player, nextLocation, message);
                 break;
                 //Tjekker om man er landet på et chancefelt
             case 'S':
-                guiLogic.showMessage(turnLogicTxt.getLine("Chance square C"));
-                ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
-                guiLogic.showChanceCard(pulledCard.getDescription());
-                guiLogic.showMessage(turnLogicTxt.getLine(message));
-                int tempValue = pulledCard.applyEffect(player);
-                String tempCard = pulledCard.getType();
-                if (tempCard.equalsIgnoreCase("move")) {
-                    guiLogic.movePiece(player, tempValue);
-                    doLandedOnTurn(player);
-                }
-                if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
-                    guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
-                }
-                if (tempCard.equalsIgnoreCase("Earn")) {
-                    if (((EarnCard) pulledCard).getAmount() == 500) {
-                        guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
-                        chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
-                    }
-                }
-                if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
-                    Player tempOwner = board.getOwnables()[tempValue].getOwner();
-                    guiLogic.updatePlayerLocation(player);
-                    if(tempOwner == player || tempOwner == null) {
-                    doLandedOnTurn(player);
-                }
-                    else{
-                    int tempRent = board.getOwnables()[tempValue].getRent();
-                    board.getOwnables()[tempValue].setRent(tempRent*2);
-                    doLandedOnTurn(player);
-                    board.getOwnables()[tempValue].setRent(tempRent);
-                }
-            }
-            message = message.substring(0, message.length() - 1);
-            break;
-
+                doChanceSquare(player, message);
+                break;
             // J for moveToJail (confirms that player has landed on jailsquare)
             case 'J':
                 guiLogic.moveToJail(player);
@@ -339,6 +293,57 @@ public class TurnLogic {
                 break;
         }
         updateBalances();
+    }
+    
+    private void doUnownedProperty(Player player, Square nextLocation, String message){
+        guiLogic.showMessage(turnLogicTxt.getLine(message));
+        if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
+            String choice = menuLogic.displayBuyNotBuyMenu();
+            if (choice.equals(turnLogicTxt.getLine("buy"))) {
+                guiLogic.setSquareOwner(player);
+                player.attemptToPurchase((OwnableSquare) nextLocation);
+            } else if (choice.equals(turnLogicTxt.getLine("dont buy"))) {
+                auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
+            }
+        } else {
+            guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
+        }
+    }
+    
+    private void doChanceSquare(Player player, String message){
+        guiLogic.showMessage(turnLogicTxt.getLine("Chance square C"));
+        ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
+        guiLogic.showChanceCard(pulledCard.getDescription());
+        guiLogic.showMessage(turnLogicTxt.getLine(message));
+        int tempValue = pulledCard.applyEffect(player);
+        String tempCard = pulledCard.getType();
+        if (tempCard.equalsIgnoreCase("move")) {
+            guiLogic.movePiece(player, tempValue);
+            doLandedOnTurn(player);
+        }
+        if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
+            guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
+        }
+        if (tempCard.equalsIgnoreCase("Earn")) {
+            if (((EarnCard) pulledCard).getAmount() == 500) {
+                guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
+                chanceDeck.withDrawMoneyFromPlayers(500,player,playerList,guiLogic);
+            }
+        }
+        if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
+            Player tempOwner = board.getOwnables()[tempValue].getOwner();
+            guiLogic.updatePlayerLocation(player);
+            if(tempOwner == player || tempOwner == null) {
+                doLandedOnTurn(player);
+            }
+            else{
+                int tempRent = board.getOwnables()[tempValue].getRent();
+                board.getOwnables()[tempValue].setRent(tempRent*2);
+                doLandedOnTurn(player);
+                board.getOwnables()[tempValue].setRent(tempRent);
+            }
+        }
+        message = message.substring(0, message.length() - 1);
     }
 
     private void updateBalances(){
