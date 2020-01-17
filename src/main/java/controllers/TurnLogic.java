@@ -33,6 +33,9 @@ public class TurnLogic {
         auctionLogic = new AuctionLogic(playerList, menuLogic, guiLogic, turnLogicTxt);
     }
 
+    /**
+     * Runs the game until one player remains.
+     */
     public void playRound() {
 
         for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
@@ -87,6 +90,12 @@ public class TurnLogic {
         }
     }
 
+    /**
+     * take turn for player
+     *
+     * @param player
+     */
+    @SuppressWarnings("JavaDoc")
     private void takeTurn(Player player) {
 
         boolean endTurn = false;
@@ -145,7 +154,12 @@ public class TurnLogic {
         hasThrown = false;
 
     }
-
+    /**
+     * Logic for turn if player is jailed
+     *
+     * @param currentPlayer
+     */
+    @SuppressWarnings("JavaDoc")
     private void takeJailTurn(Player currentPlayer) {
 
         //todo tjek tekstfilen
@@ -178,6 +192,12 @@ public class TurnLogic {
         }
     }
 
+    /**
+     * Logic for getting out of jail with dice rolls
+     *
+     * @param currentPlayer
+     */
+    @SuppressWarnings("JavaDoc")
     private void attemptEscapeWithDice(Player currentPlayer) {
 
         //If 2 identical
@@ -217,6 +237,13 @@ public class TurnLogic {
 
     }
 
+
+    /**
+     * Does turn for player
+     * Shows dice on GUI and moves piece
+     * @param player
+     */
+    @SuppressWarnings("JavaDoc")
     private void doTurn(Player player) {
         hasThrown = true;
 
@@ -232,6 +259,12 @@ public class TurnLogic {
         doLandedOnTurn(player);
     }
 
+    /**
+     * If player wants to buy themselves out of jail
+     *
+     * @param currentPlayer
+     */
+    @SuppressWarnings("JavaDoc")
     private void buyPlayerOutOfJail(Player currentPlayer) {
         currentPlayer.withdraw(1000);
         guiLogic.setPlayerBalance(currentPlayer);
@@ -239,6 +272,12 @@ public class TurnLogic {
         currentPlayer.setAttemptsToGetOutOfJail(0);
     }
 
+    /**
+     * Logic for when you land on a square.
+     *
+     * @param player
+     */
+    @SuppressWarnings("JavaDoc")
     public void doLandedOnTurn(Player player) {
 
         Square nextLocation = player.getLocation();
@@ -287,7 +326,15 @@ public class TurnLogic {
         }
         updateBalances();
     }
-    
+
+    /**
+     * Logic for unowned property
+     *
+     * @param player current player
+     * @param nextLocation the location we want to check
+     * @param message the location message from landedOn()
+     */
+    @SuppressWarnings("JavaDoc")
     private void doUnownedProperty(Player player, Square nextLocation, String message){
         guiLogic.showMessage(turnLogicTxt.getLine(message));
         if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
@@ -302,14 +349,22 @@ public class TurnLogic {
             guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
         }
     }
-    
+    /**
+     * Logic for landing on a chance square
+     *
+     * @param player current player
+     * @param message the location message from landedOn()
+     */
+    @SuppressWarnings("JavaDoc")
     private void doChanceSquare(Player player, String message){
         guiLogic.showMessage(turnLogicTxt.getLine("Chance square C"));
+        //Pulls a random card, shows it on the gui and applies the effect on the player
         ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
         guiLogic.showChanceCard(pulledCard.getDescription());
         guiLogic.showMessage(turnLogicTxt.getLine(message));
         int tempValue = pulledCard.applyEffect(player);
         String tempCard = pulledCard.getType();
+        //Different types of chance cards
         if (tempCard.equalsIgnoreCase("move")) {
             guiLogic.movePiece(player, tempValue);
             doLandedOnTurn(player);
@@ -336,21 +391,32 @@ public class TurnLogic {
                 board.getOwnables()[tempValue].setRent(tempRent);
             }
         }
-        message = message.substring(0, message.length() - 1);
     }
 
+    /**
+     * Updates all players balance on the GUI
+     *
+     */
     private void updateBalances(){
         for (int i = 0; i < playerList.getPlayers().length ; i++) {
             guiLogic.setPlayerBalance(playerList.getPlayer(i));
         }
     }
 
+    /**
+     * Sets jail location and status for current player
+     *
+     * @param player current player
+     */
     private void putInJail(Player player) {
         player.setLocation(board.getJail());
         player.setJail(true);
         guiLogic.moveToJail(player);
     }
 
+    /**
+     * Rolls the dice
+     */
     private void rollDice() {
         die.roll();
         roll1 = die.getFaceValue();
@@ -359,6 +425,12 @@ public class TurnLogic {
         rollSum = roll1 + roll2;
     }
 
+    /**
+     * Logic for paying tax depending on choice from player and square
+     *
+     * @param p current player
+     * @param nextLocation square player is on
+     */
     private void doTax(Player p, Square nextLocation) {
         if (nextLocation.getIndex() == 4) {
 
@@ -379,6 +451,11 @@ public class TurnLogic {
         guiLogic.setPlayerBalance(p);
     }
 
+
+    /**
+     * Logic for managing properties owned by player
+     * @param player current player
+     */
     private void manageProperties(Player player) {
 
         //Prompt player to choose a field
@@ -430,6 +507,11 @@ public class TurnLogic {
         }
     }
 
+    /**
+     * Logic for building houses/hotels
+     * @param propertyToManage The location we want to build a house/hotel on
+     * @param player current player
+     */
     private void buildHouse(PropertySquare propertyToManage, Player player) {
         player.withdraw(propertyToManage.getHOUSE_PRICE());
         propertyToManage.addHouse();
