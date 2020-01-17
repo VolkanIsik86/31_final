@@ -1,0 +1,82 @@
+Regular square R,,Du er landet på et neutralt felt, og der sker derfor ikke noget
+Owned by another property square O,,Du er landet på en ejendom ejet af en anden spiller, og skal derfor betale husleje
+Owned by another shipyard square O,,Du er landet på et rederi ejet af en anden spiller, og skal derfor betale leje
+Owned by another factory square O,,Du er landet på en fabrik ejet af en anden spiller, og skal derfor betale leje
+Owned by yourself property square o,,Du er landet på en ejendom du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself shipyard square o,,Du er landet på et rederi du allerede selv ejer, og skal derfor ikke foretage dig noget
+Owned by yourself factory square o,,Du er landet på en fabrik du allerede selv ejer, og skal derfor ikke foretage dig noget
+Not owned property square N,,Du er landet på en ejendom, som ingen ejer
+Not owned shipyard square N,,Du er landet på et rederi, som ingen ejer
+Not owned factory square N,,Du er landet på en fabrik, som ingen ejer
+Owner is in jail j,,Du er landet på en ejendom ejet af en anden spiller som sidder i fængsel derfor skal ikke foretage dig noget
+GoToJail square J,,Du er landet på "Gå i fængsel" og er derfor blevet rykket i fængsel
+Chance square C,,Du er landet på et chancefelt, og skal derfor trække et chancekort
+Tax square T,,Du er landet på et skattefelt, og skal derfor betale skat
+Does not have fonds for rent,,Du har desværre ikke råd til at betale huslejen, og er derfor ikke længere med i spillet
+Does not have fonds to buy,,Du har desværre ikke råd til at købe ejendommen, og er derfor ikke længere med i spillet
+Does not have fonds to pay,,Du har desværre ikke råd til at købe betale denne udgift, og er derfor ikke længere med i spillet
+Press OKS,,Tryk OK når du har læst chancekortet
+In jail 2 options,,Du er i fængsel. Du skal nu derfor vælge, hvad du vil gøre, for at komme ud
+In jail 1 option,,Du er i fængsel. Da du ikke har råd til at betale dig ud, er du nødt til at slå med terningerne
+Forced to buy out of jail,,Da du forgæves har forsøgt at komme ud af fængslet med terningerne 3 gange nu, er du tvunget til at betale dig ud. Tryk OK for at betale.
+Out of jail throws and lost,,Da du forgæves har forsøgt at komme ud af fængslet med terningerne 3 gange nu, og ikke har råd til at betale dig ud, har du tabt.
+Did not come out of jail,,Du kom desværre ikke ud af fængslet.
+Jail buy out,,Betal 1000kr.
+Jail roll dice,,Kast terningerne
+Out of jail take turn,,Du er nu ude af fængslet og skal tage din tur
+2 identical OK to throw,,Da du slog to ens, får du en ekstra tur. Tryk OK for at kaste
+2 identical,,Da du slog to ens, får du en ekstra tur.
+it is,,Det er
+s,,'s tur.
+Choose option,,Vælg et menupunkt
+Throw,,Kast terninger
+Properties,,Administrer grund
+Pledges Propertiesm,, Pantsatte grunde
+End,,Afslut tur
+Choose property,,Vælg en af dine grunde grund
+House,,Byg hus
+Pledge,,Pantsætning
+Trade,,Handel
+Sell,, Sælg grund
+Back,,Tilbage
+Price pr. house/hotel,,Pris pr. hus/hotel:
+Pledge value,,Pantsætningsværdi:
+Standard rent,,Standard husleje:
+1 house,,1 hus:
+2 houses,,2 huse:
+3 houses,,3 huse:
+4 houses,,4 huse:
+1 hotel,,1 hotel:
+Price at same color,,Samme farve:
+Status,,Status:
+#Houses/hotels,,Huse/hoteller:
+Rent factories,,Husleje: 100 * øjnene
+Rent when owning all factories,,Hvis begge fabrikker ejes er prisen 200 gange øjnene
+Rent shipyard,,Husleje: 500
+Rent when owning more shipyards,,Huslejen fordobles pr. ekstra rederi man ejer
+pay 4000,,Betal 4000 i skat
+pay 10,,Betal 10% i skat
+pay 2000,,Betal 2000 i skat
+tax,,Vælg mellem 4000 eller 10%
+buy,,Køb grund
+dont buy,, Ikke køb grund
+buy choice,, Vil du købe denne grund?
+Player does not own all colors,,Du skal eje alle grunde af en slags for at kunne bygge huse
+Property has too many houses,,En grund må ikke have mere end 1 hotel
+Player does not have enough money,,Du har ikke nok penge til at betale
+House has been build,,Et hus blev bygget
+Hotel has been build,,Et hotel blev hygget
+too many identical,, Du har slået for mange ens og er derfor rykket i fængsel
+Not yet implemented,,Funktionen er ikke implementeret endnu
+byd,,Byd
+pass,,Afslå
+auction,,Auktionen er startet for
+Cant afford to bid,,Du har desværre ikke råd til at byde over, og kan derfor kun afslå
+All player properties auction,,Alle den tabende spillers grunde auktioneres nu
+Highest bid,,Højeste bud er p.t.:
+The winner of the auction is,,Vinderen af auktionen blev:
+onlynumbers,,Indstast venligst kun tal
+minimum,,indtast beløb du vil byde dog minimum
+The game ends,,Da der kun er 1 spiller tilbage, er spillet færdigt
+toohigh,,Det indtastede beløb er over din pengebeholdning.
+Nobody bid randon new owner,,Da ingen har budt på grunden, afgøres det tilfældigt, hvem der får grunden
