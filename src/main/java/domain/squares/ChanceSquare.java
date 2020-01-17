@@ -17,9 +17,6 @@ public class ChanceSquare extends Square {
 
     // Pulls a random card from chancecards array and affects the player with it.
     public String landedOn(Player player) {
-
-        String message = "Press OK";
-        message = message + "S";
-        return message;
+        return "Press OK"+"S";
     }
 }

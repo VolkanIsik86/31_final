@@ -18,11 +18,6 @@ public class MoveCard extends ChanceCard {
     }
 
     public int applyEffect(Player player) {
-        Square nextLocation = board.nextLocation(player, moves);
-        player.setLocation(nextLocation);
-
-
-        nextLocation.landedOn(player);
         return moves;
     }
 

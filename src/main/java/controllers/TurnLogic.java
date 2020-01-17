@@ -250,9 +250,9 @@ public class TurnLogic {
     public void doLandedOnTurn(Player player) {
 
         Square nextLocation = player.getLocation();
-        char lastCharofMessage = nextLocation.landedOn(player).charAt(nextLocation.landedOn(player).length()-1);
         String message = nextLocation.landedOn(player);
-
+        char lastCharofMessage = message.charAt(message.length()-1);
+        
         switch (lastCharofMessage) {
             /*
              * Shows menu to buy or not to buy if player lands on unowned square
@@ -267,8 +267,7 @@ public class TurnLogic {
                 break;
             // J for moveToJail (confirms that player has landed on jailsquare)
             case 'J':
-                guiLogic.moveToJail(player);
-                guiLogic.showMessage(turnLogicTxt.getLine(message));
+                doMoveToJail(player, message);
                 break;
             // j for owner in Jail (confirms that owner of ownablesquare is jailed)
             case 'j':
@@ -276,7 +275,7 @@ public class TurnLogic {
                 break;
             // O for Owned by another (confirms that square is owned by another)
             case 'O':
-                guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+                doOwenedProperty(player, nextLocation, message);
                 break;
             // o for owned by yourself (confirms that square is owned by yourself)
             case 'o':
@@ -293,6 +292,34 @@ public class TurnLogic {
                 break;
         }
         updateBalances();
+    }
+    
+    private void doOwenedProperty(Player player, Square nextLocation, String message){
+        OwnableSquare location = ((OwnableSquare) nextLocation);
+        location.updateRent(player.getLastRoll());
+    
+        location.updateRent(player.getLastRoll());
+        guiLogic.showMessage(turnLogicTxt.getLine(message) + ": " + ((OwnableSquare) nextLocation).getRent() + " kr.");
+        
+        //If player has the requested fonds
+        if (player.getBalance() >= location.getRent()) {
+            location.payRent(player);
+            location.earnRent();
+        }
+    
+        //If player doesn't have the requested fonds
+        else {
+            guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds for rent"));
+            player.setLost(true);
+            player.setBalance(0);
+        }
+    }
+    
+    private void doMoveToJail(Player player, String message){
+        player.setLocation(board.getJail());
+        player.setJail(true);
+        guiLogic.moveToJail(player);
+        guiLogic.showMessage(turnLogicTxt.getLine(message));
     }
     
     private void doUnownedProperty(Player player, Square nextLocation, String message){
@@ -317,9 +344,14 @@ public class TurnLogic {
         guiLogic.showMessage(turnLogicTxt.getLine(message));
         int tempValue = pulledCard.applyEffect(player);
         String tempCard = pulledCard.getType();
+        
         if (tempCard.equalsIgnoreCase("move")) {
             guiLogic.movePiece(player, tempValue);
+            Square nextLocation = board.nextLocation(player, tempValue);
+            player.setLocation(nextLocation);
+            nextLocation.landedOn(player);
             doLandedOnTurn(player);
+            
         }
         if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
             guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));

@@ -6,11 +6,11 @@ import domain.DieStub;
 import domain.PlayerList;
 import domain.ChanceDeckStub;
 
-public class GameTestDriver extends Game {
+public class GameDriver extends Game {
 
     private int[] dieRolls, playerBalances, playerLocations, chanceCardSequence;
 
-    public GameTestDriver(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence) {
+    public GameDriver(int[] dieRolls, int[] playerBalances, int[] playerLocations, int[] chanceCardSequence) {
         this.dieRolls = dieRolls;
         this.playerBalances = playerBalances;
         this.playerLocations = playerLocations;

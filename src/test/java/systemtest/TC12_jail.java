@@ -1,13 +1,13 @@
 package systemtest;
 
-import controllers.GameTestDriver;
+import controllers.GameDriver;
 
 public class TC12_jail {
     
     public static void main(String[] args) {
         
         //Tester de forskellige måder at komme ind og ud af jail
-        new GameTestDriver(new int[]{
+        new GameDriver(new int[]{
                 
                 3,3,3,3,3,3,
                 1,-1,1,-1,

@@ -4,10 +4,10 @@ public class GameTest {
 
     public static void main(String[] args) {
 
-        new GameTestDriver(new int[]{
+        new GameDriver(new int[]{
 
 
-        0,2 , 2,2 , 4,4 , 2,4 , 5,6 , 7,8
+        1,2, 1,2 ,3,5,5,2,3,4,2,3,4
 
 
         }, new int[]{30000, 20000, 7000}, new int[]{0, 0, 0}, new int[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7}).playGame();
