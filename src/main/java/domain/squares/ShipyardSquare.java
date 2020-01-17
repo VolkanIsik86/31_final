@@ -25,11 +25,12 @@ public class ShipyardSquare extends OwnableSquare {
 
     @Override
     public void updateRent(int lastRoll) {
-    
+
+        //We check if player is jailed.
         if(getOwner().getJail()){
             setRent(0);
         } else {
-            
+            //When player isn't jailed, we check how many Shipyards the players doesn't own and update the rent from the result
             switch (board.searchColors(this)) {
                 case 0:
                     setRent(4000);

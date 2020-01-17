@@ -5,11 +5,11 @@ import services.TxtReader;
 
 public class ChanceDeckStub extends ChanceDeck {
     
-    private int[] chanceCardSequence;
+    private final int[] chanceCardSequence;
     private int counter = 0;
     
-    public ChanceDeckStub(TxtReader cardsTxt, Board board, int[] chanceCardSequence){
-        super(cardsTxt, board);
+    public ChanceDeckStub(TxtReader cardsTxt, Board board, int[] chanceCardSequence, PlayerList playerList){
+        super(cardsTxt, board,playerList );
         this.chanceCardSequence = chanceCardSequence;
     }
     

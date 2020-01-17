@@ -15,7 +15,8 @@
 14,,Earn-1000-Receive dividend from your shares - DKK 1,000.
 15,,PayHouseCard-800-Property taxes have increased. The additional costs are: "DKK 800 per house", "DKK 2,300 per hotel"
 16,,PayHouseCard-500-Property taxes have increased. The additional costs are: "DKK 500 per house", "DKK 2,000 per hotel"
-17,,WithDraw-500-They have put the money out for a potluck dinner. Receive DKK 500. from every Player.
+17,,Earn-500-They have put the money out for a potluck dinner. Receive DKK 500. from every Player.
 18,,MoveToShipyardCard-0-Move to the nearest Shipyard. If it is owned by another player, pay the player double the rent. If it is unowned you may buy it.
+17,,Earn-500-They have put the money out for a potluck dinner. Receive DKK 500 from every Player.
 Receive 500,, you receive DKK 500 from every Player!
 Does not have fonds to pay,,You don't have enough funds to pay this amount, your turn is finished!

@@ -9,10 +9,10 @@ import services.TxtReader;
 
 public class AuctionLogic {
 
-    PlayerList playerList;
-    MenuLogic menuLogic;
-    GUILogic guiLogic;
-    TxtReader turnLogicTxt;
+    final PlayerList playerList;
+    final MenuLogic menuLogic;
+    final GUILogic guiLogic;
+    final TxtReader turnLogicTxt;
 
 
     public AuctionLogic(PlayerList playerList, MenuLogic menuLogic, GUILogic guiLogic, TxtReader turnLogicTxt) {
@@ -45,7 +45,6 @@ public class AuctionLogic {
             // auction within players bidding
             for (int i = 0; i < biddingPlayers.length; i++) {
                 String bided = menuLogic.auctionMenu(biddingPlayers[i], highestBid, square);
-                Player[] temp = new Player[biddingPlayers.length - 1];
                 // if a player presses pass biddingplayers array will me rearranged.
                 if (bided.equals("pass")) {
                     Player[] temparr = downgradePlayersarr(biddingPlayers, biddingPlayers[i]);
@@ -53,11 +52,7 @@ public class AuctionLogic {
                     count--;
                     biddingPlayers = temparr;
                     if (auctionWinner != null && biddingPlayers.length == 1) {
-                        square.setOwner(auctionWinner);
-                        guiLogic.setSquareAuction(square);
-                        auctionWinner.withdraw(highestBid);
-                        guiLogic.setPlayerBalance(auctionWinner);
-                        guiLogic.showMessage(turnLogicTxt.getLine("The winner of the auction is") + " " + auctionWinner.getName());
+                        finalizeAuction(auctionWinner,square,highestBid);
                         return;
                     }
                 } else {
@@ -76,18 +71,11 @@ public class AuctionLogic {
             if (count == 0 && auctionWinner == null) {
                 guiLogic.showMessage(turnLogicTxt.getLine("Nobody bid randon new owner"));
                 auctionWinner = playerList.getPlayer((int)(Math.random()*(playerList.getPlayers().length)));
-                square.setOwner(auctionWinner);
-                guiLogic.setSquareAuction(square);
-                guiLogic.showMessage(turnLogicTxt.getLine("The winner of the auction is") + " " + auctionWinner.getName());
+                finalizeAuction(auctionWinner,square,highestBid);
                 return;
             }
         }
-        
-        // square owner will be set to auction winner
-        square.setOwner(auctionWinner);
-        guiLogic.setSquareAuction(square);
-        auctionWinner.withdraw(highestBid);
-        guiLogic.setPlayerBalance(auctionWinner);
+        finalizeAuction(auctionWinner,square,highestBid);
     }
 
     /**
@@ -111,5 +99,19 @@ public class AuctionLogic {
             }
         }
         return newPlayers;
+    }
+
+    /**
+     * Finalizes auction by setting square owner to auction winner
+     * @param auctionWinner player who wins auction
+     * @param square the square that is auctioned for
+     * @param highestBid  current highest bid
+     */
+    public void finalizeAuction(Player auctionWinner , OwnableSquare square , int highestBid){
+        square.setOwner(auctionWinner);
+        guiLogic.setSquareAuction(square);
+        auctionWinner.withdraw(highestBid);
+        guiLogic.setPlayerBalance(auctionWinner);
+        guiLogic.showMessage(turnLogicTxt.getLine("The winner of the auction is") + " " + auctionWinner.getName());
     }
 }

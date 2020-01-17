@@ -26,7 +26,7 @@ class Account {
         }
     }
 
-
+    //Adds balance to the account
     public void deposit(int addition) {
         balance = balance + addition;
     }

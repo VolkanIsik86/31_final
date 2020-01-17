@@ -1,9 +1,7 @@
 package domain.chanceCards;
 
 
-import controllers.TurnLogic;
 import domain.*;
-import domain.squares.ChanceSquare;
 import domain.squares.PropertySquare;
 import domain.squares.Square;
 import org.junit.Test;
@@ -13,11 +11,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class ChanceCardTest {
-    private Board board;
+    private final Board board;
     Player testPlayer;
-    ChanceDeck chanceDeck;
-    EarnCard earnCard;
-    TurnLogic turnLogic;
+    final ChanceDeck chanceDeck;
     PlayerList playerList;
     public ChanceCardTest() {
         TxtReader cardsTxt = new TxtReader();
@@ -30,8 +26,8 @@ public class ChanceCardTest {
         TxtReader squareTxt = new TxtReader();
         squareTxt.openFile(languagePath,"squares_da");
         squareTxt.readLines();
-        board = new Board(squareTxt, landedOnTxt, new ChanceDeck(cardsTxt, board));
-        chanceDeck = new ChanceDeck(cardsTxt, board);
+        board = new Board(squareTxt, landedOnTxt);
+        chanceDeck = new ChanceDeck(cardsTxt, board, playerList);
     }
 
     @Test

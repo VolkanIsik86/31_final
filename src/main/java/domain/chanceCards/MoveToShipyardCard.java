@@ -1,32 +1,31 @@
 package domain.chanceCards;
 
-import controllers.GUILogic;
 import domain.Board;
-import domain.ChanceDeck;
 import domain.Player;
-import domain.squares.Square;
 
 public class MoveToShipyardCard extends ChanceCard {
 
-    protected int moves;
     protected final Board board;
 
-    public MoveToShipyardCard(String type, String description, ChanceDeck chanceDeck, Board board) {
-        super(type, description, chanceDeck);
+    public MoveToShipyardCard(String type, String description, Board board) {
+        super(type, description);
         this.board = board;
     }
 
-    //https://www.geeksforgeeks.org/find-closest-number-array/ for algoritme til at finde nærmeste tal
-    private int findClosest(int arr[], int target)
+    //https://www.geeksforgeeks.org/find-closest-number-array/ Algorithm to find the nearest number in a sorted algorithm
+    private int findClosest(int[] arr, int target)
     {
         int n = arr.length;
 
+        //If the first instance in the array is less or equals to our target, we can just return the first position
         if (target <= arr[0])
             return arr[0];
+        //If it's larger than the last or equal, we just return last position in array
         if (target >= arr[n - 1])
             return arr[n - 1];
 
         int i = 0, j = n, mid = 0;
+        //We do Binary search to check if our target is in the array at all
         while (i < j) {
             mid = (i + j) / 2;
 
@@ -34,7 +33,7 @@ public class MoveToShipyardCard extends ChanceCard {
                 return arr[mid];
 
             if (target < arr[mid]) {
-
+                //If our target is smaller than mid, but larger than mid-1, we use getClosest method
                 if (mid > 0 && target > arr[mid - 1])
                     return getClosest(arr[mid - 1],
                             arr[mid], target);
@@ -62,6 +61,11 @@ public class MoveToShipyardCard extends ChanceCard {
             return val1;
     }
 
+    /**
+     * We make an array of all shipyards, which we use in the algorithm to find the nearest shipyard.
+     * @param p
+     * @return returns the position of the nearest shipyard
+     */
     private int findNearestShipyard(Player p){
         int[] shipyardArray = new int[4];
         int j = 0;
@@ -75,6 +79,7 @@ public class MoveToShipyardCard extends ChanceCard {
         return findClosest(shipyardArray,p.getLocation().getIndex());
     }
 
+    //Sets the player location to the nearest shipyard
     public int applyEffect(Player player) {
         player.setLocation(board.getSquare(findNearestShipyard(player)));
         return findNearestShipyard(player);
