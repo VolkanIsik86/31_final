@@ -30,7 +30,7 @@ public class WithDrawBalanceCard extends ChanceCard{
         return restOfPlayers;
     }
 
-    public int WithDrawMoneyFromOthers (int amount, Player player, PlayerList playerList) {
+    public int WithDrawBalanceFromOthers (int amount, Player player, PlayerList playerList) {
         int totalMoneyFromOther = 0;
         for (int i = 0; i < restOfPlayersList(player,playerList).length; i++) {
             if (restOfPlayersList(player,playerList)[i].attemptToPay(amount)) {
@@ -42,7 +42,7 @@ public class WithDrawBalanceCard extends ChanceCard{
     }
     @Override
     public int applyEffect(Player p) {
-        p.deposit(WithDrawMoneyFromOthers(amount,p,playerList));
+        p.deposit(WithDrawBalanceFromOthers(amount,p,playerList));
         return 0;
     }
 }
