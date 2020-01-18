@@ -412,6 +412,10 @@ public class TurnLogic {
         
         if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
             Player tempOwner = board.getOwnables()[tempValue].getOwner();
+            if(player.getLocation().getIndex() > 35 && tempValue < 35){
+                guiLogic.passedStart(player);
+            }
+            player.setLocation(board.getSquare(tempValue));
             guiLogic.updatePlayerLocation(player);
             if(tempOwner == player || tempOwner == null) {
                 doLandedOnTurn(player);
