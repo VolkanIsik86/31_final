@@ -6,9 +6,25 @@ public class GameTest {
 
         new GameDriver(new int[]{
                 
-                1,1, 1,1, 4,6,2,3,5,6,1,2,3,3,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,
+               2,2
 
-        }, new int[]{30000}, new int[]{0}, new int[]{0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}).playGame();
+        }, new int[]{3500, 30000, 30000}, new int[]{0,0,0}, new int[]{0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}).playGame();
+    
+//        Tester at huse fjernes når en grund auktioneres ved tab
+//        new GameDriver(new int[]{
+//
+//                1,0,
+//                1,0,
+//                2,3,
+//                1,1,1,0,
+//                1,1,1,0,
+//                2,1,
+//                0,1,
+//                18,19
+//
+//        }, new int[]{10500, 30000, 30000}, new int[]{0,0,0}, new int[]{0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}).playGame();
+
+
 
 
 //        //Demonstrer hvordan spillet slutter, ift. auktionering af grunde

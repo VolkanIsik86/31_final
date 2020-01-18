@@ -39,7 +39,7 @@ Pledge,,Pledge
 Trade,,Trade
 Sell,, sell the ground
 Back,,Back
-Price pr. house/hotel,,Price pr. house/hotel:
+Price pr. house/hotel,,Price pr. house:
 Pledge value,,Pledge value:
 Standard rent,,Standard rent:
 1 house,,1 house:

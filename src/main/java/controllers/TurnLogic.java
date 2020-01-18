@@ -86,6 +86,12 @@ public class TurnLogic {
 
         //Auction them
         for (int i = 0; i < squaresToAuction.length; i++) {
+           
+            if (squaresToAuction[i] instanceof PropertySquare){
+                ((PropertySquare) squaresToAuction[i]).setNumberOfHouse(0);
+                guiLogic.updateHouses(squaresToAuction[i].getIndex(), 0);
+            }
+            
             auctionLogic.auctioning(((OwnableSquare) squaresToAuction[i]), player);
         }
     }

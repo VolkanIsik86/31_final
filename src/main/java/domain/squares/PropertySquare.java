@@ -20,6 +20,10 @@ public class PropertySquare extends OwnableSquare {
         PRICE_IF_OWNING_ALL = rentLadder[0]*2;
     }
 
+    public void setNumberOfHouse(int newNumber){
+        numberOfHouse = newNumber;
+    }
+    
     public int getHOUSE_PRICE(){
         return HOUSE_PRICE;
     }

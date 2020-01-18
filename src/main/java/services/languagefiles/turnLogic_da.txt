@@ -39,7 +39,7 @@ Pledge,,Pantsætning
 Trade,,Handel
 Sell,, Sælg grund
 Back,,Tilbage
-Price pr. house/hotel,,Pris pr. hus/hotel:
+Price pr. house/hotel,,Pris pr. hus:
 Pledge value,,Pantsætningsværdi:
 Standard rent,,Standard husleje:
 1 house,,1 hus:
