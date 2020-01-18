@@ -36,5 +36,20 @@ public class PlayerTest {
         testPlayer.deposit(1000);
         assertEquals(6000, testPlayer.getBalance());
     }
-    
+
+    @Test
+    public void getAttemptsToGetOutOfJail(){
+        Player testPlayer = new Player("Test",5000,null);
+        int actual = testPlayer.getAttemptsToGetOutOfJail();
+        int expected = 0;
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void incrementAttemptsToGetOutOfJail(){
+        Player testPlayer = new Player("Test",5000,null);
+        testPlayer.incrementAttemptsToGetOutOfJail();
+        int expected = 1;
+        assertEquals(expected,testPlayer.getAttemptsToGetOutOfJail());
+    }
 }

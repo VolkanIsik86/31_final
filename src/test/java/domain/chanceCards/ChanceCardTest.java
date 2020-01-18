@@ -51,10 +51,8 @@ public class ChanceCardTest {
                     assertNotEquals(oldBalance, testPlayer.getBalance());
                 }
             } else if (tempChanceCardType.equals("Move")) {
-                Square tempSquare = testPlayer.getLocation();
-                assertEquals(testPlayer.getLocation(), tempSquare);
-                chanceCard.applyEffect(testPlayer);
-                assertNotEquals(tempSquare, testPlayer.getLocation());
+                int expected = 3;
+                assertEquals(expected,chanceCard.applyEffect(testPlayer));
             } else if(tempChanceCardType.equalsIgnoreCase("PayHouseCard")){
                 int oldBalance = testPlayer.getBalance();
                 assertEquals(testPlayer.getBalance(),oldBalance);
