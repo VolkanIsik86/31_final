@@ -17,11 +17,38 @@ public class GameDriver extends Game {
         this.playerLocations = playerLocations;
         this.chanceCardSequence = chanceCardSequence;
     }
+    
+    @Override
+    public void playGame(){
+        super.initializeGame();
+    
+        //If number of players are greater than one play game as normal
+        if(playerList.getNumberOfPlayers() > 1){
+            //Play game as long as at least two people are alive
+            while (playerList.getNumberOfPlayers() > 1) {
+                turnLogic.playRound();
+            }
+    
+            super.announceWinner();
+            
+        //Else change while loop condition (for testing purposes)
+        } else {
+            //Play game as long as at least 1 player is alive
+            while (playerList.getNumberOfPlayers() > 0) {
+                turnLogic.playRound();
+            }
+        }
+        
+        //End game
+        guiLogic.showMessage(guiTxt.getLine("Close"));
+        guiLogic.close();
+    }
 
+    @Override
     protected void initGUILogic() {
 
         //Includes the initialization of the GUI itself
-        guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
+        guiLogic = new GUILogicStub(squaresTxt, guiTxt, STARTBALANCE);
         guiLogic.setDelay(30);
     }
 

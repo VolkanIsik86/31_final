@@ -66,7 +66,7 @@ Property has too many houses,,You can't have more than one hotel.
 Player does not have enough money,,You don't have enough money to pay.
 House has been build,,House is built
 Hotel has been build,,Hotel is built
-too many identical,,You have thrown too many identical, therefor you move to jail.
+too many identical,,Since you have thrown 2 identical 3 times, you are being sent in jail
 Not yet implemented,,The Function is not yet implemented
 byd,,Bid
 pass,,Refuse

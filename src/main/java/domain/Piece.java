@@ -6,13 +6,9 @@ public class Piece {
 
     private Square location;
     private Square lastLocation;
-    private static int pieceType = 0;
 
     public Piece(Square location) {
         this.location = location;
-
-        //Every new piece gets a unique number
-        pieceType++;
     }
 
     public Square getLocation() {
@@ -20,8 +16,7 @@ public class Piece {
     }
 
     public void setLocation(Square newLocation) {
-
-
+        
         lastLocation = location;
         location = newLocation;
     }
