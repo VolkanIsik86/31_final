@@ -16,6 +16,6 @@
 15,,PayHouseCard-800-Ejendomsskatterne er steget. Ekstraudgifterne er: kr. 800 pr. hus, kr. 2.300 pr. hotel, som du skal betale
 16,,PayHouseCard-500-Ejendomsskatterne er steget. Ekstraudgifterne er: kr. 500 pr. hus, kr. 2.000 pr. hotel, som du skal betale
 17,,WithDraw-500-De har lagt penge ud til et sammensskudsgilde. Modtage fra hver medspiller kr. 500.
-18,,MoveToShipyardCard-0-Ryk brikken frem til det nærmeste rederi og betal ejeren to gange den leje, han ellers er berettiget til. Hvis selskabet ikke ejes af nogen, kan De købe det af banken.
+18,,MoveToShipyardCard-0-Ryk brikken frem til det nærmeste rederi. Hvis selskabet ikke ejes af nogen, kan De købe det af banken.
 Receive 500,,Du modtager DKK 500 fra alle spiller!
 Does not have fonds to pay,,Du har desværre ikke råd til at betale dette beløb, og er derfor ikke længere med i spillet
