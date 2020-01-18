@@ -12,53 +12,15 @@ public class MoveToShipyardCard extends ChanceCard {
         this.board = board;
     }
 
-    //https://www.geeksforgeeks.org/find-closest-number-array/ Algorithm to find the nearest number in a sorted algorithm
-    private int findClosest(int[] arr, int target)
-    {
-        int n = arr.length;
-
-        //If the first instance in the array is less or equals to our target, we can just return the first position
-        if (target <= arr[0])
-            return arr[0];
-        //If it's larger than the last or equal, we just return last position in array
-        if (target >= arr[n - 1])
-            return arr[n - 1];
-
-        int i = 0, j = n, mid = 0;
-        //We do Binary search to check if our target is in the array at all
-        while (i < j) {
-            mid = (i + j) / 2;
-
-            if (arr[mid] == target)
-                return arr[mid];
-
-            if (target < arr[mid]) {
-                //If our target is smaller than mid, but larger than mid-1, we use getClosest method
-                if (mid > 0 && target > arr[mid - 1])
-                    return getClosest(arr[mid - 1],
-                            arr[mid], target);
-
-                j = mid;
-            }
-
-            else {
-                if (mid < n-1 && target < arr[mid + 1])
-                    return getClosest(arr[mid],
-                            arr[mid + 1], target);
-                i = mid + 1;
+    //Check to find the closest shipyard above or equals to target
+    private int findClosest(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++){
+            //If target is less or equal to arr[i], return arr[i].
+            if(target<=arr[i]){
+                return arr[i];
             }
         }
-
-        return arr[mid];
-    }
-
-    private int getClosest(int val1, int val2,
-                                 int target)
-    {
-        if (target - val1 >= val2 - target)
-            return val2;
-        else
-            return val1;
+        return arr[0];
     }
 
     /**
@@ -81,7 +43,7 @@ public class MoveToShipyardCard extends ChanceCard {
 
     //Sets the player location to the nearest shipyard
     public int applyEffect(Player player) {
-        player.setLocation(board.getSquare(findNearestShipyard(player)));
+//        player.setLocation(board.getSquare(findNearestShipyard(player)));
         return findNearestShipyard(player);
     }
 
