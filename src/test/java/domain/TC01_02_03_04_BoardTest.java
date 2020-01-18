@@ -6,13 +6,13 @@ import services.TxtReader;
 import static org.junit.Assert.*;
 
 //Testes kun positivt, da brugeren ikke skal interegere direkte med objektet
-public class BoardTest {
+public class TC01_02_03_04_BoardTest {
 
     private final Board board;
     
     private final Player player;
     
-    public BoardTest(){
+    public TC01_02_03_04_BoardTest(){
         TxtReader squareTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
         squareTxt.openFile(languagePath,"squares_da");

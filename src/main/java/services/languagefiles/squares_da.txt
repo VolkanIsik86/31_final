@@ -37,4 +37,4 @@
 36,,Chance-Chancen-36-0
 37,,Property-Frederiksberggade-37-7000-purple-4000-700'3500'10000'22000'26000'30000
 38,,Tax-SKAT-38-0
-39,,Property-Rådhuspladsen-39-8000-purple-4000-700'3500'10000'22000'26000'30000
+39,,Property-Rådhuspladsen-39-8000-purple-4000-1000'4000'12000'28000'34000'40000

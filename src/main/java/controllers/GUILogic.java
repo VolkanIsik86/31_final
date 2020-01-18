@@ -172,7 +172,7 @@ public class GUILogic {
      *
      * @param player Player figure needs to be moved.
      */
-    private void passedStart(Player player) {
+    public void passedStart(Player player) {
         int PASSEDSTART = 4000;
         player.deposit(PASSEDSTART);
         setPlayerBalance(player);

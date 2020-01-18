@@ -411,19 +411,15 @@ public class TurnLogic {
         }
         
         if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
-            Player tempOwner = board.getOwnables()[tempValue].getOwner();
-            guiLogic.updatePlayerLocation(player);
-            if(tempOwner == player || tempOwner == null) {
-                doLandedOnTurn(player);
+
+            if(player.getLocation().getIndex() > 35 && tempValue < 35){
+                guiLogic.passedStart(player);
             }
-            else{
-                int tempRent = board.getOwnables()[tempValue].getRent();
-                board.getOwnables()[tempValue].setRent(tempRent*2);
-                doLandedOnTurn(player);
-                board.getOwnables()[tempValue].setRent(tempRent);
+            player.setLocation(board.getSquare(tempValue));
+            guiLogic.updatePlayerLocation(player);
+            doLandedOnTurn(player);
             }
         }
-    }
 
     /**
      * Updates all players balance on the GUI
@@ -473,7 +469,6 @@ public class TurnLogic {
             }
             if (choice.equals(turnLogicTxt.getLine("pay 10"))) {
                 int tempTax = (int) Math.round(board.getPlayerValue(p) * 0.1);
-                System.out.println(tempTax);
                 p.withdraw(tempTax);
             }
         } else {
