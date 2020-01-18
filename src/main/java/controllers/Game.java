@@ -59,8 +59,7 @@ public class Game {
 
 
     protected void initializeGame() {
-
-
+        
         initLanguage();
         initGUILogic();
         initBoard();

@@ -2,7 +2,7 @@ package systemtest;
 
 import controllers.GameDriver;
 
-public class TC12_jail {
+public class TC16_jail {
     
     public static void main(String[] args) {
         

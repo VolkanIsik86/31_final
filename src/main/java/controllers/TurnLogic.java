@@ -408,10 +408,7 @@ public class TurnLogic {
         if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
             guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
         }
-
-        if (tempCard.equalsIgnoreCase("WithDraw")){
-            guiLogic.showMessage(cardsTxt.getLine("Receive 500"));
-        }
+        
         if(tempCard.equalsIgnoreCase("MoveToShipyardCard")){
             Player tempOwner = board.getOwnables()[tempValue].getOwner();
             guiLogic.updatePlayerLocation(player);
