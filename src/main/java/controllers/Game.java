@@ -34,7 +34,7 @@ public class Game {
 
     }
 
-    private void announceWinner() {
+    protected void announceWinner() {
 
         String coolwinner =
 
@@ -58,7 +58,7 @@ public class Game {
     }
 
 
-    private void initializeGame() {
+    protected void initializeGame() {
 
 
         initLanguage();

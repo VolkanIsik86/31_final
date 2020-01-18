@@ -102,7 +102,7 @@ public class TurnLogic {
         String choice;
 
         //Start of menu loop
-        outer:
+        outer1:
         while (!endTurn) {
 
             if (player.getLost()) break;
@@ -115,6 +115,7 @@ public class TurnLogic {
             if (choice.equals(turnLogicTxt.getLine("Throw"))) {
 
                 //Do a turn - as long as player gets two identical and has not lost. No more than three times
+                outer2:
                 do {
 
                     throwCounter++;
@@ -125,9 +126,11 @@ public class TurnLogic {
                         doTurn(player);
 
                     } else {
-                        putInJail(player);
+                        player.setLastRoll(rollSum);
+                        guiLogic.displayDie(roll1, roll2);
                         guiLogic.showMessage(turnLogicTxt.getLine("too many identical"));
-                        break outer;
+                        putInJail(player);
+                        break outer2;
                     }
 
                     if (roll1 == roll2 && !player.getLost() && !player.getJail()) {
@@ -138,7 +141,7 @@ public class TurnLogic {
                     if (roll1 == roll2 && !player.getLost() && player.getJail()) {
                         guiLogic.showMessage(turnLogicTxt.getLine("2 identical"));
                         takeJailTurn(player);
-                        break outer;
+                        break outer1;
                     }
 
                 } while (roll1 == roll2 && !player.getLost());
@@ -390,14 +393,15 @@ public class TurnLogic {
         ChanceCard pulledCard = chanceDeck.pullRandomChanceCard();
         guiLogic.showChanceCard(pulledCard.getDescription());
         guiLogic.showMessage(turnLogicTxt.getLine(message));
+        guiLogic.showChanceCard("");
         int tempValue = pulledCard.applyEffect(player);
         String tempCard = pulledCard.getType();
         
         //Different types of chance cards
         if (tempCard.equalsIgnoreCase("move")) {
-            guiLogic.movePiece(player, tempValue);
             Square nextLocation = board.nextLocation(player, tempValue);
             player.setLocation(nextLocation);
+            guiLogic.movePiece(player, tempValue);
             nextLocation.landedOn(player);
             doLandedOnTurn(player);
             
