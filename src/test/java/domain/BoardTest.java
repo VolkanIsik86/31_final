@@ -21,17 +21,8 @@ public class BoardTest {
         TxtReader landedOnTxt = new TxtReader();
         landedOnTxt.openFile(languagePath,"turnLogic_da");
         landedOnTxt.readLines();
-
-        TxtReader cardsTxt = new TxtReader();
-        cardsTxt.openFile(languagePath,"chanceCards_da");
-        cardsTxt.readLines();
-
-        TxtReader guiTxt = new TxtReader();
-        guiTxt.openFile(languagePath, "guitext_da");
-        guiTxt.readLines();
         
         board = new Board(squareTxt, landedOnTxt);
-        
         player = new Player("Mikkel", 20, new Piece(board.getStart()));
     }
     
@@ -72,13 +63,24 @@ public class BoardTest {
     }
 
     @Test
+    public void OwnableSquareFromName() {
+        String squareName = "Roskildevej";
+        int expected = 6;
+        assertEquals(expected,board.getOwnableSquareFromName(squareName).getIndex());
+    }
+
+    @Test
     public void searchColors() {
-        
-        //todo det er ikke godt at redigere i atributter der skal være private, brug i stedet en public metode til at sætte ejere
-        //todo synes ikke testen er fyldestgørende - Mikkel
-        board.getOwnables()[0].setOwner(player);
-        board.getOwnables()[1].setOwner(player);
+
+        // sets owner of a square by given square name
+        board.getOwnableSquareFromName("Rødovrevej").setOwner(player);
+        board.getOwnableSquareFromName("Hvidovrevej").setOwner(player);
+        // Looks into board and tests how much of the same colored square that player does not own.
         assertEquals(0,board.searchColors(board.getOwnables()[1]));
+
+
+        board.getOwnableSquareFromName("Roskildevej").setOwner(player);
+        assertEquals(2,board.searchColors(board.getOwnables()[3]));
 
     }
 
@@ -91,8 +93,8 @@ public class BoardTest {
 
     @Test
     public void getPlayerSquareNames() {
-        board.ownables[2].setOwner(player);
-        board.ownables[5].setOwner(player);
+        board.getOwnableSquareFromName("Øresund").setOwner(player);
+        board.getOwnableSquareFromName("Allegade").setOwner(player);
         assertEquals("Øresund",board.getPlayerSquareNames(player)[0]);
         assertEquals("Allegade",board.getPlayerSquareNames(player)[1]);
     }

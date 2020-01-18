@@ -364,7 +364,7 @@ public class TurnLogic {
     @SuppressWarnings("JavaDoc")
     private void doUnownedProperty(Player player, Square nextLocation, String message){
         guiLogic.showMessage(turnLogicTxt.getLine(message));
-        if (player.getBalance() >= player.getLocationPrice((OwnableSquare) nextLocation)) {
+        if (player.getBalance() >= ((OwnableSquare)nextLocation).getPrice()) {
             String choice = menuLogic.displayBuyNotBuyMenu();
             if (choice.equals(turnLogicTxt.getLine("buy"))) {
                 guiLogic.setSquareOwner(player);
@@ -373,7 +373,7 @@ public class TurnLogic {
                 auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
             }
         } else {
-            guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy"));
+            guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy square"));
         }
     }
     /**

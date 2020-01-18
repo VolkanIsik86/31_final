@@ -18,13 +18,13 @@ public class SquareTest {
 
     @Test
     public void landedOn() {
-        assertEquals("Tax square",square0.landedOn(testPlayer));
+        assertEquals("Tax square T",square0.landedOn(testPlayer));
 
-        assertEquals("Not owned "+"PropertySquare"+" squareT",square1.landedOn(testPlayer));
+        assertEquals("Not owned "+"PropertySquare"+" square N",square1.landedOn(testPlayer));
 
-        assertEquals("Regular square",square2.landedOn(testPlayer));
+        assertEquals("Regular square R",square2.landedOn(testPlayer));
 
-        assertEquals("GoToJail square",square3.landedOn(testPlayer));
+        assertEquals("GoToJail square J",square3.landedOn(testPlayer));
         assertEquals("Press OKS",square4.landedOn(testPlayer));
     }
 }
