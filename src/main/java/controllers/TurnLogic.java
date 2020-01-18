@@ -471,19 +471,35 @@ public class TurnLogic {
             String choice = menuLogic.displayTaxMenu();
 
             if (choice.equals(turnLogicTxt.getLine("pay 4000"))) {
-                p.withdraw(4000);
+                payOrLeave(p, 4000);
             }
+            
             if (choice.equals(turnLogicTxt.getLine("pay 10"))) {
                 int tempTax = (int) Math.round(board.getPlayerValue(p) * 0.1);
-                p.withdraw(tempTax);
+                payOrLeave(p, tempTax);
             }
+            
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("pay 2000"));
-            p.withdraw(2000);
+            payOrLeave(p, 2000);
         }
         guiLogic.setPlayerBalance(p);
     }
 
+    private void payOrLeave(Player player, int amount){
+        //If player has the requested fonds
+        if (player.getBalance() >= amount) {
+            player.withdraw(amount);
+        }
+    
+        //If player doesn't have the requested fonds
+        else {
+            guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to pay"));
+            player.setLost(true);
+            player.setBalance(0);
+        }
+    }
+    
 
     /**
      * Logic for managing properties owned by player
