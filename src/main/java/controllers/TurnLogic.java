@@ -374,6 +374,7 @@ public class TurnLogic {
             }
         } else {
             guiLogic.showMessage(turnLogicTxt.getLine("Does not have fonds to buy square"));
+            auctionLogic.auctioning(((OwnableSquare) nextLocation), player);
         }
     }
     /**
