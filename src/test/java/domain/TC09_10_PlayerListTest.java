@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PlayerListTest {
+public class TC09_10_PlayerListTest {
 
     private final PlayerList testlist = new PlayerList(null);
     private final int STARTBALANCE = 30000;

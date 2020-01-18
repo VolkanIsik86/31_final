@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SquareTest {
+public class TC05_SquareTest {
     final int[] rentLadder = {1,2,3,4,5,6};
     final Square square0 = new TaxSquare("square0",0,null);
     final Square square1 = new PropertySquare("square1",1,null,1000,"PropertySquare","red",100, rentLadder, null);
