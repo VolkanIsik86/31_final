@@ -80,3 +80,4 @@ minimum,,indtast beløb du vil byde dog minimum
 The game ends,,Da der kun er 1 spiller tilbage, er spillet færdigt
 toohigh,,Det indtastede beløb er over din pengebeholdning.
 Nobody bid randon new owner,,Da ingen har budt på grunden, afgøres det tilfældigt, hvem der får grunden
+Does not have fonds to buy square,,Du har desværre ikke råd til at købe grunden

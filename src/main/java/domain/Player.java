@@ -115,11 +115,6 @@ public class Player {
         return piece.getLastLocation();
     }
 
-    public int getLocationPrice(OwnableSquare property) {
-        return property.getPrice();
-
-    }
-
     public int getLastRoll() {
         return lastRoll;
     }
