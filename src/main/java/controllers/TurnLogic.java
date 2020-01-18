@@ -406,7 +406,7 @@ public class TurnLogic {
             doLandedOnTurn(player);
             
         }
-        if (tempCard.equalsIgnoreCase("PayHouseCard") || (tempCard.equalsIgnoreCase("pay")) && !player.attemptToPay(tempValue)) {
+        if (tempCard.equalsIgnoreCase("PayHouseCard") && !player.attemptToPay(tempValue) || tempCard.equalsIgnoreCase("pay") && !player.attemptToPay(tempValue)) {
             guiLogic.showMessage(cardsTxt.getLine("Does not have fonds to pay"));
         }
 
