@@ -72,7 +72,7 @@ public class GUILogic {
             //Asks player to write their name.
             String name = gui.getUserString(guiTxt.getLine("Enter name"));
 
-            while (name.length() >= 8 || name.length() <= 1) {
+            while (name.length() > 8 || name.length() <= 1) {
                 name = gui.getUserString(guiTxt.getLine("length"));
             }
             for (String samename : names) {
