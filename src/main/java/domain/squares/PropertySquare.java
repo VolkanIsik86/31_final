@@ -1,104 +1,132 @@
 package domain.squares;
 
 
-import controllers.GUILogic;
-import domain.Player;
+import domain.Board;
 import services.TxtReader;
 
 // Property square is the square that can be owned and other players, who land on it, pays to the owner.
-public class PropertySquare extends Square {
+@SuppressWarnings("UnusedReturnValue")
+public class PropertySquare extends OwnableSquare {
 
-    private int price;
-    protected Player owner;
-    
-    public PropertySquare(String name, int index, GUILogic guiLogic, TxtReader landedOnTxt, int price) {
-        super(name, index, guiLogic, landedOnTxt);
-        this.price = price;
+    private final int HOUSE_PRICE;
+    private final int PRICE_IF_OWNING_ALL;
+    private final int[] rentLadder;
+    private int numberOfHouse;
+
+    public PropertySquare(String name, int index, TxtReader landedOnTxt, int price, String type, String color, int HOUSE_PRICE, int[] rentLadder, Board board) {
+        super(name, index, landedOnTxt, price, type , color, board);
+        this.HOUSE_PRICE = HOUSE_PRICE;
+        this.rentLadder = rentLadder;
+        PRICE_IF_OWNING_ALL = rentLadder[0]*2;
     }
 
-
-
-    public int getPrice() {
-        return price;
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
+    public void setNumberOfHouse(int newNumber){
+        numberOfHouse = newNumber;
     }
     
-    //Pay rent logic: withdraws balance from player
-    protected void payRent(Player p){
-        p.withdraw(this.getPrice());
+    public int getHOUSE_PRICE(){
+        return HOUSE_PRICE;
     }
 
-    // get rent logic: Adds points to the owner of this square.
-    protected void earnRent(){
-        owner.deposit(this.getPrice());
+    public int getPRICE_OF_OWNING_ALL(){
+        return PRICE_IF_OWNING_ALL;
     }
-    
-    protected void purchase(Player p){
-        this.setOwner(p);
-        payRent(p);
+
+    public int[] getRentLadder(){
+        return rentLadder;
     }
-    
-    public void landedOn(Player player) {
-        
-        
-        if (this.getOwner() != null && this.getOwner().equals(player)){
-            guiLogic.showMessage(landedOnTxt.getLine("Owned by yourself property square"));
-            return;
+
+    @Override
+    public boolean isRealEstate(){
+        return true;
+    }
+
+
+    @Override
+    public int getHouseCount(){
+        return numberOfHouse;
+    }
+
+    @Override
+    public String getInfo(){
+
+        return
+                getName() +
+//                this.getLandedOnTxt().getLine("Status") + " " +
+                "\n" + getLandedOnTxt().getLine("Price pr. house/hotel") + " " + getHOUSE_PRICE() +
+//                "\n" + getLandedOnTxt().getLine("Pledge value") + " " + getPLEDGE_VALUE() +
+                "" + getLandedOnTxt().getLine("Standard rent") + " " + getRentLadder()[0] +
+                "\n" + getLandedOnTxt().getLine("Price at same color") + " " + getPRICE_OF_OWNING_ALL() +
+                "\n" + getLandedOnTxt().getLine("1 house") + " " + getRentLadder()[1] +
+                "\n" + getLandedOnTxt().getLine("2 houses") + " " + getRentLadder()[2] +
+                "\n" + getLandedOnTxt().getLine("3 houses") + " " + getRentLadder()[3] +
+                "\n" + getLandedOnTxt().getLine("4 houses") + " " + getRentLadder()[4] +
+                "\n" + getLandedOnTxt().getLine("1 hotel") + " " + getRentLadder()[5]
+                ;
+
+    }
+
+    public int addHouse(){
+        if(numberOfHouse < 5){
+
+            numberOfHouse++;
+            return getHOUSE_PRICE();
         }
+        return 0;
+    }
+
+    public int getValue(){
+        int value = 0;
+        value = getPrice() + value;
+        value = value + (getHOUSE_PRICE() * this.numberOfHouse);
+        return value;
+    }
+
+    //Updates rent depending on how many properties of the same color is owned and how many buildings are placed
+    @Override
+    public void updateRent(int lastRoll) {
+
+        if(getOwner().getJail()){
+            setRent(0);
+        } else {
+    
+            //If the square has an owner
+            if(getOwner() != null){
         
-        //If property is not owned
-        if (owner == null) {
-    
-            guiLogic.showMessage(landedOnTxt.getLine("Not owned property square"));
+                //If the square has a building
+                if(numberOfHouse > 0){
             
-            //If player has the requested fonds
-            if (player.attemptToPurchase(this)){
-                purchase(player);
-                guiLogic.setSquareOwner(player,this.getPrice());
-                guiLogic.setPlayerBalance(player);
-            }
+                    switch(numberOfHouse){
+                        case 1:
+                            setRent(rentLadder[1]);
+                            break;
+                        case 2:
+                            setRent(rentLadder[2]);
+                            break;
+                        case 3:
+                            setRent(rentLadder[3]);
+                            break;
+                        case 4:
+                            setRent(rentLadder[4]);
+                            break;
+                        case 5:
+                            setRent(rentLadder[5]);
+                            break;
+                        default:
+                            setRent(0);
+                    }
             
-            //If player doesn't have the requested fonds
-            else {
-                player.setLost(true);
-                player.setBalance(0);
-                guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to buy"));
-                guiLogic.setPlayerBalance(player);
-            }
-        }
-        
-        //If property is owned
-        else{
+                } else{
             
-            guiLogic.showMessage(landedOnTxt.getLine("Owned by another property square"));
-    
-            //If player has the requested fonds
-            if (player.attemptToPay(this.getPrice())){
-                payRent(player);
-                earnRent();
-                guiLogic.setPlayerBalance(player);
-                guiLogic.setPlayerBalance(this.getOwner());
+                    //If owner owns all properties
+                    if (board.searchColors(this) == 0 ){
+                        setRent(rentLadder[0]*2);
+                    } else {
+                        setRent(rentLadder[0]);
+                    }
+                }
             }
-    
-            //If player doesn't have the requested fonds
-            else {
-                player.setLost(true);
-                player.setBalance(0);
-                guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds for rent"));
-                guiLogic.setPlayerBalance(player);
-            }
-            
         }
     }
+    
 }

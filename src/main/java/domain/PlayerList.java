@@ -2,21 +2,23 @@ package domain;
 
 //Creates and maintains a list of players
 
-import controllers.GUILogic;
 import domain.squares.Square;
 
 public class PlayerList {
     
     private Player[] players = new Player[0];
     private final Square startSquare;
-    private final GUILogic guiLogic;
-    
-    public PlayerList(Square startSquare, GUILogic guiLogic){
+
+    public PlayerList(Square startSquare){
         this.startSquare = startSquare;
-        this.guiLogic = guiLogic;
     }
-    
-    public void addPlayer(String name, int age, int startBalance){
+
+    /**
+     * add player to game
+     * @param name player name
+     * @param startBalance The amount the player starts with
+     */
+    public void addPlayer(String name, int startBalance){
         
         // Increase size of player-array by 1
         Player[] temp = new Player[players.length+1];
@@ -29,60 +31,50 @@ public class PlayerList {
         Piece piece = new Piece(startSquare);
         
         //Create and add new player to array
-        players[players.length-1] = new Player(name, age, startBalance, piece);
+        players[players.length-1] = new Player(name, startBalance, piece);
         
     }
+
     
     public Player getPlayer(int index){
         return players[index];
     }
     
-    public int NumberOfPlayers(){
+    public int getNumberOfPlayers(){
         return players.length;
     }
 
-    // Hentet inspiration fra geeksforgeeks.org/insertion-sort/ insertion sort algoritme.
-    public void sortPlayersByAge(){
-
-        for (int i = 0; i < players.length ; i++) {
-            Player key = players[i];
-            int j = i-1;
-
-            while (j>=0 && players[j].getAge() > key.getAge()){
-                players[j+1] = players[j];
-                j=j-1;
-            }
-            players[j+1] = key;
-        }
+    public Player[] getPlayers(){
+        return players;
     }
-    public void sortPlayersByPoint(){
-        for (int i = 0; i < players.length ; i++) {
-            Player key = players[i];
-            int j = i-1;
+    
+    //Removes the player with that exact name on the playerlist.
+    //If the player is not on the list, the first player is removed.
+    public void removePlayer(Player player){
+        
+        int indexToRemove = 0;
+        Player[] tempPlayers = new Player[players.length-1];
+        
+        for (int i = 0; i < players.length; i++) {
 
-            while (j>=0 && players[j].getBalance() > key.getBalance()){
-                players[j+1] = players[j];
-                j=j-1;
+            if(players[i].equals(player)){
+                indexToRemove = i;
+                break;
             }
-            players[j+1] = key;
         }
-    }
-
-    /**
-     * Sorts player list and returns highest scored player
-     * @return returns winner
-     */
-    public Player getWinner(){
-
-        sortPlayersByPoint();
-
-        Player winner = this.getPlayer(this.NumberOfPlayers()-1);
-
-        if (winner.getBalance()==this.getPlayer(this.NumberOfPlayers()-2).getBalance()){
-            winner = null;
+        
+        int i = 0;
+        int j = i;
+       
+        for (i = 0; i < players.length; i++) {
+            
+            if(i != indexToRemove){
+                tempPlayers[j] = players[i];
+                j++;
+            }
         }
-
-        return winner;
+        
+        players = tempPlayers;
     }
     
 }

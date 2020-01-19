@@ -1,0 +1,83 @@
+Regular square R,,You landed on a regular square, nothings happens
+Owned by another property square O,,You landed on an owned property, you must pay rent
+Owned by another shipyard square O,,You have landed on a shipping company owned by another player, you must pay rent.
+Owned by another factory square O,,You landed on a factory owned by another player, you must pay rent.
+Owned by yourself property square o,,You landed on your own property, nothing happens
+Owned by yourself shipyard square o,,you have landed on your own shipping company, nothing happens.
+Owned by yourself factory square o,,you have landed on your own factory, nothing happens.
+Not owned property square N,,You landed on an unowned property
+Not owned shipyard square N,,You landed on an unowned shipyard
+Not owned factory square N,,You landed on an unowned factory
+Owner is in jail j,,You landed on an owned property, that owner sits in jail therefore nothing happens
+GoToJail square J,,You have landed on "Go to jail", you are therefore moved to jail
+Chance square C,,You have landed on a chance square, you must draw a chance card
+Tax square T,,You have landed on a tax square, you must pay the tax.
+Does not have fonds for rent,,You do not have the funds to pay rent, the game ends
+Does not have fonds to buy,,You do not have the funds to purchase the property, the game ends
+Does not have fonds to pay,,You do not have the funds to pay this expense, the game ends
+Press OKS,,Press OK when you have read the card
+In jail 2 options,,You are in a jail. You have to chose an option.
+In jail 1 option,,You are in a jail. You don't have enough money, you must roll the dice.
+Forced to buy out of jail,,Since you have tried to get out of prison with rolling of the dice 3 times, you are forced to pay yourself out. Press OK to pay.
+Out of jail throws and lost,,Since you have tried to get out of prison with rolling of the dice 3 times now, and you don't have enough balance, you lose!
+Did not come out of jail,,you don't come out of jail!
+Jail buy out,,Pay 1000kr.
+Jail roll dice,,Throw dice
+Out of jail take turn,,You are now out of jail, take your turn
+2 identical OK to throw,,you rolled two identical, you get an extra turn. press ok to roll.
+2 identical,,since you rolled two identicals you get an extra turn.
+it is,,It is
+s,,'s turn.
+Choose option,,Choose a menu option
+Throw,,Throw the dice
+Properties,,Administrate one of your properties
+Pledges Propertiesm,,Mortage grounds.
+End,,End turn
+Choose property,,Choose one of your properties
+House,,Houses and hotels
+Pledge,,Pledge
+Trade,,Trade
+Sell,, sell the ground
+Back,,Back
+Price pr. house/hotel,,Price pr. house:
+Pledge value,,Pledge value:
+Standard rent,,Standard rent:
+1 house,,1 house:
+2 houses,,2 houses:
+3 houses,,3 houses:
+4 houses,,4 houses:
+1 hotel,,1 hotel:
+Price at same color,,Same color:
+Status,,Status:
+#Houses/hotels:,,Houses/hotels
+Rent factories,,Rent: 100 * value of rolled dice.
+Rent when owning all factories,,If both the factories are owned then the price is multiplied 200 times the value of rolled dice.
+Rent shipyard,,Rent: 500
+Rent when owning more shipyards,,The rent doubles for every extra shipyard owned.
+pay 4000,,pay 4000 in taxes
+pay 10,,pay 10% in taxes
+pay 2000,,pay 2000 i taxes
+tax,,choose between 4000 or 10%
+buy,,buy the property
+dont buy,,don't buy the property
+buy choice,,do you want to buy the property?
+Player does not own all colors,,you have to own all of the same types to build the house.
+Property has too many houses,,You can't have more than one hotel.
+Player does not have enough money,,You don't have enough money to pay.
+House has been build,,House is built
+Hotel has been build,,Hotel is built
+too many identical,,Since you have thrown 2 identical 3 times, you are being sent in jail
+Not yet implemented,,The Function is not yet implemented
+byd,,Bid
+pass,,Refuse
+auction,,Auction is Started
+Cant afford to bid,,You don't have enough balance to bid, therefor you have to refuse
+All player properties auction,,Properties of the losing players are on auction.
+Highest bid,,Highest bid is p.t.:
+The winner of the auction is,,Winner of the auction is:
+onlynumbers,,Please, write the numbers only.
+minimum,,Write the amount you want to bid, kindly the minimum.
+The game ends,,Since there is only one player left in the game, the game ends!
+toohigh,,The amount entered is over your balance.
+Nobody bid randon new owner,,Nobody has bade, therefore ground will be given to a random player.
+Does not have fonds to buy square,,You do not have funds to buy the ground

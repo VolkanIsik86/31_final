@@ -2,7 +2,9 @@ package controllers;
 
 import javax.swing.*;
 
+
 class LanguageLogic {
+    //Returns either "da" or "en" to choose language
     private String languageLogic() {
         Object[] options1 = {"English",
                 "Dansk"};
@@ -17,10 +19,9 @@ class LanguageLogic {
                 null);
         if (choice == JOptionPane.YES_OPTION) {
             language = "en";
-        } else if(choice == JOptionPane.NO_OPTION){
+        } else if (choice == JOptionPane.NO_OPTION) {
             language = "da";
-        }
-        else{
+        } else {
             System.exit(0);
         }
         return language;

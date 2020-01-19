@@ -1,127 +1,73 @@
 package controllers;
 
-import domain.Board;
-import domain.Player;
-import domain.PlayerList;
+import domain.*;
 import services.TxtReader;
 
 public class Game {
 
-    private GUILogic guiLogic = new GUILogic();
-    private final Board board = new Board();
-    private final TurnLogic turnLogic = new TurnLogic();
-    private PlayerList playerList;
+    protected GUILogic guiLogic;
+    protected Board board;
+    protected ChanceDeck chanceDeck;
+    protected TurnLogic turnLogic;
+    protected PlayerList playerList;
+    protected final int STARTBALANCE = 30000;
 
-    private String looser = "null";
-    private TxtReader landedOnTxt;
-    private TxtReader squaresTxt;
-    private TxtReader cardsTxt;
+    protected TxtReader turnLogicTxt;
+    protected TxtReader squaresTxt;
+    protected TxtReader cardsTxt;
     private TxtReader winnerTxt;
-    private TxtReader guiTxt;
+    protected TxtReader guiTxt;
 
     public void playGame() {
 
         initializeGame();
 
-        do {
-            playRound();
-        } while (looser.equals("null"));
+        //Play game as long as at least two people are alive
+        while (playerList.getNumberOfPlayers() > 1) {
+            turnLogic.playRound();
+        }
 
+        //End game
         announceWinner();
-
         guiLogic.showMessage(guiTxt.getLine("Close"));
         guiLogic.close();
 
     }
 
-    private void announceWinner() {
-        //If it's a draw
-        if (playerList.getWinner() == null) {
-            String coolWinner =
+    protected void announceWinner() {
 
-                    "<table width=\"173\" cellspacing=\"17\" bgcolor=\"#000000\"><tr><td>\n</td></tr><tr><td align=\"center\">" +
-                            "<font color=\"white\" size=\"6" +
-                            "" +
-                            "\">" +
-                            winnerTxt.getLine("3") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td>\n</td></tr>" +
-                            "</table>";
+        String coolwinner =
 
-            guiLogic.getGui().displayChanceCard(coolWinner);
-        }
-
-        //Else if not a draw
-        else {
-            String coolwinner =
-
-                    "<table width=\"173\" cellspacing=\"11\" bgcolor=\"#000000\"><tr><td align=\"center\">" +
-                            "<font color=\"white\" size=\"6\">" + winnerTxt.getLine("1") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td align=\"center\">" +
-                            "\n" +
-                            "<font size=\"5\" color=\"red\">" +
-                            winnerTxt.getLine("2") +
-                            "</font>" +
-                            "</td></tr>" +
-                            "<tr><td align=\"center\">" +
-                            "\n" +
-                            "<font size=\"6\" color=\"yellow\">" +
-                            playerList.getWinner().getName() +
-                            "</font>" +
-                            "</td></tr></table>";
-
-            guiLogic.getGui().displayChanceCard(coolwinner);
-        }
+                "<table width=\"173\" cellspacing=\"11\" bgcolor=\"#000000\"><tr><td align=\"center\">" +
+                        "<font color=\"white\" size=\"6\">" + winnerTxt.getLine("1") +
+                        "</font>" +
+                        "</td></tr>" +
+                        "<tr><td align=\"center\">" +
+                        "\n" +
+                        "<font size=\"5\" color=\"red\">" +
+                        winnerTxt.getLine("2") +
+                        "</font>" +
+                        "</td></tr>" +
+                        "<tr><td align=\"center\">" +
+                        "\n" +
+                        "<font size=\"6\" color=\"yellow\">" +
+                        playerList.getPlayer(0).getName() +
+                        "</font>" +
+                        "</td></tr></table>";
+        guiLogic.showChanceCard(coolwinner);
     }
 
-    private void playRound() {
-        for (int i = 0; i < playerList.NumberOfPlayers(); i++) {
 
-            Player currentPlayer = playerList.getPlayer(i);
-
-            //If player is in jail
-            if (currentPlayer.getJail()) {
-
-                guiLogic.showMessage(landedOnTxt.getLine("In jail pay now"));
-
-                if (currentPlayer.attemptToPay(1)) {
-                    currentPlayer.withdraw(1);
-                    guiLogic.setPlayerBalance(currentPlayer);
-                    currentPlayer.setJail(false);
-                } else {
-                    currentPlayer.setLost(true);
-                    currentPlayer.setBalance(0);
-                    guiLogic.showMessage(landedOnTxt.getLine("Does not have fonds to pay"));
-                    guiLogic.setPlayerBalance(currentPlayer);
-
-                    looser = currentPlayer.getName();
-                    break;
-                }
-            }
-
-            turnLogic.takeTurn(currentPlayer);
-
-            if (currentPlayer.getLost()) {
-                looser = currentPlayer.getName();
-                break;
-            }
-        }
-    }
-
-    private void initializeGame() {
-
-        looser = "null";
-
+    protected void initializeGame() {
+        
         initLanguage();
         initGUILogic();
         initBoard();
-        initTurnLogic();
         initPlayerList();
+        initTurnLogic();
     }
 
+    //Method to initialize the language, the Language adds either "da" or en" to the filepath.
     private void initLanguage() {
 
         LanguageLogic languageLogic = new LanguageLogic();
@@ -130,10 +76,10 @@ public class Game {
         String language = languageLogic.selectLanguage();
 
         //Load txt files
-        landedOnTxt = new TxtReader();
+        turnLogicTxt = new TxtReader();
         String languagePath = "src/main/java/services/languagefiles/";
-        landedOnTxt.openFile(languagePath, "landedOn_" + language);
-        landedOnTxt.readLines();
+        turnLogicTxt.openFile(languagePath, "turnLogic_" + language);
+        turnLogicTxt.readLines();
 
         squaresTxt = new TxtReader();
         squaresTxt.openFile(languagePath, "squares_" + language);
@@ -153,36 +99,33 @@ public class Game {
 
     }
 
-    private void initGUILogic() {
+    protected void initGUILogic() {
 
         //Includes the initialization of the GUI itself
-        guiLogic = new GUILogic();
-        guiLogic.init(squaresTxt, guiTxt);
+        guiLogic = new GUILogic(squaresTxt, guiTxt, STARTBALANCE);
     }
 
-    private void initBoard() {
-
+    protected void initBoard() {
         //Includes the initialization of the chance deck
-        board.makeBoard(squaresTxt, landedOnTxt, cardsTxt, guiLogic);
-   }
-   
-   private void initTurnLogic(){
-       turnLogic.init(board, guiLogic, landedOnTxt);
-   }
-   
-   private void initPlayerList(){
-       
-       //Creates a playerList and adds the players from guiLogic
-       playerList = new PlayerList(board.getSquare(0), guiLogic);
-       String[] playerNames = guiLogic.getPlayerNames();
-       int [] ageOfPlayer = guiLogic.getPlayerAges();
-       for (int i = 0; i < playerNames.length; i++) {
-           playerList.addPlayer(playerNames[i],ageOfPlayer[i], guiLogic.getSTARTBALANCE());
-       }
+        board = new Board(squaresTxt, turnLogicTxt);
+    }
 
-       playerList.sortPlayersByAge();
-       
-   }
+    //Creates the logic object for running the game
+    protected void initTurnLogic() {
+        turnLogic = new TurnLogic(board, guiLogic, turnLogicTxt, cardsTxt, new Die(), playerList, new ChanceDeck(cardsTxt, board, playerList));
+    }
+
+    protected void initPlayerList() {
+
+        //Creates a playerList and adds the players from guiLogic
+        playerList = new PlayerList(board.getSquare(0));
+        String[] playerNames = guiLogic.getPlayerNames();
+
+        for (int i = 0; i < playerNames.length; i++) {
+            playerList.addPlayer(playerNames[i], STARTBALANCE);
+        }
+    }
+
 }
 
 
