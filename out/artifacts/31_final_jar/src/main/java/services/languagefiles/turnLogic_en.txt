@@ -39,7 +39,7 @@ Pledge,,Pledge
 Trade,,Trade
 Sell,, sell the ground
 Back,,Back
-Price pr. house/hotel,,Price pr. house/hotel:
+Price pr. house/hotel,,Price pr. house:
 Pledge value,,Pledge value:
 Standard rent,,Standard rent:
 1 house,,1 house:
@@ -66,7 +66,7 @@ Property has too many houses,,You can't have more than one hotel.
 Player does not have enough money,,You don't have enough money to pay.
 House has been build,,House is built
 Hotel has been build,,Hotel is built
-too many identical,,You have thrown too many identical, therefor you move to jail.
+too many identical,,Since you have thrown 2 identical 3 times, you are being sent in jail
 Not yet implemented,,The Function is not yet implemented
 byd,,Bid
 pass,,Refuse
@@ -79,3 +79,5 @@ onlynumbers,,Please, write the numbers only.
 minimum,,Write the amount you want to bid, kindly the minimum.
 The game ends,,Since there is only one player left in the game, the game ends!
 toohigh,,The amount entered is over your balance.
+Nobody bid randon new owner,,Nobody has bade, therefore ground will be given to a random player.
+Does not have fonds to buy square,,You do not have funds to buy the ground
