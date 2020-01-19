@@ -4,7 +4,7 @@ import controllers.GameDriver;
 import controllers.GameTest;
 
 
-public class TC22_MenuLogic {
+public class TC23_MenuLogic {
     public static void main(String[] args) {
         new GameDriver(new int[] {
                 3,1, // lander på skatte felt og betaler 3000 til skat
