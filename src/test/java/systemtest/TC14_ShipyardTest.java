@@ -21,9 +21,9 @@ public class TC14_ShipyardTest {
                 2, 3, 3, 4, 5, 1,
                 3, 3, 3, 4, 3, 2,
                 3, 2, 5, 5, 2, 1,
-                5, 3, 2,1, 5,5,
-                6,6, 4,3,2,1, // Spiller 3 dør her haha
-                5, 5, 2,2 },
+                5, 3, 2, 1, 5, 5,
+                6, 6, 4, 3, 2, 1, // Spiller 3 dør her haha
+                5, 5, 2, 2},
                 new int[]{30000, 30000, 30000}, new int[]{0, 0, 0}, //Startbalance
                 new int[]{16, 11, 1, 18, 17, 0, 6, 1}).playGame();      // Chancekort
     }
